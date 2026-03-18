@@ -26,8 +26,6 @@ function warps_util.checkhomepoints(data)
 	return homepoints_list
 end
 
-
-
 function warps_util.checksurvivalguides(data)
 	local subdata = data:sub(0x18+1, 0x27+1) -- survival guides address in packet [0x063]
 	local subdata = util.bin_dump(subdata) -- onvert shit to zeroes and ones
@@ -47,7 +45,6 @@ function warps_util.checksurvivalguides(data)
 	playertracker['Survivalguides_total'] = totalsurvivalguides		
 	return survivalguides_list
 end
-
 
 function warps_util.checkwaypoints(data)
 	local subdata = data:sub(0x28+1 , 0x2E+1) -- waypoint address in packet [0x063]
@@ -71,9 +68,5 @@ function warps_util.checkwaypoints(data)
 	playertracker['Waypoints_total'] = totalwaypoint		
 	return waypoints_list
 end
-
-
-
-
 
 return warps_util

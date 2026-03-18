@@ -1,6 +1,6 @@
 _addon.name     = 'xichecklist'
 _addon.author   = 'Anokata' -- with help of Aragan , also used code from Ivaar@github & stefanmielke@github
-_addon.version  = '1.1.1'
+_addon.version  = '0.1.1'
 _addon.commands = {'xichecklist', 'xic'}
 
 
@@ -9,11 +9,6 @@ packets = require('packets')
 local texts = require('texts')
 local config = require('config')
 res = require('resources')
-
-
-
-files = require('files') -- for dubug
-
 
 -------------------------------------------------
 -- Defaults
@@ -94,10 +89,14 @@ playertracker = {
 	['Waypoints_completed'] = 0,
 	['Waypoints_total'] = 0,
 	
+	['Racejobinstinct_completed'] = 0,
+	['Racejobinstinct_total'] = 0,
+	['MonsterLevels_completed'] = 0,
+	['MonsterLevels_total'] = 0,
+	
 }
 
 playertracker = config.load(playertracker)
-
 
 -------------------------------------------------
 -- CONSTANTS
@@ -158,8 +157,11 @@ tabs = {
         name = 'Warps',
         items = {}
     },
+	{
+        name = 'Monstrosity (WIP)',
+        items = {}
+    },
 }
-
 
 -------------------------------------------------
 -- QUESTS STUFF HERE
@@ -168,9 +170,7 @@ tabs = {
 util = require('util/util')
 quest_util = require('util/quests')
 warps_util = require('util/warps')
-
-
-
+mons_util = require('util/monstrosity')
 
 local cmds = {
     quests = S{'quests','q'},
@@ -187,7 +187,6 @@ local function append_items(dst, src)
     end
 end
 
-
 function append_maintab(text, ...)
 	local args = {...}
 	local menulinecolor = '(255,255,0)'
@@ -202,7 +201,6 @@ function update_maintab()
 	
 	table.insert(tabs[1].items, '- Missions')
 	append_maintab('Campaign Ops %d/%d', playertracker['campaign_completed'], playertracker['campaign_total'])
-	
 	
 	table.insert(tabs[1].items, '- Quests')
 	append_maintab('Bastok Quests %d/%d', playertracker['bastokquests_completed'], playertracker['bastokquests_total'])
@@ -242,17 +240,19 @@ function update_maintab()
 	append_maintab('Survival Guides %d/%d', playertracker['Survivalguides_completed'], playertracker['Survivalguides_total'])
 	append_maintab('Waypoints %d/%d (untested)', playertracker['Waypoints_completed'], playertracker['Waypoints_total'])
 	
+	table.insert(tabs[1].items, '- Monstrosity (WIP)')
+	append_maintab('Monster Levels %d/%d', playertracker['MonsterLevels_completed'], playertracker['MonsterLevels_total'])
+	append_maintab('Race/Job Instincts %d/%d', playertracker['Racejobinstinct_completed'], playertracker['Racejobinstinct_total'])
 	
 end
 
 
 
 windower.register_event('incoming chunk', function(id, data, modified, injected, blocked)
-    if id == 0x056 then
-        local p = packets.parse('incoming', data)
-        local log = quest_logs[p.Type]
-        if log then
-		
+	if id == 0x056 then
+		local p = packets.parse('incoming', data)
+		local log = quest_logs[p.Type]
+		if log then
 			if ((p.Type == 128)) then -- if Aht Urhgan Current Quests
 				quests[log.type][log.area] = p["Current TOAU Quests"]
 			elseif ((p.Type == 192)) then -- if Aht Urhgan Completed Quests
@@ -260,10 +260,7 @@ windower.register_event('incoming chunk', function(id, data, modified, injected,
 			else
 				quests[log.type][log.area] = p['Quest Flags']
 			end
-			
-			
-        end
-		
+		end
 		
 		-- do campaigns
 		if (p.Type == 48) then
@@ -274,17 +271,13 @@ windower.register_event('incoming chunk', function(id, data, modified, injected,
 		campaigns_completed = campaings_completed_log['Completed Campaign Missions'] .. campaings_completed_log['Completed Campaign Missions (2)']
 		quests['completed']['campaign'] = campaigns_completed
 		
-		
-		
 		xichecklist_init()
-		
-		
     end
 	
 	
 	if id == 0x063 then
-		
 		local parseddata = packets.parse('incoming', data)
+		-- do warps
 		if (parseddata.Order == 6) then 
 			tabs[7].items = {}
 			append_items(tabs[7].items, warps_util.checkhomepoints(data))
@@ -292,9 +285,20 @@ windower.register_event('incoming chunk', function(id, data, modified, injected,
 			append_items(tabs[7].items, warps_util.checkwaypoints(data))
 			
 		end
+		
+		-- do monstrosity
+		if (parseddata.Order == 3) then
+			mons_util.monster_levels = mons_util.char_field_to_table(parseddata['Monster Level Char field'])
+			--monster_instincts = bytes_to_table(parseddata['Instinct Bitfield 1'])
+			xichecklist_init()
+		end
+		if (parseddata.Order == 4) then
+			mons_util.racejobinstincts = parseddata['Instinct Bitfield 3']
+			xichecklist_init()
+		end
 	end
 	
-	
+	--xichecklist_init()
 	update_maintab()
 	
 end)
@@ -303,12 +307,14 @@ end)
 
 function xichecklist_init()
 	
-	tabs[1].items = {} -- reset main menu content
+	--tabs[1].items = {} -- reset main menu content
 	tabs[2].items = {} -- reset main menu content
 	tabs[3].items = {} -- reset main menu content
 	tabs[4].items = {} -- reset main menu content
 	tabs[5].items = {} -- reset main menu content
 	tabs[6].items = {} -- reset main menu content
+	
+	tabs[8].items = {} -- reset main menu content
 	
 	-- log quests
 	tabs[2].items = quest_util.log_quests('sandoriaquests')
@@ -347,12 +353,13 @@ function xichecklist_init()
 	-- Log Job Points Spent
 	check_jobpoints()
 	
+	-- log Monstrosity levels & Race/Job Instincts
+	table.insert(tabs[8].items, '- Species Levels')
+	append_items(tabs[8].items, mons_util.log_monsterlevels())
+	table.insert(tabs[8].items, '- Race / Job Instincts')
+	append_items(tabs[8].items, mons_util.log_racejobinstincts())
+	
 end
-
-
-
-
-
 
 windower.register_event('addon command', function(...)
     if arg[1] == 'eval' then
@@ -394,7 +401,6 @@ function check_keyitems(keyitemtype)
 	playertracker[keyitemtype..'_total'] = totalkeyitems
 	return keyitem_list
 end
-
 
 local playerspells = windower.ffxi.get_spells()
 
@@ -539,8 +545,6 @@ windower.register_event('mouse', function(type, x, y, delta, blocked)
         local tx = px + PADDING
         local ty = py + PADDING
 		
-		
-
         for i, tab in ipairs(tabs) do
             local label =
                 (i == active_tab and '['..tab.name..'] ' or ' '..tab.name..'  ')
@@ -621,10 +625,6 @@ windower.register_event('mouse', function(type, x, y, delta, blocked)
             return true
         --end
     end
-	
-	
-	
-	
 	
 	
 	

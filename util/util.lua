@@ -1,14 +1,5 @@
 
-
-
-
 local util = {}
-
-
-local hpmaps = require('../maps/warps_homepoints')
-local sgmaps = require('../maps/warps_survivalguides')
-local totalhomepoint, obtainedhomepoints = 0, 0
-local totalsurvivalguides, obtainedsurvivalguides = 0, 0
 
 function util.bin_dump(data)
 	local out = {}
@@ -28,7 +19,6 @@ function util.bin_dump(data)
 	return table.concat(out, '')
 end
 
-
 function util.to_bools(data)
 	
 	local bools = {}
@@ -37,7 +27,5 @@ function util.to_bools(data)
 	end
 	return bools
 end
-
-
 
 return util

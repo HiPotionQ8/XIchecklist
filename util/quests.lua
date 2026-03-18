@@ -49,7 +49,6 @@ local maps = {
 	campaign = require('../maps/campaign'),
 }
 
-
 function quest_util.to_set(data)
     return {data:unpack('q64':rep(#data/4))}
 end
@@ -57,7 +56,6 @@ end
 function quest_util.addon_error(str)
     --windower.add_to_chat(167, 'You must change areas or complete %s quests before using this command.':format(str))
 end
-
 
 function quest_util.log_quests(quest_type)
     if not quests.completed[quest_type] then
@@ -83,7 +81,6 @@ function quest_util.log_quests(quest_type)
 	playertracker[quest_type..'_total'] = total
 	return quest_list
 end
-
 
 function quest_util.log_campaign(data)
 	local campaign_unlocks = util.bin_dump(data) -- convert shit to zeroes and ones
