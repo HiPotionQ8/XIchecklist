@@ -1,6 +1,6 @@
 _addon.name     = 'xichecklist'
-_addon.author   = 'Anokata' -- with help of Aragan , also used code from Ivaar@github & stefanmielke@github
-_addon.version  = '0.1.2'
+_addon.author   = 'Anokata'
+_addon.version  = '0.2.0'
 _addon.commands = {'xichecklist', 'xic'}
 
 
@@ -49,7 +49,6 @@ playertracker = {
 	['campaign_completed'] = 0,
 	['campaign_total'] = 0,
 	
-	
 	['Permanent Key Items_completed'] = 0,
 	['Permanent Key Items_total'] = 0,
 	['Magical Maps_completed'] = 0,
@@ -94,11 +93,17 @@ playertracker = {
 	['MonsterLevels_completed'] = 0,
 	['MonsterLevels_total'] = 0,
 	['MonsterVariants_completed'] = 0,
-	['MonsterVariants_total'] = 0,	
+	['MonsterVariants_total'] = 0,
 	
+	['Titles_completed'] = 0,
+	['Titles_total'] = 0,
 }
 
-playertracker = config.load(playertracker)
+--playertracker = config.load(playertracker, windower.ffxi.get_player().name)
+
+playertitles = {}
+playertitles = config.load('data/titles.xml', playertitles)
+
 
 -------------------------------------------------
 -- CONSTANTS
@@ -160,7 +165,11 @@ tabs = {
         items = {}
     },
 	{
-        name = 'Monstrosity (WIP)',
+        name = 'Monstrosity',
+        items = {}
+    },
+	{
+        name = 'Titles',
         items = {}
     },
 }
@@ -173,6 +182,7 @@ util = require('util/util')
 quest_util = require('util/quests')
 warps_util = require('util/warps')
 mons_util = require('util/monstrosity')
+titles_util = require('util/titles')
 
 local cmds = {
     quests = S{'quests','q'},
@@ -247,6 +257,9 @@ function update_maintab()
 	append_maintab('Race/Job Instincts %d/%d', playertracker['Racejobinstinct_completed'], playertracker['Racejobinstinct_total'])
 	append_maintab('Monster Variants %d/%d', playertracker['MonsterVariants_completed'], playertracker['MonsterVariants_total'])
 	
+	table.insert(tabs[1].items, '- Titles')
+	append_maintab('Titles %d/%d', playertracker['Titles_completed'], playertracker['Titles_total'])
+	
 end
 
 
@@ -255,6 +268,7 @@ windower.register_event('incoming chunk', function(id, data, modified, injected,
 	if id == 0x056 then
 		local p = packets.parse('incoming', data)
 		local log = quest_logs[p.Type]
+		-- do quests
 		if log then
 			if ((p.Type == 128)) then -- if Aht Urhgan Current Quests
 				quests[log.type][log.area] = p["Current TOAU Quests"]
@@ -303,6 +317,11 @@ windower.register_event('incoming chunk', function(id, data, modified, injected,
 		end
 	end
 	
+	-- do titles
+	if id == 0x033 then
+		titles_util.check_titles_npc(data)
+	end
+	
 	--xichecklist_init()
 	update_maintab()
 	
@@ -320,6 +339,7 @@ function xichecklist_init()
 	tabs[6].items = {} -- reset main menu content
 	
 	tabs[8].items = {} -- reset main menu content
+	tabs[9].items = {} -- reset main menu content
 	
 	-- log quests
 	tabs[2].items = quest_util.log_quests('sandoriaquests')
@@ -365,6 +385,9 @@ function xichecklist_init()
 	append_items(tabs[8].items, mons_util.log_variants())
 	table.insert(tabs[8].items, '- Race / Job Instincts')
 	append_items(tabs[8].items, mons_util.log_racejobinstincts())
+	
+	-- log Monstrosity levels & Race/Job Instincts
+	append_items(tabs[9].items, titles_util.log_titles())
 	
 end
 
