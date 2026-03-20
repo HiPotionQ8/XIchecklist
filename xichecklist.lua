@@ -1,6 +1,6 @@
 _addon.name     = 'xichecklist'
 _addon.author   = 'Anokata'
-_addon.version  = '0.2.0'
+_addon.version  = '0.2.1'
 _addon.commands = {'xichecklist', 'xic'}
 
 
@@ -99,7 +99,7 @@ playertracker = {
 	['Titles_total'] = 0,
 }
 
---playertracker = config.load(playertracker, windower.ffxi.get_player().name)
+--playertracker = config.load('data/'.. windower.ffxi.get_player().name .. '.xml', playertracker)
 
 playertitles = {}
 playertitles = config.load('data/titles.xml', playertitles)
@@ -185,7 +185,9 @@ mons_util = require('util/monstrosity')
 titles_util = require('util/titles')
 
 local cmds = {
-    quests = S{'quests','q'},
+    quests = S{'help','h'},
+	hide = S{'hide'},
+	show = S{'show'},
 	test = S{'test'},
 
 }
@@ -257,8 +259,12 @@ function update_maintab()
 	append_maintab('Race/Job Instincts %d/%d', playertracker['Racejobinstinct_completed'], playertracker['Racejobinstinct_total'])
 	append_maintab('Monster Variants %d/%d', playertracker['MonsterVariants_completed'], playertracker['MonsterVariants_total'])
 	
+	table.insert(tabs[1].items, '----------------------')
 	table.insert(tabs[1].items, '- Titles')
 	append_maintab('Titles %d/%d', playertracker['Titles_completed'], playertracker['Titles_total'])
+	append_items(tabs[1].items, titles_util.list_titles_bycontent())
+	
+	
 	
 end
 
@@ -302,7 +308,6 @@ windower.register_event('incoming chunk', function(id, data, modified, injected,
 			append_items(tabs[7].items, warps_util.checkwaypoints(data))
 			
 		end
-		
 		-- do monstrosity
 		if (parseddata.Order == 3) then
 			mons_util.monster_levels = mons_util.char_field_to_table(parseddata['Monster Level Char field'])
@@ -319,7 +324,12 @@ windower.register_event('incoming chunk', function(id, data, modified, injected,
 	
 	-- do titles
 	if id == 0x033 then
+		-- check title npc menu
 		titles_util.check_titles_npc(data)
+	elseif id == 0x061 then
+		-- check player info (updated when openning menu)
+		local parseddata = packets.parse('incoming', data)
+		titles_util.add_title(parseddata['Title'])
 	end
 	
 	--xichecklist_init()
@@ -391,18 +401,6 @@ function xichecklist_init()
 	
 end
 
-windower.register_event('addon command', function(...)
-    if arg[1] == 'eval' then
-        assert(loadstring(table.concat(arg, ' ',2)))()
-    elseif cmds.test:contains(arg[1]) then
-		
-		--update_maintab()
-		windower.add_to_chat(100, "test")
-		
-		--tabs[4].items = quest_util.log_camp('campaign')
-		
-    end
-end)
 
 -------------------------------------------------
 -- STUFF HERE
@@ -659,6 +657,26 @@ windower.register_event('mouse', function(type, x, y, delta, blocked)
 	
 	
 end)
+
+
+windower.register_event('addon command', function(...)
+    if arg[1] == 'eval' then
+        assert(loadstring(table.concat(arg, ' ',2)))()
+    elseif cmds.help:contains(arg[1]) then
+		
+	elseif cmds.show:contains(arg[1]) then
+		ui:show()
+	elseif cmds.hide:contains(arg[1]) then
+		ui:hide()
+	elseif cmds.test:contains(arg[1]) then
+		
+		--update_maintab()
+		windower.add_to_chat(100, "test")
+		
+		
+    end
+end)
+
 
 -------------------------------------------------
 -- CLEANUP

@@ -29,7 +29,7 @@ function util.to_bools(data)
 end
 
 function util.addon_log(str)
-    windower.add_to_chat(161, str)
+    windower.add_to_chat(50, 'test')
 end
 
 return util

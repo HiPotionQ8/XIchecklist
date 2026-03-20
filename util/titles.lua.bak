@@ -64,9 +64,7 @@ function titles_util.list_titles_bycontent()
 				contentcomplete = contentcomplete+1
 			end
 		end
-		local red = 0
-		if (contentcomplete < contenttotal) then red=255 end
-		table.insert(bycontent_list, '\\cs('.. red ..',255,0)--' .. content ..' titles %d/%d \\cr':format(contentcomplete, contenttotal))
+		table.insert(bycontent_list, '\\cs(255,255,0)--' .. content ..' titles %d/%d \\cr':format(contentcomplete, contenttotal))
 	end
 	return bycontent_list
 end
