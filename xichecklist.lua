@@ -185,7 +185,7 @@ mons_util = require('util/monstrosity')
 titles_util = require('util/titles')
 
 local cmds = {
-    quests = S{'help','h'},
+    help = S{'help','h'},
 	hide = S{'hide'},
 	show = S{'show'},
 	test = S{'test'},
