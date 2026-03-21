@@ -83,15 +83,13 @@ function quest_util.log_quests(quest_type)
 end
 
 function quest_util.log_campaign(data)
-	local campaign_unlocks = util.bin_dump(data) -- convert shit to zeroes and ones
-	local campaign_unlocks = util.to_bools(campaign_unlocks) -- convert zeros and ones to true/false
 	local complete,total = 0, 0
 	local quest_list = {}
-	for key,campaignname in pairs(maps.campaign) do
-		local bitindex = ((math.floor(key/8)+1)*8) - ((key%8) +1)
-		if maps.campaign[key] then
+	for id,campaignname in pairs(maps.campaign) do
+		local bitindex = ((math.floor(id/8)+1)*8) - ((id%8) +1)
+		if maps.campaign[id] then
 			total = total + 1
-			if campaign_unlocks[bitindex+1] then
+			if util.has_bit(data, id) then
 				complete = complete + 1
 				--table.insert(quest_list, '\\cs(0,255,0) ' .. campaignname ..'\\cr') -- add completed campaign name
 			else

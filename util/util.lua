@@ -1,35 +1,12 @@
 
 local util = {}
 
-function util.bin_dump(data)
-	local out = {}
-	
-	for i = 1, #data do
-		local byte = data:byte(i)
-		local bits = {}
-		
-		-- LSB → MSB (correct for FFXI bitfields)
-		for b = 0, 7 do
-			bits[8 - b] = bit.band(bit.rshift(byte, b), 1)
-		end
-		
-		out[#out + 1] = table.concat(bits)
-	end
-	
-	return table.concat(out, '')
-end
-
-function util.to_bools(data)
-	
-	local bools = {}
-	for i = 1, #data do
-		bools[i] = (data:sub(i, i) == '1')
-	end
-	return bools
-end
-
 function util.addon_log(str)
     windower.add_to_chat(161, str)
+end
+
+function util.has_bit(data, position)
+    return data:unpack('q', math.floor(position/8)+1, position%8+1)
 end
 
 return util

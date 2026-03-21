@@ -7,8 +7,8 @@ return {
     [6]  = 'Western Adoulin',
     [7]  = 'Western Adoulin',
     [8]  = 'Western Adoulin',
+	
     [9]  = 'Western Adoulin',
-
     [10] = 'Eastern Adoulin',
     [11] = 'Eastern Adoulin',
     [12] = 'Eastern Adoulin',
@@ -16,45 +16,43 @@ return {
     [14] = 'Eastern Adoulin',
     [15] = 'Eastern Adoulin',
     [16] = 'Eastern Adoulin',
+	
     [17] = 'Eastern Adoulin',
     [18] = 'Eastern Adoulin',
-
     [19] = 'Yahse Hunting Grounds',
     [20] = 'Yahse Hunting Grounds',
     [21] = 'Yahse Hunting Grounds',
     [22] = 'Yahse Hunting Grounds',
-
     [23] = 'Ceizak Battlegrounds',
     [24] = 'Ceizak Battlegrounds',
+	
     [25] = 'Ceizak Battlegrounds',
     [26] = 'Ceizak Battlegrounds',
-
     [27] = 'Foret de Hennetiel',
     [28] = 'Foret de Hennetiel',
     [29] = 'Foret de Hennetiel',
     [30] = 'Foret de Hennetiel',
     [31] = 'Foret de Hennetiel',
-
     [32] = 'Morimar Basalt Fields',
+	
     [33] = 'Morimar Basalt Fields',
     [34] = 'Morimar Basalt Fields',
     [35] = 'Morimar Basalt Fields #4',
     [36] = 'Morimar Basalt Fields',
     [37] = 'Morimar Basalt Fields',
-
     [38] = 'Yorcia Weald',
     [39] = 'Yorcia Weald',
     [40] = 'Yorcia Weald',
+	
     [41] = 'Yorcia Weald',
-
     [42] = 'Marjami Ravine',
     [43] = 'Marjami Ravine',
     [44] = 'Marjami Ravine',
     [45] = 'Marjami Ravine',
     [46] = 'Marjami Ravine',
-
     [47] = 'Kamihr Drifts',
     [48] = 'Kamihr Drifts',
+	
     [49] = 'Kamihr Drifts',
     [50] = 'Kamihr Drifts',
     [51] = 'Kamihr Drifts',

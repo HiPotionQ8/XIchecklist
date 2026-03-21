@@ -1,6 +1,6 @@
 _addon.name     = 'xichecklist'
 _addon.author   = 'Anokata'
-_addon.version  = '0.2.1'
+_addon.version  = '0.2.2'
 _addon.commands = {'xichecklist', 'xic'}
 
 
@@ -664,7 +664,9 @@ windower.register_event('addon command', function(...)
     if arg[1] == 'eval' then
         assert(loadstring(table.concat(arg, ' ',2)))()
     elseif cmds.help:contains(arg[1]) then
-		
+		windower.add_to_chat(2,"....XIchecklist / xic....")
+		windower.add_to_chat(2,"//xic [show|hide] to show / hide UI")
+		windower.add_to_chat(2,"Note: to update titles must talk to Title NPCs")
 	elseif cmds.show:contains(arg[1]) then
 		ui:show()
 	elseif cmds.hide:contains(arg[1]) then
@@ -673,7 +675,6 @@ windower.register_event('addon command', function(...)
 		
 		--update_maintab()
 		windower.add_to_chat(100, "test")
-		
 		
     end
 end)
