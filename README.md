@@ -21,13 +21,17 @@ to update titles you must speak to all Titles NPCs
 
 
 
-![screenshot](https://i.imgur.com/fiQmDLk.png)
+![screenshot](https://i.imgur.com/ckMMXEe.jpeg)
 
 the menu will only show missing items like quests,key items, spells, home points, suvivsal guides , waypoint etc
 
 ![screenshot2](https://i.imgur.com/2UsoS9N.png)
 
 ![screenshot3](https://i.imgur.com/Ex6SHRJ.png)
+
+![screenshot4](https://i.imgur.com/wUWDWqE.png)
+
+![screenshot5](https://i.imgur.com/vi4uiU8.png)
 
 - this thing is free to use/share/edit/anything i dont care what you do with it
 
