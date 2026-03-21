@@ -38,7 +38,6 @@ the menu will only show missing items like quests,key items, spells, home points
 - this thing is free to use/share/edit/anything i dont care what you do with it
 
 ### **Todo Plan**: (but most likely will be too lazy to do it)
-- titles exclusion list
 - merits
 - outpost warps
 - fish stuff
@@ -60,5 +59,5 @@ the menu will only show missing items like quests,key items, spells, home points
 - 0.2.0 - added titles (thanks to kaytecat)
 - 0.2.1 - added list of Titles by content
 - 0.3.0 - added RoE Tracking (thanks to Daleterrence / Darkdoom for resources)
-
+- 0.3.1 - added title exclusions & removed unlearnable spells
 
