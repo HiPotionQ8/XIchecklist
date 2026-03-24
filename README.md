@@ -63,3 +63,4 @@ the menu will only show missing items like quests,key items, spells, home points
 - 0.4.0 - A lot fixes
 - 0.4.1 - removed non-implemented monstrosity
 - 0.5.0 - added title obtain method, for quick reference in missing titles
+- 0.5.2 - fixed unlearnable spells & waypoint mapping
