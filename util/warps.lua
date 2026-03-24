@@ -46,11 +46,10 @@ function warps_util.checkwaypoints(data)
 	local subdata = data:sub(0x28+1 , 0x2E+1) -- waypoint address in packet [0x063]
 	local totalwaypoint, obtainedwaypoints = 0, 0
 	waypoints_list = {}
-	-- check for unobtained home points
+	-- check for unobtained way points
 	for wpindex, wpname in pairs(wpmaps) do
 		totalwaypoint = totalwaypoint+1
 		if (not util.has_bit(subdata, wpindex)) then
-			--windower.add_to_chat(207, '[' .. wpindex .. ']' .. wpname) -- print non completed way point
 			table.insert(waypoints_list, '\\cs(255,255,0)[Waypoints] [index '.. wpindex .. ']' .. wpname ..'\\cr') -- add non completed way point
 		else
 			obtainedwaypoints = obtainedwaypoints+1

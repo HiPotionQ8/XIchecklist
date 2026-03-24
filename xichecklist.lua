@@ -1,6 +1,6 @@
 _addon.name     = 'xichecklist'
 _addon.author   = 'Anokata'
-_addon.version  = '0.5.1'
+_addon.version  = '0.5.2'
 _addon.commands = {'xichecklist', 'xic'}
 
 require('sets')
