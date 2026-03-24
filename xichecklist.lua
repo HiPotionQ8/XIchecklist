@@ -1,6 +1,6 @@
 _addon.name     = 'xichecklist'
 _addon.author   = 'Anokata'
-_addon.version  = '0.4.2'
+_addon.version  = '0.5.0'
 _addon.commands = {'xichecklist', 'xic'}
 
 require('sets')
@@ -42,10 +42,8 @@ playertracker = {
 	['abyssea_total'] = 0,
 	['adoulin_completed'] = 0,
 	['adoulin_total'] = 0,
-	
 	['coalition_completed'] = 0,
 	['coalition_total'] = 0,
-	
 	['campaign_completed'] = 0,
 	['campaign_total'] = 0,
 	
@@ -107,11 +105,8 @@ playertracker = {
 
 playertitles = {}
 playertitles = config.load('data/'.. windower.ffxi.get_player().name .. '_titles.xml', playertitles)
-
 playerroe = {}
 playerroe = config.load('data/'.. windower.ffxi.get_player().name .. '_roe.xml', playerroe)
-
-
 
 -------------------------------------------------
 -- CONSTANTS
@@ -202,7 +197,6 @@ local cmds = {
 	hide = S{'hide'},
 	show = S{'show'},
 	test = S{'test'},
-
 }
 
 local function append_items(dst, src)
@@ -219,7 +213,6 @@ function append_maintab(text, ...)
 	local menulinecolor = '(255,255,0)'
 	if (args[1]==args[2]) then menulinecolor = '(0,255,0)' end
 	table.insert(tabs[1].items, '\\cs' .. menulinecolor .. '--' .. text:format(...) .. '\\cr')
-	
 end
 
 function update_maintab()
@@ -281,7 +274,6 @@ function update_maintab()
 	append_items(tabs[1].items, titles_util.list_titles_bycontent())
 	
 end
-
 
 windower.register_event('incoming chunk', function(id, data, modified, injected, blocked)
 	if id == 0x056 then
@@ -348,8 +340,6 @@ windower.register_event('incoming chunk', function(id, data, modified, injected,
 	update_maintab()
 	
 end)
-
-
 
 function xichecklist_updatetabs(tab)
 	
@@ -466,7 +456,7 @@ function check_playerspells(spelltype)
 	totalplayerspells = 0
 	learnedspells = 0
 	for id, value in pairs(res.spells) do
-		if ((value.type == spelltype) and (not value.unlearnable) and (not spells_exclusions[id])) then
+		if ((value.type == spelltype) and (not value.unlearnable) and (not spells_exclusions[id]) --[[and (#value.levels > 0)]] ) then
 			if (playerspells[id] == true) then
 				-- spell learned
 				learnedspells = learnedspells + 1

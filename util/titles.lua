@@ -2,6 +2,7 @@ local titles_util = {}
 local npcmaps = require('../maps/titles_npcs')
 local titlescontnt = require('../maps/titles_bycontent')
 local titlesexclusions = require('../maps/titles_exclusions')
+local titles_howtoobtain = require('../maps/titles_howtoobtain')
 
 local totaltitles, obtainedtitles = 0, 0
 
@@ -39,12 +40,16 @@ function titles_util.log_titles()
 	local total, complete = 0,0
 	for key, title in pairs(res.titles) do
 		total = total+1
+		local obtainmethod = ''
+		if (titles_howtoobtain[title.en]) then
+			obtainmethod = '\\cs(255,255,255) [' .. titles_howtoobtain[title.en] .. ']\\cr'
+		end
 		if (playertitles[tostring(key)] == true) then
 			complete = complete+1
 			--table.insert(titles_list, '\\cs(0,255,0) ' .. res.titles[key].en ..'\\cr') -- add obtained title
 		else
 			if (not titlesexclusions:contains(key)) then  
-				table.insert(titles_list, '\\cs(255,255,0) ' .. res.titles[key].en ..'\\cr') -- add missing title
+				table.insert(titles_list, '\\cs(255,255,0)' .. res.titles[key].en .. obtainmethod ..'\\cr') -- add missing title
 			else
 				total = total - 1
 			end
