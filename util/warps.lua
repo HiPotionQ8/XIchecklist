@@ -10,12 +10,6 @@ local warps = {
 	waypoints = {data = {0x28+1 , 0x2E+1}, map = require('../maps/warps_waypoints')},
 }
 
-opwarp_npcs = {
-	['Conrad'] = {entityid=17735859, zoneid=234, menuid=584},
-	['Jeanvirgaud'] = {entityid=17723597, zoneid=231, menuid=0},
-	['Rottata'] = {entityid=17760439, zoneid=240, menuid=0},
-}
-
 function warps_util.checkwarps(warptype, data)
 	local subdata = data:sub(unpack(warps[warptype].data))
 	local total, obtained = 0, 0
