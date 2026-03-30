@@ -42,14 +42,12 @@ the menu will only show missing items like quests,key items, spells, home points
 
 ### **Todo Plan**: (but most likely will be too lazy to do it)
 - merits
-- outpost warps
 - fish stuff
 - anything that can be easily extracted from packets
 
 
 
 - need help mapping the warps_waypoints.lua correctly (assign numbers and #FS)
-- need help confirm the monstrosities mapping
 
 
 
