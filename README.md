@@ -10,10 +10,13 @@ to update Titles you must speak to all [Titles NPCs](https://www.bg-wiki.com/ffx
 
 to update Outpost Warps you must speak to any [Nation Teleporter](https://www.bg-wiki.com/ffxi/Outpost#Nation_Teleporters)
 
+to update MMM Maze Count you must speak to [Chatnachoq](https://www.bg-wiki.com/ffxi/Chatnachoq)
+
 ## **Tracking**:
 
 - Monstrosity (Monster levels / Race & Job Instincts / Monster variants)
 - Titles
+- Moblin Maze Mongers (Vouchers / Runes / Maze Count)
 - Outpost Warps
 - Records of Eminence (RoE) 
 - Warps (Home Points / Survival Guides / Waypoints)
@@ -66,3 +69,4 @@ the menu will only show missing items like quests,key items, spells, home points
 - 0.5.0 - added title obtain method, for quick reference in missing titles
 - 0.5.2 - fixed unlearnable spells & waypoint mapping
 - 0.6.0 - added Outpost warps / Monster Instincts + fixes/cleanup
+- 0.7.0 - added Moblin Maze Mongers (Vouchers / Runes / Maze count) & Active Effects (Dynamis/Sortie Job KIs)
