@@ -1,6 +1,6 @@
 _addon.name     = 'xichecklist'
 _addon.author   = 'Anokata'
-_addon.version  = '0.7.0'
+_addon.version  = '0.8.0'
 _addon.commands = {'xichecklist', 'xic'}
 
 require('sets')
@@ -103,6 +103,8 @@ playertracker = {
 	
 	['outposts_completed'] = 0,
 	['outposts_total'] = 0,
+	['protowaypoints_completed'] = 0,
+	['protowaypoints_total'] = 0,
 	
 	['mmmvouchers_completed'] = 0,
 	['mmmvouchers_total'] = 0,
@@ -112,6 +114,7 @@ playertracker = {
 	
 	
 	outposts_unlocks = {},
+	protowaypoints_unlocks = {},
 }
 
 playertracker = config.load('data/'.. windower.ffxi.get_player().name .. '.xml', playertracker)
@@ -283,6 +286,7 @@ function update_maintab()
 	append_maintab('Survival Guides %d/%d', playertracker['survivalguides_completed'], playertracker['survivalguides_total'])
 	append_maintab('Waypoints %d/%d', playertracker['waypoints_completed'], playertracker['waypoints_total'])
 	append_maintab('Outposts %d/%d', playertracker['outposts_completed'], playertracker['outposts_total'])
+	append_maintab('Proto-Waypoints %d/%d', playertracker['protowaypoints_completed'], playertracker['protowaypoints_total'])
 	
 	table.insert(tabs[1].items, '======= Monstrosity =======')
 	append_maintab('Monster Levels %d/%d', playertracker['MonsterLevels_completed'], playertracker['MonsterLevels_total'])
@@ -293,7 +297,7 @@ function update_maintab()
 	table.insert(tabs[1].items, '======= Moblin Maze Mongers =======')
 	append_maintab('Vouchers Unlocked %d/%d', playertracker['mmmvouchers_completed'], playertracker['mmmvouchers_total'])
 	append_maintab('Runes Unlocked %d/%d', playertracker['mmmrunes_completed'], playertracker['mmmrunes_total'])
-	--append_maintab('Maze count %d', playertracker['mmm_mazecount'])
+	append_maintab('Maze count %d', playertracker['mmm_mazecount'])
 	
 	table.insert(tabs[1].items, '======= Titles =======')
 	append_maintab('Titles %d/%d', playertracker['Titles_completed'], playertracker['Titles_total'])
@@ -428,7 +432,8 @@ function xichecklist_updatetabs(tab)
 		append_items(tabs[7].items, warps_util.checkwarps('homepoints'))
 		append_items(tabs[7].items, warps_util.checkwarps('survivalguides'))
 		append_items(tabs[7].items, warps_util.checkwarps('waypoints'))
-		append_items(tabs[7].items, warps_util.log_outposts())
+		append_items(tabs[7].items, menus_util.log_outposts())
+		append_items(tabs[7].items, menus_util.log_protowaypoints())
 	end
 	
 	-- Log Job Points Spent

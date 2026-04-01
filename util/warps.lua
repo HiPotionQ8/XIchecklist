@@ -1,5 +1,4 @@
 local warps_util = {}
-local opmaps = require('../maps/maps_outposts')
 local warps_data = nil
 local totalhomepoint, obtainedhomepoints = 0, 0
 local totalsurvivalguides, obtainedsurvivalguides = 0, 0
@@ -28,23 +27,6 @@ function warps_util.checkwarps(warptype)
 	playertracker[warptype..'_completed'] = obtained
 	playertracker[warptype..'_total'] = total		
 	return warps_list
-end
-
-function warps_util.log_outposts()
-	outposts_list = {}
-	local total, complete = 0,0
-	for key, name in pairs(opmaps) do
-		total = total+1
-		if (playertracker.outposts_unlocks[tostring(key)] == true) then
-			complete = complete+1
-			--table.insert(outposts_list, '\\cs(0,255,0)[outpost] ' .. name ..'\\cr') -- add obtained outpost
-		else
-			table.insert(outposts_list, '\\cs(255,255,0)[outpost] ' .. name ..'\\cr') -- add missing outpost
-		end
-	end
-	playertracker['outposts_completed'] = complete
-	playertracker['outposts_total'] = total
-	return outposts_list
 end
 
 return warps_util
