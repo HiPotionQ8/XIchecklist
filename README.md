@@ -1,10 +1,9 @@
 ## **Usage**:
 
-`//lua load xichecklist` , then <ins>**zone**</ins> to get the UI menu updated
+`//lua load xichecklist` , then <ins>**zone**</ins> to get the UI menu updated.
 
-`//xic hide|show` to hide or show the UI
+`//xic hide|show` to hide or show the UI.
 
-`//xic test` to print some hidden/unknown RoE
 
 to update Titles you must speak to all [Titles NPCs](https://www.bg-wiki.com/ffxi/Category:Title_NPC)
 
