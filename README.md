@@ -14,6 +14,10 @@ to update MMM Maze Count you must speak to [Chatnachoq](https://www.bg-wiki.com/
 
 to update Proto-Waypoint you must speak to any [Proto-Waypoints](https://www.bg-wiki.com/ffxi/Waypoint#Proto-Waypoints)
 
+to update Fishes Caught you must speak to Fish Tracker NPC (Open the menu) [Katsunaga](https://www.bg-wiki.com/ffxi/Katsunaga)
+
+to update Meeble Burrows you must speak to any [Burrow Researcher](https://www.bg-wiki.com/ffxi/Burrow_Researcher) or [Burrow Investigator](https://www.bg-wiki.com/ffxi/Burrow_Investigator) (Open the Area menu)
+
 ## **Tracking**:
 
 - Monstrosity (Monster levels / Race & Job Instincts / Monster variants)
@@ -45,12 +49,6 @@ the menu will only show missing items like quests,key items, spells, home points
 
 - this thing is free to use/share/edit/anything i dont care what you do with it
 
-### **Todo Plan**: (but most likely will be too lazy to do it)
-- merits
-- fish stuff
-- anything that can be easily extracted from packets
-
-
 
 - need help mapping the warps_waypoints.lua correctly (assign numbers and #FS)
 
@@ -73,3 +71,4 @@ the menu will only show missing items like quests,key items, spells, home points
 - 0.6.0 - added Outpost warps / Monster Instincts + fixes/cleanup
 - 0.7.0 - added Moblin Maze Mongers (Vouchers / Runes / Maze count) & Active Effects (Dynamis/Sortie Job KIs)
 - 0.8.0 - added Proto-Waypoints
+- 0.9.0 -- added Fishes Caught / Meeble Burrows / Merits , moved Coalitions under Quests
