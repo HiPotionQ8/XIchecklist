@@ -155,8 +155,7 @@ return {
 
 	--[361]='Vermilion Harpeia',
 	--[362]='Alabaster Harpeia',
-
-
+	
 	[508]='She-Slime (Slime)',
 	[509]='Metal Slime (Slime)',
 	[510]='Spriggan.C (Spriggan)',

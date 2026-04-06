@@ -1,6 +1,6 @@
 _addon.name     = 'xichecklist'
 _addon.author   = 'Anokata'
-_addon.version  = '0.9.2'
+_addon.version  = '0.9.3'
 _addon.commands = {'xichecklist', 'xic'}
 
 require('sets')
@@ -123,6 +123,8 @@ playertracker = {
 	
 	['meebleburrows_completed'] = 0,
 	['meebleburrows_total'] = 0,
+	['craftingskills_completed'] = 0,
+	['craftingskills_total'] = 790,
 	
 	outposts_unlocks = {},
 	protowaypoints_unlocks = {},
@@ -278,10 +280,8 @@ function update_maintab()
 	table.insert(tabs[1].items, '======= RoE =======')
 	append_maintab('RoE %d/%d', playertracker['RoE_completed'], playertracker['RoE_total'])
 	
-	table.insert(tabs[1].items, '======= Missions =======')
+	table.insert(tabs[1].items, '======= Quests & Ops =======')
 	append_maintab('Campaign Ops %d/%d', playertracker['campaign_completed'], playertracker['campaign_total'])
-	
-	table.insert(tabs[1].items, '======= Quests =======')
 	append_maintab('Bastok Quests %d/%d', playertracker['bastok_completed'], playertracker['bastok_total'])
 	append_maintab('San d\'Oria Quests %d/%d', playertracker['sandoria_completed'], playertracker['sandoria_total'])
 	append_maintab('Windurst Quests %d/%d', playertracker['windurst_completed'], playertracker['windurst_total'])
@@ -293,6 +293,7 @@ function update_maintab()
 	append_maintab('Abyssea Quests %d/%d', playertracker['abyssea_completed'], playertracker['abyssea_total'])
 	append_maintab('Adoulin Quests %d/%d', playertracker['adoulin_completed'], playertracker['adoulin_total'])
 	append_maintab('Coalition Assignments %d/%d', playertracker['coalition_completed'], playertracker['coalition_total'])
+	
 
 	table.insert(tabs[1].items, '======= Key Items =======')
 	append_maintab('Permanent Key Items %d/%d', playertracker['Permanent_Key_Items_completed'], playertracker['Permanent_Key_Items_total'])
@@ -311,7 +312,8 @@ function update_maintab()
 	append_maintab('Geomancy %d/%d', playertracker['Geomancy_completed'], playertracker['Geomancy_total'])
 	append_maintab('Trusts %d/%d', playertracker['Trust_completed'], playertracker['Trust_total'])
 
-	table.insert(tabs[1].items, '======= EXP =======')
+	table.insert(tabs[1].items, '======= Leveling =======')
+	append_maintab('Craft Skills %d/%d', playertracker['craftingskills_completed'], 790)
 	append_maintab('Merit Points %d/%d', playertracker['Meritpoints_completed'], 919)
 	append_maintab('Job Points %d/%d', playertracker['Jobpoints_completed'], 46200)
 	append_maintab('Master Levels %d/%d (Highest: %d)', playertracker['Masterlevels_completed'], 1100, playertracker['Masterlevels_highest'])
@@ -332,12 +334,10 @@ function update_maintab()
 	append_maintab('Monster Variants %d/%d', playertracker['MonsterVariants_completed'], playertracker['MonsterVariants_total'])
 	append_maintab('Monster Instincts %d/%d', playertracker['MonsterInsincts_completed'], playertracker['MonsterInsincts_total'])
 	
-	table.insert(tabs[1].items, '======= Moblin Maze Mongers =======')
-	append_maintab('Vouchers Unlocked %d/%d', playertracker['mmmvouchers_completed'], playertracker['mmmvouchers_total'])
-	append_maintab('Runes Unlocked %d/%d', playertracker['mmmrunes_completed'], playertracker['mmmrunes_total'])
-	append_maintab('Maze count %d', playertracker['mmm_mazecount'])
-	
-	table.insert(tabs[1].items, '======= Meeble Burrows =======')
+	table.insert(tabs[1].items, '======= Battle Content =======')
+	append_maintab('MMM Vouchers Unlocked %d/%d', playertracker['mmmvouchers_completed'], playertracker['mmmvouchers_total'])
+	append_maintab('MMM Runes Unlocked %d/%d', playertracker['mmmrunes_completed'], playertracker['mmmrunes_total'])
+	append_maintab('MMM Maze count %d', playertracker['mmm_mazecount'])
 	append_maintab('Meeble Burrows Goal #3 %d/%d', playertracker['meebleburrows_completed'], playertracker['meebleburrows_total'])
 	
 	table.insert(tabs[1].items, '======= Titles =======')
@@ -368,6 +368,13 @@ windower.register_event('incoming chunk', function(id, data, modified, injected,
 		end
 		xichecklist_updatetabs('quests')
     end
+	
+	-- crafting skills
+	if id == 0x062 then
+		local p = packets.parse('incoming', data)
+		playertracker['craftingskills_completed'] = p['Fishing Level']+p['Woodworking Level']+p['Smithing Level']+p['Goldsmithing Level']+p['Clothcraft Level']
+		+p['Leathercraft Level']+p['Bonecraft Level']+p['Alchemy Level']+p['Cooking Level']+p['Synergy Level']
+	end
 	
 	if id == 0x063 then
 		local parseddata = packets.parse('incoming', data)
