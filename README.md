@@ -19,7 +19,7 @@ to update Fishes Caught you must speak to Fish Tracker NPC [Katsunaga](https://w
 
 to update Meeble Burrows you must speak to any [Burrow Researcher](https://www.bg-wiki.com/ffxi/Burrow_Researcher) or [Burrow Investigator](https://www.bg-wiki.com/ffxi/Burrow_Investigator) `(Menu: Review expedition specifics -> Zone)`
 
-to update Atmacite levels speak to any [Atmacite Refiner](https://www.bg-wiki.com/ffxi/Atmacite_Refiner) (Menu: Enrich Atmacite)
+to update Atmacite levels speak to any [Atmacite Refiner](https://www.bg-wiki.com/ffxi/Atmacite_Refiner) `(Menu: Enrich Atmacite)`
 
 to update Wing Skill speak to chocobo kids [Arvilauge/Gonija/Kiria-Romaria](https://www.bg-wiki.com/ffxi/Category:Chocobo_Digging#Basics)
 
