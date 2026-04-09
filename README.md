@@ -6,8 +6,7 @@
 | `//xic show` | to show the UI |
 | `//xic copy` | to copy current tab to clipboard |
 
-The following are updated by talking to NPCs (some require opening certain menus)
-
+The following are updated by talking to NPCs (some require opening certain menus)  
 will be saved in config so only need to do it once (or when need to update)
 
 | Data | Description |
@@ -24,19 +23,19 @@ will be saved in config so only need to do it once (or when need to update)
 
 ## **Tracking**:
 
-- Monstrosity (Monster levels / Race & Job Instincts / Monster variants)
+- Monstrosity `(Monster levels / Race & Job Instincts / Monster variants)`
 - Titles
-- Moblin Maze Mongers (Vouchers / Runes / Maze Count)
+- Moblin Maze Mongers `(Vouchers / Runes / Maze Count)`
 - Meeble Burrows
 - Types of fish caught
 - Outpost Warps
 - Records of Eminence (RoE) 
-- Warps (Home Points / Survival Guides / Waypoints / Proto-Waypoints)
+- Warps `(Home Points / Survival Guides / Waypoints / Proto-Waypoints)`
 - Campaign Ops
-- Quests (San d'Oria / Bastok / Windurst / Jeuno / Aht Urhgan / Crystal War / Outlands / Other / Abyssea / Adoulin / Coalition)
-- Key items (Permenant / Maps / Mounts / Claim Slips / Job KIs)
-- Magic Spells (White Magic / Black Magic / Summoner Pacts / Ninjutsu / Bard Songs / Blue Magic / Trusts)
-- leveling related (Merit / Job points / Master levels / Fishing Skill / Crafting Skill / Wing Skill)
+- Quests `(San d'Oria / Bastok / Windurst / Jeuno / Aht Urhgan / Crystal War / Outlands / Other / Abyssea / Adoulin / Coalition)`
+- Key items `(Permenant / Maps / Mounts / Claim Slips / Job KIs)`
+- Magic Spells `(White Magic / Black Magic / Summoner Pacts / Ninjutsu / Bard Songs / Blue Magic / Trusts)`
+- leveling related `(Merit / Job points / Master levels / Fishing Skill / Crafting Skill / Wing Skill)`
 
 
 
