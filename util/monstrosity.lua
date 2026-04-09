@@ -37,7 +37,7 @@ function mons_util.log_monsterlevels()
 	if (mons_util.monster_levelspacket[1] == nil or mons_util.monster_levelspacket[2] == nil) then 
 		return
 	else 
-		mons_util.monster_levels = util.char_field_to_table(mons_util.monster_levelspacket[1] .. mons_util.monster_levelspacket[2])
+		mons_util.monster_levels = util.bytes_to_table(mons_util.monster_levelspacket[1] .. mons_util.monster_levelspacket[2])
 	end
 	if mons_util.monster_levels==nil then return end
 	local output_list = {}

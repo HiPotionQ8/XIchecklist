@@ -74,7 +74,7 @@ return {
 	[64] = "Tavnazian Safehold HP#1",
 	[65] = "Aht Urhgan Whitegate HP#1",
 	[66] = "Nashmau HP#1",
-	--[67] = "Unknown HP#1",
+	--[67] = "Al Zahbi HP#1", -- not implemented
 	[68] = "Southern San d'Oria [S] HP#1",
 	[69] = "Bastok Markets [S] HP#1",
 	[70] = "Windurst Waters [S] HP#1",

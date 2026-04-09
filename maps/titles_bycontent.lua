@@ -9,27 +9,32 @@ return {
 		636, -- Champion of Abyssea
 		637, -- Conqueror of Abyssea
 		638, -- Savior of Abyssea
+		640, -- Hadhayosh Halterer
+		641, -- Briareus Feller
+		642, -- Karkinos Clawcrusher
+		643, -- Carabosse Quasher
+		644, -- Ovni Obliterator
+		645, -- Ruminator Confounder
+		646, -- Eccentricity Expunger
+		647, -- Fistule Drainer
+		648, -- Kukulkan Defanger
+		649, -- Turul Grounder
 		694, -- Alfard Detoxifier
 		663, -- Amhuluk Inundater
 		687, -- Apademak Annihilator
 		695, -- Azdaja Abolisher
-		682, -- Bennu Deplumer
-		641, -- Briareus Feller
-		685, -- Brulo Extinguisher
-		671, -- Bukhis Tetherer
-		643, -- Carabosse Quasher
-		654, -- Chloris Uprooter
 		670, -- Cirein-croin Harpooner
+		671, -- Bukhis Tetherer
+		654, -- Chloris Uprooter
 		684, -- Cuijatender Desiccator
 		681, -- Dragua Slayer
-		646, -- Eccentricity Expunger
-		647, -- Fistule Drainer
 		698, -- Killakriq Excoriator
 		697, -- Fuath Purifier
 		656, -- Glavoid Stampeder
 		651, -- Satiator Depriver
-		640, -- Hadhayosh Halterer
 		683, -- Hedjedjet Destinger
+		682, -- Bennu Deplumer
+		685, -- Brulo Extinguisher
 		691, -- Indrik Immolator
 		652, -- Iratham Capturer
 		673, -- Cleaver Dismantler
@@ -39,33 +44,28 @@ return {
 		688, -- Isgebind Defroster
 		668, -- Itzpapalotl Declawer
 		666, -- Karkadann Exoculator
-		642, -- Karkinos Clawcrusher
 		678, -- Ketea Beacher
-		648, -- Kukulkan Defanger
 		659, -- Kutharei Unhorser
 		653, -- Lacovie Capsizer
 		676, -- Lusca Debunker
-		699, -- Maere Bestirrer
 		655, -- Myrmecoleon Tamer
 		692, -- Ogopogo Overturner
 		680, -- Orthrus Decapitator
-		644, -- Ovni Obliterator
 		686, -- Pantokrator Disprover
 		693, -- Raja Regicide
 		679, -- Rani Decrowner
 		689, -- Resheph Eradicator
-		645, -- Ruminator Confounder
 		672, -- Sedna Tuskbreaker
-		700, -- Wyrm God Defier
 		660, -- Sippoy Capturer
 		662, -- Smok Defogger
 		669, -- Sobek Mummifier
 		661, -- Titlacauan Dismemberer
 		677, -- Tristitia Deliverer
-		649, -- Turul Grounder
 		667, -- Ulhuadshi Desiccator
 		657, -- Usurper Deposer
 		665, -- Durinn Deceiver
+		699, -- Maere Bestirrer
+		700, -- Wyrm God Defier
 	},
 	['Ballista'] = {
 		378, -- Gold Balli☆☆☆☆star
@@ -193,24 +193,24 @@ return {
 	},
 	['Legion'] = {
 		725, -- Subjugator of the Lofty
-		727, -- Subjugator of the Soaring
 		726, -- Subjugator of the Mired
-		729, -- Legendary Legionnaire
+		727, -- Subjugator of the Soaring
 		728, -- Subjugator of the Veiled
+		729, -- Legendary Legionnaire
 	},
 	['Battlefield'] = {
+		31, -- Expeditionary Trooper
+		463, -- Ouryu Overwhelmer
+		480, -- Subduer of the Mamool Ja
+		481, -- Subduer of the Trolls
+		482, -- Subduer of the Undead Swarm
 		527, -- Superhero
 		528, -- Superheroine
-		734, -- Epic Heroine
-		733, -- Unsung Heroine
-		1033, -- Zeroine to Heroine
-		530, -- The Sixth Serpent
-		463, -- Ouryu Overwhelmer
 		529, -- Bloody Berserker
-		481, -- Subduer of the Trolls
-		31, -- Expeditionary Trooper
-		482, -- Subduer of the Undead Swarm
-		480, -- Subduer of the Mamool Ja
+		530, -- The Sixth Serpent
+		733, -- Unsung Heroine
+		734, -- Epic Heroine
+		1033, -- Zeroine to Heroine
 	},
 	['Einherjar'] = {
 		477, -- Elite Einherjar
@@ -225,12 +225,12 @@ return {
 		552, -- Ender of Idolatry
 	},
 	['Chocobo Racing'] = {
+		521, -- Crystal Stakes Cupholder
 		522, -- Winning Owner
 		523, -- Victorious Owner
 		524, -- Triumphant Owner
-		521, -- Crystal Stakes Cupholder
-		597, -- Chocochampion
 		505, -- Chocorookie
+		597, -- Chocochampion
 	},
 	['Conquest Points'] = {
 		236, -- Legionnaire
@@ -565,10 +565,10 @@ return {
 		1003, -- Zerde Zapper
 	},
 	['Limbus'] = {
-		741, -- Apollyon Razer
-		740, -- Temenos Emancipator
 		468, -- Apollyon Ravager
 		467, -- Temenos Liberator
+		740, -- Temenos Emancipator
+		741, -- Apollyon Razer
 	},
 	['Odyssey'] = {
 		1067, -- Arebati Assaulter
@@ -609,12 +609,12 @@ return {
 		764, -- Weald Exemplar
 	},
 	['Voidwalker'] = {
-		564, -- Blobdingnag Burster
 		561, -- Dawon Trapper
 		562, -- Krabkatoa Steamer
-		566, -- Ruthven Entomber
 		563, -- Orcus Trophy Hunter
+		564, -- Blobdingnag Burster
 		565, -- Verthandi Ensnarer
+		566, -- Ruthven Entomber
 		567, -- Yilbegan Hideflayer
 	},
 	['Incursion'] = {
@@ -655,15 +655,15 @@ return {
 	},
 	['Vagary'] = {
 		828, -- Palloritus Punisher
-		832, -- Perfidien Paindealer
-		833, -- Plouton Pincer
 		829, -- Putraxia Pulverizer
 		830, -- Rancibus Ravager
+		832, -- Perfidien Paindealer
+		833, -- Plouton Pincer
 	},
 	['NPC: Octavien'] = {
 		889, -- Blade Enthusiast
-		891, -- Maester of Maddening
 		890, -- Runic Emissary
+		891, -- Maester of Maddening
 	},
 	['NPC: Parike-Poranke'] = {
 		369, -- Brown Mage Guinea Pig

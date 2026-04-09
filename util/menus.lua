@@ -1,7 +1,6 @@
 local menus_util = {}
 local menumaps = require('../maps/maps_menus')
 menu_current = {
-	entityid = nil,
 	npcindex = nil,
 	zoneid = nil,
 	['Option Index'] = nil,
@@ -45,7 +44,6 @@ end
 
 function menus_util.reset_current_menu()
 	menu_current = {
-		entityid = nil,
 		npcindex = nil,
 		zoneid = nil,
 		['Option Index'] = nil,
@@ -58,7 +56,6 @@ end
 function menus_util.handle_menu_options(data)
 	local parseddata = packets.parse('outgoing', data)
 	menu_current = {
-		entityid = parseddata['Target'],
 		npcindex = parseddata['Target Index'],
 		zoneid = parseddata['Zone'],
 		['Option Index'] = parseddata['Option Index'],
@@ -249,22 +246,84 @@ function menus_util.log_fishes()
 	return output_list
 end
 
+function menus_util.handle_atmacitenpc(data)
+	local parseddata = packets.parse('incoming', data)
+	local atmacite_levels = util.fourbits_to_table(parseddata['Menu Parameters'])
+	local playerkeyitems = windower.ffxi.get_key_items()
+	if (menu_current['_unknown1'] == 0 and menu_current['Option Index'] == 2) then
+		for key, atmacite in pairs(menumaps.atmacite) do
+			if (table.find(playerkeyitems, atmacite.id)) then
+				if (playertracker.atmacite_levels[tostring(key)] == nil) then
+					playertracker.atmacite_levels[tostring(key)] = atmacite_levels[key]
+					playertracker:save()
+					util.addon_log('Atmacite added: Lv'..atmacite_levels[key].. ' ' .. atmacite.en)
+				elseif (atmacite_levels[key] > playertracker.atmacite_levels[tostring(key)]) then
+					playertracker.atmacite_levels[tostring(key)] = atmacite_levels[key]
+					playertracker:save()
+					util.addon_log('Atmacite Updated: Lv'..atmacite_levels[key].. ' ' .. atmacite.en)
+				end
+			end
+		end
+	end
+end
+
+function menus_util.log_atmacitelevels()
+	output_list = {}
+	local total, complete = 0,0
+	for key, atmacite in pairs(menumaps.atmacite) do
+		total = total+15
+		local completion = false
+		if (playertracker.atmacite_levels[tostring(key)] == 15) then
+			completion = true
+		end
+		local level = playertracker.atmacite_levels[tostring(key)] or 0
+		complete = complete+level
+		table.insert(output_list, util.list_item('atmacite', 'Lv. ('..level..'/15) ' .. atmacite.en, completion))
+	end
+	playertracker['atmacitelevels_completed'] = complete
+	--playertracker['atmacitelevels_total'] = total
+	return output_list
+end
+
+function menus_util.handle_chocobostablenpc(data)
+	local parseddata = packets.parse('incoming', data)
+	if (parseddata['Menu Parameters'] ~= nil) then
+		local winglevel = string.byte(parseddata['Menu Parameters'], 5)
+		if (winglevel > playertracker['wingskill_completed']) then
+			playertracker['wingskill_completed'] = winglevel
+			playertracker:save()
+			util.addon_log('Wing Skill updated: '..winglevel)
+		end
+	end
+end
+
 menus_util.menu_npcs = {
 	-- Outpost Warp NPCs
-	['Conrad'] = {entityid=17735859, zoneid=S{234}, menuid=S{584,581}, menu_function=menus_util.handle_op_warps}, -- Bastok Mines
-	['Jeanvirgaud'] = {entityid=17723597, zoneid=S{231}, menuid=S{716,864}, menu_function=menus_util.handle_op_warps}, -- Northern San d'Oria
-	['Rottata'] = {entityid=17760439, zoneid=S{240}, menuid=S{653,552}, menu_function=menus_util.handle_op_warps}, -- Port Windurst
+	['Conrad'] = {zoneid=S{234}, menuid=S{584,581}, menu_function=menus_util.handle_op_warps},
+	['Jeanvirgaud'] = {zoneid=S{231}, menuid=S{716,864}, menu_function=menus_util.handle_op_warps},
+	['Rottata'] = {zoneid=S{240}, menuid=S{653,552}, menu_function=menus_util.handle_op_warps},
 	-- MMM NPC
-	['Chatnachoq'] = {entityid=17780943, zoneid=S{245}, menuid=S{10095}, menu_function=menus_util.handle_chatnachoq}, -- Lower Jeuno
+	['Chatnachoq'] = {zoneid=S{245}, menuid=S{10095}, menu_function=menus_util.handle_chatnachoq},
 	-- Proto-Waypoint NPCs
-	['Proto-Waypoint'] = {entityid=S{17772844,17793139,17797259,17789018,17809536}, zoneid=S{243,248,249,247,252}, menuid=S{10209,10012,345,141,266}, menu_function=menus_util.handle_protowaypoint}, -- Ru'Lude Gardens / Selbine / Mhaura / Rabao / Norg
+	['Proto-Waypoint'] = {zoneid=S{243,248,249,247,252}, menuid=S{10209,10012,345,141,266}, menu_function=menus_util.handle_protowaypoint},
 	
 	-- Meenle Burrow
-	['Burrow Investigator'] = {entityid=17776876, zoneid=S{244}, menuid=S{5500}, menu_function=menus_util.handle_burrowsnpc}, -- Upper Jeuno
-	['Burrow Researcher'] = {entityid=S{17269250,17207946}, zoneid=S{120,105}, menuid=S{5500}, menu_function=menus_util.handle_burrowsnpc}, -- Sauromugue Champaign
+	['Burrow Investigator'] = {zoneid=S{244}, menuid=S{5500}, menu_function=menus_util.handle_burrowsnpc},
+	['Burrow Researcher'] = {zoneid=S{120,105}, menuid=S{5500}, menu_function=menus_util.handle_burrowsnpc},
 	
 	-- Fishing NPC
-	['Katsunaga'] = {entityid=17797157, zoneid=S{249}, menuid=S{197}, menu_function=menus_util.handle_katsunaga}, -- Upper Jeuno
+	['Katsunaga'] = {zoneid=S{249}, menuid=S{197}, menu_function=menus_util.handle_katsunaga},
+	
+	-- Atmacite Refiner
+	['Atmacite Refiner'] = {
+	zoneid=S{26,51,80,84,87,91,94,98,105,110,120,126,230,235,238,247,250,252}, 
+	menuid=S{6,7,8,15,16,24,25,46,49,79,264,627,657,962,1023}, 
+	menu_function=menus_util.handle_atmacitenpc},
+	
+	-- Chocobo NPC
+	['Arvilauge'] = {zoneid=S{230}, menuid=S{846}, menu_function=menus_util.handle_chocobostablenpc},
+	['Gonija'] = {zoneid=S{234}, menuid=S{534}, menu_function=menus_util.handle_chocobostablenpc},
+	['Kiria-Romaria'] = {zoneid=S{241}, menuid=S{761}, menu_function=menus_util.handle_chocobostablenpc},
 	
 }
 

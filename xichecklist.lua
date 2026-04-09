@@ -1,6 +1,6 @@
 _addon.name     = 'xichecklist'
 _addon.author   = 'Anokata'
-_addon.version  = '0.9.3'
+_addon.version  = '0.9.4'
 _addon.commands = {'xichecklist', 'xic'}
 
 require('sets')
@@ -60,6 +60,8 @@ playertracker = {
 	['Claim_Slips_total'] = 0,
 	['Active_Effects_completed'] = 0,
 	['Active_Effects_total'] = 0,
+	['Voidwatch_completed'] = 0,
+	['Voidwatch_total'] = 0,
 	
 	['WhiteMagic_completed'] = 0,
 	['WhiteMagic_total'] = 0,
@@ -120,11 +122,16 @@ playertracker = {
 	['mmm_mazecount'] = 0,
 	
 	['fishes_completed'] = 0,
+	['fishes_total'] = 164,
 	
 	['meebleburrows_completed'] = 0,
 	['meebleburrows_total'] = 0,
 	['craftingskills_completed'] = 0,
 	['craftingskills_total'] = 790,
+	['wingskill_completed'] = 0,
+	['wingskill_total'] = 100,
+	['atmacitelevels_completed'] = 0,
+	['atmacitelevels_total'] = 600,
 	
 	outposts_unlocks = {},
 	protowaypoints_unlocks = {},
@@ -133,6 +140,7 @@ playertracker = {
 		['Sauromugue_Champaign'] = {},
 		['Batallia_Downs'] = {},
 	},
+	atmacite_levels = {},
 }
 
 playertracker = config.load('data/'.. windower.ffxi.get_player().name .. '.xml', playertracker)
@@ -301,6 +309,7 @@ function update_maintab()
 	append_maintab('Mounts %d/%d', playertracker['Mounts_completed'], playertracker['Mounts_total'])
 	append_maintab('Claim Slips %d/%d', playertracker['Claim_Slips_completed'], playertracker['Claim_Slips_total'])
 	append_maintab('Active Effects %d/%d', playertracker['Active_Effects_completed'], playertracker['Active_Effects_total'])
+	append_maintab('Atmacite Levels %d/%d', playertracker['atmacitelevels_completed'], playertracker['atmacitelevels_total'])
 	
 	table.insert(tabs[1].items, '======= Magic =======')
 	append_maintab('White Magic %d/%d', playertracker['WhiteMagic_completed'], playertracker['WhiteMagic_total'])
@@ -314,6 +323,7 @@ function update_maintab()
 
 	table.insert(tabs[1].items, '======= Leveling =======')
 	append_maintab('Craft Skills %d/%d', playertracker['craftingskills_completed'], 790)
+	append_maintab('Wing Skill %d/%d', playertracker['wingskill_completed'], 100)
 	append_maintab('Merit Points %d/%d', playertracker['Meritpoints_completed'], 919)
 	append_maintab('Job Points %d/%d', playertracker['Jobpoints_completed'], 46200)
 	append_maintab('Master Levels %d/%d (Highest: %d)', playertracker['Masterlevels_completed'], 1100, playertracker['Masterlevels_highest'])
@@ -386,7 +396,6 @@ windower.register_event('incoming chunk', function(id, data, modified, injected,
 		-- do monstrosity
 		if (parseddata.Order == 3) then
 			mons_util.monster_levelspacket[1] = parseddata['Monster Level Char field']
-			--mons_util.monster_levels = util.char_field_to_table(parseddata['Monster Level Char field'])
 			mons_util.monster_instincts = util.twobits_to_table(parseddata['Instinct Bitfield 1'])
 			xichecklist_updatetabs('monstrosity')
 		end
@@ -494,6 +503,8 @@ function xichecklist_updatetabs(tab)
 	append_items(tabs[5].items, check_keyitems('Mounts'))
 	append_items(tabs[5].items, check_keyitems('Claim Slips'))
 	append_items(tabs[5].items, check_keyitems('Active Effects'))
+	append_items(tabs[5].items, check_keyitems('Voidwatch'))
+	append_items(tabs[5].items, menus_util.log_atmacitelevels())
 	
 	-- log spells and trusts
 	--tabs[6].items = {}
@@ -541,7 +552,7 @@ function xichecklist_updatetabs(tab)
 		append_items(tabs[10].items, roe_util.log_roe())
 	end
 	
-	-- log RoE
+	-- log MMM
 	if (tab == 'mmm') then
 		tabs[11].items = {} 
 		table.insert(tabs[11].items, '==== Vouchers Unlocks ====')

@@ -9,7 +9,7 @@ function util.has_bit(data, position)
     return data:unpack('q', math.floor(position/8)+1, position%8+1)
 end
 
-function util.char_field_to_table(str)
+function util.bytes_to_table(str)
     local t = {}
     for i = 1, #str do
         t[i - 1] = str:byte(i)
@@ -30,6 +30,21 @@ function util.twobits_to_table(data)
 		end
 	end
 	return result
+end
+
+function util.fourbits_to_table(data)
+    local result = {}
+    for i = 1, #data do
+        local byte = data:byte(i)
+        -- lower 4 bits (bits 0–3)
+        local low  = bit.band(byte, 0x0F)
+        -- upper 4 bits (bits 4–7)
+        local high = bit.band(bit.rshift(byte, 4), 0x0F)
+        -- (LSB first)
+        result[#result + 1] = low
+        result[#result + 1] = high
+    end
+    return result
 end
 
 function util.cleanspaces(str)

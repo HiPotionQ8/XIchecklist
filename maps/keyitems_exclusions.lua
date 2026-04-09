@@ -196,4 +196,48 @@ return S{
 	3210, -- Cheer: Pachypodium
 	3211, -- Cheer: Citrullus
 	
+	-- Voidwatch
+	366, -- crimson stratum abyssite
+	367, -- crimson stratum abyssite II
+	368, -- crimson stratum abyssite III
+	369, -- crimson stratum abyssite IV
+	370, -- indigo stratum abyssite
+	371, -- indigo stratum abyssite II
+	372, -- indigo stratum abyssite III
+	373, -- indigo stratum abyssite IV
+	374, -- jade stratum abyssite
+	375, -- jade stratum abyssite II
+	376, -- jade stratum abyssite III
+	377, -- jade stratum abyssite IV
+	
+	1444, -- white stratum abyssite
+	1445, -- white stratum abyssite II
+	1446, -- white stratum abyssite III
+	1447, -- ashen stratum abyssite
+	1448, -- ashen stratum abyssite II
+	1449, -- ashen stratum abyssite III
+	1450, -- white stratum abyssite IV
+	1451, -- white stratum abyssite V
+	1452, -- white stratum abyssite VI
+	
+	1539, -- voidstone
+	1540, -- voidstone
+	1541, -- voidstone
+	1542, -- voidstone
+	1543, -- voidstone
+	1544, -- voidstone
+	
+	1556, -- beguiling petrifact
+	1557, -- seductive petrifact
+	1558, -- maddening petrifact
+	
+	1805, -- void cluster
+	
+	2060, -- hyacinth stratum abyssite
+	2062, -- amber stratum abyssite
+	
+	2065, -- Kupofried's corundum
+	2066, -- Kupofried's corundum
+	2067, -- Kupofried's corundum
+	
 }
