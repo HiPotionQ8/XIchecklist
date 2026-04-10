@@ -44,15 +44,17 @@ local maps = {
 	campaign = require('../maps/campaign'),
 }
 
-function quest_util.addon_error(str)
-    --windower.add_to_chat(167, 'You must change areas or complete %s quests before using this command.':format(str))
-end
-
 function quest_util.log_quests(quest_type)
-    if not quests.completed[quest_type] then
-        quest_util.addon_error(quest_type)
-        return true
-    end
+    if not quests.completed[quest_type] then return false end
+	if (quest_type == 'campaign1' or quest_type == 'campaign2') then
+		quest_type = 'campaign'
+	end
+	if (quest_type == 'campaign') then
+		if not quests.completed['campaign1'] then return false end
+		if not quests.completed['campaign2'] then return false end
+		data = quests.completed['campaign1'] .. quests.completed['campaign2']
+		quests.completed[quest_type] = data
+	end
     local complete,total = 0, 0
 	local output_list = {}
 	for key, name in pairs(maps[quest_type]) do
@@ -60,7 +62,6 @@ function quest_util.log_quests(quest_type)
 		local completion = false
 		if maps[quest_type][key] then
 			total = total + 1
-			--if completed(key+1) then
             if util.has_bit(quests.completed[quest_type], key) then
                 complete = complete + 1
 				completion = true
@@ -85,16 +86,16 @@ function quest_util.log_quests(quest_type)
 	return output_list
 end
 
-function quest_util.log_campaign(data)
-	if not quests.completed['campaign1'] then
-        quest_util.addon_error('campaign')
-        return true
-    end
-	if not quests.completed['campaign2'] then
-        quest_util.addon_error('campaign')
-        return true
-    end
-	data = quests.completed['campaign1'] .. quests.completed['campaign2']
+--[[
+function quest_util.log_campaign()
+	quest_type = 'campaign'
+	local data = nil
+	if (quest_type == 'campaign') then
+		if not quests.completed['campaign1'] then return false end
+		if not quests.completed['campaign2'] then return false end
+		data = quests.completed['campaign1'] .. quests.completed['campaign2']
+		quests.completed[quest_type] = data
+	end
 	local complete,total = 0, 0
 	local output_list = {}
 	for id,name in pairs(maps.campaign) do
@@ -112,5 +113,5 @@ function quest_util.log_campaign(data)
 	playertracker['campaign_total'] = total
 	return output_list
 end
-
+--]]
 return quest_util

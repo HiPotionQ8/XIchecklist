@@ -1,6 +1,6 @@
 _addon.name     = 'xichecklist'
 _addon.author   = 'Anokata'
-_addon.version  = '0.9.5'
+_addon.version  = '0.9.6'
 _addon.commands = {'xichecklist', 'xic'}
 
 require('sets')
@@ -203,16 +203,44 @@ tabs = {
         items = {}
     },
 	{
-        name = 'MMM',
-        items = {}
-    },
-	{
-        name = 'Meeble',
+        name = 'Battle Content',
         items = {}
     },
 }
 
+defaulttab_logs = {
+	quests = {
+		sandoria = {},
+		bastok = {},
+		windurst = {},
+		jeuno = {},
+		ahturhgan = {},
+		crystalwar = {},
+		outlands = {},
+		other = {},
+		abyssea = {},
+		adoulin = {},
+		coalition = {},
+		campaign2 = {},
+	},
+	homepoints = {},
+	survivalguides = {},
+	waypoints = {},
+	outposts = {},
+	protowaypoints = {},
+	
+	monsterlevels = {},
+	monstervariants = {},
+	racejobinstincts = {},
+	monster_instincts = {},
+	
+	mmmvouchers = {},
+	mmmrunes = {},
+	
+	
+}
 
+			
 util = require('util/util')
 quest_util = require('util/quests')
 warps_util = require('util/warps')
@@ -242,7 +270,7 @@ local function append_items(dst, src)
 			display = false
 		end
 		if item.category ~= nil then 
-			text = '[' .. item.category .. ']' .. text
+			text = '[' .. item.category .. '] ' .. text
 		end
 		if item.completed == true then
 			menucolor = '(0,255,0)'
@@ -341,7 +369,13 @@ windower.register_event('incoming chunk', function(id, data, modified, injected,
 	
 	if id == 0x01B then
 		local parseddata = packets.parse('incoming', data)
-		playertracker['mastery_rank'] = parseddata['Mastery Rank']
+		if (parseddata['Mastery Rank'] > playertracker['mastery_rank']) then
+			if (playertracker['mastery_rank'] > 0) then
+				util.addon_log('Mastery Rank increase '..parseddata['Mastery Rank'])
+			end
+			playertracker['mastery_rank'] = parseddata['Mastery Rank']
+			playertracker:save()
+		end
 	end
 	
 	-- do quests
@@ -353,8 +387,10 @@ windower.register_event('incoming chunk', function(id, data, modified, injected,
 				quests[log.type][log.area] = p["Current TOAU Quests"]
 			elseif ((p.Type == 192)) then -- if Aht Urhgan Completed Quests
 				quests[log.type][log.area] = p["Completed TOAU Quests"]
+				tab_logs.quests[log.area] = quest_util.log_quests(log.area)
 			else
 				quests[log.type][log.area] = p['Quest Flags']
+				tab_logs.quests[log.area] = quest_util.log_quests(log.area)
 			end
 		end
 		xichecklist_updatetabs('quests')
@@ -372,18 +408,28 @@ windower.register_event('incoming chunk', function(id, data, modified, injected,
 		-- do warps
 		if (parseddata.Order == 6) then 
 			warps_util.warps_data = data
+			tab_logs.homepoints = warps_util.checkwarps('homepoints')
+			tab_logs.survivalguides = warps_util.checkwarps('survivalguides')
+			tab_logs.waypoints = warps_util.checkwarps('waypoints')
+			tab_logs.outposts = menus_util.log_outposts()
+			tab_logs.protowaypoints = menus_util.log_protowaypoints()
 			xichecklist_updatetabs('warps')
 		end
 		-- do monstrosity
 		if (parseddata.Order == 3) then
 			mons_util.monster_levelspacket[1] = parseddata['Monster Level Char field']
 			mons_util.monster_instincts = util.twobits_to_table(parseddata['Instinct Bitfield 1'])
+			tab_logs.monsterlevels = mons_util.log_monsterlevels()
+			tab_logs.monster_instincts = mons_util.log_monsterinstincts()
 			xichecklist_updatetabs('monstrosity')
 		end
 		if (parseddata.Order == 4) then
 			mons_util.monster_levelspacket[2] = data:sub(0x08+1, 0x87+1)
 			mons_util.racejobinstincts = parseddata['Instinct Bitfield 3']
 			mons_util.variants_bitfield = parseddata['Variants Bitfield']
+			tab_logs.monsterlevels = mons_util.log_monsterlevels()
+			tab_logs.monstervariants = mons_util.log_variants()
+			tab_logs.racejobinstincts = mons_util.log_racejobinstincts()
 			xichecklist_updatetabs('monstrosity')
 		end
 	end
@@ -422,7 +468,9 @@ windower.register_event('incoming chunk', function(id, data, modified, injected,
 	if id == 0x0AD then
 		local parseddata = packets.parse('incoming', data)
 		mmm_util.handle_mmm_data(data)
-		xichecklist_updatetabs('mmm')
+		tab_logs.mmmvouchers = mmm_util.log_vouchers()
+		tab_logs.mmmrunes = mmm_util.log_runes()
+		xichecklist_updatetabs('battlecontent')
 	end
 	
 	if id == 0x052 then
@@ -450,26 +498,23 @@ function xichecklist_updatetabs(tab)
 	
 	tabs[9].items = {} -- reset main menu content
 	
-	tabs[12].items = {} -- reset main menu content
-	
-	-- log quests
 	if (tab == 'quests') then
 		tabs[2].items = {}
 		tabs[3].items = {}
-		
-		append_items(tabs[2].items, quest_util.log_quests('sandoria'))
-		append_items(tabs[2].items, quest_util.log_quests('bastok'))
-		append_items(tabs[2].items, quest_util.log_quests('windurst'))
-		append_items(tabs[2].items, quest_util.log_quests('jeuno'))
-		append_items(tabs[2].items, quest_util.log_quests('ahturhgan'))
-		append_items(tabs[2].items, quest_util.log_quests('crystalwar'))
-		append_items(tabs[2].items, quest_util.log_quests('outlands'))
-		append_items(tabs[2].items, quest_util.log_quests('other'))
-		append_items(tabs[2].items, quest_util.log_quests('abyssea'))
-		append_items(tabs[2].items, quest_util.log_quests('adoulin'))
-		append_items(tabs[2].items, quest_util.log_quests('coalition'))
+		-- log quests
+		append_items(tabs[2].items, tab_logs.quests['sandoria'])
+		append_items(tabs[2].items, tab_logs.quests['bastok'])
+		append_items(tabs[2].items, tab_logs.quests['windurst'])
+		append_items(tabs[2].items, tab_logs.quests['jeuno'])
+		append_items(tabs[2].items, tab_logs.quests['ahturhgan'])
+		append_items(tabs[2].items, tab_logs.quests['crystalwar'])
+		append_items(tabs[2].items, tab_logs.quests['outlands'])
+		append_items(tabs[2].items, tab_logs.quests['other'])
+		append_items(tabs[2].items, tab_logs.quests['abyssea'])
+		append_items(tabs[2].items, tab_logs.quests['adoulin'])
+		append_items(tabs[2].items, tab_logs.quests['coalition'])
 		-- log campaign ops
-		append_items(tabs[3].items, quest_util.log_campaign())
+		append_items(tabs[3].items, tab_logs.quests['campaign2'])
 	end
 	
 	-- log fishes caught
@@ -499,11 +544,11 @@ function xichecklist_updatetabs(tab)
 	-- log warps
 	if (tab == 'warps') then
 		tabs[7].items = {}
-		append_items(tabs[7].items, warps_util.checkwarps('homepoints'))
-		append_items(tabs[7].items, warps_util.checkwarps('survivalguides'))
-		append_items(tabs[7].items, warps_util.checkwarps('waypoints'))
-		append_items(tabs[7].items, menus_util.log_outposts())
-		append_items(tabs[7].items, menus_util.log_protowaypoints())
+		append_items(tabs[7].items, tab_logs.homepoints)
+		append_items(tabs[7].items, tab_logs.survivalguides)
+		append_items(tabs[7].items, tab_logs.waypoints)
+		append_items(tabs[7].items, tab_logs.outposts)
+		append_items(tabs[7].items, tab_logs.protowaypoints)
 	end
 	
 	-- Log Job Points Spent
@@ -513,13 +558,13 @@ function xichecklist_updatetabs(tab)
 	if (tab == 'monstrosity') then
 		tabs[8].items = {}
 		table.insert(tabs[8].items, '==== Species Levels ====')
-		append_items(tabs[8].items, mons_util.log_monsterlevels())
+		append_items(tabs[8].items, tab_logs.monsterlevels)
 		table.insert(tabs[8].items, '==== Monster Variants ====')
-		append_items(tabs[8].items, mons_util.log_variants())
+		append_items(tabs[8].items, tab_logs.monstervariants)
 		table.insert(tabs[8].items, '==== Race / Job Instincts ====')
-		append_items(tabs[8].items, mons_util.log_racejobinstincts())
+		append_items(tabs[8].items, tab_logs.racejobinstincts)
 		table.insert(tabs[8].items, '==== Monster Instincts ====')
-		append_items(tabs[8].items, mons_util.log_monsterinstincts())
+		append_items(tabs[8].items, tab_logs.monster_instincts)
 	end
 	
 	-- log Titles
@@ -531,17 +576,19 @@ function xichecklist_updatetabs(tab)
 		append_items(tabs[10].items, roe_util.log_roe())
 	end
 	
-	-- log MMM
-	if (tab == 'mmm') then
-		tabs[11].items = {} 
-		table.insert(tabs[11].items, '==== Vouchers Unlocks ====')
-		append_items(tabs[11].items, mmm_util.log_vouchers())
-		table.insert(tabs[11].items, '==== Runes Unlocks ====')
-		append_items(tabs[11].items, mmm_util.log_runes())
+	if (tab == 'battlecontent') then
+		tabs[11].items = {}
+		-- log MMM
+		table.insert(tabs[11].items, '==== MMM Vouchers Unlocks ====')
+		append_items(tabs[11].items, tab_logs.mmmvouchers)
+		table.insert(tabs[11].items, '==== MMM Runes Unlocks ====')
+		append_items(tabs[11].items, tab_logs.mmmrunes)
+		-- log Meeble Burrows
+		table.insert(tabs[11].items, '==== Meeble Burrows ====')
+		append_items(tabs[11].items, menus_util.log_meeble_burrows())
 	end
 	
-	-- log Meeble Burrows
-	append_items(tabs[12].items, menus_util.log_meeble_burrows())
+	
 end
 
 function check_keyitems(keyitemtype)
@@ -789,6 +836,7 @@ function addon_clear()
 	playertracker = defaultplayertracker
 	playertitles = {}
 	playerroe = {}
+	tab_logs = defaulttab_logs
 	player = nil
 	ui:hide()
 end
