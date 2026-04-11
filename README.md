@@ -85,4 +85,4 @@ the menu will only show missing items like quests,key items, spells, home points
 - 0.9.2 - added Total Points / Mastery Rank / command to copy to clipboard
 - 0.9.3 - added fishing / crafting skills.
 - 0.9.4 - added Atmacite, Atmacite levels & Wing Skill.
-- 0.9.9 - fixes/enhances
+- 0.10.0 - Added "Talk to NPC" addon help in tabs that require npc interaction to register
