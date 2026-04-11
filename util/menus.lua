@@ -1,6 +1,5 @@
 local menus_util = {}
 local menumaps = require('../maps/maps_menus')
---local npcmaps = require('../maps/titles_npcs')
 local titlescontnt = require('../maps/titles_bycontent')
 local titlesexclusions = require('../maps/titles_exclusions')
 local titles_howtoobtain = require('../maps/titles_howtoobtain')
@@ -70,6 +69,8 @@ function menus_util.handle_op_warps(data)
 			menus_util.add_outpost(key)
 		end
 	end
+	playertracker.talk_to_npc['outpostnpc'] = true
+	playertracker:save()
 end
 
 function menus_util.add_outpost(id)
@@ -104,6 +105,8 @@ function menus_util.handle_chatnachoq(data)
 	playertracker['mmm_mazecount'] = mazes
 	playertracker:save()
 	util.addon_log('Maze count: ' .. mazes)
+	playertracker.talk_to_npc['chatnachoq'] = true
+	playertracker:save()
 end
 
 function menus_util.handle_protowaypoint(data)
@@ -115,6 +118,8 @@ function menus_util.handle_protowaypoint(data)
 			menus_util.add_protowaypoint(key)
 		end
 	end
+	playertracker.talk_to_npc['protowaypoint'] = true
+	playertracker:save()
 end
 
 function menus_util.add_protowaypoint(id)
@@ -149,10 +154,14 @@ function menus_util.handle_burrowsnpc(data)
 		or (menu_current['zoneid'] == 120 and menu_current['Option Index'] == 14)) then
 		map_name = 'Sauromugue_Champaign'
 		menus_util.handle_sauromugueburrowsmenu(map_name, parseddata['Menu Parameters'])
+		playertracker.talk_to_npc['meeble_sauromugue'] = true
+		playertracker:save()
 	elseif ((menu_current['zoneid'] == 244 and menu_current['_unknown1'] == 2) -- Upper Jeuno / Batallia Menu
 			or (menu_current['zoneid'] == 105 and menu_current['Option Index'] == 14)) then
 		map_name = 'Batallia_Downs'
 		menus_util.handle_batalliaburrowsmenu(map_name, parseddata['Menu Parameters'])
+		playertracker.talk_to_npc['meeble_batallia'] = true
+		playertracker:save()
 	end
 end
 
@@ -213,6 +222,8 @@ function menus_util.handle_katsunaga(data)
 				end
 			end
 		end
+		playertracker.talk_to_npc['katsunaga'] = true
+		playertracker:save()
 	end
 end
 
@@ -260,6 +271,8 @@ function menus_util.handle_atmacitenpc(data)
 				end
 			end
 		end
+		playertracker.talk_to_npc['atmacite_refiner'] = true
+		playertracker:save()
 	end
 end
 
@@ -286,6 +299,7 @@ function menus_util.handle_chocobostablenpc(data)
 		local winglevel = string.byte(parseddata['Menu Parameters'], 5)
 		if (winglevel > playertracker['wingskill_completed']) then
 			playertracker['wingskill_completed'] = winglevel
+			playertracker.talk_to_npc['chocobokid'] = true
 			playertracker:save()
 			util.addon_log('Wing Skill updated: '..winglevel)
 		end
@@ -305,6 +319,8 @@ function menus_util.handle_titles_npc(data)
 			end
 		end
 	end
+	playertracker.talk_to_npc[util.cleanspaces(npc)] = true
+	playertracker:save()
 end
 
 function menus_util.add_title(id)

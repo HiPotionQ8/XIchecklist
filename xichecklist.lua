@@ -1,6 +1,6 @@
 _addon.name     = 'xichecklist'
 _addon.author   = 'Anokata'
-_addon.version  = '0.9.9'
+_addon.version  = '0.10.0'
 _addon.commands = {'xichecklist', 'xic'}
 
 require('sets')
@@ -138,6 +138,33 @@ defaultplayertracker = {
 		['Batallia_Downs'] = {},
 	},
 	atmacite_levels = {},
+	
+	talk_to_npc = {
+		outpostnpc = false,
+		chatnachoq = false,
+		protowaypoint = false,
+		meeble_sauromugue = false,
+		meeble_batallia = false,
+		katsunaga = false,
+		atmacite_refiner = false,
+		chocobokid = false,
+		['Aligi-Kufongi'] = false,
+		['Koyol-Futenol'] = false,
+		['Tamba-Namba'] = false,
+		['Bhio_Fehriata'] = false,
+		['Cattah_Pamjah'] = false,
+		['Moozo-Koozo'] = false,
+		['Styi_Palneh'] = false,
+		['Burute-Sorute'] = false,
+		['Tuh_Almobankha'] = false,
+		['Zuah_Lepahnyu'] = false,
+		['Shupah_Mujuuk'] = false,
+		['Yulon-Polon'] = false,
+		['Willah_Maratahya'] = false,
+		['Eron-Tomaron'] = false,
+		['Quntsu-Nointsu'] = false,
+		['Debadle-Levadle'] = false,
+	},
 }
 
 playertitles = {}
@@ -288,11 +315,19 @@ function append_maintab(text, ...)
 end
 
 function append_header(tab, text, ...)
-	local args = {...}
+	args = {...}
 	local menulinecolor = '(255,255,0)'
 	if (args[1]==args[2]) then menulinecolor = '(0,255,0)' end
 	text = '==== '..text..' ===='
 	table.insert(tabs[tab].items, '\\cs'..menulinecolor..text:format(...)..'\\cr')
+	--[[if args[2] == 0 then
+		table.insert(tabs[tab].items, '\\cs(235,0,0)You must zone to update.\\cr')
+	end--]]
+	
+end
+
+function append_addonhelp(tab, text, condition)
+	append_items(tabs[tab].items, {util.list_item('Addon Help', '\\cs(235,0,0)'..text..'\\cr', condition)})
 end
 
 function update_maintab()
@@ -481,7 +516,7 @@ windower.register_event('incoming chunk', function(id, data, modified, injected,
 	end
 	
 	update_maintab()
-	xichecklist_updatetabs()
+	--xichecklist_updatetabs()
 	draw()
 end)
 
@@ -543,6 +578,7 @@ function xichecklist_updatetabs(tab)
 	
 	-- log fishes caught
 	append_header(4, 'Type of Fishes Caught (%d/%d)', playertracker['fishes_completed'], playertracker['fishes_total'])
+	append_addonhelp(4, 'You must talk to Katsunaga in Mhuaura (H-9) and select "Types of fishes caught"', playertracker.talk_to_npc['katsunaga'])
 	append_items(tabs[4].items, tab_logs.fishes)
 	
 	-- log keyitems
@@ -590,8 +626,10 @@ function xichecklist_updatetabs(tab)
 	append_header(7, 'Adoulin Waypoints (%d/%d)', playertracker['waypoints_completed'], playertracker['waypoints_total'])
 	append_items(tabs[7].items, tab_logs.waypoints)
 	append_header(7, 'Outpost Warps (%d/%d)', playertracker['outposts_completed'], playertracker['outposts_total'])
+	append_addonhelp(7, 'You must talk to any Outpost Teleporter NPC in three nations.', playertracker.talk_to_npc['outpostnpc'])
 	append_items(tabs[7].items, tab_logs.outposts)
 	append_header(7, 'Proto-Waypoints (%d/%d)', playertracker['protowaypoints_completed'], playertracker['protowaypoints_total'])
+	append_addonhelp(7, 'You must talk to any Proto-Waypoint.', playertracker.talk_to_npc['protowaypoint'])
 	append_items(tabs[7].items, tab_logs.protowaypoints)
 	
 	-- Log Job Points Spent
@@ -612,6 +650,22 @@ function xichecklist_updatetabs(tab)
 	
 	-- log Titles
 	append_header(9, 'Titles (%d/%d)', playertracker['Titles_completed'], playertracker['Titles_total'])
+	append_addonhelp(9, 'You must talk to Aligi-Kufongi @ Tavnazian Safehold (H-9)', playertracker.talk_to_npc['Aligi-Kufongi'])
+	append_addonhelp(9, 'You must talk to Koyol-Futenol @ Aht Urhgan Whitegate (E-9)', playertracker.talk_to_npc['Koyol-Futenol'])
+	append_addonhelp(9, 'You must talk to Tamba-Namba @ Southern San d\'Oria (S) (L-8)', playertracker.talk_to_npc['Tamba-Namba'])
+	append_addonhelp(9, 'You must talk to Bhio Fehriata @ Bastok Markets (S) (I-10)', playertracker.talk_to_npc['Bhio_Fehriata'])
+	append_addonhelp(9, 'You must talk to Cattah Pamjah @ Windurst Waters (S) (G-10)', playertracker.talk_to_npc['Cattah_Pamjah'])
+	append_addonhelp(9, 'You must talk to Moozo-Koozo @ Southern San d\'Oria (K-6)', playertracker.talk_to_npc['Moozo-Koozo'])
+	append_addonhelp(9, 'You must talk to Styi Palneh @ Port Bastok (I-7)', playertracker.talk_to_npc['Styi_Palneh'])
+	append_addonhelp(9, 'You must talk to Burute-Sorute @ Windurst Walls (H-10)', playertracker.talk_to_npc['Burute-Sorute'])
+	append_addonhelp(9, 'You must talk to Tuh Almobankha @ Lower Jeuno (I-8)', playertracker.talk_to_npc['Tuh_Almobankha'])
+	append_addonhelp(9, 'You must talk to Zuah Lepahnyu @ Port Jeuno (J-8)', playertracker.talk_to_npc['Zuah_Lepahnyu'])
+	append_addonhelp(9, 'You must talk to Shupah Mujuuk @ Rabao (G-8)', playertracker.talk_to_npc['Shupah_Mujuuk'])
+	append_addonhelp(9, 'You must talk to Yulon-Polon @ Selbina (I-9)', playertracker.talk_to_npc['Yulon-Polon'])
+	append_addonhelp(9, 'You must talk to Willah Maratahya @ ', playertracker.talk_to_npc['Willah_Maratahya'])
+	append_addonhelp(9, 'You must talk to Eron-Tomaron @ Mhaura (I-8)', playertracker.talk_to_npc['Eron-Tomaron'])
+	append_addonhelp(9, 'You must talk to Quntsu-Nointsu @ Norg (G-7)', playertracker.talk_to_npc['Quntsu-Nointsu'])
+	append_addonhelp(9, 'You must talk to Debadle-Levadle @ Western Adoulin (H-8)', playertracker.talk_to_npc['Debadle-Levadle'])
 	append_items(tabs[9].items, tab_logs.titles)
 	
 	-- log RoE
@@ -630,6 +684,10 @@ function xichecklist_updatetabs(tab)
 		append_items(tabs[11].items, tab_logs.mmmrunes)
 		-- log Meeble Burrows
 		append_header(11, 'Meeble Burrows (%d/%d)', playertracker['meebleburrows_completed'], playertracker['meebleburrows_total'])
+		append_addonhelp(11, 'You must talk to Burrow Investigator @ Upper Jeuno (I-8)', playertracker.talk_to_npc['meeble_sauromugue'])
+		append_addonhelp(11, 'Menu: Review expedition specifics -> Sauromugue Champaign', playertracker.talk_to_npc['meeble_sauromugue'])
+		append_addonhelp(11, 'You must talk to Burrow Investigator @ Upper Jeuno (I-8)', playertracker.talk_to_npc['meeble_batallia'])
+		append_addonhelp(11, 'Menu: Review expedition specifics -> Batallia Downs', playertracker.talk_to_npc['meeble_batallia'])
 		append_items(tabs[11].items, tab_logs.meeble_burrows)
 	end
 end
