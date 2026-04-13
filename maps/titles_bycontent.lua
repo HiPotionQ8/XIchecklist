@@ -73,71 +73,71 @@ return {
 		700, -- Wyrm God Defier
 	},
 	['Ballista'] = {
-		378, -- Gold Balli☆☆☆☆star
-		399, -- Ballistager
-		410, -- Balli☆☆☆☆star Royale
-		377, -- Banneret
-		381, -- Bronze Balli☆star
-		409, -- Final Balli☆☆☆☆star
-		379, -- Mythril Balli☆☆☆star
 		376, -- Rook Buster
+		377, -- Banneret
+		378, -- Gold Balli☆☆☆☆star
+		379, -- Mythril Balli☆☆☆star
 		380, -- Silver Balli☆☆star
-		391, -- Singing★Star
-		390, -- Savage★Star
+		381, -- Bronze Balli☆star
+		382, -- Searing★Star
+		383, -- Striking★Star
+		384, -- Soothing★Star
 		385, -- Sable★Star
+		386, -- Scarlet★Star
+		387, -- Sonic★Star
+		388, -- Saintly★Star
+		389, -- Shadowy★Star
+		390, -- Savage★Star
+		391, -- Singing★Star
+		392, -- Sniping★Star
+		393, -- Slicing★Star
+		394, -- Sneaking★Star
+		395, -- Spearing★Star
+		396, -- Summoning★Star
+		399, -- Ballistager
+		409, -- Final Balli☆☆☆☆star
+		410, -- Balli☆☆☆☆star Royale
 		437, -- Sapphire★Star
 		438, -- Surging★Star
-		533, -- Sprightly★Star
-		389, -- Shadowy★Star
-		395, -- Spearing★Star
-		844, -- Spiritual★Star
-		383, -- Striking★Star
-		394, -- Sneaking★Star
-		388, -- Saintly★Star
 		439, -- Swaying★Star
-		392, -- Sniping★Star
-		386, -- Scarlet★Star
-		845, -- Stippling★Star
-		393, -- Slicing★Star
+		533, -- Sprightly★Star
 		534, -- Sagacious★Star
-		396, -- Summoning★Star
-		387, -- Sonic★Star
-		382, -- Searing★Star
-		384, -- Soothing★Star
+		844, -- Spiritual★Star
+		845, -- Stippling★Star
 	},
 	['HTMB'] = {
-		1035, -- Dread Purger
 		780, -- Amphibian Adulterator
-		787, -- Ark Elvaan Eviscerator
-		790, -- Ark Galka Gouger
+		784, -- Brilliance Manifest
+		785, -- Quieter of Ancient Thoughts
 		786, -- Ark Hume Humiliator
+		787, -- Ark Elvaan Eviscerator
 		788, -- Ark Mithra Maligner
 		789, -- Ark Tarutaru Trouncer
-		1036, -- Sidhe Smasher
-		967, -- Dawn's Delight
-		1037, -- Alexander Annihilator
+		790, -- Ark Galka Gouger
 		791, -- Pentarch Pacifier
-		801, -- Sin Purger
-		800, -- Gessho Pinioner
-		1038, -- Lilith Liquidator
-		966, -- Conquerer of Fear
-		799, -- Lancelord Divester
-		785, -- Quieter of Ancient Thoughts
 		792, -- Dream Distiller
-		945, -- Lupine Liquidator
-		1077, -- Eternal Master
 		797, -- Ouryu Obfuscator
-		784, -- Brilliance Manifest
 		798, -- Unwavering Blaze
-		1040, -- Draconic Interloper
-		825, -- Lithosphere Annihilator
+		799, -- Lancelord Divester
+		800, -- Gessho Pinioner
+		801, -- Sin Purger
 		804, -- Blaze Marshaller
 		805, -- Penitentes Blaster
+		806, -- Sirocco Tamer
+		825, -- Lithosphere Annihilator
 		826, -- Fulmination Disruptor
 		827, -- Bore Repulsor
-		806, -- Sirocco Tamer
-		947, -- Devil's Demise
+		945, -- Lupine Liquidator
 		946, -- Ruby Repulser
+		947, -- Devil's Demise
+		966, -- Conquerer of Fear
+		967, -- Dawn's Delight
+		1035, -- Dread Purger
+		1036, -- Sidhe Smasher
+		1037, -- Alexander Annihilator
+		1038, -- Lilith Liquidator
+		1040, -- Draconic Interloper
+		1077, -- Eternal Master
 	},
 	['BCNM'] = {
 		469, -- Wyrm Astonisher
@@ -151,10 +151,8 @@ return {
 		777, -- Gigasplosion Expert
 		778, -- Brother-in-arms
 		779, -- Antica Hunter
-		
 		781, -- Tonberry Toppler
 		782, -- Bloodline Corrupter
-		
 		1031, -- Mimic Masher
 	},
 	['Master Trials'] = {
@@ -240,36 +238,36 @@ return {
 		597, -- Chocochampion
 	},
 	['Conquest Points'] = {
-		236, -- Legionnaire
 		226, -- Royal Archer
-		246, -- Freesword
-		237, -- Decurion
 		227, -- Royal Spearman
-		247, -- Mercenary
-		238, -- Centurion
 		228, -- Royal Squire
-		248, -- Mercenary Captain
-		239, -- Junior Musketeer
 		229, -- Royal Swordsman
-		249, -- Combat Caster
-		240, -- Senior Musketeer
 		230, -- Royal Cavalier
-		250, -- Tactician Magician
-		241, -- Musketeer Commander
 		231, -- Royal Guard
-		251, -- Wise Wizard
-		242, -- Gold Musketeer
 		232, -- Grand Knight of the Realm
-		252, -- Patriarch Protector
-		243, -- Praefectus
 		233, -- Grand Temple Knight
-		253, -- Caster Captain
-		244, -- Senior Gold Musketeer
 		234, -- Reserve Knight Captain
+		235, -- Elite Royal Guard
+		236, -- Legionnaire
+		237, -- Decurion
+		238, -- Centurion
+		239, -- Junior Musketeer
+		240, -- Senior Musketeer
+		241, -- Musketeer Commander
+		242, -- Gold Musketeer
+		243, -- Praefectus
+		244, -- Senior Gold Musketeer
+		245, -- Praefectus Castrorum
+		246, -- Freesword
+		247, -- Mercenary
+		248, -- Mercenary Captain
+		249, -- Combat Caster
+		250, -- Tactician Magician
+		251, -- Wise Wizard
+		252, -- Patriarch Protector
+		253, -- Caster Captain
 		254, -- Master Caster
 		255, -- Mercenary Major
-		235, -- Elite Royal Guard
-		245, -- Praefectus Castrorum
 	},
 	['Dynamis'] = {
 		297, -- Dynamis-San d'Oria Interloper
@@ -322,16 +320,16 @@ return {
 		1126, -- Legendary Alchemist
 	},
 	['Leathercraft'] = {
-		330, -- Accomplished Tanner
-		329, -- Leather Lauder
 		328, -- Hide Handler
+		329, -- Leather Lauder
+		330, -- Accomplished Tanner
 		582, -- Shoeshop Owner
 		1124, -- Legendary Tanner
 	},
 	['Smithing'] = {
+		313, -- Anvil Advocate
 		314, -- Forge Fanatic
 		315, -- Accomplished Blacksmith
-		313, -- Anvil Advocate
 		577, -- Armory Owner
 		1121, -- Legendary Blacksmith
 	},
@@ -364,11 +362,11 @@ return {
 		1122, -- Legendary Goldsmith
 	},
 	['Clothcraft'] = {
-		321, -- Accomplished Weaver
 		319, -- Knitting Know-It-All
-		1123, -- Legendary Weaver
 		320, -- Loom Lunatic
+		321, -- Accomplished Weaver
 		579, -- Boutique Owner
+		1123, -- Legendary Weaver
 	},
 	['Moblin Maze Mongers'] = {
 		604, -- Maze Wanderer
@@ -378,39 +376,39 @@ return {
 		608, -- Maze Overlord
 	},
 	['Mog Garden'] = {
-		862, -- Weed Praetor
-		863, -- Tree Praetor
-		864, -- Thicket Praetor
-		865, -- Forest Praetor
-		866, -- Jungle Praetor
-		877, -- Sardineophyte
-		878, -- Calamareeler
-		879, -- Octopotentate
-		880, -- Giant Squimperator
-		881, -- Leviauthority
+		854, -- Kit Empathizer
+		855, -- Jingly Dangler
+		856, -- Mole Manipulator
 		857, -- Agrarian Novice
 		858, -- Agrarian Initiate
 		859, -- Agrarian Professional
 		860, -- Agrarian Virtuoso
 		861, -- Agrarian Tutelar
+		862, -- Weed Praetor
+		863, -- Tree Praetor
+		864, -- Thicket Praetor
+		865, -- Forest Praetor
+		866, -- Jungle Praetor
 		867, -- Copper Mattock
 		868, -- Silver Mattock
 		869, -- Mythril Mattock
 		870, -- Gold Mattock
 		871, -- Adamanttock
+		872, -- Puddle Patron
+		873, -- Swamp Savant
+		874, -- Pond Preceptor
+		875, -- River Regent
+		876, -- Monke-Onke Master
+		877, -- Sardineophyte
+		878, -- Calamareeler
+		879, -- Octopotentate
+		880, -- Giant Squimperator
+		881, -- Leviauthority
 		882, -- Novice Nurseryman
 		883, -- Lesser Landscaper
 		884, -- Greater Gardener
 		885, -- Honored Horticulturist
 		886, -- Mog Gardener
-		854, -- Kit Empathizer
-		855, -- Jingly Dangler
-		856, -- Mole Manipulator
-		872, -- Puddle Patron
-		874, -- Pond Preceptor
-		876, -- Monke-Onke Master
-		873, -- Swamp Savant
-		875, -- River Regent
 	},
 	['Monster Rearing'] = {
 		908, -- Prospective Pamperer
@@ -418,15 +416,15 @@ return {
 		910, -- Serious Snuggler
 		911, -- Cultivated Coddler
 		912, -- Respected Ruffler
-		919, -- Clumsy Cleaver
-		920, -- Disciplined Dissector
-		921, -- Established Examiner
 		913, -- Dung Disseminator
 		914, -- Fauna Feeder
 		915, -- Confident Caretaker
 		916, -- Glorious Groomer
 		917, -- Transcendental Tamer
 		918, -- Bond-building Breeder
+		919, -- Clumsy Cleaver
+		920, -- Disciplined Dissector
+		921, -- Established Examiner
 	},
 	['Sortie'] = {
 		1069, -- Dhartok Defiler
@@ -436,134 +434,134 @@ return {
 		1073, -- Aminon Apprehender
 	},
 	['NM'] = {
-		465, -- Virtuous Saint
-		26, -- Tortoise Torturer
-		30, -- Dragon Asher
-		452, -- Aspidochelone Sinker
-		15, -- Bogeydowner
-		9, -- Behemoth's Bane
-		25, -- The Hornsplitter
-		462, -- Boroka Beleaguerer
-		557, -- Buarainech Exorcist
-		456, -- Cactrot Desacelerador
-		24, -- Cassienova
-		27, -- Mon Cherry
-		471, -- Cerberus Muzzler
-		11, -- Hellsbane
+		2, -- Warchief Wrecker
 		5, -- Dark Dragon Slayer
-		547, -- Ixion Hornbreaker
-		554, -- Elatha Exorcist
-		555, -- Ethniu Exorcist
-		451, -- Fafnir Slayer
-		19, -- Goliath Killer
-		473, -- Shining Scale Rifler
-		474, -- Troll Subjugator
-		472, -- Hydra Headhunter
-		14, -- Jellybane
-		460, -- World Serpent Slayer
-		476, -- Khimaira Carver
-		28, -- Behemoth Dethroner
-		464, -- Vinegar Evaporator
-		455, -- Kirin Captivator
-		548, -- Lambton Worm Desegmenter
+		9, -- Behemoth's Bane
+		11, -- Hellsbane
 		13, -- Lich Banisher
-		553, -- Lugh Exorcist
-		475, -- Gorgonstone Sunderer
-		18, -- Morbolbane
-		453, -- Nidhogg Slayer
-		558, -- Oupire Impaler
-		449, -- Overlord Overthrower
-		549, -- Pandemonium Queller
-		403, -- Averter of the Apocalypse
-		617, -- Mog House Handyperson
-		22, -- Roc Star
-		546, -- Sandworm Wrangler
-		559, -- Scylla Skinner
-		23, -- Serket Breaker
-		21, -- Simurgh Poacher
-		1128, -- Eternal Communer
+		14, -- Jellybane
+		15, -- Bogeydowner
 		16, -- Beakbender
 		17, -- Skullcrusher
+		18, -- Morbolbane
+		19, -- Goliath Killer
 		20, -- Mary's Guide
-		466, -- Bye-bye, Taisai
-		556, -- Tethra Exorcist
-		458, -- Tiamat Trouncer
-		980, -- Curator Culler
-		450, -- Deity Debunker
+		21, -- Simurgh Poacher
+		22, -- Roc Star
+		23, -- Serket Breaker
+		24, -- Cassienova
+		25, -- The Hornsplitter
+		26, -- Tortoise Torturer
+		27, -- Mon Cherry
+		28, -- Behemoth Dethroner
 		29, -- The Vivisector
-		459, -- Vrtra Vanquisher
-		2, -- Warchief Wrecker
-		461, -- Xolotl Xtrapolator
-		658, -- Yaanei Crasher
+		30, -- Dragon Asher
+		403, -- Averter of the Apocalypse
 		448, -- Adamantking Usurper
+		449, -- Overlord Overthrower
+		450, -- Deity Debunker
+		451, -- Fafnir Slayer
+		452, -- Aspidochelone Sinker
+		453, -- Nidhogg Slayer
+		455, -- Kirin Captivator
+		456, -- Cactrot Desacelerador
+		458, -- Tiamat Trouncer
+		459, -- Vrtra Vanquisher
+		460, -- World Serpent Slayer
+		461, -- Xolotl Xtrapolator
+		462, -- Boroka Beleaguerer
+		464, -- Vinegar Evaporator
+		465, -- Virtuous Saint
+		466, -- Bye-bye, Taisai
+		471, -- Cerberus Muzzler
+		472, -- Hydra Headhunter
+		473, -- Shining Scale Rifler
+		474, -- Troll Subjugator
+		475, -- Gorgonstone Sunderer
+		476, -- Khimaira Carver
+		546, -- Sandworm Wrangler
+		547, -- Ixion Hornbreaker
+		548, -- Lambton Worm Desegmenter
+		549, -- Pandemonium Queller
+		553, -- Lugh Exorcist
+		554, -- Elatha Exorcist
+		555, -- Ethniu Exorcist
+		556, -- Tethra Exorcist
+		557, -- Buarainech Exorcist
+		558, -- Oupire Impaler
+		559, -- Scylla Skinner
 		560, -- Zirnitra Wingclipper
+		617, -- Mog House Handyperson
+		658, -- Yaanei Crasher
+		980, -- Curator Culler
+		1128, -- Eternal Communer
 	},
 	['Wildskeeper Reive'] = {
-		762, -- Achuka Glaciator
-		768, -- Achuka Coagulator
 		761, -- Colkhab Dethroner
-		767, -- Colkhab Hivecrusher
-		765, -- Hurkan Birdlimeist
-		783, -- Kumhau Roaster
+		762, -- Achuka Glaciator
 		763, -- Tchakka Desiccator
-		769, -- Tchakka Filleter
+		765, -- Hurkan Birdlimeist
 		766, -- Yumcax Logger
+		767, -- Colkhab Hivecrusher
+		768, -- Achuka Coagulator
+		769, -- Tchakka Filleter
+		783, -- Kumhau Roaster
 	},
 	['Voidwatch'] = {
-		710, -- Aello Abator
-		706, -- Akvan Absterger
-		731, -- Bismarck Flenser
-		702, -- Celaeno Silencer
-		715, -- Gaunab Gutter
 		701, -- Hahava Condemner
-		718, -- Ig-Alima Inhumer
+		702, -- Celaeno Silencer
+		703, -- Voidwrought Deconstructor
 		705, -- Kaggen Clobberer
-		716, -- Kalasutrax Cremator
-		719, -- Botulus Rex Engorger
-		732, -- Morta Extirpator
-		717, -- Ocythoe Overrider
+		706, -- Akvan Absterger
 		707, -- Pil Unfrocker
-		730, -- Witness to Provenance
 		708, -- Qilin Contravener
 		709, -- Uptala Reprobator
-		703, -- Voidwrought Deconstructor
+		710, -- Aello Abator
+		715, -- Gaunab Gutter
+		716, -- Kalasutrax Cremator
+		717, -- Ocythoe Overrider
+		718, -- Ig-Alima Inhumer
+		719, -- Botulus Rex Engorger
+		730, -- Witness to Provenance
+		731, -- Bismarck Flenser
+		732, -- Morta Extirpator
 	},
 	['Escha'] = {
-		1006, -- Albumen Aggrivator
+		834, -- Fleetstalker Fileter
+		835, -- Shockmaw Subjugator
+		940, -- Urmahlullu Usurper
+		941, -- Blazewing Berater
 		942, -- Coven Collapser
-		963, -- Vanquisher of Arrogance
-		964, -- Vanquisher of Rage
+		943, -- Pazuzu Perplexer
+		944, -- Wrathare Waxer
+		949, -- Azi Dahaka Annihilator
+		950, -- Naga Raja Nullifier
+		951, -- Quetzalcoatl Plucker
+		952, -- Pakecet Pacifier
+		953, -- Duke Vepar Vanquisher
+		954, -- Vir'ava Vegetator
+		955, -- Byakko Tamer
+		956, -- Genbu Cracker
+		957, -- Seiryu Clipper
+		958, -- Suzaku Plucker
+		959, -- Kirin Dismantler
+		961, -- Vanquisher of Cowardice
 		960, -- Vanquisher of Apathy
 		962, -- Vanquisher of Envy
-		961, -- Vanquisher of Cowardice
-		949, -- Azi Dahaka Annihilator
-		941, -- Blazewing Berater
-		955, -- Byakko Tamer
-		1008, -- Erinys Engulfer
-		834, -- Fleetstalker Fileter
-		956, -- Genbu Cracker
-		959, -- Kirin Dismantler
-		968, -- Maju Mauler
-		1039, -- Mireu Mincer
-		950, -- Naga Raja Nullifier
-		970, -- Neak Nullifier
-		1007, -- Onychophora Obliterator
-		952, -- Pakecet Pacifier
-		943, -- Pazuzu Perplexer
-		951, -- Quetzalcoatl Plucker
-		1005, -- Schah Scraper
-		957, -- Seiryu Clipper
-		835, -- Shockmaw Subjugator
-		958, -- Suzaku Plucker
-		971, -- Teles Terrifier
-		940, -- Urmahlullu Usurper
-		1004, -- Vinipata Vanquisher
-		954, -- Vir'ava Vegetator
+		963, -- Vanquisher of Arrogance
+		964, -- Vanquisher of Rage
 		965, -- Purger of the Warder
-		944, -- Wrathare Waxer
-		953, -- Duke Vepar Vanquisher
+		968, -- Maju Mauler
 		969, -- Yakshi Yanker
+		970, -- Neak Nullifier
+		971, -- Teles Terrifier
 		1003, -- Zerde Zapper
+		1004, -- Vinipata Vanquisher
+		1005, -- Schah Scraper
+		1006, -- Albumen Aggrivator
+		1007, -- Onychophora Obliterator
+		1008, -- Erinys Engulfer
+		1039, -- Mireu Mincer
 	},
 	['Limbus'] = {
 		468, -- Apollyon Ravager
@@ -572,42 +570,42 @@ return {
 		741, -- Apollyon Razer
 	},
 	['Odyssey'] = {
-		1067, -- Arebati Assaulter
-		1056, -- Aristaeus Assailer
-		1068, -- Bumba Befouler
 		1052, -- Dealan-dhe Dimmer
-		1058, -- Gigelorum Gagger
-		1055, -- Gogmagog Grinder
-		1061, -- Henwen Harrier
-		1064, -- Kalunga Collapser
-		1057, -- Marmorkrebs Mauler
-		1065, -- Mboze Mauler
-		1063, -- Ngai Nabber
-		1066, -- Ongo Obliterator
-		1060, -- Procne Punisher
-		1059, -- Raskovniche Render
 		1053, -- Sgili Stomper
 		1054, -- U Bnai Underminer
+		1055, -- Gogmagog Grinder
+		1056, -- Aristaeus Assailer
+		1057, -- Marmorkrebs Mauler
+		1058, -- Gigelorum Gagger
+		1059, -- Raskovniche Render
+		1060, -- Procne Punisher
+		1061, -- Henwen Harrier
 		1062, -- Xevioso Zapper
+		1063, -- Ngai Nabber
+		1064, -- Kalunga Collapser
+		1065, -- Mboze Mauler
+		1066, -- Ongo Obliterator
+		1067, -- Arebati Assaulter
+		1068, -- Bumba Befouler
 	},
 	['Salvage'] = {
-		479, -- Sun Charioteer
 		478, -- Star Charioteer
-		751, -- Moon Maven
+		479, -- Sun Charioteer
+		544, -- Comet Charioteer
+		545, -- Moon Charioteer
 		748, -- Supernal Savant
 		749, -- Solar Sage
-		545, -- Moon Charioteer
-		544, -- Comet Charioteer
 		750, -- Bolide Baron
+		751, -- Moon Maven
 	},
 	['Skirmish'] = {
+		756, -- Waterway Exemplar
+		757, -- Cavern Exemplar
+		764, -- Weald Exemplar
+		793, -- Ra'Kaznar Exemplar
 		802, -- Adumbration Disperser
 		803, -- Queller of Otherworldly Gales
 		831, -- Alluvion Assailant
-		757, -- Cavern Exemplar
-		793, -- Ra'Kaznar Exemplar
-		756, -- Waterway Exemplar
-		764, -- Weald Exemplar
 	},
 	['Voidwalker'] = {
 		561, -- Dawon Trapper
@@ -624,11 +622,11 @@ return {
 		809, -- Nilotican Decimator
 	},
 	['Delve'] = {
-		795, -- Cailimh Plumageplucker
 		759, -- Dakuwaqa Trawler
 		758, -- Muyingwa Wingcrusher
 		760, -- Tojil Douser
 		794, -- Utkux Peltburner
+		795, -- Cailimh Plumageplucker
 		796, -- Wopket Trunksplitter
 	},
 	['Campaign Ops'] = {
@@ -640,11 +638,11 @@ return {
 		744, -- Surtr Smotherer
 		745, -- Dreyruk Predominator
 		746, -- Samursk Vitiator
+		747, -- Umagrhk Manemangler
 		752, -- Izyx Vexer
 		753, -- Grannus Garroter
 		754, -- Svaha Striker
 		755, -- Melisseus Domesticator
-		747, -- Umagrhk Manemangler
 	},
 	['Nyzul Isle'] = {
 		724, -- Delver of the Depths
