@@ -21,6 +21,7 @@ will be saved in config so only need to do it once (or when need to update)
 | Meeble Burrows | Speak to any [Burrow Researcher](https://www.bg-wiki.com/ffxi/Burrow_Researcher) or [Burrow Investigator](https://www.bg-wiki.com/ffxi/Burrow_Investigator) <br>`(Menu: Review expedition specifics -> Zone)` |
 | Atmacite levels | Speak to any [Atmacite Refiner](https://www.bg-wiki.com/ffxi/Atmacite_Refiner) <br>`(Menu: Enrich Atmacite)` |
 | Wing Skill | Speak to chocobo kids [Arvilauge/Gonija/Kiria-Romaria](https://www.bg-wiki.com/ffxi/Category:Chocobo_Digging#Basics) |
+| Sheol Gaol Vengeance | Speak to [??? in Rabao](https://www.bg-wiki.com/ffxi/Category:Odyssey) <br>`(Status Report: Sheol Gaol)` |
 
 <br>
 
@@ -89,3 +90,4 @@ the menu will only show missing items like quests,key items, spells, home points
 - 0.9.4 - added Atmacite, Atmacite levels & Wing Skill.
 - 0.10.0 - Added "Talk to NPC" addon help in tabs that require npc interaction to register
 - 0.11.0 - Added `//xic log` command, now registers which NPC talked to for updating the checklist.
+- 0.12.0 - Added Sheol Gaol, removed titles.xml and roe.xml, fixes (delete your settings and reload)
