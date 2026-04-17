@@ -1,6 +1,6 @@
 _addon.name     = 'xichecklist'
 _addon.author   = 'Anokata'
-_addon.version  = '0.12.0'
+_addon.version  = '0.13.0'
 _addon.commands = {'xichecklist', 'xic'}
 
 require('sets')
@@ -22,6 +22,19 @@ trackermenusettings = config.load(trackermenusettings)
 
 defaultplayertracker = {
 	['mastery_rank'] = 0,
+	-- Missions
+	['bastokmissions_completed'] = 0,
+	['bastokmissions_total'] = 0,
+	['sandoriamissions_completed'] = 0,
+	['sandoriamissions_total'] = 0,
+	['windurstmissions_completed'] = 0,
+	['windurstmissions_total'] = 0,
+	['zilartmissions_completed'] = 0,
+	['zilartmissions_total'] = 0,
+	['ahturhganmissions_completed'] = 0,
+	['ahturhganmissions_total'] = 0,
+	['wotgmissions_completed'] = 0,
+	['wotgmissions_total'] = 0,
 	-- Quests
 	['bastok_completed'] = 0,
 	['bastok_total'] = 0,
@@ -357,6 +370,12 @@ function update_maintab()
 	append_maintab('RoE %d/%d', playertracker['RoE_completed'], playertracker['RoE_total'])
 	
 	table.insert(tabs[1].items, '======= Quests & Ops =======')
+	append_maintab('San d\'Oria Missions %d/%d', playertracker['sandoriamissions_completed'], playertracker['sandoriamissions_total'])
+	append_maintab('Bastok Missions %d/%d', playertracker['bastokmissions_completed'], playertracker['bastokmissions_total'])
+	append_maintab('Windurst Missions %d/%d', playertracker['windurstmissions_completed'], playertracker['windurstmissions_completed'])
+	append_maintab('Zilart Missions %d/%d', playertracker['zilartmissions_completed'], playertracker['zilartmissions_total'])
+	append_maintab('TOAU Missions %d/%d', playertracker['ahturhganmissions_completed'], playertracker['ahturhganmissions_total'])
+	append_maintab('WOTG Missions %d/%d', playertracker['wotgmissions_completed'], playertracker['wotgmissions_total'])
 	append_maintab('Campaign Ops %d/%d', playertracker['campaign_completed'], playertracker['campaign_total'])
 	append_maintab('Bastok Quests %d/%d', playertracker['bastok_completed'], playertracker['bastok_total'])
 	append_maintab('San d\'Oria Quests %d/%d', playertracker['sandoria_completed'], playertracker['sandoria_total'])
@@ -432,7 +451,6 @@ function update_maintab()
 	table.insert(tabs[1].items, '======= Titles =======')
 	append_maintab('Titles %d/%d', playertracker['Titles_completed'], playertracker['Titles_total'])
 	append_items(tabs[1].items, menus_util.list_titles_bycontent())
-	
 end
 
 windower.register_event('incoming chunk', function(id, data, modified, injected, blocked)
@@ -453,11 +471,27 @@ windower.register_event('incoming chunk', function(id, data, modified, injected,
 		local p = packets.parse('incoming', data)
 		local log = quest_logs[p.Type]
 		if log then
-			if ((p.Type == 128)) then -- if Aht Urhgan Current Quests
+			if (p.Type == 128) then -- if Aht Urhgan Current Quests
 				quests[log.type][log.area] = p["Current TOAU Quests"]
-			elseif ((p.Type == 192)) then -- if Aht Urhgan Completed Quests
+			elseif (p.Type == 192) then -- if Aht Urhgan Completed Quests
 				quests[log.type][log.area] = p["Completed TOAU Quests"]
 				tab_logs.quests[log.area] = quest_util.log_quests(log.area)
+			elseif (p.Type == 208) then -- if Aht Urhgan Completed Quests
+				quests.completed['sandoriamissions'] = p['Completed San d\'Oria Missions']
+				quests.completed['bastokmissions'] = p['Completed Bastok Missions']
+				quests.completed['windurstmissions'] = p['Completed Windurst Missions']
+				quests.completed['zilartmissions'] = p['Completed Zilart Missions']
+				
+				tab_logs.quests['sandoriamissions'] = quest_util.log_quests('sandoriamissions')
+				tab_logs.quests['bastokmissions'] = quest_util.log_quests('bastokmissions')
+				tab_logs.quests['windurstmissions'] = quest_util.log_quests('windurstmissions')
+				tab_logs.quests['zilartmissions'] = quest_util.log_quests('zilartmissions')
+			elseif (p.Type == 216) then -- if Aht Urhgan Completed Quests
+				quests.completed['ahturhganmissions'] = p['Completed TOAU Missions']
+				quests.completed['wotgmissions'] = p['Completed WOTG Missions']
+				
+				tab_logs.quests['ahturhganmissions'] = quest_util.log_quests('ahturhganmissions')
+				tab_logs.quests['wotgmissions'] = quest_util.log_quests('wotgmissions')
 			else
 				quests[log.type][log.area] = p['Quest Flags']
 				tab_logs.quests[log.area] = quest_util.log_quests(log.area)
@@ -579,6 +613,18 @@ function xichecklist_updatetabs(tab)
 		tabs[2].items = {} -- reset tab content
 		tabs[3].items = {} -- reset tab content
 		-- log quests
+		append_header(2, 'San d\'Oria Missions (%d/%d)', playertracker['sandoriamissions_completed'], playertracker['sandoriamissions_total'])
+		append_items(tabs[2].items, tab_logs.quests['sandoriamissions'])
+		append_header(2, 'Bastok Missions (%d/%d)', playertracker['bastokmissions_completed'], playertracker['bastokmissions_total'])
+		append_items(tabs[2].items, tab_logs.quests['bastokmissions'])
+		append_header(2, 'Windurst Missions (%d/%d)', playertracker['windurstmissions_completed'], playertracker['windurstmissions_total'])
+		append_items(tabs[2].items, tab_logs.quests['windurstmissions'])
+		append_header(2, 'Zilart Missions (%d/%d)', playertracker['zilartmissions_completed'], playertracker['zilartmissions_total'])
+		append_items(tabs[2].items, tab_logs.quests['zilartmissions'])
+		append_header(2, 'TOAU Missions (%d/%d)', playertracker['ahturhganmissions_completed'], playertracker['ahturhganmissions_total'])
+		append_items(tabs[2].items, tab_logs.quests['ahturhganmissions'])
+		append_header(2, 'WOTG Missions (%d/%d)', playertracker['wotgmissions_completed'], playertracker['wotgmissions_total'])
+		append_items(tabs[2].items, tab_logs.quests['wotgmissions'])
 		append_header(2, 'San d\'Oria Quests (%d/%d)', playertracker['sandoria_completed'], playertracker['sandoria_total'])
 		append_items(tabs[2].items, tab_logs.quests['sandoria'])
 		append_header(2, 'Bastok Quests (%d/%d)', playertracker['bastok_completed'], playertracker['bastok_total'])

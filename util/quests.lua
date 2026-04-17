@@ -3,30 +3,34 @@ quests = {completed={},current={}}
 quests.mutual_exclusive = require('../maps/quests_mutual_exclusive')
 
 _G.quest_logs = {
-    [0x0070] = {type='current', area='other'},
+    --[0x0070] = {type='current', area='other'},
     [0x00B0] = {type='completed', area='other'},
-    [0x00E0] = {type='current', area='abyssea'},
+    --[0x00E0] = {type='current', area='abyssea'},
     [0x00E8] = {type='completed', area='abyssea'},
-    [0x00F0] = {type='current', area='adoulin'},
+    --[0x00F0] = {type='current', area='adoulin'},
     [0x00F8] = {type='completed', area='adoulin'},
-    [0x0100] = {type='current', area='coalition'},
+    --[0x0100] = {type='current', area='coalition'},
     [0x0108] = {type='completed', area='coalition'},
 	[0x0090] = {type='completed', area='sandoria'},
-	[0x0050] = {type='current', area='sandoria'},
+	--[0x0050] = {type='current', area='sandoria'},
 	[0x0098] = {type='completed', area='bastok'},
-	[0x0058] = {type='current', area='bastok'},
+	--[0x0058] = {type='current', area='bastok'},
 	[0x00A0] = {type='completed', area='windurst'},
-	[0x0060] = {type='current', area='windurst'},
+	--[0x0060] = {type='current', area='windurst'},
 	[0x00A8] = {type='completed', area='jeuno'},
-	[0x0068] = {type='current', area='jeuno'},
+	--[0x0068] = {type='current', area='jeuno'},
 	[0x00C0] = {type='completed', area='ahturhgan'},
-	[0x0080] = {type='current', area='ahturhgan'},
+	--[0x0080] = {type='current', area='ahturhgan'},
 	[0x00C8] = {type='completed', area='crystalwar'},
-	[0x0088] = {type='current', area='crystalwar'},
+	--[0x0088] = {type='current', area='crystalwar'},
 	[0x00B8] = {type='completed', area='outlands'},
-	[0x0078] = {type='current', area='outlands'},
+	--[0x0078] = {type='current', area='outlands'},
 	[0x0030] = {type='completed', area='campaign1'},
 	[0x0038] = {type='completed', area='campaign2'},
+	
+	[0x00D0] = {type='completed', area='nationzilartmissions'},
+	[0x00D8] = {type='completed', area='toauwotgmissions'},
+	
 }
 
 local maps = {
@@ -42,6 +46,14 @@ local maps = {
 	crystalwar = require('../maps/quests_crystalwar'),
 	outlands = require('../maps/quests_outlands'),
 	campaign = require('../maps/campaign'),
+	
+	sandoriamissions = require('../maps/missions_sandoria'),
+	bastokmissions = require('../maps/missions_bastok'),
+	windurstmissions = require('../maps/missions_windurst'),
+	zilartmissions = require('../maps/missions_zilart'),
+	ahturhganmissions = require('../maps/missions_ahturhgan'),
+	wotgmissions = require('../maps/missions_wotg'),
+	
 }
 
 function quest_util.log_quests(quest_type)
