@@ -35,6 +35,7 @@ will be saved in config so only need to do it once (or when need to update)
 - Titles
 - Moblin Maze Mongers `(Vouchers / Runes / Maze Count)`
 - Meeble Burrows
+- Sheol Gaol
 - Types of fish caught
 - Outpost Warps
 - Records of Eminence (RoE) 
