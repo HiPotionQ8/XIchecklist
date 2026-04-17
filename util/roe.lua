@@ -11,22 +11,22 @@ function roe_util.handle_roe_data(data)
 end
 
 function roe_util.add_roe(id)
-	if (not (playerroe[tostring(id)] == true)) then
-		playerroe[tostring(id)] = true
-		playerroe:save()
+	if (not (playertracker.roe[tostring(id)] == true)) then
+		playertracker.roe[tostring(id)] = true
+		playertracker:save()
 		--util.addon_log('RoE Completed: ' .. roemap[id].name)
 	end
 end
 
 function roe_util.log_roe()
-	output_list = {}
+	local output_list = {}
 	local total, complete = 0,0
 	local hiddentotal, hiddencomplete = 0,0
 	for key, roe in pairs(roemap) do
 		total = total+1
 		local completion = false
 		if (roeextramap[key]) then hiddentotal = hiddentotal+1 end
-		if (playerroe[tostring(key)] == true) then
+		if (playertracker.roe[tostring(key)] == true) then
 			complete = complete+1
 			completion = true
 			if (roeextramap[key]) then hiddencomplete = hiddencomplete+1 end

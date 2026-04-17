@@ -13,7 +13,7 @@ menu_current = {
 }
 
 function menus_util.handle_npc_menu(data)
-	parseddata = packets.parse('incoming', data)
+	local parseddata = packets.parse('incoming', data)
 	local index = parseddata['NPC Index']
 	local npc = index and windower.ffxi.get_mob_by_index(index).name
 	if not npc or not menus_util.menu_npcs[npc] then
@@ -21,12 +21,12 @@ function menus_util.handle_npc_menu(data)
 	end
 	if (menus_util.menu_npcs[npc].zoneid:contains(windower.ffxi.get_info().zone)
 		and menus_util.menu_npcs[npc].menuid:contains(parseddata['Menu ID'])) then
-		menus_util.menu_npcs[npc]['menu_function'](data)
+		menus_util.menu_npcs[npc].menu_function(parseddata)
 	end
 end
 
 function menus_util.handle_npc_submenu(data)
-	parseddata = packets.parse('incoming', data)
+	local parseddata = packets.parse('incoming', data)
 	local index = (menu_current.npcindex and menu_current.zoneid==windower.ffxi.get_info().zone) and menu_current.npcindex or parseddata['NPC Index']
 	if (index == nil) then return false end
 	local npc = index and windower.ffxi.get_mob_by_index(index).name
@@ -34,7 +34,7 @@ function menus_util.handle_npc_submenu(data)
 		return
 	end
 	if menus_util.menu_npcs[npc].zoneid:contains(windower.ffxi.get_info().zone) then
-		menus_util.menu_npcs[npc]['menu_function'](data)
+		menus_util.menu_npcs[npc].menu_function(parseddata)
 	end
 end
 
@@ -60,10 +60,9 @@ function menus_util.handle_menu_options(data)
 	}
 end
 
-function menus_util.handle_op_warps(data)
-	parseddata = packets.parse('incoming', data)
-	menu = parseddata['Menu Parameters']
-	subdata = menu:sub(0x1C+1, 0x1E+1)
+function menus_util.handle_op_warps(parseddata)
+	--local parseddata = packets.parse('incoming', data)
+	local subdata = parseddata['Menu Parameters']:sub(0x1C+1, 0x1E+1)
 	for key, name in pairs(menumaps.outposts) do
 		if (not util.has_bit(subdata, key+5)) then -- +5 because mapping starts from 6th byte
 			menus_util.add_outpost(key)
@@ -82,7 +81,7 @@ function menus_util.add_outpost(id)
 end
 
 function menus_util.log_outposts()
-	output_list = {}
+	local output_list = {}
 	local total, complete = 0,0
 	for key, name in pairs(menumaps.outposts) do
 		total = total+1
@@ -98,20 +97,19 @@ function menus_util.log_outposts()
 	return output_list
 end
 
-function menus_util.handle_chatnachoq(data)
-	parseddata = packets.parse('incoming', data)
-	menu = parseddata['Menu Parameters']
+function menus_util.handle_chatnachoq(parseddata)
+	--local parseddata = packets.parse('incoming', data)
+	local menu = parseddata['Menu Parameters']
 	local mazes = menu:unpack('I', 13)
 	playertracker['mmm_mazecount'] = mazes
-	playertracker:save()
-	util.addon_log('Maze count: ' .. mazes)
 	playertracker.talk_to_npc['chatnachoq'] = true
 	playertracker:save()
+	util.addon_log('Maze count: ' .. mazes)
 end
 
-function menus_util.handle_protowaypoint(data)
-	parseddata = packets.parse('incoming', data)
-	menu = parseddata['Menu Parameters']
+function menus_util.handle_protowaypoint(parseddata)
+	--local parseddata = packets.parse('incoming', data)
+	local menu = parseddata['Menu Parameters']
 	--subdata = menu:sub(0x1C+1, 0x1E+1)
 	for key, name in pairs(menumaps.protowaypoints) do
 		if (util.has_bit(menu, key)) then
@@ -131,7 +129,7 @@ function menus_util.add_protowaypoint(id)
 end
 
 function menus_util.log_protowaypoints()
-	output_list = {}
+	local output_list = {}
 	local total, complete = 0,0
 	for key, name in pairs(menumaps.protowaypoints) do
 		total = total+1
@@ -147,8 +145,8 @@ function menus_util.log_protowaypoints()
 	return output_list
 end
 
-function menus_util.handle_burrowsnpc(data)
-	local parseddata = packets.parse('incoming', data)
+function menus_util.handle_burrowsnpc(parseddata)
+	--local parseddata = packets.parse('incoming', data)
 	local map_name = nil
 	if ((menu_current['zoneid'] == 244 and menu_current['_unknown1'] == 1) -- Upper Jeuno / Sauromugue Menu
 		or (menu_current['zoneid'] == 120 and menu_current['Option Index'] == 14)) then
@@ -193,7 +191,7 @@ function menus_util.add_meeble_burrows(id,map_name)
 end
 
 function menus_util.log_meeble_burrows()
-	output_list = {}
+	local output_list = {}
 	local total, complete = 0,0
 	for zone, burrows in pairs(menumaps.meeble_burrows) do
 		for id, name in pairs(burrows) do
@@ -211,13 +209,13 @@ function menus_util.log_meeble_burrows()
 	return output_list
 end
 
-function menus_util.handle_katsunaga(data)
+function menus_util.handle_katsunaga(parseddata)
 	if menu_current['_unknown1'] == 0 then
-		local parseddata = packets.parse('incoming', data)
-		menu = parseddata['Menu Parameters']
+		--local parseddata = packets.parse('incoming', data)
+		--local menu = parseddata['Menu Parameters']
 		for flag, id in ipairs(menumaps.fishes_menu) do
 			if (id ~= false) then
-				if util.has_bit(menu, flag) then
+				if util.has_bit(parseddata['Menu Parameters'], flag) then
 					menus_util.add_fish_caught(id)
 				end
 			end
@@ -236,7 +234,7 @@ function menus_util.add_fish_caught(id)
 end
 
 function menus_util.log_fishes()
-	output_list = {}
+	local output_list = {}
 	local total, complete = 0,0
 	for key, id in pairs(menumaps.fishes_menu) do
 		total = total+1
@@ -253,22 +251,19 @@ function menus_util.log_fishes()
 	return output_list
 end
 
-function menus_util.handle_atmacitenpc(data)
-	local parseddata = packets.parse('incoming', data)
+function menus_util.handle_atmacitenpc(parseddata)
+	--local parseddata = packets.parse('incoming', data)
 	local atmacite_levels = util.fourbits_to_table(parseddata['Menu Parameters'])
 	local playerkeyitems = windower.ffxi.get_key_items()
 	if (menu_current['_unknown1'] == 0 and menu_current['Option Index'] == 2) then
 		for key, atmacite in pairs(menumaps.atmacite) do
 			if (table.find(playerkeyitems, atmacite.id)) then
 				if (playertracker.atmacite_levels[tostring(key)] == nil) then
-					playertracker.atmacite_levels[tostring(key)] = atmacite_levels[key]
-					playertracker:save()
 					util.addon_log('Atmacite added: Lv'..atmacite_levels[key].. ' ' .. atmacite.en)
 				elseif (atmacite_levels[key] > playertracker.atmacite_levels[tostring(key)]) then
-					playertracker.atmacite_levels[tostring(key)] = atmacite_levels[key]
-					playertracker:save()
 					util.addon_log('Atmacite Updated: Lv'..atmacite_levels[key].. ' ' .. atmacite.en)
 				end
+				playertracker.atmacite_levels[tostring(key)] = atmacite_levels[key]
 			end
 		end
 		playertracker.talk_to_npc['atmacite_refiner'] = true
@@ -277,7 +272,7 @@ function menus_util.handle_atmacitenpc(data)
 end
 
 function menus_util.log_atmacitelevels()
-	output_list = {}
+	local output_list = {}
 	local total, complete = 0,0
 	for key, atmacite in pairs(menumaps.atmacite) do
 		total = total+15
@@ -293,8 +288,8 @@ function menus_util.log_atmacitelevels()
 	return output_list
 end
 
-function menus_util.handle_chocobostablenpc(data)
-	local parseddata = packets.parse('incoming', data)
+function menus_util.handle_chocobostablenpc(parseddata)
+	--local parseddata = packets.parse('incoming', data)
 	if (parseddata['Menu Parameters'] ~= nil) then
 		local winglevel = string.byte(parseddata['Menu Parameters'], 5)
 		if (winglevel > playertracker['wingskill_completed']) then
@@ -306,9 +301,10 @@ function menus_util.handle_chocobostablenpc(data)
 	end
 end
 
-function menus_util.handle_titles_npc(data)
-	local flags = data:sub(81, 104)
-	local parseddata = packets.parse('incoming', data)
+function menus_util.handle_titles_npc(parseddata)
+	--local flags = data:sub(81, 104)
+	--local parseddata = packets.parse('incoming', data)
+	local flags = parseddata['Menu Parameters']:sub(1, 24)
 	local index = parseddata['NPC Index']
 	local npc = index and windower.ffxi.get_mob_by_index(index).name
 	for cat, ids in ipairs(menumaps.titlesnpc_menu[npc]) do
@@ -324,15 +320,15 @@ function menus_util.handle_titles_npc(data)
 end
 
 function menus_util.add_title(id)
-	if (not (playertitles[tostring(id)] == true)) then
-		playertitles[tostring(id)] = true
-		playertitles:save()
+	if (not (playertracker.titles[tostring(id)] == true)) then
+		playertracker.titles[tostring(id)] = true
+		playertracker:save()
 		util.addon_log('Title added: ' .. res.titles[id].en)
 	end
 end
 
 function menus_util.log_titles()
-	output_list = {}
+	local output_list = {}
 	local total, complete = 0,0
 	for key, title in pairs(res.titles) do
 		total = total+1
@@ -341,7 +337,7 @@ function menus_util.log_titles()
 		if (titles_howtoobtain[title.en]) then
 			obtainmethod = '\\cs(255,255,255) [' .. titles_howtoobtain[title.en] .. ']\\cr'
 		end
-		if (playertitles[tostring(key)] == true) then
+		if (playertracker.titles[tostring(key)] == true) then
 			complete = complete+1
 			completion = true
 		else
@@ -350,7 +346,7 @@ function menus_util.log_titles()
 			end
 		end
 		if (not titlesexclusions:contains(key)) then  
-			table.insert(output_list, util.list_item(nil, res.titles[key].en, completion, obtainmethod))
+			table.insert(output_list, util.list_item('Titles', res.titles[key].en, completion, obtainmethod))
 		end
 	end
 	playertracker['Titles_completed'] = complete
@@ -359,14 +355,14 @@ function menus_util.log_titles()
 end
 
 function menus_util.list_titles_bycontent()
-	output_list = {}
+	local output_list = {}
 	for content, titles in pairs(titlescontnt) do
 		local total, complete = 0,0
 		local completion = false
 		for key, titleid in pairs(titles) do
 			total = total+1
 			if (titlesexclusions:contains(titleid)) then total = total-1 end
-			if (playertitles[tostring(titleid)] == true) then
+			if (playertracker.titles[tostring(titleid)] == true) then
 				complete = complete+1
 				if (titlesexclusions:contains(titleid)) then total = total+1 end
 			end
@@ -378,6 +374,42 @@ function menus_util.list_titles_bycontent()
 	return output_list
 end
 
+function menus_util.handle_odyssey_questionmark(parseddata)
+	if (menu_current['Option Index'] == 2) then 
+		-- SheolA todo
+		
+		
+		
+	elseif (menu_current['Option Index'] == 8 or menu_current['Option Index'] == 9 or menu_current['Option Index'] == 10) then -- Choose Sheo Gaol status report
+		for byteidx, name in pairs (menumaps.odyssey.gaol[menu_current['Option Index']]) do
+			local venglevel = bit.band(string.byte(parseddata['Menu Parameters'], byteidx), 0x1F) -- 5 bits are the veng level
+			if (not playertracker.sheolgaol[tostring(menu_current['Option Index'])][tostring(byteidx)]) then
+				util.addon_log(name..' V'..venglevel..' Added')
+			elseif (venglevel > playertracker.sheolgaol[tostring(menu_current['Option Index'])][tostring(byteidx)]) then
+				util.addon_log(name..' V'..venglevel..' Updated')
+			end 
+			playertracker.sheolgaol[tostring(menu_current['Option Index'])][tostring(byteidx)] = venglevel
+		end
+		playertracker.talk_to_npc['sheolgaol'] = true
+		playertracker:save()
+	end
+end
+
+function menus_util.log_sheolgaol()
+	local output_list = {}
+	local total, complete = 0,0
+	for optionidx, optiontbl in pairs(menumaps.odyssey.gaol) do
+		for byteidx, name in pairs (optiontbl) do
+			local venglevel = playertracker.sheolgaol[tostring(optionidx)][tostring(byteidx)] or 0
+			local completion = false
+			if venglevel == 25 then completion = true end
+			table.insert(output_list, util.list_item('ShelGaol', 'V'..venglevel..' '..name, completion))
+			complete = complete+venglevel
+		end
+	end
+	playertracker['sheolgaoltiers_completed'] = complete
+	return output_list
+end
 
 menus_util.menu_npcs = {
 	-- Outpost Warp NPCs
@@ -424,6 +456,9 @@ menus_util.menu_npcs = {
 	["Eron-Tomaron"] = {zoneid=S{250}, menuid=S{10013}, menu_function=menus_util.handle_titles_npc},
 	["Quntsu-Nointsu"] = {zoneid=S{252}, menuid=S{1011}, menu_function=menus_util.handle_titles_npc},
 	["Debadle-Levadle"] = {zoneid=S{256}, menuid=S{15}, menu_function=menus_util.handle_titles_npc},
+	
+	-- ??? Odyssey
+	["???"] = {zoneid=S{247}, menuid=S{2001}, menu_function=menus_util.handle_odyssey_questionmark},
 }
 
 return menus_util

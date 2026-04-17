@@ -72,7 +72,7 @@ function util.totalpoints()
 			total = total + value
 		end
 	end
-	return (completed - playertracker['Jobpoints_completed']), (total - playertracker['Jobpoints_total'])
+	return completed, total
 end
 
 function util.table_to_clipboard(tbl)

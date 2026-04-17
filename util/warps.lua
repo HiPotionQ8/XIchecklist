@@ -11,7 +11,7 @@ function warps_util.checkwarps(warptype)
 	if warps_util.warps_data == nil then return end
 	local subdata = warps_util.warps_data:sub(unpack(warps[warptype].data))
 	local total, obtained = 0, 0
-	output_list = {}
+	local output_list = {}
 	-- check for obtained warp
 	for index, name in pairs(warps[warptype].map) do
 		total = total+1

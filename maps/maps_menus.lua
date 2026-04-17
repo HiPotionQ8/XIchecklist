@@ -305,4 +305,39 @@ return {
 			{912, 917, 948, 1069, 1070, 1071, 1072, 1073, 1075}, --700 gil
 		},
 	},
+	odyssey = {
+		gaol = {
+			-- [Option Index] = {[Byte] = 'Name'},
+			[8] = {
+				[1] = 'Dealan-dhe',
+				[5] = 'Sgili',
+				[9] = 'U Bnai',
+				[13] = 'Gogmagog',
+				[17] = 'Aristaeus',
+				[21] = 'Raskovniche',
+				[25] = 'Marmokrebs',
+				--[29] = '',
+			},
+			[9] = {
+				[1] = 'Gigleorum',
+				[5] = 'Procne',
+				[9] = 'Henwen',
+				[13] = 'Xevioso',
+				[17] = 'Ngai',
+				[21] = 'Kalunga',
+				[25] = 'Ongo',
+				--[29] = '',
+			},
+			[10] = {
+				[1] = 'Mboze',
+				[5] = 'Arebati',
+				[9] = 'Bumba',
+				--[13] = '',
+				--[17] = '',
+				--[21] = '',
+				--[25] = '',
+				--[29] = '',
+			},
+		},
+	},
 }

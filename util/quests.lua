@@ -85,32 +85,4 @@ function quest_util.log_quests(quest_type)
 	return output_list
 end
 
---[[
-function quest_util.log_campaign()
-	quest_type = 'campaign'
-	local data = nil
-	if (quest_type == 'campaign') then
-		if not quests.completed['campaign1'] then return false end
-		if not quests.completed['campaign2'] then return false end
-		data = quests.completed['campaign1'] .. quests.completed['campaign2']
-		quests.completed[quest_type] = data
-	end
-	local complete,total = 0, 0
-	local output_list = {}
-	for id,name in pairs(maps.campaign) do
-		local completion = false
-		if maps.campaign[id] then
-			total = total + 1
-			if util.has_bit(data, id) then
-				complete = complete + 1
-				completion = true
-			end
-			table.insert(output_list, util.list_item(nil, name, completion))
-		end
-	end
-	playertracker['campaign_completed'] = complete
-	playertracker['campaign_total'] = total
-	return output_list
-end
---]]
 return quest_util
