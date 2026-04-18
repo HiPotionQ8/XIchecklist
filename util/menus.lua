@@ -21,7 +21,7 @@ function menus_util.handle_npc_menu(data)
 	end
 	if (menus_util.menu_npcs[npc].zoneid:contains(windower.ffxi.get_info().zone)
 		and menus_util.menu_npcs[npc].menuid:contains(parseddata['Menu ID'])) then
-		menus_util.menu_npcs[npc].menu_function(parseddata)
+		menus_util.menu_npcs[npc].menu_function(parseddata, data) -- second parameter is data because 0x033 menu i bugged, until kayte's PR fixes it.
 	end
 end
 
@@ -301,9 +301,9 @@ function menus_util.handle_chocobostablenpc(parseddata)
 	end
 end
 
-function menus_util.handle_titles_npc(parseddata)
-	--local flags = parseddata['Menu Parameters']:sub(1, 24)
-	local flags = parseddata['_data']:sub(81, 104)
+function menus_util.handle_titles_npc(parseddata, data)
+	--local flags = parseddata['Menu Parameters']:sub(1, 24) -- commented until kayte PR 
+	local flags = data:sub(81, 104)
 	local index = parseddata['NPC Index']
 	local npc = index and windower.ffxi.get_mob_by_index(index).name
 	for cat, ids in ipairs(menumaps.titlesnpc_menu[npc]) do
