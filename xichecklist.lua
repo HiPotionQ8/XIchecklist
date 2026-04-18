@@ -1,6 +1,6 @@
 _addon.name     = 'xichecklist'
 _addon.author   = 'Anokata'
-_addon.version  = '0.13.0'
+_addon.version  = '0.13.1'
 _addon.commands = {'xichecklist', 'xic'}
 
 require('sets')
@@ -321,14 +321,19 @@ local function append_items(dst, src)
 		if (item.completed == true and trackermenusettings.showcompleted == false) then
 			display = false
 		end
-		if item.category ~= nil then 
-			text = '['..item.category..'] '..text
-		end
 		if item.completed == true then
 			menucolor = '(0,255,0)'
 		end
-		if item.obtainmethod ~= nil then 
-			text = text..item.obtainmethod
+		if item.obtainmethod ~= nil then
+			local obtainmethod = '\\cs(255,255,255)[' .. item.obtainmethod .. ']\\cr\\cs'..menucolor
+			if item.category == 'Titles' then
+				text = obtainmethod..' '..text
+			else
+				text = text..' '..obtainmethod
+			end
+		end
+		if item.category ~= nil then 
+			text = '['..item.category..'] '..text
 		end
 		local text = '\\cs'..menucolor..text..'\\cr'
 		if (display == true) then
@@ -481,7 +486,6 @@ windower.register_event('incoming chunk', function(id, data, modified, injected,
 				quests.completed['bastokmissions'] = p['Completed Bastok Missions']
 				quests.completed['windurstmissions'] = p['Completed Windurst Missions']
 				quests.completed['zilartmissions'] = p['Completed Zilart Missions']
-				
 				tab_logs.quests['sandoriamissions'] = quest_util.log_quests('sandoriamissions')
 				tab_logs.quests['bastokmissions'] = quest_util.log_quests('bastokmissions')
 				tab_logs.quests['windurstmissions'] = quest_util.log_quests('windurstmissions')
@@ -489,7 +493,6 @@ windower.register_event('incoming chunk', function(id, data, modified, injected,
 			elseif (p.Type == 216) then -- if Aht Urhgan Completed Quests
 				quests.completed['ahturhganmissions'] = p['Completed TOAU Missions']
 				quests.completed['wotgmissions'] = p['Completed WOTG Missions']
-				
 				tab_logs.quests['ahturhganmissions'] = quest_util.log_quests('ahturhganmissions')
 				tab_logs.quests['wotgmissions'] = quest_util.log_quests('wotgmissions')
 			else

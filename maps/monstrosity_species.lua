@@ -7,7 +7,7 @@ return {
 	[2]='Behemoth',
 	[3]='Tiger',
 	[4]='Sheep',
-	[5]='Ram (Sheep)',
+	[5]='Ram',
 	[6]='Dhalmel',
 	[7]='Coeurl',
 	[8]='Opo-opo',

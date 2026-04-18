@@ -27,10 +27,8 @@ _G.quest_logs = {
 	--[0x0078] = {type='current', area='outlands'},
 	[0x0030] = {type='completed', area='campaign1'},
 	[0x0038] = {type='completed', area='campaign2'},
-	
 	[0x00D0] = {type='completed', area='nationzilartmissions'},
 	[0x00D8] = {type='completed', area='toauwotgmissions'},
-	
 }
 
 local maps = {
@@ -46,14 +44,12 @@ local maps = {
 	crystalwar = require('../maps/quests_crystalwar'),
 	outlands = require('../maps/quests_outlands'),
 	campaign = require('../maps/campaign'),
-	
 	sandoriamissions = require('../maps/missions_sandoria'),
 	bastokmissions = require('../maps/missions_bastok'),
 	windurstmissions = require('../maps/missions_windurst'),
 	zilartmissions = require('../maps/missions_zilart'),
 	ahturhganmissions = require('../maps/missions_ahturhgan'),
 	wotgmissions = require('../maps/missions_wotg'),
-	
 }
 
 function quest_util.log_quests(quest_type)

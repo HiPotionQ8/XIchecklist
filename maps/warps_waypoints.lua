@@ -23,7 +23,7 @@ return {
 	[19] = 'Ceizak Battlegrounds',
 	[20] = 'Ceizak Battlegrounds',
 	[21] = 'Ceizak Battlegrounds',
-	[22] = 'Yahse Hunting Grounds',
+	[22] = 'Yahse Hunting Grounds #FS',
 	[23] = 'Yahse Hunting Grounds',
 	
 	[24] = 'Yahse Hunting Grounds',

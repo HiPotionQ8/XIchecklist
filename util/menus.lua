@@ -302,9 +302,8 @@ function menus_util.handle_chocobostablenpc(parseddata)
 end
 
 function menus_util.handle_titles_npc(parseddata)
-	--local flags = data:sub(81, 104)
-	--local parseddata = packets.parse('incoming', data)
-	local flags = parseddata['Menu Parameters']:sub(1, 24)
+	--local flags = parseddata['Menu Parameters']:sub(1, 24)
+	local flags = parseddata['_data']:sub(81, 104)
 	local index = parseddata['NPC Index']
 	local npc = index and windower.ffxi.get_mob_by_index(index).name
 	for cat, ids in ipairs(menumaps.titlesnpc_menu[npc]) do
@@ -335,7 +334,8 @@ function menus_util.log_titles()
 		local completion = false
 		local obtainmethod = ''
 		if (titles_howtoobtain[title.en]) then
-			obtainmethod = '\\cs(255,255,255) [' .. titles_howtoobtain[title.en] .. ']\\cr'
+			--obtainmethod = '\\cs(255,255,255) [' .. titles_howtoobtain[title.en] .. ']\\cr'
+			obtainmethod = titles_howtoobtain[title.en]
 		end
 		if (playertracker.titles[tostring(key)] == true) then
 			complete = complete+1
