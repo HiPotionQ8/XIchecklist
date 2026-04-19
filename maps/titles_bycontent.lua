@@ -1,4 +1,495 @@
 return {
+	['Missions'] = {
+		1, -- Fodderchief Flayer
+		3, -- Dread Dragon Slayer
+		7, -- Black Dragon Slayer
+		10, -- Archmage Assassin
+		32, -- Bearer of the Wisewoman's Hope
+		33, -- Bearer of the Eight Prayers
+		34, -- Lightweaver
+		35, -- Destroyer of Antiquity
+		36, -- Sealer of the Portal of the Gods
+		37, -- Burier of the Illusion
+		111, -- Fresh "North Winds" Recruit
+		112, -- New "Best of the West" Recruit
+		113, -- New \"Buuma's Boomers\" Recruit
+		114, -- Heavens Tower Gatehouse Recruit
+		118, -- Star-ordained Warrior
+		207, -- Certified Adventurer
+		212, -- Have Wings, Will Fly
+		256, -- Fugitive Minister Bounty Hunter
+		260, -- Dream Dweller
+		283, -- Hero on Behalf of Windurst
+		284, -- Victor of the Balga Contest
+		293, -- Guiding Star
+		294, -- Vestal Chamberlain
+		295, -- San d'Orian Royal Heir
+		296, -- Hero Among Heroes
+		347, -- Ancient Flame Follower
+		348, -- Tavnazian Traveler
+		349, -- Transient Dreamer
+		350, -- The Lost One
+		351, -- Treader of an Icy Past
+		352, -- Branded by Lightning
+		353, -- Seeker of the Light
+		354, -- Dead Body
+		355, -- Frozen Dead Body
+		356, -- Dreambreaker
+		357, -- Mist Melter
+		358, -- Delta Enforcer
+		359, -- Omega Ostracizer
+		361, -- Ulmia's Soulmate
+		362, -- Tenzen's Ally
+		363, -- Companion of Louverance
+		364, -- True Companion of Louverance
+		365, -- Prishe's Buddy
+		366, -- Nag'molada's Underling
+		367, -- Esha'ntarl's Comrade in Arms
+		368, -- The Chebukkis' Worst Nightmare
+		398, -- Unquenchable Light
+		401, -- Warrior of the Crystal
+		404, -- Banisher of Emptiness
+		444, -- Private Second Class
+		483, -- Agent of the Allied Forces
+		495, -- Ovjang's Errand Runner
+		498, -- Karababa's Tour Guide
+		499, -- Karababa's Bodyguard
+		500, -- Karababa's Secret Agent
+		503, -- Aphmau's Mercenary
+		504, -- Nashmeira's Mercenary
+		510, -- Salaheem's Risk Assessor
+		511, -- Treasure Trove Tender
+		512, -- Gessho's Mercy
+		513, -- Emissary of the Empress
+		514, -- Endymion Paratrooper
+		515, -- Naja's Comrade-In-Arms
+		516, -- Nashmeira's Loyalist
+		517, -- Preventer of Ragnarok
+		518, -- Champion of Aht Urhgan
+		531, -- Eternal Mercenary
+		542, -- Cait Sith's Assistant
+		598, -- Traverser of Time
+		610, -- Battle of Jeuno Veteran
+		615, -- Silencer of the Echo
+		616, -- Bestrider of Futures
+		620, -- Arrester of the Ascension
+		622, -- Wanderer of Time
+		639, -- Vanquisher of Spite
+		736, -- Mender of Wings
+		737, -- Champion of the Dawn
+		848, -- Queen's Confidante
+		849, -- Princess's Partisan
+		892, -- Sunshine Cadet
+		897, -- Boomy and Busty
+		898, -- Weatherer of Brumal Climes
+		899, -- White Knight
+		902, -- Knower of Untruths
+		903, -- Ulbukan Understudy
+		904, -- Keeper of Ulbuka
+		905, -- Radiance of Daybreak
+		923, -- Lifter of Spirits
+		924, -- Shedder of Harlequin Tears
+		925, -- Hope for the Future
+		927, -- Vanquisher of Ashrakk
+		928, -- Vanquisher of Dhokmak
+		929, -- Protected by Ulbukan Spirits
+		930, -- Receiver of Sigils
+		931, -- Destroyer of Hades
+		932, -- Bringer of the Dawn
+		933, -- The One True Pioneer
+		934, -- Bringer of Hope
+		938, -- The Fated
+		976, -- Abyssal Purveyor
+		977, -- Banisher of the Profane
+		978, -- Spirit Seeker
+		1046, -- The Decider
+		1047, -- The Ascended
+		1048, -- The Savior of Vana'diel
+		1049, -- Blessed by the Avatars
+		1050, -- Seer of Songs
+		1129, -- Destiny Destroyer...Destroyer
+		1130, -- Fully-Baked Hero
+		1131, -- Ghdwk Vshdnhu
+		1132, -- Love is Alive
+		1133, -- The Awakener
+		1134, -- Get Over Here!
+		1135, -- Bond Renewer
+		1136, -- Treasure of Olduum
+		1137, -- Beloved by the Sea God
+		1138, -- Destiny Master
+		1139, -- Tireless Tracker
+		1140, -- Galkan Hazard
+		1141, -- Bearer of Secrets
+		1142, -- Long Live Mumor
+		1143, -- Parter of the Veil
+		1144, -- Demonic Dreamer
+		1145, -- Searcher of the Voracious
+		1146, -- Another Psyche
+		1147, -- Sender of Shadow
+		1148, -- Astral Aligner"
+	},
+	['Quests'] = {
+		39, -- Family Counselor
+		41, -- Great Grappler Scorpio!?
+		42, -- Bond Fixer
+		43, -- Vampire Hunter D-Minus
+		44, -- Sheep's Milk Deliverer
+		45, -- Bean Cuisine Salter
+		46, -- Total Loser
+		47, -- Doctor Shantotto's Flavor of the Month
+		48, -- Pilgrim to Holla
+		49, -- Pilgrim to Dem
+		50, -- Pilgrim to Mea
+		51, -- Daybreak Gambler
+		52, -- The Pious One
+		53, -- A Moss Kind Person
+		54, -- Entrance Denied
+		55, -- Apiarist
+		56, -- Rabbiter
+		57, -- Royal Grave Keeper
+		58, -- Courier Extraordinaire
+		59, -- Ronfaurian Rescuer
+		60, -- Pickpocket Pincher
+		61, -- Fang Finder
+		62, -- Faith like a Candle
+		63, -- The Pure One
+		64, -- Lost Child Officer
+		65, -- Silencer of the Lambs
+		66, -- Lost & Found Officer
+		67, -- Green Grocer
+		68, -- The Benevolent One
+		69, -- Knight in Training
+		70, -- Lizard Skinner
+		71, -- Bug Catcher
+		72, -- Spelunker
+		73, -- Arms Trader
+		74, -- Traveling Medicine Man
+		75, -- Cat Skinner
+		76, -- Carp Diem
+		77, -- Advertising Executive
+		78, -- Third-rate Organizer
+		79, -- Second-rate Organizer
+		80, -- First-rate Organizer
+		81, -- Bastok Welcoming Committee
+		82, -- Shell Outer
+		83, -- Bucket Fisher
+		84, -- Pursuer of the Past
+		85, -- Pursuer of the Truth
+		86, -- Mommy's Helper
+		87, -- Hot Dog
+		88, -- Stampeder
+		89, -- Qiji's Friend
+		90, -- Qiji's Rival
+		91, -- Contest Rigger
+		92, -- Ringbearer
+		93, -- Kulatz Bridge Companion
+		94, -- Beadeaux Surveyor
+		95, -- Avenger
+		96, -- Treasure Scavenger
+		97, -- Airship Denouncer
+		98, -- Zeruhn Sweeper
+		99, -- Tearjerker
+		100, -- Crab Crusher
+		101, -- Star of Ifrit
+		102, -- Sorrow Drowner
+		103, -- Brygid-approved
+		104, -- Drachenfall Ascetic
+		105, -- Steaming Sheep" Regular
+		106, -- Purple Belt
+		107, -- Gustaberg Tourist
+		108, -- Sand Blaster
+		109, -- Black Death
+		115, -- Cat Burglar Groupie
+		116, -- Crawler Culler
+		117, -- Savior of Knowledge
+		119, -- Lower than the Lowest Tunnel Worm
+		120, -- Star Onion Brigade Member
+		121, -- Star Onion Brigadier
+		122, -- Quick Fixer
+		123, -- Fake-moustached Investigator
+		124, -- Hakkuru-Rinkuru's Benefactor
+		125, -- S.O.B. Super Hero
+		126, -- Editor's Hatchet Man
+		127, -- Doctor Shantotto's Guinea Pig
+		128, -- Spoilsport
+		129, -- Super Model
+		130, -- Ghostie Buster
+		131, -- Night Sky Navigator
+		132, -- Fast Food Deliverer
+		133, -- Cupid's Florist
+		134, -- Tarutaru Murder Suspect
+		135, -- Hexer Vexer
+		136, -- Cardian Tutor
+		137, -- Deliverer of Tearful News
+		138, -- Fossilized Sea Farer
+		139, -- Down Piper Pipe-upperer
+		140, -- Kisser Make-upper
+		141, -- Timekeeper
+		142, -- Fortune-teller in Training
+		143, -- Torchbearer
+		144, -- Tenshodo Member
+		145, -- Chocobo Trainer
+		146, -- Bringer of Bliss
+		147, -- Activist for Kindness
+		148, -- Envoy to the North
+		149, -- Exorcist in Training
+		150, -- Professional Loafer
+		151, -- Clock Tower Preservationist
+		152, -- Life Saver
+		153, -- Fool's Errand Runner
+		154, -- Card Collector
+		155, -- Researcher of Classics
+		156, -- Street Sweeper
+		157, -- Mercy Errand Runner
+		158, -- Two's Company
+		159, -- Believer of Altana
+		160, -- Trader of Mysteries
+		161, -- Trader of Antiquities
+		162, -- Trader of Renown
+		163, -- Brown Belt
+		164, -- Horizon Breaker
+		165, -- Goblin's Exclusive Fashion Mannequin
+		166, -- Summit Breaker
+		167, -- Sky Breaker
+		168, -- Cloud Breaker
+		169, -- Star Breaker
+		170, -- Greedalox
+		171, -- Certified Rhinostery Venturer
+		172, -- Cordon Bleu Fisher
+		173, -- Ace Angler
+		174, -- Lu Shang-like Fisher King
+		176, -- Ecologist
+		177, -- Li'l Cupid
+		178, -- The Love Doctor
+		179, -- Savior of Love
+		180, -- Honorary Citizen of Selbina
+		181, -- Purveyor in Training
+		182, -- One-star Purveyor
+		183, -- Two-star Purveyor
+		184, -- Three-star Purveyor
+		185, -- Four-star Purveyor
+		186, -- Five-star Purveyor
+		187, -- Doctor Yoran-Oran Supporter
+		188, -- Doctor Shantotto Supporter
+		189, -- Professor Koru-Moru Supporter
+		190, -- Rainbow Weaver
+		191, -- Shadow Walker
+		192, -- Heir to the Holy Crest
+		193, -- Bushido Blade
+		195, -- Paragon of Paladin Excellence
+		196, -- Paragon of Beastmaster Excellence
+		197, -- Paragon of Ranger Excellence
+		198, -- Paragon of Dark Knight Excellence
+		199, -- Paragon of Bard Excellence
+		200, -- Paragon of Samurai Excellence
+		201, -- Paragon of Dragoon Excellence
+		202, -- Paragon of Ninja Excellence
+		203, -- Paragon of Summoner Excellence
+		209, -- Tried and Tested Knight
+		210, -- Dark Sider
+		211, -- The Fanged One
+		213, -- Animal Trainer
+		214, -- Wandering Minstrel
+		216, -- Mog's Kind Master
+		217, -- Mog's Exceptionally Kind Master
+		218, -- Paragon of Warrior Excellence
+		219, -- Paragon of Monk Excellence
+		220, -- Paragon of Red Mage Excellence
+		221, -- Paragon of Thief Excellence
+		222, -- Paragon of Black Mage Excellence
+		223, -- Paragon of White Mage Excellence
+		224, -- Mog's Loving Master
+		257, -- King of the Opo-opos
+		258, -- Excommunicate of Kazham
+		259, -- Kazham Caller
+		260, -- Dream Dweller
+		261, -- Apprentice Sommelier
+		262, -- Desert Hunter
+		263, -- Seeker of Truth
+		264, -- Kuftal Tourist
+		265, -- The Immortal Fisher, Lu Shang
+		266, -- Looks Sublime in a Subligar
+		267, -- Looks Good in Leggings
+		268, -- Honorary Doctorate, Majoring in Tonberries
+		269, -- Treasure-house Ransacker
+		270, -- Cracker of the Secret Code
+		271, -- Black Marketeer
+		272, -- Acquirer of Ancient Arcanum
+		273, -- Ya Done Good
+		274, -- Heir of the Great Fire
+		275, -- Heir of the Great Earth
+		276, -- Heir of the Great Water
+		277, -- Heir of the Great Wind
+		278, -- Heir of the Great Ice
+		279, -- Heir of the Great Lightning
+		280, -- Guider of Souls to the Sanctuary
+		281, -- Bearer of Bonds Beyond Time
+		282, -- Friend of the Opo-opos
+		285, -- Gullible's Travels
+		286, -- Even More Gullible's Travels
+		287, -- Heir of the New Moon
+		288, -- Assassin Reject
+		289, -- Black Belt
+		290, -- Vermillion Venturer
+		291, -- Cerulean Soldier
+		292, -- Emerald Exterminator
+		303, -- Discerning Individual
+		304, -- Very Discerning Individual
+		305, -- Extremely Discerning Individual
+		306, -- Royal Wedding Planner
+		307, -- Consort Candidate
+		308, -- Obsidian Storm
+		309, -- Pentacide Perpetrator
+		337, -- Fine Tuner
+		338, -- Friend of the Helmed
+		339, -- Tavnazian Squire
+		340, -- Ducal Dupe
+		341, -- Hyper Ultra Sonic Adventurer
+		342, -- Rod Retriever
+		343, -- Deed Verifier
+		344, -- Chocobo Love Guru
+		345, -- Pick-up Artist
+		346, -- Trash Collector
+		371, -- Bastok's Second Best Dressed
+		372, -- Rookie Hero Instructor
+		373, -- Goblin in Disguise
+		374, -- Apostate for Hire
+		375, -- Talks with Tonberries
+		397, -- Putrid Purveyor of Pungent Petals
+		400, -- Ultimate Champion of the World
+		402, -- Indomitable Fisher
+		411, -- Destined Fellow
+		412, -- Orcish Serjeant
+		413, -- Bronze Quadav
+		414, -- Yagudo Initiate
+		415, -- Moblin Kinsman
+		416, -- Sin Hunter Hunter
+		417, -- Disciple of Justice
+		418, -- Monarch Linn Patrol Guard
+		419, -- Team Player
+		420, -- Worthy of Trust
+		421, -- Conqueror of Fate
+		422, -- Breaker of the Chains
+		423, -- A Friend Indeed
+		424, -- Heir to the Realm of Dreams
+		435, -- Disturber of Slumber
+		436, -- Interrupter of Dreams
+		440, -- Dark Resistant
+		441, -- Bearer of the Mark of Zahak
+		442, -- Seagull Phratrie Crew Member
+		443, -- Proud Automaton Owner
+		445, -- Private First Class
+		446, -- Superior Private
+		447, -- Wildcat Publicist
+		454, -- Maat Masher
+		484, -- Scenic Snapshotter
+		485, -- Branded by the Five Serpents
+		486, -- Immortal Lion
+		487, -- Paragon of Blue Mage Excellence
+		488, -- Paragon of Corsair Excellence
+		489, -- Paragon of Puppetmaster Excellence
+		490, -- Lance Corporal
+		491, -- Corporal
+		492, -- Master of Ambition
+		493, -- Master of Chance
+		494, -- Master of Manipulation
+		496, -- Sergeant
+		497, -- Sergeant Major
+		501, -- Skyserpent Aggrandizer
+		502, -- Chief Sergeant
+		506, -- Second Lieutenant
+		507, -- Galeserpent Guardian
+		508, -- Stoneserpent Shocktrooper
+		509, -- Photopticator Operator
+		519, -- First Lieutenant
+		520, -- Captain
+		532, -- Springserpent Sentry
+		535, -- Schultz Scholar
+		536, -- Knight of the Iron Ram
+		537, -- Fourth Division Soldier
+		538, -- Cobra Unit Mercenary
+		539, -- Windtalker
+		540, -- Lady Killer
+		541, -- Troupe Brilioth Dancer
+		543, -- Ajido-Marujido's Minder
+		585, -- Assistant Detective
+		586, -- Promising Dancer
+		587, -- Stardust Dancer
+		588, -- Elegant Dancer
+		589, -- Dazzling Dance Diva
+		590, -- Friend of Lehko Habhoka
+		591, -- Summa Cum Laude
+		592, -- Grimoire Bearer
+		593, -- Seasoning Connoisseur
+		594, -- Fine Young Griffon
+		595, -- Babban's Traveling Companion
+		596, -- Fellow Fortifier
+		599, -- Mythril Musketeer No. 6
+		600, -- Jewel of the Cobra Unit
+		601, -- Knight of the Swiftwing Griffin
+		602, -- Wyrmsworn Protector
+		603, -- Flameserpent Facilitator
+		609, -- Swarminator
+		611, -- Grand Greedalox
+		612, -- Karaha-Baruha's Research Assistant
+		613, -- Honorary Knight of the Cardinal Stag
+		614, -- Detector of Deception
+		618, -- Presidential Protector
+		619, -- The Moon's Companion
+		621, -- House Aurchiat Retainer
+		623, -- Smiter of the Shadow
+		624, -- Heir of the Blessed Radiance
+		625, -- Heir of the Blighted Gloom
+		626, -- Sworn to the Dark Divinity
+		627, -- Temperer of Mythril
+		628, -- Star in the Azure Sky
+		629, -- Fangmonger Forestaller
+		719, -- Botulus Rex Engorger
+		738, -- Bushin Aspirant
+		739, -- Bushin-Ryu Inheritor
+		836, -- Geodancer
+		837, -- Runic Engraver
+		838, -- Apprentice Tarutaru Sauce Manager
+		839, -- Vegetable Revolutionary
+		840, -- Friend to Gluttons
+		841, -- Waypoint Warrior
+		842, -- Ulbukan Stalwart
+		843, -- Toxin Tussler
+		846, -- Geomancipator
+		847, -- Trialed-and-True Runeist
+		850, -- Potation Pathfinder
+		851, -- Storied Geomancer
+		852, -- Ultimate Runeist
+		853, -- Mog Garden Seedling
+		887, -- Brygidesque Manager
+		888, -- Vegetable Evolutionary
+		893, -- Quartet Captivator
+		894, -- The Trustworthy
+		895, -- The Lovelorn
+		896, -- Inventor Extraordinaire
+		900, -- Light of Dawn
+		901, -- Observer of Fateful Cubes
+		906, -- Wibbly Wobbly Woozy Warrior
+		907, -- Heir of Eternity
+		922, -- Sublime Slicer
+		926, -- Thousand-Year Traveler
+		935, -- Good Dew-er
+		936, -- Lifecycler
+		937, -- Sword Saint
+		939, -- Protector of the Sacred City
+		972, -- Assistant Extraordinaire
+		973, -- Exalted Fisherman
+		974, -- Sauce Supreme
+		975, -- Fish Whisperer
+		979, -- One-Eyed Jack
+		1044, -- Vegetable Hero
+		1045, -- Contributer from the Shadows
+		1051, -- The Eternal Wind
+		1116, -- Raptor Wrangler
+		1117, -- Gardener for the Ages
+		1118, -- Lagoon Explorer
+		1119, -- Servant to the Servant"
+	},
 	['Abyssea'] = {
 		630, -- Visitor to Abyssea
 		631, -- Friend of Abyssea

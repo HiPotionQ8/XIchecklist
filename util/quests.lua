@@ -1,6 +1,7 @@
 local quest_util = {}
 quests = {completed={},current={}}
 quests.mutual_exclusive = require('../maps/quests_mutual_exclusive')
+quests.missions_map = require('../maps/missions_map')
 
 _G.quest_logs = {
     --[0x0070] = {type='current', area='other'},
@@ -29,6 +30,8 @@ _G.quest_logs = {
 	[0x0038] = {type='completed', area='campaign2'},
 	[0x00D0] = {type='completed', area='nationzilartmissions'},
 	[0x00D8] = {type='completed', area='toauwotgmissions'},
+	[0xFFFE] = {type='current', area='currenttvrmissions'},
+	[0xFFFF] = {type='current', area='currentothermissions'},
 }
 
 local maps = {
@@ -90,6 +93,25 @@ function quest_util.log_quests(quest_type)
 	end
 	playertracker[quest_type..'_completed'] = complete
 	playertracker[quest_type..'_total'] = total
+	return output_list
+end
+
+function quest_util.log_missions(mission_type, current_mission_id)
+	if (not quests.missions_map[mission_type]) then return false end
+	if current_mission_id == 1000 then current_mission_id = 0 end
+	local complete,total = 0, 0
+	local output_list = {}
+	for i, mission in ipairs(quests.missions_map[mission_type]) do
+		total = total+1
+		local completion = false
+		if (current_mission_id > mission.id) then
+			completion = true
+			complete = complete+1
+		end
+		table.insert(output_list, util.list_item(nil, mission.name, completion))
+	end
+	playertracker[mission_type..'_completed'] = complete
+	playertracker[mission_type..'_total'] = total
 	return output_list
 end
 

@@ -157,7 +157,7 @@ return {
 	['Master Tamer'] = 'Beastmaster: ★Master!',
 	['Master Wizard'] = 'Black_Mage: ★Master!',
 	['Master Magus'] = 'Blue_Mage: ★Master!',
-	['Crystal Stakes Cupholder'] = 'C1 Crystal Stakes race]] 1st place',
+	['Crystal Stakes Cupholder'] = 'C1 Crystal Stakes race 1st place',
 	['Chocochampion'] = 'Chocobo Racing',
 	['Chocorookie'] = 'Chocobo Racing',
 	['Sardineophyte'] = 'Coastal Fishing Net: Fish 10 times.',
