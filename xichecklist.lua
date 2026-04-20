@@ -1,6 +1,6 @@
 _addon.name     = 'xichecklist'
 _addon.author   = 'Anokata'
-_addon.version  = '0.14.1'
+_addon.version  = '0.14.2'
 _addon.commands = {'xichecklist', 'xic'}
 
 require('sets')
@@ -210,9 +210,6 @@ local PADDING      = 8
 local CHAR_WIDTH   = 8
 local VISIBLE_ROWS = 15
 -- UI WINDOW STATE
-local dragging = false
-local drag_dx  = 0
-local drag_dy  = 0
 local active_tab = 1
 local scroll     = 0
 local selected   = 1
@@ -325,6 +322,7 @@ local cmds = {
 	show = S{'show'},
 	copy = S{'copy'},
 	log = S{'log'},
+	showcompleted = S{'showcompleted'},
 }
 
 local function append_items(dst, src)
@@ -1033,6 +1031,7 @@ windower.register_event('addon command', function(...)
 		windower.add_to_chat(161,'==== xichecklist / xic ====')
 		windower.add_to_chat(161,'//xic [show|hide] to show / hide UI')
 		windower.add_to_chat(161,'//xic copy to copy current tab to clipboard')
+		windower.add_to_chat(161,'//xic showcompleted to toggle show completed items on-off')
 		windower.add_to_chat(161,'//xic log <category> to log in chat')
 		windower.add_to_chat(161,'==== ==== ==== ====')
 		windower.add_to_chat(161,'Require zoning to update Quests / Warps / Monstrosity / MMM')
@@ -1054,6 +1053,10 @@ windower.register_event('addon command', function(...)
 		trackermenusettings.visibility = false
 		trackermenusettings:save()
 		ui:hide()
+	elseif cmds.showcompleted:contains(arg[1]) then
+		trackermenusettings.showcompleted = not trackermenusettings.showcompleted
+		util.addon_log('showcompleted: '..tostring(trackermenusettings.showcompleted))
+		trackermenusettings:save()
 	elseif cmds.copy:contains(arg[1]) then
 		windower.copy_to_clipboard(util.table_to_clipboard(tabs[active_tab].items))
 		windower.add_to_chat(100, 'Copy to clipboard')
