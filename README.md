@@ -41,7 +41,7 @@ will be saved in config so only need to do it once (or when need to update)
 - Records of Eminence (RoE) 
 - Warps `(Home Points / Survival Guides / Waypoints / Proto-Waypoints)`
 - Campaign Ops
-- Missions `(San d'Oria / Bastok / Windurst / Zilart / CoP / TOAU / WOTG / ACP / MKD / ASA / SoA / RoV)`
+- Missions `(San d'Oria / Bastok / Windurst / Zilart / CoP / TOAU / WOTG / ACP / MKD / ASA / SoA / RoV / TVR)`
 - Quests `(San d'Oria / Bastok / Windurst / Jeuno / Aht Urhgan / Crystal War / Outlands / Other / Abyssea / Adoulin / Coalition)`
 - Key items `(Permenant / Maps / Mounts / Claim Slips / Job KIs)`
 - Magic Spells `(White Magic / Black Magic / Summoner Pacts / Ninjutsu / Bard Songs / Blue Magic / Trusts)`
@@ -94,4 +94,5 @@ the menu will only show missing items like quests,key items, spells, home points
 - 0.11.0 - Added `//xic log` command, now registers which NPC talked to for updating the checklist.
 - 0.12.0 - Added Sheol Gaol, removed titles.xml and roe.xml, fixes (delete your settings and reload)
 - 0.13.0 - Added Nations, Zilart, TOAU, WOTG Missions
-- 0.14.0 - Added CoP, ACP, MKD, ASA, SoA & RoV Missions,
+- 0.14.0 - Added CoP, ACP, MKD, ASA, SoA & RoV Missions.
+- 0.14.1 - Added TVR Missions.
