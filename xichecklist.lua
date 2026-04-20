@@ -1,6 +1,6 @@
 _addon.name     = 'xichecklist'
 _addon.author   = 'Anokata'
-_addon.version  = '0.14.0'
+_addon.version  = '0.14.1'
 _addon.commands = {'xichecklist', 'xic'}
 
 require('sets')
@@ -48,8 +48,8 @@ defaultplayertracker = {
 	['soamissions_total'] = 0,
 	['rovmissions_completed'] = 0,
 	['rovmissions_total'] = 0,
-	['tvrgmissions_completed'] = 0,
-	['tvrgmissions_total'] = 0,
+	['tvrmissions_completed'] = 0,
+	['tvrmissions_total'] = 0,
 	-- Quests
 	['bastok_completed'] = 0,
 	['bastok_total'] = 0,
@@ -404,7 +404,7 @@ function update_maintab()
 	append_maintab('ASA Missions %d/%d', playertracker['asamissions_completed'], playertracker['asamissions_total'])
 	append_maintab('SoA Missions %d/%d', playertracker['soamissions_completed'], playertracker['soamissions_total'])
 	append_maintab('RoV Missions %d/%d', playertracker['rovmissions_completed'], playertracker['rovmissions_total'])
-	--append_maintab('TVR Missions %d/%d', playertracker['tvrgmissions_completed'], playertracker['tvrgmissions_total'])
+	append_maintab('TVR Missions %d/%d', playertracker['tvrmissions_completed'], playertracker['tvrmissions_total'])
 	append_maintab('Campaign Ops %d/%d', playertracker['campaign_completed'], playertracker['campaign_total'])
 	append_maintab('Bastok Quests %d/%d', playertracker['bastok_completed'], playertracker['bastok_total'])
 	append_maintab('San d\'Oria Quests %d/%d', playertracker['sandoria_completed'], playertracker['sandoria_total'])
@@ -520,7 +520,7 @@ windower.register_event('incoming chunk', function(id, data, modified, injected,
 				tab_logs.quests['ahturhganmissions'] = quest_util.log_quests('ahturhganmissions')
 				tab_logs.quests['wotgmissions'] = quest_util.log_quests('wotgmissions')
 			elseif (p.Type == 65534) then -- if TVR Current Missions
-				--tab_logs.quests['tvrmissions'] = quest_util.log_missions('tvrmissions', p['Current TVR Mission'])
+				tab_logs.quests['tvrmissions'] = quest_util.log_missions('tvrmissions', p['Current TVR Mission'])
 			elseif (p.Type == 65535) then -- if Other Current Missions
 				tab_logs.quests['copmissions'] = quest_util.log_missions('copmissions', p['Current COP Mission'])
 				tab_logs.quests['acpmissions'] = quest_util.log_missions('acpmissions', p['Current ACP Mission'])
@@ -673,8 +673,8 @@ function xichecklist_updatetabs(tab)
 		append_items(tabs[2].items, tab_logs.quests['soamissions'])
 		append_header(2, 'RoV Missions (%d/%d)', playertracker['rovmissions_completed'], playertracker['rovmissions_total'])
 		append_items(tabs[2].items, tab_logs.quests['rovmissions'])
-		--append_header(2, 'TVR Missions (%d/%d)', playertracker['tvrgmissions_completed'], playertracker['tvrgmissions_total'])
-		--append_items(tabs[2].items, tab_logs.quests['tvrmissions'])
+		append_header(2, 'TVR Missions (%d/%d)', playertracker['tvrmissions_completed'], playertracker['tvrmissions_total'])
+		append_items(tabs[2].items, tab_logs.quests['tvrmissions'])
 		append_header(2, 'San d\'Oria Quests (%d/%d)', playertracker['sandoria_completed'], playertracker['sandoria_total'])
 		append_items(tabs[2].items, tab_logs.quests['sandoria'])
 		append_header(2, 'Bastok Quests (%d/%d)', playertracker['bastok_completed'], playertracker['bastok_total'])
@@ -1119,8 +1119,8 @@ windower.register_event('addon command', function(...)
 				util.log_tablog(tab_logs.quests['soamissions'])
 				windower.add_to_chat(160, 'RoV Missions (%d/%d) ===':format(playertracker['rovmissions_completed'], playertracker['rovmissions_total']))
 				util.log_tablog(tab_logs.quests['rovmissions'])
-				--windower.add_to_chat(160, 'TVR Missions (%d/%d) ===':format(playertracker['tvrgmissions_completed'], playertracker['tvrgmissions_total']))
-				--util.log_tablog(tab_logs.quests['tvrmissions'])
+				windower.add_to_chat(160, 'TVR Missions (%d/%d) ===':format(playertracker['tvrmissions_completed'], playertracker['tvrmissions_total']))
+				util.log_tablog(tab_logs.quests['tvrmissions'])
 			elseif arg[2] == 'quests' then
 				windower.add_to_chat(160, '=== San d\'Oria Quests (%d/%d) ===':format(playertracker['sandoria_completed'], playertracker['sandoria_total']))
 				util.log_tablog(tab_logs.quests['sandoria'])

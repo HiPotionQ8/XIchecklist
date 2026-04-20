@@ -23,12 +23,12 @@ return {
 	[19] = 'Ceizak Battlegrounds',
 	[20] = 'Ceizak Battlegrounds',
 	[21] = 'Ceizak Battlegrounds',
-	[22] = 'Yahse Hunting Grounds #FS',
-	[23] = 'Yahse Hunting Grounds',
+	[22] = 'Yahse Hunting Grounds #FS', -- confirmed
+	[23] = 'Yahse Hunting Grounds #1',
 	
-	[24] = 'Yahse Hunting Grounds',
-	[25] = 'Yahse Hunting Grounds',
-	[26] = 'Foret de Hennetiel #1',
+	[24] = 'Yahse Hunting Grounds #2',
+	[25] = 'Yahse Hunting Grounds #3',
+	[26] = 'Foret de Hennetiel #1', -- confirmed
 	[27] = 'Foret de Hennetiel',
 	[28] = 'Foret de Hennetiel',
 	[29] = 'Foret de Hennetiel',
@@ -37,14 +37,14 @@ return {
 	
 	[32] = 'Morimar Basalt Fields',
 	[33] = 'Morimar Basalt Fields',
-	[34] = 'Morimar Basalt Fields #4',
+	[34] = 'Morimar Basalt Fields #4', -- confirmed
 	[35] = 'Morimar Basalt Fields',
 	[36] = 'Morimar Basalt Fields',
 	[37] = 'Yorcia Weald',
 	[38] = 'Yorcia Weald',
 	[39] = 'Yorcia Weald',
 	
-	[40] = 'Yorcia Weald #3',
+	[40] = 'Yorcia Weald #3', --
 	[41] = 'Marjami Ravine',
 	[42] = 'Marjami Ravine',
 	[43] = 'Marjami Ravine',
