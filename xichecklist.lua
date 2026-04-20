@@ -1,6 +1,6 @@
 _addon.name     = 'xichecklist'
 _addon.author   = 'Anokata'
-_addon.version  = '0.14.2'
+_addon.version  = '0.14.3'
 _addon.commands = {'xichecklist', 'xic'}
 
 require('sets')
@@ -16,8 +16,9 @@ trackermenusettings.pos = {}
 trackermenusettings.pos.x = 50
 trackermenusettings.pos.y = 80
 trackermenusettings.visibility = true
-trackermenusettings.showcompleted = false
---trackermenusettings.showexcluded = false
+trackermenusettings.showcompleted = false -- true = display completed items listed in green
+trackermenusettings.showexcluded = false -- true = display hidden RoEs and excluded Titles
+trackermenusettings.chat_logroe = false -- true = display chat log when new RoE is completed (to track when a hidden RoE is completed)
 
 trackermenusettings = config.load(trackermenusettings)
 
@@ -323,6 +324,7 @@ local cmds = {
 	copy = S{'copy'},
 	log = S{'log'},
 	showcompleted = S{'showcompleted'},
+	showexcluded = S{'showexcluded'},
 }
 
 local function append_items(dst, src)
@@ -1032,6 +1034,7 @@ windower.register_event('addon command', function(...)
 		windower.add_to_chat(161,'//xic [show|hide] to show / hide UI')
 		windower.add_to_chat(161,'//xic copy to copy current tab to clipboard')
 		windower.add_to_chat(161,'//xic showcompleted to toggle show completed items on-off')
+		windower.add_to_chat(161,'//xic showexcluded to toggle show hidden RoE/Titles items on-off')
 		windower.add_to_chat(161,'//xic log <category> to log in chat')
 		windower.add_to_chat(161,'==== ==== ==== ====')
 		windower.add_to_chat(161,'Require zoning to update Quests / Warps / Monstrosity / MMM')
@@ -1056,6 +1059,10 @@ windower.register_event('addon command', function(...)
 	elseif cmds.showcompleted:contains(arg[1]) then
 		trackermenusettings.showcompleted = not trackermenusettings.showcompleted
 		util.addon_log('showcompleted: '..tostring(trackermenusettings.showcompleted))
+		trackermenusettings:save()
+	elseif cmds.showexcluded:contains(arg[1]) then
+		trackermenusettings.showexcluded = not trackermenusettings.showexcluded
+		util.addon_log('showexcluded: '..tostring(trackermenusettings.showexcluded))
 		trackermenusettings:save()
 	elseif cmds.copy:contains(arg[1]) then
 		windower.copy_to_clipboard(util.table_to_clipboard(tabs[active_tab].items))
