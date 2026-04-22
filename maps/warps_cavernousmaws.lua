@@ -15,7 +15,7 @@ return {
 	[11] = "Cavernous Maw #12",
 	[12] = "Cavernous Maw #13",
 	[13] = "Cavernous Maw #14",
-	[14] = "Cavernous Maw #15", -- West Sarutabaruta: H-9 ?
+	[14] = "Cavernous Maw #15",
 	[15] = "Cavernous Maw #16",
 	
 	[16] = "Cavernous Maw #17",

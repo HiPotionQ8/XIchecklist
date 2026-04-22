@@ -438,9 +438,11 @@ function menus_util.log_sheolabc(sheol)
 			local completion = false
 			if byteidx ~= 'talk_to_npc' then
 				total = total+1
-				if playertracker.sheolabc[tostring(optionindex)][tostring(byteidx)] >= entry.goal then
-					completion = true
-					complete = complete+1
+				if (playertracker.sheolabc[tostring(optionindex)][tostring(byteidx)]) then
+					if playertracker.sheolabc[tostring(optionindex)][tostring(byteidx)] >= entry.goal then
+						completion = true
+						complete = complete+1
+					end
 				end
 				table.insert(output_list, util.list_item(nil, (playertracker.sheolabc[tostring(optionindex)][tostring(byteidx)] or 0)..'/'..entry.goal..' '..entry.name, completion))
 			end
