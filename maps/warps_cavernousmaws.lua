@@ -20,5 +20,11 @@ return {
 	
 	[16] = "Cavernous Maw #17",
 	[17] = "Cavernous Maw #18",
+	--[18] = "Cavernous Maw #19",
+	--[19] = "Cavernous Maw #20",
+	--[20] = "Cavernous Maw #21",
+	--[21] = "Cavernous Maw #22",
+	--[22] = "Cavernous Maw #23",
+	--[23] = "Cavernous Maw #24",
 	
 }

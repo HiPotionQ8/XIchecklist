@@ -1,6 +1,6 @@
 _addon.name     = 'xichecklist'
 _addon.author   = 'Anokata'
-_addon.version  = '0.15.2'
+_addon.version  = '0.15.3'
 _addon.commands = {'xichecklist', 'xic'}
 
 require('sets')
@@ -479,7 +479,7 @@ function update_maintab()
 	append_maintab('Survival Guides %d/%d', playertracker['survivalguides_completed'], playertracker['survivalguides_total'])
 	append_maintab('Waypoints %d/%d', playertracker['waypoints_completed'], playertracker['waypoints_total'])
 	append_maintab('Telepoints %d/%d', playertracker['telepoints_completed'], playertracker['telepoints_total'])
-	--append_maintab('Cavernous Maws (WIP) %d/%d', playertracker['cavernousmaws_completed'], playertracker['cavernousmaws_total'])
+	append_maintab('Cavernous Maws (WIP) %d/%d', playertracker['cavernousmaws_completed'], playertracker['cavernousmaws_total'])
 	append_maintab('Eschan Portals %d/%d', playertracker['eschanportals_completed'], playertracker['eschanportals_total'])
 	append_maintab('Outposts %d/%d', playertracker['outposts_completed'], playertracker['outposts_total'])
 	append_addonhelp(1, 'You must talk to any \\cs(255,255,255)Outpost Teleporter NPC\\cr @ \\cs(50,150,255)three nations\\cr.', playertracker.talk_to_npc['outpostnpc'])
@@ -590,8 +590,8 @@ windower.register_event('incoming chunk', function(id, data, modified, injected,
 			tab_logs.survivalguides = warps_util.checkwarps('survivalguides')
 			tab_logs.waypoints = warps_util.checkwarps('waypoints')
 			tab_logs.telepoints = warps_util.checkwarps('telepoints')
-			--tab_logs.cavernousmaws = warps_util.checkwarps('cavernousmaws')
-			warps_util.countwarps('cavernousmaws')
+			tab_logs.cavernousmaws = warps_util.checkwarps('cavernousmaws')
+			--warps_util.countwarps('cavernousmaws')
 			tab_logs.eschanportals = warps_util.checkwarps('eschanportals')
 			xichecklist_updatetabs('warps')
 		end
@@ -796,9 +796,9 @@ function xichecklist_updatetabs(tab)
 	append_items(tabs[7].items, tab_logs.waypoints)
 	append_header(7, 'Telepoints (%d/%d)', playertracker['telepoints_completed'], playertracker['telepoints_total'])
 	append_items(tabs[7].items, tab_logs.telepoints)
-	append_header(7, 'Cavernous Maws (%d/%d)', playertracker['cavernousmaws_completed'], playertracker['cavernousmaws_total'])
-	append_addonhelp(7, 'WIP, Currently no list of Cavernous Maws', (playertracker['cavernousmaws_completed'] >= 9))
-	--append_items(tabs[7].items, tab_logs.cavernousmaws)
+	append_header(7, 'Cavernous Maws (%d/%d) [Work In Progress]', playertracker['cavernousmaws_completed'], playertracker['cavernousmaws_total'])
+	append_addonhelp(7, 'WIP, \\cs(255,255,255)Need help mapping those.\\cr', (playertracker['cavernousmaws_completed'] >= 24))
+	append_items(tabs[7].items, tab_logs.cavernousmaws)
 	append_header(7, 'Eschan Portals (%d/%d)', playertracker['eschanportals_completed'], playertracker['eschanportals_total'])
 	append_items(tabs[7].items, tab_logs.eschanportals)
 	append_header(7, 'Outpost Warps (%d/%d)', playertracker['outposts_completed'], playertracker['outposts_total'])
