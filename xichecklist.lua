@@ -1,6 +1,6 @@
 _addon.name     = 'xichecklist'
 _addon.author   = 'Anokata'
-_addon.version  = '0.15.1'
+_addon.version  = '0.15.2'
 _addon.commands = {'xichecklist', 'xic'}
 
 require('sets')
@@ -479,7 +479,7 @@ function update_maintab()
 	append_maintab('Survival Guides %d/%d', playertracker['survivalguides_completed'], playertracker['survivalguides_total'])
 	append_maintab('Waypoints %d/%d', playertracker['waypoints_completed'], playertracker['waypoints_total'])
 	append_maintab('Telepoints %d/%d', playertracker['telepoints_completed'], playertracker['telepoints_total'])
-	append_maintab('Cavernous Maws (WIP) %d/%d', playertracker['cavernousmaws_completed'], playertracker['cavernousmaws_total'])
+	--append_maintab('Cavernous Maws (WIP) %d/%d', playertracker['cavernousmaws_completed'], playertracker['cavernousmaws_total'])
 	append_maintab('Eschan Portals %d/%d', playertracker['eschanportals_completed'], playertracker['eschanportals_total'])
 	append_maintab('Outposts %d/%d', playertracker['outposts_completed'], playertracker['outposts_total'])
 	append_addonhelp(1, 'You must talk to any \\cs(255,255,255)Outpost Teleporter NPC\\cr @ \\cs(50,150,255)three nations\\cr.', playertracker.talk_to_npc['outpostnpc'])

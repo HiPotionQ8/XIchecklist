@@ -41,7 +41,6 @@ function warps_util.countwarps(warptype)
 			complete = complete + 1
 		end
 	end
-	if complete > 0 then complete = complete-1 end
 	playertracker[warptype..'_completed'] = complete
 	return complete
 end
