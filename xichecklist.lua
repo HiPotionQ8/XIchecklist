@@ -1,6 +1,6 @@
 _addon.name     = 'xichecklist'
 _addon.author   = 'Anokata'
-_addon.version  = '0.14.4'
+_addon.version  = '0.15.0'
 _addon.commands = {'xichecklist', 'xic'}
 
 require('sets')
@@ -110,7 +110,7 @@ defaultplayertracker = {
 	['Meritpoints_completed'] = 0,
 	['Meritpoints_total'] = 919,
 	['Jobpoints_completed'] = 0,
-	['Jobpoints_total'] = 46200,
+	['Jobpoints_total'] = 22,
 	['Masterlevels_completed'] = 0,
 	['Masterlevels_total'] = 1100,
 	['Masterlevels_highest'] = 0,
@@ -121,6 +121,12 @@ defaultplayertracker = {
 	['survivalguides_total'] = 0,
 	['waypoints_completed'] = 0,
 	['waypoints_total'] = 0,
+	['telepoints_completed'] = 0,
+	['telepoints_total'] = 0,
+	['cavernousmaws_completed'] = 0,
+	['cavernousmaws_total'] = 9,
+	['eschanportals_completed'] = 0,
+	['eschanportals_total'] = 0,
 	-- Monstrosity
 	['Racejobinstinct_completed'] = 0,
 	['Racejobinstinct_total'] = 0,
@@ -156,6 +162,12 @@ defaultplayertracker = {
 	['craftingskills_total'] = 790,
 	['atmacitelevels_completed'] = 0,
 	['atmacitelevels_total'] = 600,
+	['sheola_completed'] = 0,
+	['sheola_total'] = 0,
+	['sheolb_completed'] = 0,
+	['sheolb_total'] = 0,
+	['sheolc_completed'] = 0,
+	['sheolc_total'] = 0,
 	['sheolgaoltiers_completed'] = 0,
 	['sheolgaoltiers_total'] = 425,
 	titles = {}, -- {TitleId = true}
@@ -168,6 +180,12 @@ defaultplayertracker = {
 		['Batallia_Downs'] = {},
 	},
 	atmacite_levels = {},
+	sheolabc = {
+		['2'] = {},
+		['4'] = {},
+		['5'] = {},
+		['7'] = {},
+	},
 	sheolgaol = {
 		--['Option Index'] = {[menu byte index] = true,},
 		['8'] = {},
@@ -200,7 +218,10 @@ defaultplayertracker = {
 		['Eron-Tomaron'] = false,
 		['Quntsu-Nointsu'] = false,
 		['Debadle-Levadle'] = false,
-		['sheolgaol'] = false,
+		sheola = false,
+		sheolb = false,
+		sheolc = false,
+		sheolgaol = false,
 	},
 }
 
@@ -294,6 +315,9 @@ defaulttab_logs = {
 	homepoints = {},
 	survivalguides = {},
 	waypoints = {},
+	telepoints = {},
+	cavernousmaws = {},
+	eschanportals = {},
 	outposts = {},
 	protowaypoints = {},
 	titles = {},
@@ -306,6 +330,9 @@ defaulttab_logs = {
 	mmmvouchers = {},
 	mmmrunes = {},
 	meeble_burrows = {},
+	sheola = {},
+	sheolb = {},
+	sheolc = {},
 	sheolgaol = {},
 }
 
@@ -379,7 +406,9 @@ function append_header(tab, text, ...)
 end
 
 function append_addonhelp(tab, text, condition)
-	append_items(tabs[tab].items, {util.list_item('Addon Help', '\\cs(235,0,0)'..text..'\\cr', condition)})
+	if not (condition and trackermenusettings.showcompleted) then
+		append_items(tabs[tab].items, {util.list_item('Addon Help', '\\cs(235,0,0)'..text..'\\cr', condition)})
+	end
 end
 
 function update_maintab()
@@ -449,6 +478,9 @@ function update_maintab()
 	append_maintab('Home Points %d/%d', playertracker['homepoints_completed'], playertracker['homepoints_total'])
 	append_maintab('Survival Guides %d/%d', playertracker['survivalguides_completed'], playertracker['survivalguides_total'])
 	append_maintab('Waypoints %d/%d', playertracker['waypoints_completed'], playertracker['waypoints_total'])
+	append_maintab('Telepoints %d/%d', playertracker['telepoints_completed'], playertracker['telepoints_total'])
+	append_maintab('Cavernous Maws %d/%d', playertracker['cavernousmaws_completed'], playertracker['cavernousmaws_total'])
+	append_maintab('Eschan Portals %d/%d', playertracker['eschanportals_completed'], playertracker['eschanportals_total'])
 	append_maintab('Outposts %d/%d', playertracker['outposts_completed'], playertracker['outposts_total'])
 	append_addonhelp(1, 'You must talk to any \\cs(255,255,255)Outpost Teleporter NPC\\cr @ \\cs(50,150,255)three nations\\cr.', playertracker.talk_to_npc['outpostnpc'])
 	append_maintab('Proto-Waypoints %d/%d', playertracker['protowaypoints_completed'], playertracker['protowaypoints_total'])
@@ -474,6 +506,12 @@ function update_maintab()
 	append_addonhelp(1, 'Menu: Review expedition specifics -> \\cs(255,255,255)Sauromugue Champaign\\cr', playertracker.talk_to_npc['meeble_sauromugue'])
 	append_addonhelp(1, 'You must talk to \\cs(255,255,255)Burrow Investigator\\cr @ \\cs(50,150,255)Upper Jeuno (I-8)\\cr', playertracker.talk_to_npc['meeble_batallia'])
 	append_addonhelp(1, 'Menu: Review expedition specifics -> \\cs(255,255,255)Batallia Downs\\cr', playertracker.talk_to_npc['meeble_batallia'])
+	append_maintab('Sheol A (%d/%d)', playertracker['sheola_completed'], playertracker['sheola_total'])
+	append_addonhelp(1, 'You must talk to \\cs(255,255,255)???\\cr @ \\cs(50,150,255)Rabao (I-8)\\cr (Status Report: Moogle Mastery)', playertracker.talk_to_npc['sheola'])
+	append_maintab('Sheol B (%d/%d)', playertracker['sheolb_completed'], playertracker['sheolb_total'])
+	append_addonhelp(1, 'You must talk to \\cs(255,255,255)???\\cr @ \\cs(50,150,255)Rabao (I-8)\\cr (Status Report: Moogle Mastery)', playertracker.talk_to_npc['sheolb'])
+	append_maintab('Sheol C (%d/%d)', playertracker['sheolc_completed'], playertracker['sheolc_total'])
+	append_addonhelp(1, 'You must talk to \\cs(255,255,255)???\\cr @ \\cs(50,150,255)Rabao (I-8)\\cr (Status Report: Moogle Mastery)', playertracker.talk_to_npc['sheolc'])
 	append_maintab('Sheol Gaol Vengeance (%d/%d)', playertracker['sheolgaoltiers_completed'], playertracker['sheolgaoltiers_total'])
 	append_addonhelp(1, 'You must talk to \\cs(255,255,255)???\\cr @ \\cs(50,150,255)Rabao (I-8)\\cr (Status Report: Sheol Gaol)', playertracker.talk_to_npc['sheolgaol'])
 	
@@ -551,6 +589,10 @@ windower.register_event('incoming chunk', function(id, data, modified, injected,
 			tab_logs.homepoints = warps_util.checkwarps('homepoints')
 			tab_logs.survivalguides = warps_util.checkwarps('survivalguides')
 			tab_logs.waypoints = warps_util.checkwarps('waypoints')
+			tab_logs.telepoints = warps_util.checkwarps('telepoints')
+			--tab_logs.cavernousmaws = warps_util.checkwarps('cavernousmaws')
+			warps_util.countwarps('cavernousmaws')
+			tab_logs.eschanportals = warps_util.checkwarps('eschanportals')
 			xichecklist_updatetabs('warps')
 		end
 		-- do monstrosity
@@ -616,7 +658,7 @@ windower.register_event('incoming chunk', function(id, data, modified, injected,
 	
 	update_maintab()
 	--xichecklist_updatetabs()
-	draw()
+	if trackermenusettings.visibility then draw() end
 end)
 
 windower.register_event('outgoing chunk', function(id, data, modified, injected, blocked)
@@ -634,6 +676,9 @@ function xichecklist_updatemenulogs()
 	tab_logs.atmacite_levels = menus_util.log_atmacitelevels()
 	tab_logs.meeble_burrows = menus_util.log_meeble_burrows()
 	tab_logs.titles = menus_util.log_titles()
+	tab_logs.sheola = menus_util.log_sheolabc('sheola')
+	tab_logs.sheolb = menus_util.log_sheolabc('sheolb')
+	tab_logs.sheolc = menus_util.log_sheolabc('sheolc')
 	tab_logs.sheolgaol = menus_util.log_sheolgaol()
 end
 
@@ -749,6 +794,13 @@ function xichecklist_updatetabs(tab)
 	append_items(tabs[7].items, tab_logs.survivalguides)
 	append_header(7, 'Adoulin Waypoints (%d/%d)', playertracker['waypoints_completed'], playertracker['waypoints_total'])
 	append_items(tabs[7].items, tab_logs.waypoints)
+	append_header(7, 'Telepoints (%d/%d)', playertracker['telepoints_completed'], playertracker['telepoints_total'])
+	append_items(tabs[7].items, tab_logs.telepoints)
+	append_header(7, 'Cavernous Maws (%d/%d)', playertracker['cavernousmaws_completed'], playertracker['cavernousmaws_total'])
+	append_addonhelp(7, 'WIP, Currently no list of Cavernous Maws', (playertracker['cavernousmaws_completed'] >= 9))
+	--append_items(tabs[7].items, tab_logs.cavernousmaws)
+	append_header(7, 'Eschan Portals (%d/%d)', playertracker['eschanportals_completed'], playertracker['eschanportals_total'])
+	append_items(tabs[7].items, tab_logs.eschanportals)
 	append_header(7, 'Outpost Warps (%d/%d)', playertracker['outposts_completed'], playertracker['outposts_total'])
 	append_addonhelp(7, 'You must talk to any \\cs(255,255,255)Outpost Teleporter NPC\\cr @ \\cs(50,150,255)three nations\\cr.', playertracker.talk_to_npc['outpostnpc'])
 	append_items(tabs[7].items, tab_logs.outposts)
@@ -813,7 +865,16 @@ function xichecklist_updatetabs(tab)
 		append_addonhelp(11, 'You must talk to \\cs(255,255,255)Burrow Investigator\\cr @ \\cs(50,150,255)Upper Jeuno (I-8)\\cr', playertracker.talk_to_npc['meeble_batallia'])
 		append_addonhelp(11, 'Menu: Review expedition specifics -> \\cs(255,255,255)Batallia Downs\\cr', playertracker.talk_to_npc['meeble_batallia'])
 		append_items(tabs[11].items, tab_logs.meeble_burrows)
-		-- Log Sheol Gaol Vengeance Tiers
+		-- Log Sheol ABC goals & Gaol Vengeance Tiers
+		append_header(11, 'Sheol A (%d/%d)', playertracker['sheola_completed'], playertracker['sheola_total'])
+		append_addonhelp(11, 'You must talk to \\cs(255,255,255)???\\cr @ \\cs(50,150,255)Rabao (I-8)\\cr (Status Report: Moogle Mastery)', playertracker.talk_to_npc['sheola'])
+		append_items(tabs[11].items, tab_logs.sheola)
+		append_header(11, 'Sheol B (%d/%d)', playertracker['sheolb_completed'], playertracker['sheolb_total'])
+		append_addonhelp(11, 'You must talk to \\cs(255,255,255)???\\cr @ \\cs(50,150,255)Rabao (I-8)\\cr (Status Report: Moogle Mastery)', playertracker.talk_to_npc['sheolb'])
+		append_items(tabs[11].items, tab_logs.sheolb)
+		append_header(11, 'Sheol C (%d/%d)', playertracker['sheolc_completed'], playertracker['sheolc_total'])
+		append_addonhelp(11, 'You must talk to \\cs(255,255,255)???\\cr @ \\cs(50,150,255)Rabao (I-8)\\cr (Status Report: Moogle Mastery)', playertracker.talk_to_npc['sheolc'])
+		append_items(tabs[11].items, tab_logs.sheolc)
 		append_header(11, 'Sheol Gaol Vengeance (%d/%d)', playertracker['sheolgaoltiers_completed'], playertracker['sheolgaoltiers_total'])
 		append_addonhelp(11, 'You must talk to \\cs(255,255,255)???\\cr @ \\cs(50,150,255)Rabao (I-8)\\cr (Status Report: Sheol Gaol)', playertracker.talk_to_npc['sheolgaol'])
 		append_items(tabs[11].items, tab_logs.sheolgaol)
@@ -823,10 +884,13 @@ end
 function check_keyitems(keyitemtype)
 	local output_list = {}
 	local keyitem_exclusions = require('maps/keyitems_exclusions')
+	local excluded = keyitem_exclusions.excluded
+	local hidden = keyitem_exclusions.hidden
+	if not trackermenusettings.showexcluded then hidden = S{} end
 	local playerkeyitems = windower.ffxi.get_key_items()
 	local total, obtained = 0, 0
 	for id, keyitem in pairs(res.key_items) do
-		if (keyitem.category == keyitemtype and (not keyitem_exclusions:contains(id)) ) then
+		if (keyitem.category == keyitemtype and (not excluded:contains(id)) and (not hidden:contains(id))) then
 			total = total + 1
 			local completion = false
 			if table.find(playerkeyitems, id) then
@@ -884,6 +948,7 @@ function check_exp()
 		end
 	end
 	playertracker['Jobpoints_completed'] = math.floor(total_jp_spent/2100)
+	playertracker['Jobpoints_total'] = 22
 	-- master levels
 	if (type(playerinfo.master_levels) == 'table') then 
 		for job, value in pairs(playerinfo.master_levels) do
@@ -1051,6 +1116,7 @@ windower.register_event('addon command', function(...)
 	elseif cmds.show:contains(arg[1]) then
 		trackermenusettings.visibility = true
 		trackermenusettings:save()
+		draw()
 		ui:show()
 	elseif cmds.hide:contains(arg[1]) then
 		trackermenusettings.visibility = false

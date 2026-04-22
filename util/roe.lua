@@ -29,13 +29,13 @@ function roe_util.log_roe()
 	for key, roe in pairs(roemap) do
 		total = total+1
 		local completion = false
-		if (roe_exclusions.extras[key] or hiddenmap[key]) then hiddentotal = hiddentotal+1 end
+		if (roe_exclusions.excluded[key] or hiddenmap[key]) then hiddentotal = hiddentotal+1 end
 		if (playertracker.roe[tostring(key)] == true) then
 			complete = complete+1
 			completion = true
-			if (roe_exclusions.extras[key] or hiddenmap[key]) then hiddencomplete = hiddencomplete+1 end
+			if (roe_exclusions.excluded[key] or hiddenmap[key]) then hiddencomplete = hiddencomplete+1 end
 		end
-		if (not roe_exclusions.extras:contains(key)) and (not hiddenmap:contains(key))  then
+		if (not roe_exclusions.excluded:contains(key)) and (not hiddenmap:contains(key))  then
 			table.insert(output_list, util.list_item(nil, roemap[key].name, completion))
 		end
 	end

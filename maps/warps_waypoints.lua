@@ -24,10 +24,10 @@ return {
 	[20] = 'Ceizak Battlegrounds',
 	[21] = 'Ceizak Battlegrounds',
 	[22] = 'Yahse Hunting Grounds #FS', -- confirmed
-	[23] = 'Yahse Hunting Grounds #1',
+	[23] = 'Yahse Hunting Grounds #1', --
 	
-	[24] = 'Yahse Hunting Grounds #2',
-	[25] = 'Yahse Hunting Grounds #3',
+	[24] = 'Yahse Hunting Grounds #2', --
+	[25] = 'Yahse Hunting Grounds #3', --
 	[26] = 'Foret de Hennetiel #1', -- confirmed
 	[27] = 'Foret de Hennetiel',
 	[28] = 'Foret de Hennetiel',

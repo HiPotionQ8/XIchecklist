@@ -1,5 +1,5 @@
 return {
-	extras = S{
+	excluded = S{
 		2985, -- Plaudits! (VB)
 		2987, -- Thanks and Come Again! (VB)
 		2991, -- Release a Pixie (VB)
@@ -429,7 +429,6 @@ return {
 		4054, -- "True Love" Participation
 		4055, -- "A Fond Farewell" Participation
 		
-		4079, -- Fishing: Lu Shang's Fishing Rod
 		4082, -- Vanquish Multiple Enemies (D)
 		4083, -- Buff Allies (D)
 		4084, -- Heal for 500+ HP (D)
@@ -485,6 +484,8 @@ return {
 		4077, -- Scenarios 16
 		4078, -- Scenarios 17
 		4079, -- Scenarios 20
+		-- duplicated id ?
+		4079, -- Fishing: Lu Shang's Fishing Rod
 		
 		4086, -- Unlocking Scenarios X
 	}

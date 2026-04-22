@@ -377,12 +377,24 @@ function menus_util.list_titles_bycontent()
 end
 
 function menus_util.handle_odyssey_questionmark(parseddata)
-	if (menu_current['Option Index'] == 2) then 
-		-- SheolA todo
-		
-		
-		
+	if (menu_current['Option Index'] == 2 or menu_current['Option Index'] == 4 or menu_current['Option Index'] == 5 or menu_current['Option Index'] == 7) then 
+		-- SheolABC
+		local nostos = 0
+		for byteidx, entry in pairs(menumaps.odyssey.sheolabc[menu_current['Option Index']]) do
+			byteidx = tonumber(byteidx)
+			if (byteidx) then -- if its a number, aka not nostos or talk_to_npc
+				playertracker.sheolabc[tostring(menu_current['Option Index'])][tostring(byteidx)] = string.byte(parseddata['Menu Parameters'], byteidx)
+			end
+		end
+		if menumaps.odyssey.sheolabc[menu_current['Option Index']].nostos then
+			nostos = parseddata['Menu Parameters']:unpack('I2', menumaps.odyssey.sheolabc[menu_current['Option Index']].nostos.data)
+			playertracker.sheolabc[tostring(menu_current['Option Index'])].nostos = nostos
+		end
+		if menumaps.odyssey.sheolabc[menu_current['Option Index']].talk_to_npc then
+			playertracker.talk_to_npc[menumaps.odyssey.sheolabc[menu_current['Option Index']].talk_to_npc] = true
+		end
 	elseif (menu_current['Option Index'] == 8 or menu_current['Option Index'] == 9 or menu_current['Option Index'] == 10) then -- Choose Sheo Gaol status report
+		-- Sheol Gaol
 		for byteidx, name in pairs (menumaps.odyssey.gaol[menu_current['Option Index']]) do
 			local venglevel = bit.band(string.byte(parseddata['Menu Parameters'], byteidx), 0x1F) -- 5 bits are the veng level
 			if (not playertracker.sheolgaol[tostring(menu_current['Option Index'])][tostring(byteidx)]) then
@@ -392,16 +404,16 @@ function menus_util.handle_odyssey_questionmark(parseddata)
 			end 
 			playertracker.sheolgaol[tostring(menu_current['Option Index'])][tostring(byteidx)] = venglevel
 		end
-		playertracker.talk_to_npc['sheolgaol'] = true
-		playertracker:save()
+		playertracker.talk_to_npc.sheolgaol = true
 	end
+	playertracker:save()
 end
 
 function menus_util.log_sheolgaol()
 	local output_list = {}
 	local total, complete = 0,0
 	for optionidx, optiontbl in pairs(menumaps.odyssey.gaol) do
-		for byteidx, name in pairs (optiontbl) do
+		for byteidx, name in pairs(optiontbl) do
 			local venglevel = playertracker.sheolgaol[tostring(optionidx)][tostring(byteidx)] or 0
 			local completion = false
 			if venglevel == 25 then completion = true end
@@ -410,6 +422,32 @@ function menus_util.log_sheolgaol()
 		end
 	end
 	playertracker['sheolgaoltiers_completed'] = complete
+	return output_list
+end
+
+function menus_util.log_sheolabc(sheol)
+	local output_list = {}
+	local total, complete = 0,0
+	local map_optionindex = 0
+	if sheol == 'sheola' then map_optionindex = {2}
+	elseif sheol == 'sheolb' then map_optionindex = {4,5}
+	elseif sheol == 'sheolc' then map_optionindex = {7}
+	end
+	for _, optionindex in pairs(map_optionindex) do
+		for byteidx, entry in pairs(menumaps.odyssey.sheolabc[optionindex]) do
+			local completion = false
+			if byteidx ~= 'talk_to_npc' then
+				total = total+1
+				if playertracker.sheolabc[tostring(optionindex)][tostring(byteidx)] >= entry.goal then
+					completion = true
+					complete = complete+1
+				end
+				table.insert(output_list, util.list_item(nil, (playertracker.sheolabc[tostring(optionindex)][tostring(byteidx)] or 0)..'/'..entry.goal..' '..entry.name, completion))
+			end
+		end
+	end
+	playertracker[sheol..'_completed'] = complete
+	playertracker[sheol..'_total'] = total
 	return output_list
 end
 

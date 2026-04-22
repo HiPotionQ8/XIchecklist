@@ -98,7 +98,7 @@ end
 
 function quest_util.log_missions(mission_type, current_mission_id)
 	if (not quests.missions_map[mission_type]) then return false end
-	if current_mission_id == 1000 then current_mission_id = 0 end
+	if current_mission_id > 999 then current_mission_id = 0 end
 	if current_mission_id < 0 then current_mission_id = current_mission_id + 2147483648 end
 	local complete,total = 0, 0
 	local output_list = {}
