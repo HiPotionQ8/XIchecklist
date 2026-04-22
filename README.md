@@ -6,7 +6,7 @@
 | `//xic hide` | hide the UI |
 | `//xic show` | show the UI |
 | `//xic showcompleted` | toggle show-completed-items on/off `Default:false` |
-| `//xic showexcluded` | toggle show hidden Titles and RoE on/off `Default:false` |
+| `//xic showexcluded` | toggle show hidden Titles and RoE and Crafting Shield KI on/off `Default:false` |
 | `//xic copy` | copy current tab to clipboard |
 | `//xic log <category>` | print <category> in chat log.<br>Example: `//xic log summary`<br>Available categories `main` `summary` `titles` `monstrosity` `mmm` `meeble` `warps` `fish` `missions` `quests` (`sandoria` `bastok` `windurst` `jeuno` `ahturhgan` `crystalwar` `outlands` `other` `abyssea` `adoulin` `coalition` `campaign`)   |
 
@@ -100,3 +100,4 @@ the menu will only show missing items like quests,key items, spells, home points
 - 0.14.1 - Added TVR Missions.
 - 0.14.2 - Added `//xic showcompleted` command to toggle hide/show completed items.
 - 0.14.3 - Added `//xic showexcluded` command to toggle hide/show hidden RoEs (not shown in game) and excluded Titles (which are impossible to obtain).
+- 0.15.0 - Added Sheol ABC, Eschan Portal, Telepoints, Excluded crafting shield KIs by default.
