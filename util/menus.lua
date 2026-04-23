@@ -369,7 +369,6 @@ function menus_util.list_titles_bycontent()
 				if (titlesexclusions:contains(titleid)) then total = total+1 end
 			end
 		end
-		local red = 0
 		if (complete == total) then completion = true end
 		table.insert(output_list, util.list_item(nil, '--' .. content ..' titles %d/%d':format(complete, total), completion))
 	end

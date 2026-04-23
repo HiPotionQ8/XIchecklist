@@ -1,6 +1,6 @@
 _addon.name     = 'xichecklist'
 _addon.author   = 'Anokata'
-_addon.version  = '0.15.3'
+_addon.version  = '0.15.4'
 _addon.commands = {'xichecklist', 'xic'}
 
 require('sets')
@@ -17,7 +17,7 @@ trackermenusettings.pos.x = 50
 trackermenusettings.pos.y = 80
 trackermenusettings.visibility = true
 trackermenusettings.showcompleted = false -- true = display completed items listed in green
-trackermenusettings.showexcluded = false -- true = display hidden RoEs and excluded Titles
+trackermenusettings.showexcluded = false -- true = display hidden RoEs and excluded Titles and Crafting shield KIs
 trackermenusettings.chat_logroe = false -- true = display chat log when new RoE is completed (to track when a hidden RoE is completed)
 
 trackermenusettings = config.load(trackermenusettings)
@@ -321,6 +321,7 @@ defaulttab_logs = {
 	outposts = {},
 	protowaypoints = {},
 	titles = {},
+	titles_by_content = {},
 	fishes = {},
 	monsterlevels = {},
 	monstervariants = {},
@@ -395,7 +396,7 @@ end
 
 function append_header(tab, text, ...)
 	args = {...}
-	local menulinecolor = '(255,255,0)'
+	local menulinecolor = '(255,255,255)'
 	if (args[1]==args[2]) then menulinecolor = '(0,255,0)' end
 	text = '==== '..text..' ===='
 	table.insert(tabs[tab].items, '\\cs'..menulinecolor..text:format(...)..'\\cr')
@@ -517,7 +518,7 @@ function update_maintab()
 	
 	table.insert(tabs[1].items, '======= Titles =======')
 	append_maintab('Titles %d/%d', playertracker['Titles_completed'], playertracker['Titles_total'])
-	append_items(tabs[1].items, menus_util.list_titles_bycontent())
+	append_items(tabs[1].items, tab_logs.titles_by_content)
 end
 
 windower.register_event('incoming chunk', function(id, data, modified, injected, blocked)
@@ -586,13 +587,13 @@ windower.register_event('incoming chunk', function(id, data, modified, injected,
 		-- do warps
 		if (parseddata.Order == 6) then 
 			warps_util.warps_data = data
-			tab_logs.homepoints = warps_util.checkwarps('homepoints')
-			tab_logs.survivalguides = warps_util.checkwarps('survivalguides')
-			tab_logs.waypoints = warps_util.checkwarps('waypoints')
-			tab_logs.telepoints = warps_util.checkwarps('telepoints')
-			tab_logs.cavernousmaws = warps_util.checkwarps('cavernousmaws')
+			tab_logs.homepoints = warps_util.log_warps('homepoints')
+			tab_logs.survivalguides = warps_util.log_warps('survivalguides')
+			tab_logs.waypoints = warps_util.log_warps('waypoints')
+			tab_logs.telepoints = warps_util.log_warps('telepoints')
+			tab_logs.cavernousmaws = warps_util.log_warps('cavernousmaws')
 			--warps_util.countwarps('cavernousmaws')
-			tab_logs.eschanportals = warps_util.checkwarps('eschanportals')
+			tab_logs.eschanportals = warps_util.log_warps('eschanportals')
 			xichecklist_updatetabs('warps')
 		end
 		-- do monstrosity
@@ -676,6 +677,7 @@ function xichecklist_updatemenulogs()
 	tab_logs.atmacite_levels = menus_util.log_atmacitelevels()
 	tab_logs.meeble_burrows = menus_util.log_meeble_burrows()
 	tab_logs.titles = menus_util.log_titles()
+	tab_logs.titles_by_content = menus_util.list_titles_bycontent()
 	tab_logs.sheola = menus_util.log_sheolabc('sheola')
 	tab_logs.sheolb = menus_util.log_sheolabc('sheolb')
 	tab_logs.sheolc = menus_util.log_sheolabc('sheolc')

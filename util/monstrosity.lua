@@ -1,8 +1,5 @@
 local mons_util = {}
-local map_species = require('../maps/monstrosity_species')
-local map_species_variants = require('../maps/monstrosity_species_variants')
-local map_racejobinstincts = require('../maps/monstrosity_racejobinstincts')
-local map_monsterinstincts = require('../maps/monstrosity_instincts')
+local maps = require('../maps/monstrosity')
 mons_util.monster_levelspacket = {
 	[1] = nil,
 	[2] = nil,
@@ -19,7 +16,7 @@ function mons_util.log_racejobinstincts()
 	if mons_util.racejobinstincts==nil then return end
 	local output_list = {}
 	local total, obtained = 0, 0
-	for id, name in pairs(map_racejobinstincts) do
+	for id, name in pairs(maps.racejobinstincts) do
 		total = total+1
 		local completion = false
 		if util.has_bit(mons_util.racejobinstincts, id) then
@@ -42,7 +39,7 @@ function mons_util.log_monsterlevels()
 	if mons_util.monster_levels==nil then return end
 	local output_list = {}
 	local total, complete = 0, 0
-	for id, monster in pairs(map_species) do
+	for id, monster in pairs(maps.species) do
 		total = total+99
 		local completion = false
 		complete = complete + mons_util.monster_levels[id]
@@ -58,7 +55,7 @@ function mons_util.log_variants()
 	if mons_util.variants_bitfield==nil then return end
 	local output_list = {}
 	local total, obtained = 0, 0
-	for id, name in pairs(map_species_variants) do
+	for id, name in pairs(maps.species_variants) do
 		total = total+1
 		local completion = false
 		if util.has_bit(mons_util.variants_bitfield, (id-256)) then
@@ -82,13 +79,13 @@ function mons_util.log_monsterinstincts()
 		local instinct_index_base = 3 * (table_id - 1)
 		for instinct_index=1, 3 do
 			local completion = false
-			if (map_monsterinstincts[instinct_index_base+instinct_index]) then
+			if (maps.monsterinstincts[instinct_index_base+instinct_index]) then
 				total = total+1
 				if (unlocked_level >= instinct_index) then
 					obtained = obtained+1
 					completion = true
 				end
-				table.insert(output_list, util.list_item(nil, map_monsterinstincts[instinct_index_base+instinct_index], completion))
+				table.insert(output_list, util.list_item(nil, maps.monsterinstincts[instinct_index_base+instinct_index], completion))
 			end
 
 		end

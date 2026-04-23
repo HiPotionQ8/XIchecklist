@@ -1,5 +1,5 @@
 local mmm_util = {}
-local map_mmm = require('../maps/maps_mmm')
+local maps = require('../maps/moblinmazemongers')
 local vouchers_unlocks = nil
 local runes_unlocks = nil
 
@@ -12,7 +12,7 @@ function mmm_util.log_vouchers()
 	if mmm_util.vouchers_unlocks==nil then return end
 	local output_list = {}
 	local total, obtained = 0, 0
-	for id, name in pairs(map_mmm['vouchers']) do
+	for id, name in pairs(maps['vouchers']) do
 		total = total+1
 		local completion = false
 		if util.has_bit(mmm_util.vouchers_unlocks, id) then
@@ -30,7 +30,7 @@ function mmm_util.log_runes()
 	if mmm_util.runes_unlocks==nil then return end
 	local output_list = {}
 	local total, obtained = 0, 0
-	for id, name in pairs(map_mmm['runes']) do
+	for id, name in pairs(maps['runes']) do
 		total = total+1
 		local completion = false
 		if util.has_bit(mmm_util.runes_unlocks, id) then

@@ -1,7 +1,7 @@
 local quest_util = {}
 quests = {completed={},current={}}
 quests.mutual_exclusive = require('../maps/quests_mutual_exclusive')
-quests.missions_map = require('../maps/missions_map')
+local maps = require('../maps/story')
 
 _G.quest_logs = {
     --[0x0070] = {type='current', area='other'},
@@ -32,27 +32,6 @@ _G.quest_logs = {
 	[0x00D8] = {type='completed', area='toauwotgmissions'},
 	[0xFFFE] = {type='current', area='currenttvrmissions'},
 	[0xFFFF] = {type='current', area='currentothermissions'},
-}
-
-local maps = {
-    abyssea = require('../maps/quests_abyssea'),
-    adoulin = require('../maps/quests_adoulin'),
-    coalition = require('../maps/quests_coalitions'),
-    other = require('../maps/quests_other'),
-	sandoria = require('../maps/quests_sandoria'),
-	bastok = require('../maps/quests_bastok'),
-	windurst = require('../maps/quests_windurst'),
-	jeuno = require('../maps/quests_jeuno'),
-	ahturhgan = require('../maps/quests_ahturhgan'),
-	crystalwar = require('../maps/quests_crystalwar'),
-	outlands = require('../maps/quests_outlands'),
-	campaign = require('../maps/campaign'),
-	sandoriamissions = require('../maps/missions_sandoria'),
-	bastokmissions = require('../maps/missions_bastok'),
-	windurstmissions = require('../maps/missions_windurst'),
-	zilartmissions = require('../maps/missions_zilart'),
-	ahturhganmissions = require('../maps/missions_ahturhgan'),
-	wotgmissions = require('../maps/missions_wotg'),
 }
 
 function quest_util.log_quests(quest_type)
@@ -97,12 +76,12 @@ function quest_util.log_quests(quest_type)
 end
 
 function quest_util.log_missions(mission_type, current_mission_id)
-	if (not quests.missions_map[mission_type]) then return false end
+	if (not maps[mission_type]) then return false end
 	if current_mission_id > 999 then current_mission_id = 0 end
 	if current_mission_id < 0 then current_mission_id = current_mission_id + 2147483648 end
 	local complete,total = 0, 0
 	local output_list = {}
-	for i, mission in ipairs(quests.missions_map[mission_type]) do
+	for i, mission in ipairs(maps[mission_type]) do
 		total = total+1
 		local completion = false
 		if (current_mission_id > mission.id) then
