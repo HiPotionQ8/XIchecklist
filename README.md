@@ -24,6 +24,7 @@ will be saved in config so only need to do it once (or when need to update)
 | Atmacite levels | Speak to any [Atmacite Refiner](https://www.bg-wiki.com/ffxi/Atmacite_Refiner) <br>`(Menu: Enrich Atmacite)` |
 | Wing Skill | Speak to chocobo kids [Arvilauge/Gonija/Kiria-Romaria](https://www.bg-wiki.com/ffxi/Category:Chocobo_Digging#Basics) |
 | Sheol Gaol Vengeance | Speak to [??? in Rabao](https://www.bg-wiki.com/ffxi/Category:Odyssey) <br>`(Status Report: Sheol Gaol)` |
+| Escha Vorseals | Speak to [Shiftrix in Reisenjima](https://www.bg-wiki.com/ffxi/Shiftrix) |
 
 <br>
 
@@ -101,3 +102,4 @@ the menu will only show missing items like quests,key items, spells, home points
 - 0.14.2 - Added `//xic showcompleted` command to toggle hide/show completed items.
 - 0.14.3 - Added `//xic showexcluded` command to toggle hide/show hidden RoEs (not shown in game) and excluded Titles (which are impossible to obtain).
 - 0.15.0 - Added Sheol ABC, Eschan Portal, Telepoints, Excluded crafting shield KIs by default.
+- 0.16.0 - Added Vorseals
