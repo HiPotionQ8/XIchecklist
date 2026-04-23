@@ -61,7 +61,6 @@ function menus_util.handle_menu_options(data)
 end
 
 function menus_util.handle_op_warps(parseddata)
-	--local parseddata = packets.parse('incoming', data)
 	local subdata = parseddata['Menu Parameters']:sub(0x1C+1, 0x1E+1)
 	for key, name in pairs(menumaps.outposts) do
 		if (not util.has_bit(subdata, key+5)) then -- +5 because mapping starts from 6th byte
@@ -98,7 +97,6 @@ function menus_util.log_outposts()
 end
 
 function menus_util.handle_chatnachoq(parseddata)
-	--local parseddata = packets.parse('incoming', data)
 	local menu = parseddata['Menu Parameters']
 	local mazes = menu:unpack('I', 13)
 	playertracker['mmm_mazecount'] = mazes
@@ -108,7 +106,6 @@ function menus_util.handle_chatnachoq(parseddata)
 end
 
 function menus_util.handle_protowaypoint(parseddata)
-	--local parseddata = packets.parse('incoming', data)
 	local menu = parseddata['Menu Parameters']
 	--subdata = menu:sub(0x1C+1, 0x1E+1)
 	for key, name in pairs(menumaps.protowaypoints) do
@@ -146,7 +143,6 @@ function menus_util.log_protowaypoints()
 end
 
 function menus_util.handle_burrowsnpc(parseddata)
-	--local parseddata = packets.parse('incoming', data)
 	local map_name = nil
 	if ((menu_current['zoneid'] == 244 and menu_current['_unknown1'] == 1) -- Upper Jeuno / Sauromugue Menu
 		or (menu_current['zoneid'] == 120 and menu_current['Option Index'] == 14)) then
@@ -211,8 +207,6 @@ end
 
 function menus_util.handle_katsunaga(parseddata)
 	if menu_current['_unknown1'] == 0 then
-		--local parseddata = packets.parse('incoming', data)
-		--local menu = parseddata['Menu Parameters']
 		for flag, id in ipairs(menumaps.fishes_menu) do
 			if (id ~= false) then
 				if util.has_bit(parseddata['Menu Parameters'], flag) then
@@ -252,7 +246,6 @@ function menus_util.log_fishes()
 end
 
 function menus_util.handle_atmacitenpc(parseddata)
-	--local parseddata = packets.parse('incoming', data)
 	local atmacite_levels = util.fourbits_to_table(parseddata['Menu Parameters'])
 	local playerkeyitems = windower.ffxi.get_key_items()
 	if (menu_current['_unknown1'] == 0 and menu_current['Option Index'] == 2) then
@@ -289,7 +282,6 @@ function menus_util.log_atmacitelevels()
 end
 
 function menus_util.handle_chocobostablenpc(parseddata)
-	--local parseddata = packets.parse('incoming', data)
 	if (parseddata['Menu Parameters'] ~= nil) then
 		local winglevel = string.byte(parseddata['Menu Parameters'], 5)
 		if (winglevel > playertracker['wingskill_completed']) then
@@ -452,6 +444,41 @@ function menus_util.log_sheolabc(sheol)
 	return output_list
 end
 
+function menus_util.handle_vorseals_npc(parseddata)
+	local nibble_table = util.fourbits_to_table(parseddata['Menu Parameters'])
+	if (parseddata['Menu ID'] == 9701) then -- initial interaction with NPC, no Option Index
+		for nibble, vorseal in pairs(menumaps.vorseals) do
+			if (playertracker.vorseals[tostring(nibble)] == nil) then
+				util.addon_log('Vorseal added: ['..nibble_table[nibble]..'/'..vorseal.goal..'] '..vorseal.name)
+			elseif (nibble_table[nibble] > playertracker.vorseals[tostring(nibble)]) then
+				util.addon_log('Vorseal updated: ['..nibble_table[nibble]..'/'..vorseal.goal..'] '..vorseal.name)
+			end
+			playertracker.vorseals[tostring(nibble)] = nibble_table[nibble]
+		end
+	end
+	playertracker.talk_to_npc['vorseals'] = true
+	playertracker:save()
+end
+
+function menus_util.log_vorseals()
+	local output_list = {}
+	local total, complete = 0,0
+	for nibble, vorseal in pairs(menumaps.vorseals) do
+		local completion = false
+		total = total+vorseal.goal
+		if (playertracker.vorseals[tostring(nibble)]) then
+			complete = complete+playertracker.vorseals[tostring(nibble)]
+			if playertracker.vorseals[tostring(nibble)] == vorseal.goal then
+				completion = true
+			end
+		end
+		table.insert(output_list, util.list_item(nil, (playertracker.vorseals[tostring(nibble)] or 0)..'/'..vorseal.goal..' '..vorseal.name, completion))
+	end
+	playertracker['vorseals_completed'] = complete
+	playertracker['vorseals_total'] = total
+	return output_list
+end
+
 menus_util.menu_npcs = {
 	-- Outpost Warp NPCs
 	['Conrad'] = {zoneid=S{234}, menuid=S{584,581}, menu_function=menus_util.handle_op_warps},
@@ -500,6 +527,9 @@ menus_util.menu_npcs = {
 	
 	-- ??? Odyssey
 	["???"] = {zoneid=S{247}, menuid=S{2001}, menu_function=menus_util.handle_odyssey_questionmark},
+	
+	-- Vorseals
+	["Shiftrix"] = {zoneid=S{291}, menuid=S{9701}, menu_function=menus_util.handle_vorseals_npc},
 }
 
 return menus_util

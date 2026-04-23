@@ -1,6 +1,6 @@
 _addon.name     = 'xichecklist'
 _addon.author   = 'Anokata'
-_addon.version  = '0.15.4'
+_addon.version  = '0.16.0'
 _addon.commands = {'xichecklist', 'xic'}
 
 require('sets')
@@ -23,6 +23,7 @@ trackermenusettings.chat_logroe = false -- true = display chat log when new RoE 
 trackermenusettings = config.load(trackermenusettings)
 
 defaultplayertracker = {
+	-- most initial values are zero, to be updated by addon
 	['mastery_rank'] = 0,
 	-- Missions
 	['bastokmissions_completed'] = 0,
@@ -170,29 +171,30 @@ defaultplayertracker = {
 	['sheolc_total'] = 0,
 	['sheolgaoltiers_completed'] = 0,
 	['sheolgaoltiers_total'] = 425,
+	['vorseals_completed'] = 0,
+	['vorseals_total'] = 0,
 	titles = {}, -- {TitleId = true}
 	roe = {}, -- {RoeId = true}
-	outposts_unlocks = {},
-	protowaypoints_unlocks = {},
+	outposts_unlocks = {}, -- {Menu Parameter Byte = true}
+	protowaypoints_unlocks = {}, -- {Menu Parameter Byte = true}
 	fishes_caught = {}, -- {Fish_ItemId = true}
 	meeble_completed = {
 		['Sauromugue_Champaign'] = {},
 		['Batallia_Downs'] = {},
 	},
 	atmacite_levels = {},
-	sheolabc = {
+	sheolabc = { --['Option Index'] = {[menu byte index] = value,},
 		['2'] = {},
 		['4'] = {},
 		['5'] = {},
 		['7'] = {},
 	},
-	sheolgaol = {
-		--['Option Index'] = {[menu byte index] = true,},
+	sheolgaol = { --['Option Index'] = {[menu byte index] = true,},
 		['8'] = {},
 		['9'] = {},
 		['10'] = {},
 	},
-	
+	vorseals = {}, -- {Menu Parameter nibble = value}
 	talk_to_npc = {
 		outpostnpc = false,
 		chatnachoq = false,
@@ -222,6 +224,7 @@ defaultplayertracker = {
 		sheolb = false,
 		sheolc = false,
 		sheolgaol = false,
+		vorseals = false,
 	},
 }
 
@@ -335,6 +338,7 @@ defaulttab_logs = {
 	sheolb = {},
 	sheolc = {},
 	sheolgaol = {},
+	vorseals = {},
 }
 
 util = require('util/util')
@@ -403,7 +407,6 @@ function append_header(tab, text, ...)
 	if args[2] == 0 then
 		table.insert(tabs[tab].items, '\\cs(235,0,0)You must zone to update.\\cr')
 	end
-	
 end
 
 function append_addonhelp(tab, text, condition)
@@ -515,6 +518,8 @@ function update_maintab()
 	append_addonhelp(1, 'You must talk to \\cs(255,255,255)???\\cr @ \\cs(50,150,255)Rabao (I-8)\\cr (Status Report: Moogle Mastery)', playertracker.talk_to_npc['sheolc'])
 	append_maintab('Sheol Gaol Vengeance (%d/%d)', playertracker['sheolgaoltiers_completed'], playertracker['sheolgaoltiers_total'])
 	append_addonhelp(1, 'You must talk to \\cs(255,255,255)???\\cr @ \\cs(50,150,255)Rabao (I-8)\\cr (Status Report: Sheol Gaol)', playertracker.talk_to_npc['sheolgaol'])
+	append_maintab('Escha Vorseals (%d/%d)', playertracker['vorseals_completed'], playertracker['vorseals_total'])
+	append_addonhelp(1, 'You must talk to \\cs(255,255,255)Shiftrix\\cr @ \\cs(50,150,255)Reisenjima (F-12)\\cr', playertracker.talk_to_npc['vorseals'])
 	
 	table.insert(tabs[1].items, '======= Titles =======')
 	append_maintab('Titles %d/%d', playertracker['Titles_completed'], playertracker['Titles_total'])
@@ -682,6 +687,7 @@ function xichecklist_updatemenulogs()
 	tab_logs.sheolb = menus_util.log_sheolabc('sheolb')
 	tab_logs.sheolc = menus_util.log_sheolabc('sheolc')
 	tab_logs.sheolgaol = menus_util.log_sheolgaol()
+	tab_logs.vorseals = menus_util.log_vorseals()
 end
 
 function xichecklist_updatetabs(tab)
@@ -880,6 +886,9 @@ function xichecklist_updatetabs(tab)
 		append_header(11, 'Sheol Gaol Vengeance (%d/%d)', playertracker['sheolgaoltiers_completed'], playertracker['sheolgaoltiers_total'])
 		append_addonhelp(11, 'You must talk to \\cs(255,255,255)???\\cr @ \\cs(50,150,255)Rabao (I-8)\\cr (Status Report: Sheol Gaol)', playertracker.talk_to_npc['sheolgaol'])
 		append_items(tabs[11].items, tab_logs.sheolgaol)
+		append_header(11, 'Escha Vorseals (%d/%d)', playertracker['vorseals_completed'], playertracker['vorseals_total'])
+		append_addonhelp(11, 'You must talk to \\cs(255,255,255)Shiftrix\\cr @ \\cs(50,150,255)Reisenjima (F-12)\\cr', playertracker.talk_to_npc['vorseals'])
+		append_items(tabs[11].items, tab_logs.vorseals)
 	end
 end
 
@@ -1115,6 +1124,8 @@ windower.register_event('addon command', function(...)
 		windower.add_to_chat(161,string.char(0x81, 0xA1)..string.color('Proto-Waypoint', 261)..'-> any Proto-Waypoints')
 		windower.add_to_chat(161,string.char(0x81, 0xA1)..string.color('Atmacite Levels', 261)..'-> any Atmacite Refiner (Enrich Atmacite)')
 		windower.add_to_chat(161,string.char(0x81, 0xA1)..string.color('Wing Skill', 261)..'-> Nation Chocobo Stable kids')
+		windower.add_to_chat(161,string.char(0x81, 0xA1)..string.color('Sheol Gaol Vengeance', 261)..'-> ??? in Rabao (Status Report: Sheol Gaol)')
+		windower.add_to_chat(161,string.char(0x81, 0xA1)..string.color('Escha Vorseals', 261)..'-> Shiftrix in Reisenjima')
 	elseif cmds.show:contains(arg[1]) then
 		trackermenusettings.visibility = true
 		trackermenusettings:save()

@@ -383,16 +383,16 @@ return {
 	},
 	cavernousmaws = {
 		-- still need confirming, work in progress
-		[0] = "Cavernous Maw #1",
-		[1] = "Cavernous Maw #2",
-		[2] = "Cavernous Maw #3",
-		[3] = "Cavernous Maw #4",
-		[4] = "Cavernous Maw #5",
-		[5] = "Cavernous Maw #6",
-		[6] = "Cavernous Maw #7",
-		[7] = "Cavernous Maw #8",
+		[0] = "Cavernous Maw #1", -- Should be WoTG
+		[1] = "Cavernous Maw #2", -- Should be WoTG
+		[2] = "Cavernous Maw #3", -- Should be WoTG
+		[3] = "Cavernous Maw #4", -- Should be WoTG
+		[4] = "Cavernous Maw #5", -- Should be WoTG
+		[5] = "Cavernous Maw #6", -- Should be WoTG
+		[6] = "Cavernous Maw #7", -- Should be WoTG
+		[7] = "Cavernous Maw #8", -- Should be WoTG
 		
-		[8]  = "Cavernous Maw #9",
+		[8]  = "Cavernous Maw #9", -- Should be WoTG
 		[9]  = "Cavernous Maw #10",
 		[10] = "Cavernous Maw #11",
 		[11] = "Cavernous Maw #12",
@@ -403,13 +403,21 @@ return {
 		
 		[16] = "Cavernous Maw #17",
 		[17] = "Cavernous Maw #18",
-		--[18] = "Cavernous Maw #19",
-		--[19] = "Cavernous Maw #20",
-		--[20] = "Cavernous Maw #21",
-		--[21] = "Cavernous Maw #22",
-		--[22] = "Cavernous Maw #23",
-		--[23] = "Cavernous Maw #24",
+		[18] = "Cavernous Maw #19",
+		[19] = "Cavernous Maw #20",
+		[20] = "Cavernous Maw #21",
+		[21] = "Cavernous Maw #22",
+		[22] = "Cavernous Maw #23",
+		[23] = "Cavernous Maw #24",
 		
+		[24] = "Cavernous Maw #25",
+		[25] = "Cavernous Maw #26",
+		[26] = "Cavernous Maw #27",
+		[27] = "Cavernous Maw #28",
+		[28] = "Cavernous Maw #29",
+		[29] = "Cavernous Maw #30",
+		[30] = "Cavernous Maw #31",
+		[31] = "Cavernous Maw #32",
 	},
 	eschanportals = {
 		[0] = "Zi'tah #1",

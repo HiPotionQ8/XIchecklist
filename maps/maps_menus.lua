@@ -419,4 +419,35 @@ return {
 			},
 		},
 	},
+	vorseals = {
+		[33] = {name = 'HP/MP+', goal = 11},
+		[34] = {name = 'Acc/R.Acc/Eva+', goal = 11},
+		
+		[35] = {name = 'Def+', goal = 11},
+		[36] = {name = 'Atk/R.Atk+', goal = 11},
+		
+		[37] = {name = 'M.Acc/M.Eva+', goal = 11},
+		[38] = {name = 'M.Def+', goal = 11},
+		
+		[39] = {name = 'M.Atk+', goal = 11},
+		[40] = {name = 'DEX/AGI+', goal = 11},
+		
+		[41] = {name = 'STR/VIT+', goal = 11},
+		[42] = {name = 'INT/MND/CHR+', goal = 11},
+		
+		[43] = {name = 'Occ. Nullifies Damage', goal = 3},
+		[44] = {name = 'Killer Effects+', goal = 3},
+		
+		[45] = {name = 'Damage Taken', goal = 3},
+		[46] = {name = 'Spoils+', goal = 11}, -- ??
+		
+		[47] = {name = 'Rare Enemy+', goal = 11},
+		[48] = {name = 'Luck+', goal = 11},
+		
+		[49] = {name = 'Regen+', goal = 11},
+		[50] = {name = 'Refresh+', goal = 11},
+		
+		[51] = {name = 'Accuracy++', goal = 11},
+		--[52] = {name = '', goal = 11},
+	},
 }
