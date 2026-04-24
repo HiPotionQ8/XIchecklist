@@ -527,7 +527,8 @@ function update_maintab()
 end
 
 windower.register_event('incoming chunk', function(id, data, modified, injected, blocked)
-	
+	if injected then return end
+
 	if id == 0x01B then
 		local parseddata = packets.parse('incoming', data)
 		if (parseddata['Mastery Rank'] > playertracker['mastery_rank']) then
@@ -661,11 +662,23 @@ windower.register_event('incoming chunk', function(id, data, modified, injected,
 		-- claer npc menu
 		menus_util.reset_current_menu()
 	end
-	
-	update_maintab()
-	--xichecklist_updatetabs()
-	if trackermenusettings.visibility then draw() end
+
+	throttled_update()
 end)
+
+THROTTLED = false
+function throttled_update()
+	if THROTTLED then return end
+	THROTTLED = true
+	coroutine.sleep(0.1)
+	-- Drop errors on the ground so we're never locked in THROTTLED = true
+	pcall(function ()
+		update_maintab()
+		--xichecklist_updatetabs()
+		if trackermenusettings.visibility then draw() end
+	end)
+	THROTTLED = false
+end
 
 windower.register_event('outgoing chunk', function(id, data, modified, injected, blocked)
 	
