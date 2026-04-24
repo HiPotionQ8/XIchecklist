@@ -8,7 +8,7 @@
 | `//xic showcompleted` | toggle show-completed-items on/off `Default:false` |
 | `//xic showexcluded` | toggle show hidden Titles and RoE and Crafting Shield KI on/off `Default:false` |
 | `//xic copy` | copy current tab to clipboard |
-| `//xic log <category>` | print <category> in chat log.<br>Example: `//xic log summary`<br>Available categories `main` `summary` `titles` `monstrosity` `mmm` `meeble` `warps` `fish` `missions` `quests` (`sandoria` `bastok` `windurst` `jeuno` `ahturhgan` `crystalwar` `outlands` `other` `abyssea` `adoulin` `coalition` `campaign`)   |
+| `//xic log <category>` | print <category> in chat log.<br>Example: `//xic log summary`<br>Available categories `main` `summary` `titles` `monstrosity` `mmm` `meeble` `warps` `fish` `missions` `quests` (`sandoria` `bastok` `windurst` `jeuno` `ahturhgan` `crystalwar` `outlands` `other` `abyssea` `adoulin` `coalition` `campaign` `sandoriamissions` `bastokmissions` `windurstmissions` `zilartmissions` `ahturhganmissions` `wotgmissions` `copmissions` `acpmissions` `mkdmissions` `asamissions` `soamissions` `rovmissions` `tvrmissions`)   |
 
 The following are updated by talking to NPCs (some require opening certain menus)  
 will be saved in config so only need to do it once (or when need to update)
