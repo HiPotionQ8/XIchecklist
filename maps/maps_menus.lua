@@ -439,7 +439,7 @@ return {
 		[44] = {name = 'Killer Effects+', goal = 3},
 		
 		[45] = {name = 'Damage Taken', goal = 3},
-		[46] = {name = 'Spoils+', goal = 11}, -- ??
+		[46] = {name = 'Spoils+', goal = 11},
 		
 		[47] = {name = 'Rare Enemy+', goal = 11},
 		[48] = {name = 'Luck+', goal = 11},

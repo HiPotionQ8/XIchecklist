@@ -277,7 +277,7 @@ function menus_util.log_atmacitelevels()
 		complete = complete+level
 		table.insert(output_list, util.list_item('atmacite', 'Lv. ('..level..'/15) ' .. atmacite.en, completion))
 	end
-	playertracker['atmacitelevels_completed'] = complete
+	playertracker['atmacite_completed'] = complete
 	return output_list
 end
 

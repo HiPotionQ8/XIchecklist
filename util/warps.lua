@@ -31,19 +31,4 @@ function warps_util.log_warps(warptype)
 	return output_list
 end
 
-function warps_util.countwarps(warptype)
-	if warps_util.warps_data == nil then return end
-	local subdata = warps_util.warps_data:sub(unpack(warps_bytes[warptype]))
-	local complete = 0
-	for i = 1, #subdata do
-		local byte = string.byte(subdata, i)
-		while byte ~= 0 do
-			byte = bit.band(byte, byte - 1)
-			complete = complete + 1
-		end
-	end
-	playertracker[warptype..'_completed'] = complete
-	return complete
-end
-
 return warps_util
