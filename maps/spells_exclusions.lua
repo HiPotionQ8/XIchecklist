@@ -2,36 +2,6 @@ return S{
 	
 	26, -- Dia IV
 	27, -- Dia V
-	32, -- Banish V
-	36, -- Diaga IV
-	37, -- Diaga V
-	41, -- Banishga IV
-	42, -- Banishga V
-	
-	177, -- Firaga IV
-	178, -- Firaga V
-	182, -- Blizzaga IV
-	183, -- Blizzaga V
-	187, -- Aeroga IV
-	188, -- Aeroga V
-	192, -- Stonega IV
-	193, -- Stonega V
-	197, -- Thundaga IV
-	198, -- Thundaga V
-	202, -- Waterga IV
-	203, -- Waterga V
-	222, -- Poison III
-	223, -- Poison IV
-	224, -- Poison V
-	227, -- Poisonga III
-	228, -- Poisonga IV
-	229, -- Poisonga V
-	233, -- Bio IV
-	234, -- Bio V
-	265, -- Tractor II
-	
-	343, -- Jubaku: San
-	352, -- Dokumori: San
 	
 	366, -- Graviga
 	

@@ -456,7 +456,7 @@ function menus_util.handle_vorseals_npc(parseddata)
 			playertracker.vorseals[tostring(nibble)] = nibble_table[nibble]
 		end
 	end
-	playertracker.talk_to_npc['vorseals'] = true
+	playertracker.talk_to_npc.vorseals = true
 	playertracker:save()
 end
 
