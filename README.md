@@ -5,6 +5,7 @@
 | `//xic help` | print help in chatlog |
 | `//xic hide` | hide the UI |
 | `//xic show` | show the UI |
+| `//xic scale` | changes the scale of UI `defailt: 1` |
 | `//xic showcompleted` | toggle show-completed-items on/off `Default:false` |
 | `//xic showexcluded` | toggle show hidden Titles and RoE and Crafting Shield KI on/off `Default:false` |
 | `//xic copy` | copy current tab to clipboard |
@@ -29,7 +30,7 @@ will be saved in config so only need to do it once (or when need to update)
 <br>
 
 **Note**:
-1. By default anything completed is hidden from the UI, to show completed objectives (in green) edit the `settings.xml` and change the `showcompleted` to `true`
+1. By default anything completed is hidden from the UI, to show completed objectives (in green) use the command `//xic showcompleted` to toggle
 2. First load may freeze a few seconds due to first-time registering of RoEs.
 
 ## **Tracking**:
@@ -38,15 +39,14 @@ will be saved in config so only need to do it once (or when need to update)
 - Titles
 - Moblin Maze Mongers `(Vouchers / Runes / Maze Count)`
 - Meeble Burrows
-- Sheol Gaol
+- Sheol Gaol / Moogle Mastery Goals
 - Types of fish caught
-- Outpost Warps
 - Records of Eminence (RoE) 
-- Warps `(Home Points / Survival Guides / Waypoints / Proto-Waypoints)`
+- Warps `(Home Points / Survival Guides / Waypoints / Outposts / Proto-Waypoints / Telepoints / Cavernous Maws / Eschan Portals)`
 - Campaign Ops
 - Missions `(San d'Oria / Bastok / Windurst / Zilart / CoP / TOAU / WOTG / ACP / MKD / ASA / SoA / RoV / TVR)`
 - Quests `(San d'Oria / Bastok / Windurst / Jeuno / Aht Urhgan / Crystal War / Outlands / Other / Abyssea / Adoulin / Coalition)`
-- Key items `(Permenant / Maps / Mounts / Claim Slips / Job KIs)`
+- Key items `(Permenant / Maps / Mounts / Claim Slips / Job KIs / Active Effects / Atmacite levels)`
 - Magic Spells `(White Magic / Black Magic / Summoner Pacts / Ninjutsu / Bard Songs / Blue Magic / Trusts)`
 - leveling related `(Merit / Job points / Master levels / Fishing Skill / Crafting Skill / Wing Skill)`
 
@@ -103,3 +103,4 @@ the menu will only show missing items like quests,key items, spells, home points
 - 0.14.3 - Added `//xic showexcluded` command to toggle hide/show hidden RoEs (not shown in game) and excluded Titles (which are impossible to obtain).
 - 0.15.0 - Added Sheol ABC, Eschan Portal, Telepoints, Excluded crafting shield KIs by default.
 - 0.16.0 - Added Vorseals
+- 0.16.3 - UI Enhancement / UI Scaling
