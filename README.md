@@ -5,7 +5,7 @@
 | `//xic help` | print help in chatlog |
 | `//xic hide` | hide the UI |
 | `//xic show` | show the UI |
-| `//xic scale` | changes the scale of UI `defailt: 1` |
+| `//xic scale <number>` | changes the scale of UI `defailt: 1`, eg: `//xic scale 0.75` |
 | `//xic showcompleted` | toggle show-completed-items on/off `Default:false` |
 | `//xic showexcluded` | toggle show hidden Titles and RoE and Crafting Shield KI on/off `Default:false` |
 | `//xic copy` | copy current tab to clipboard |
