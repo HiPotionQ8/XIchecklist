@@ -1,6 +1,6 @@
 _addon.name     = 'xichecklist'
 _addon.author   = 'Anokata'
-_addon.version  = '0.16.2'
+_addon.version  = '0.16.3'
 _addon.commands = {'xichecklist', 'xic'}
 
 require('sets')
@@ -11,6 +11,7 @@ require('chat')
 
 -- Defaults
 trackermenusettings = {}
+trackermenusettings.ui_scale = 1
 trackermenusettings.pos = {}
 trackermenusettings.pos.x = 50
 trackermenusettings.pos.y = 80
@@ -299,6 +300,7 @@ local cmds = {
 	log = S{'log'},
 	showcompleted = S{'showcompleted'},
 	showexcluded = S{'showexcluded'},
+	scale = S{'scale'},
 }
 
 function update_maintab()
@@ -419,7 +421,10 @@ windower.register_event('incoming chunk', function(id, data, modified, injected,
 		local parseddata = packets.parse('incoming', data)
 		if (parseddata['Mastery Rank'] > playertracker['mastery_rank']) then
 			if (playertracker['mastery_rank'] > 0) then
-				util.addon_log('Mastery Rank increase '..parseddata['Mastery Rank'])
+				util.addon_log('Mastery Rank increase: '..parseddata['Mastery Rank'])
+			end
+			if (parseddata['Mastery Rank'] < playertracker['mastery_rank']) then
+				util.addon_log('Mastery Rank decrease: '..parseddata['Mastery Rank'])
 			end
 			playertracker['mastery_rank'] = parseddata['Mastery Rank']
 			playertracker:save()
@@ -664,8 +669,6 @@ function xichecklist_updatetabs(tab)
 	append_items(tabs[5].items, check_keyitems('Magical Maps'))
 	append_header(5, 'Mounts (%d/%d)', playertracker['Mounts_completed'], playertracker['Mounts_total'])
 	append_items(tabs[5].items, check_keyitems('Mounts'))
-	append_header(5, 'Claim Slips (%d/%d)', playertracker['Claim_Slips_completed'], playertracker['Claim_Slips_total'])
-	append_items(tabs[5].items, check_keyitems('Claim Slips'))
 	append_header(5, 'Active Effects (%d/%d)', playertracker['Active_Effects_completed'], playertracker['Active_Effects_total'])
 	append_items(tabs[5].items, check_keyitems('Active Effects'))
 	append_header(5, 'Voidwatch Key Items (%d/%d)', playertracker['Voidwatch_completed'], playertracker['Voidwatch_total'])
@@ -673,24 +676,26 @@ function xichecklist_updatetabs(tab)
 	append_header(5, 'Atmacite Levels (%d/%d)', playertracker['atmacite_completed'], playertracker['atmacite_total'])
 	append_addonhelp(5, 'You must talk to any \\cs(255,255,255)Atmacite Refiner\\cr \\cs(50,150,255)(Menu: Enrich Atmas)\\cr', playertracker.talk_to_npc['atmacite_refiner'])
 	append_items(tabs[5].items, tab_logs.atmacite)
+	append_header(5, 'Claim Slips (%d/%d)', playertracker['Claim_Slips_completed'], playertracker['Claim_Slips_total'])
+	append_items(tabs[5].items, check_keyitems('Claim Slips'))
 	
 	-- log spells and trusts
 	append_header(6, 'White Magic (%d/%d)', playertracker['WhiteMagic_completed'], playertracker['WhiteMagic_total'])
-	append_items(tabs[6].items, check_playerspells('WhiteMagic'))
+	append_items(tabs[6].items, log_spells('WhiteMagic'))
 	append_header(6, 'Black Magic (%d/%d)', playertracker['BlackMagic_completed'], playertracker['BlackMagic_total'])
-	append_items(tabs[6].items, check_playerspells('BlackMagic'))
+	append_items(tabs[6].items, log_spells('BlackMagic'))
 	append_header(6, 'Summoner Pacts (%d/%d)', playertracker['SummonerPact_completed'], playertracker['SummonerPact_total'])
-	append_items(tabs[6].items, check_playerspells('SummonerPact'))
+	append_items(tabs[6].items, log_spells('SummonerPact'))
 	append_header(6, 'Ninjutsu (%d/%d)', playertracker['Ninjutsu_completed'], playertracker['Ninjutsu_total'])
-	append_items(tabs[6].items, check_playerspells('Ninjutsu'))
+	append_items(tabs[6].items, log_spells('Ninjutsu'))
 	append_header(6, 'Bard Songs (%d/%d)', playertracker['BardSong_completed'], playertracker['BardSong_total'])
-	append_items(tabs[6].items, check_playerspells('BardSong'))
+	append_items(tabs[6].items, log_spells('BardSong'))
 	append_header(6, 'Blue Magic (%d/%d)', playertracker['BlueMagic_completed'], playertracker['BlueMagic_total'])
-	append_items(tabs[6].items, check_playerspells('BlueMagic'))
+	append_items(tabs[6].items, log_spells('BlueMagic'))
 	append_header(6, 'Geomancy (%d/%d)', playertracker['Geomancy_completed'], playertracker['Geomancy_total'])
-	append_items(tabs[6].items, check_playerspells('Geomancy'))
+	append_items(tabs[6].items, log_spells('Geomancy'))
 	append_header(6, 'Trust Magic (%d/%d)', playertracker['Trust_completed'], playertracker['Trust_total'])
-	append_items(tabs[6].items, check_playerspells('Trust'))
+	append_items(tabs[6].items, log_spells('Trust'))
 	
 	-- log warps
 	append_header(7, 'Home Points (%d/%d)', playertracker['homepoints_completed'], playertracker['homepoints_total'])
@@ -805,7 +810,7 @@ function check_keyitems(keyitemtype)
 				obtained = obtained + 1
 				completion = true
 			end
-			table.insert(output_list, util.list_item(keyitemtype, keyitem.en, completion))
+			table.insert(output_list, util.list_item(nil, keyitem.en, completion))
 		end
 	end
 	playertracker[util.cleanspaces(keyitemtype)..'_completed'] = obtained
@@ -813,7 +818,7 @@ function check_keyitems(keyitemtype)
 	return output_list
 end
 
-function check_playerspells(spelltype)
+function log_spells(spelltype)
 	local output_list = {}
 	local spells_exclusions = require('maps/spells_exclusions')
 	local playerspells = windower.ffxi.get_spells()
@@ -827,7 +832,7 @@ function check_playerspells(spelltype)
 				obtained = obtained + 1
 				completion = true
 			end
-			table.insert(output_list, util.list_item(spelltype, spell.en, completion))
+			table.insert(output_list, util.list_item(nil, spell.en, completion))
 		end
 	end
 	playertracker[spelltype..'_completed'] = obtained
@@ -868,78 +873,6 @@ function check_exp()
 end
 
 draw()
-
--------------------------------------------------
-windower.register_event('mouse', function(type, x, y, delta, blocked)
-	if (ui:visible() == false) then return end
-    local px, py = ui:pos()
-    local items = tabs[active_tab].items
-    local count = #items
-	-- get win_width
-	if (not win_width) then
-		win_width = 0
-		for i,tab in ipairs(tabs) do
-			tab_width = #tab.name * CHAR_WIDTH *1.5
-			win_width = win_width + tab_width
-		end
-	end
-	-- save new UI pos if changed
-	if (px ~= trackermenusettings.pos.x) and (py ~= trackermenusettings.pos.y) then
-		trackermenusettings.pos.x = px
-		trackermenusettings.pos.y = py
-		trackermenusettings:save()
-	end
-    -- Tab Click
-	if type == 1 then
-		local tab_x = px + PADDING
-		local tab_y = py + PADDING
-		for i, tab in ipairs(tabs) do
-			local label = (i == active_tab and '['..tab.name..'] ' or ' '..tab.name..'  ')
-			local width = #label * CHAR_WIDTH + i*2
-			if inside(x, y, tab_x, tab_y, width, LINE_HEIGHT) then
-				active_tab = i
-				selected = 1
-				scroll = 0
-				draw()
-				return true
-			end
-			tab_x = tab_x + width
-		end
-	end
-    -- LIST CLICK
-    --[[
-	if type == 1 then
-        local list_y = py + PADDING + LINE_HEIGHT * 2
-
-        for i = 1, VISIBLE_ROWS do
-            local idx = i + scroll
-            local row_y = list_y + (i - 1) * LINE_HEIGHT
-
-            if inside(x, y, px, row_y, win_width, LINE_HEIGHT) then
-                if items[idx] then
-                    selected = idx
-                    clamp_scroll(count)
-                    draw()
-                    return true
-                end
-            end
-        end
-    end]]
-	--- mouse scroll up down
-	if delta and delta ~= 0 then
-		--if inside(x, y, px, py, win_width, (VISIBLE_ROWS + 4)) then
-			if delta > 0 then
-				selected = math.max(1, selected - 1)
-				clamp_scroll(count)
-			else
-				selected = math.min(count, selected + 1)
-				clamp_scroll(count)
-			end
-			draw()
-			return true
-		--end
-	end
-end)
 
 windower.register_event('addon command', function(...)
 	local quests_location = S{'sandoria', 'bastok', 'windurst', 'jeuno', 'ahturhgan', 'crystalwar', 'outlands', 'other', 'abyssea', 'adoulin', 'coalition', 'sandoriamissions', 'bastokmissions', 'windurstmissions', 'zilartmissions', 'ahturhganmissions', 'wotgmissions', 'copmissions', 'acpmissions', 'mkdmissions', 'asamissions', 'soamissions', 'rovmissions', 'tvrmissions'}
@@ -990,6 +923,18 @@ windower.register_event('addon command', function(...)
 	elseif cmds.copy:contains(arg[1]) then
 		windower.copy_to_clipboard(util.table_to_clipboard(tabs[active_tab].items))
 		windower.add_to_chat(100, 'Copy to clipboard')
+	elseif cmds.scale:contains(arg[1]) then
+		NEW_UISCALE 	= tonumber(arg[2]) or 1
+		FONT_SIZE		= (FONT_SIZE/UI_SCALE) * NEW_UISCALE
+		LINE_HEIGHT		= (LINE_HEIGHT/UI_SCALE) * NEW_UISCALE
+		PADDING			= (PADDING/UI_SCALE) * NEW_UISCALE
+		CHAR_WIDTH		= (FONT_SIZE/(2*NEW_UISCALE)) * NEW_UISCALE
+		UI_SCALE = NEW_UISCALE
+		ui:size(FONT_SIZE)
+		ui:pad(PADDING)
+		trackermenusettings.ui_scale = NEW_UISCALE
+		trackermenusettings:save()
+		util.addon_log('UI Scale: '..trackermenusettings.ui_scale)
 	elseif cmds.log:contains(arg[1]) then
 		if (arg[2]) then
 			arg[2] = arg[2]:lower()

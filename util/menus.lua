@@ -67,7 +67,7 @@ function menus_util.handle_op_warps(parseddata)
 			menus_util.add_outpost(key)
 		end
 	end
-	playertracker.talk_to_npc['outpostnpc'] = true
+	playertracker.talk_to_npc.outpostnpc = true
 	playertracker:save()
 end
 
@@ -100,20 +100,19 @@ function menus_util.handle_chatnachoq(parseddata)
 	local menu = parseddata['Menu Parameters']
 	local mazes = menu:unpack('I', 13)
 	playertracker['mmm_mazecount'] = mazes
-	playertracker.talk_to_npc['chatnachoq'] = true
+	playertracker.talk_to_npc.chatnachoq = true
 	playertracker:save()
 	util.addon_log('Maze count: ' .. mazes)
 end
 
 function menus_util.handle_protowaypoint(parseddata)
 	local menu = parseddata['Menu Parameters']
-	--subdata = menu:sub(0x1C+1, 0x1E+1)
 	for key, name in pairs(menumaps.protowaypoints) do
 		if (util.has_bit(menu, key)) then
 			menus_util.add_protowaypoint(key)
 		end
 	end
-	playertracker.talk_to_npc['protowaypoint'] = true
+	playertracker.talk_to_npc.protowaypoint = true
 	playertracker:save()
 end
 
@@ -148,13 +147,13 @@ function menus_util.handle_burrowsnpc(parseddata)
 		or (menu_current['zoneid'] == 120 and menu_current['Option Index'] == 14)) then
 		map_name = 'Sauromugue_Champaign'
 		menus_util.handle_sauromugueburrowsmenu(map_name, parseddata['Menu Parameters'])
-		playertracker.talk_to_npc['meeble_sauromugue'] = true
+		playertracker.talk_to_npc.meeble_sauromugue = true
 		playertracker:save()
 	elseif ((menu_current['zoneid'] == 244 and menu_current['_unknown1'] == 2) -- Upper Jeuno / Batallia Menu
 			or (menu_current['zoneid'] == 105 and menu_current['Option Index'] == 14)) then
 		map_name = 'Batallia_Downs'
 		menus_util.handle_batalliaburrowsmenu(map_name, parseddata['Menu Parameters'])
-		playertracker.talk_to_npc['meeble_batallia'] = true
+		playertracker.talk_to_npc.meeble_batallia = true
 		playertracker:save()
 	end
 end
@@ -214,7 +213,7 @@ function menus_util.handle_katsunaga(parseddata)
 				end
 			end
 		end
-		playertracker.talk_to_npc['katsunaga'] = true
+		playertracker.talk_to_npc.katsunaga = true
 		playertracker:save()
 	end
 end
@@ -259,7 +258,7 @@ function menus_util.handle_atmacitenpc(parseddata)
 				playertracker.atmacite_levels[tostring(key)] = atmacite_levels[key]
 			end
 		end
-		playertracker.talk_to_npc['atmacite_refiner'] = true
+		playertracker.talk_to_npc.atmacite_refiner = true
 		playertracker:save()
 	end
 end
@@ -286,7 +285,7 @@ function menus_util.handle_chocobostablenpc(parseddata)
 		local winglevel = string.byte(parseddata['Menu Parameters'], 5)
 		if (winglevel > playertracker['wingskill_completed']) then
 			playertracker['wingskill_completed'] = winglevel
-			playertracker.talk_to_npc['chocobokid'] = true
+			playertracker.talk_to_npc.chocobokid = true
 			playertracker:save()
 			util.addon_log('Wing Skill updated: '..winglevel)
 		end
@@ -313,7 +312,6 @@ end
 function menus_util.add_title(id)
 	if (not (playertracker.titles[tostring(id)] == true)) then
 		playertracker.titles[tostring(id)] = true
-		--playertracker:save()
 		util.addon_log('Title added: ' .. res.titles[id].en)
 	end
 end
@@ -328,7 +326,6 @@ function menus_util.log_titles()
 		local completion = false
 		local obtainmethod = ''
 		if (titles_howtoobtain[title.en]) then
-			--obtainmethod = '\\cs(255,255,255) [' .. titles_howtoobtain[title.en] .. ']\\cr'
 			obtainmethod = titles_howtoobtain[title.en]
 		end
 		if (playertracker.titles[tostring(key)] == true) then
@@ -408,7 +405,7 @@ function menus_util.log_sheolgaol()
 			local venglevel = playertracker.sheolgaol[tostring(optionidx)][tostring(byteidx)] or 0
 			local completion = false
 			if venglevel == 25 then completion = true end
-			table.insert(output_list, util.list_item('ShelGaol', 'V'..venglevel..' '..name, completion))
+			table.insert(output_list, util.list_item(nil, 'V'..venglevel..' '..name, completion))
 			complete = complete+venglevel
 		end
 	end

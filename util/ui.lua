@@ -1,14 +1,16 @@
 texts = require('texts')
 -- UI CONSTANTS
-FONT_SIZE    = 12
-LINE_HEIGHT  = 16
-PADDING      = 8
-CHAR_WIDTH   = 8
-VISIBLE_ROWS = 15
+UI_SCALE		= tonumber(trackermenusettings.ui_scale) or 1
+FONT_SIZE		= 12 * UI_SCALE
+LINE_HEIGHT		= 16 * UI_SCALE
+PADDING			= 8 * UI_SCALE
+--CHAR_WIDTH		= 6 * UI_SCALE
+CHAR_WIDTH		= (FONT_SIZE/(2*UI_SCALE)) * UI_SCALE
+VISIBLE_ROWS	= 15
 -- UI WINDOW STATE
-active_tab = 1
-scroll     = 0
-selected   = 1
+active_tab		= 1
+scroll			= 0
+selected		= 1
 -- UI DATA
 tabs = {
     {
@@ -61,7 +63,7 @@ tabs = {
 ui = texts.new('', {
     pos = { x = trackermenusettings.pos.x, y = trackermenusettings.pos.y },
     text = {
-        font = 'Consolas',
+        font = 'Arial',
         size = FONT_SIZE,
         red = 255, green = 255, blue = 255,
     },
@@ -168,3 +170,75 @@ function draw()
 	ui:text(text)
 	ui:pos(trackermenusettings.pos.x, trackermenusettings.pos.y)
 end
+
+-------------------------------------------------
+windower.register_event('mouse', function(type, x, y, delta, blocked)
+	if (ui:visible() == false) then return end
+    local px, py = ui:pos()
+    local items = tabs[active_tab].items
+    local count = #items
+	-- get win_width
+	if (not win_width) then
+		win_width = 0
+		for i,tab in ipairs(tabs) do
+			tab_width = #tab.name * CHAR_WIDTH *1.5
+			win_width = win_width + tab_width
+		end
+	end
+	-- save new UI pos if changed
+	if (px ~= trackermenusettings.pos.x) and (py ~= trackermenusettings.pos.y) then
+		trackermenusettings.pos.x = px
+		trackermenusettings.pos.y = py
+		trackermenusettings:save()
+	end
+    -- Tab Click
+	if type == 1 then
+		local tab_x = px + PADDING
+		local tab_y = py + PADDING
+		for i, tab in ipairs(tabs) do
+			local label = (i == active_tab and '['..tab.name..'] ' or ' '..tab.name..'  ')
+			local width = (#label * CHAR_WIDTH) + (i*2 * UI_SCALE)
+			if inside(x, y, tab_x, tab_y, width, LINE_HEIGHT) then
+				active_tab = i
+				selected = 1
+				scroll = 0
+				draw()
+				return true
+			end
+			tab_x = tab_x + width
+		end
+	end
+    -- LIST CLICK
+    --[[
+	if type == 1 then
+        local list_y = py + PADDING + LINE_HEIGHT * 2
+
+        for i = 1, VISIBLE_ROWS do
+            local idx = i + scroll
+            local row_y = list_y + (i - 1) * LINE_HEIGHT
+
+            if inside(x, y, px, row_y, win_width, LINE_HEIGHT) then
+                if items[idx] then
+                    selected = idx
+                    clamp_scroll(count)
+                    draw()
+                    return true
+                end
+            end
+        end
+    end]]
+	-- mouse scroll up down
+	if delta and delta ~= 0 then
+		if ui:hover(x, y) then
+			if delta > 0 then
+				selected = math.max(1, selected - 1)
+				clamp_scroll(count)
+			else
+				selected = math.min(count, selected + 1)
+				clamp_scroll(count)
+			end
+			draw()
+			return true
+		end
+	end
+end)
