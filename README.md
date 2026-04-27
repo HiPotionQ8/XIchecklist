@@ -42,7 +42,7 @@ will be saved in config so only need to do it once (or when need to update)
 - Sheol Gaol / Moogle Mastery Goals
 - Types of fish caught
 - Records of Eminence (RoE) 
-- Warps `(Home Points / Survival Guides / Waypoints / Outposts / Proto-Waypoints / Telepoints / Cavernous Maws / Eschan Portals)`
+- Warps `(Home Points / Survival Guides / Waypoints / Outposts / Proto-Waypoints / Telepoints / Cavernous Maws / Lycopodium / Eschan Portals)`
 - Campaign Ops
 - Missions `(San d'Oria / Bastok / Windurst / Zilart / CoP / TOAU / WOTG / ACP / MKD / ASA / SoA / RoV / TVR)`
 - Quests `(San d'Oria / Bastok / Windurst / Jeuno / Aht Urhgan / Crystal War / Outlands / Other / Abyssea / Adoulin / Coalition)`
@@ -104,3 +104,4 @@ the menu will only show missing items like quests,key items, spells, home points
 - 0.15.0 - Added Sheol ABC, Eschan Portal, Telepoints, Excluded crafting shield KIs by default.
 - 0.16.0 - Added Vorseals
 - 0.16.3 - UI Enhancement / UI Scaling
+- 0.16.4 - Added Lycopodium warps.
