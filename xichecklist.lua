@@ -1,6 +1,6 @@
 _addon.name     = 'xichecklist'
 _addon.author   = 'Anokata'
-_addon.version  = '0.16.3'
+_addon.version  = '0.16.4'
 _addon.commands = {'xichecklist', 'xic'}
 
 require('sets')
@@ -371,7 +371,7 @@ function update_maintab()
 	append_maintab('Survival Guides %d/%d', playertracker['survivalguides_completed'], playertracker['survivalguides_total'])
 	append_maintab('Waypoints %d/%d', playertracker['waypoints_completed'], playertracker['waypoints_total'])
 	append_maintab('Telepoints %d/%d', playertracker['telepoints_completed'], playertracker['telepoints_total'])
-	append_maintab('Cavernous Maws %d/%d', playertracker['cavernousmaws_completed'], playertracker['cavernousmaws_total'])
+	append_maintab('WoTG Unlocks %d/%d', playertracker['cavernousmaws_completed'], playertracker['cavernousmaws_total'])
 	append_maintab('Eschan Portals %d/%d', playertracker['eschanportals_completed'], playertracker['eschanportals_total'])
 	append_maintab('Outposts %d/%d', playertracker['outposts_completed'], playertracker['outposts_total'])
 	append_addonhelp(1, 'You must talk to any \\cs(255,255,255)Outpost Teleporter NPC\\cr @ \\cs(50,150,255)three nations\\cr.', playertracker.talk_to_npc['outpostnpc'])
@@ -423,9 +423,10 @@ windower.register_event('incoming chunk', function(id, data, modified, injected,
 			if (playertracker['mastery_rank'] > 0) then
 				util.addon_log('Mastery Rank increase: '..parseddata['Mastery Rank'])
 			end
-			if (parseddata['Mastery Rank'] < playertracker['mastery_rank']) then
-				util.addon_log('Mastery Rank decrease: '..parseddata['Mastery Rank'])
-			end
+			playertracker['mastery_rank'] = parseddata['Mastery Rank']
+			playertracker:save()
+		elseif (parseddata['Mastery Rank'] < playertracker['mastery_rank']) then
+			util.addon_log('Mastery Rank decrease: '..parseddata['Mastery Rank'])
 			playertracker['mastery_rank'] = parseddata['Mastery Rank']
 			playertracker:save()
 		end
@@ -706,7 +707,7 @@ function xichecklist_updatetabs(tab)
 	append_items(tabs[7].items, tab_logs.waypoints)
 	append_header(7, 'Telepoints (%d/%d)', playertracker['telepoints_completed'], playertracker['telepoints_total'])
 	append_items(tabs[7].items, tab_logs.telepoints)
-	append_header(7, 'Cavernous Maws (%d/%d)', playertracker['cavernousmaws_completed'], playertracker['cavernousmaws_total'])
+	append_header(7, 'WoTG Unlocks (%d/%d)', playertracker['cavernousmaws_completed'], playertracker['cavernousmaws_total'])
 	append_items(tabs[7].items, tab_logs.cavernousmaws)
 	append_header(7, 'Eschan Portals (%d/%d)', playertracker['eschanportals_completed'], playertracker['eschanportals_total'])
 	append_items(tabs[7].items, tab_logs.eschanportals)
@@ -969,7 +970,7 @@ windower.register_event('addon command', function(...)
 				util.log_tablog(tab_logs.outposts)
 				windower.add_to_chat(160, '=== Proto-Waypoints (%d/%d) ===':format(playertracker['protowaypoints_completed'], playertracker['protowaypoints_total']))
 				util.log_tablog(tab_logs.protowaypoints)
-				windower.add_to_chat(160, '=== Cavernous Maws (%d/%d) ===':format(playertracker['cavernousmaws_completed'], playertracker['cavernousmaws_total']))
+				windower.add_to_chat(160, '=== WoTG Unlocks (%d/%d) ===':format(playertracker['cavernousmaws_completed'], playertracker['cavernousmaws_total']))
 				util.log_tablog(tab_logs.cavernousmaws)
 				windower.add_to_chat(160, '=== Eschan Portals (%d/%d) ===':format(playertracker['eschanportals_completed'], playertracker['eschanportals_total']))
 				util.log_tablog(tab_logs.eschanportals)

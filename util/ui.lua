@@ -4,7 +4,6 @@ UI_SCALE		= tonumber(trackermenusettings.ui_scale) or 1
 FONT_SIZE		= 12 * UI_SCALE
 LINE_HEIGHT		= 16 * UI_SCALE
 PADDING			= 8 * UI_SCALE
---CHAR_WIDTH		= 6 * UI_SCALE
 CHAR_WIDTH		= (FONT_SIZE/(2*UI_SCALE)) * UI_SCALE
 VISIBLE_ROWS	= 15
 -- UI WINDOW STATE
@@ -177,14 +176,6 @@ windower.register_event('mouse', function(type, x, y, delta, blocked)
     local px, py = ui:pos()
     local items = tabs[active_tab].items
     local count = #items
-	-- get win_width
-	if (not win_width) then
-		win_width = 0
-		for i,tab in ipairs(tabs) do
-			tab_width = #tab.name * CHAR_WIDTH *1.5
-			win_width = win_width + tab_width
-		end
-	end
 	-- save new UI pos if changed
 	if (px ~= trackermenusettings.pos.x) and (py ~= trackermenusettings.pos.y) then
 		trackermenusettings.pos.x = px

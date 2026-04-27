@@ -393,31 +393,31 @@ return {
 		[7] = "Cavernous Maw #8", -- Should be WoTG
 		
 		[8]  = "Cavernous Maw #9", -- Should be WoTG
-		--[9]  = "Cavernous Maw #10",
-		--[10] = "Cavernous Maw #11",
-		--[11] = "Cavernous Maw #12",
-		--[12] = "Cavernous Maw #13",
-		--[13] = "Cavernous Maw #14",
-		--[14] = "Cavernous Maw #15", -- 
-		--[15] = "Cavernous Maw #16",
+		--[9]  = "WoTG Unknown #1",
+		--[10] = "WoTG Unknown #2",
+		--[11] = "WoTG Unknown #3",
+		--[12] = "WoTG Unknown #4",
+		[13] = "Lycopodium Batallia Downs [S]", -- confirmed
+		[14] = "Lycopodium North Gustaberg [S]", -- assumed
+		[15] = "Lycopodium Garlaige Citadel [S]", -- confirmed
+		
+		--[16] = "WoTG Unknown #5", -- ??
+		--[17] = "WoTG Unknown #6", -- ??
+		--[18] = "WoTG Unknown #7", -- ??
+		--[19] = "WoTG Unknown #8", -- ??
+		--[20] = "WoTG Unknown #9", -- ??
+		--[21] = "WoTG Unknown #10", -- ??
+		--[22] = "WoTG Unknown #11",
+		--[23] = "WoTG Unknown #12", -- ??
 		--
-		--[16] = "Cavernous Maw #17",
-		--[17] = "Cavernous Maw #18",
-		--[18] = "Cavernous Maw #19",
-		--[19] = "Cavernous Maw #20",
-		--[20] = "Cavernous Maw #21",
-		--[21] = "Cavernous Maw #22",
-		--[22] = "Cavernous Maw #23",
-		--[23] = "Cavernous Maw #24",
-		--
-		--[24] = "Cavernous Maw #25",
-		--[25] = "Cavernous Maw #26",
-		--[26] = "Cavernous Maw #27",
-		--[27] = "Cavernous Maw #28",
-		--[28] = "Cavernous Maw #29",
-		--[29] = "Cavernous Maw #30",
-		--[30] = "Cavernous Maw #31",
-		--[31] = "Cavernous Maw #32",
+		--[24] = "WoTG Unknown #13",
+		--[25] = "WoTG Unknown #14",
+		--[26] = "WoTG Unknown #15",
+		--[27] = "WoTG Unknown #16",
+		--[28] = "WoTG Unknown #17",
+		--[29] = "WoTG Unknown #18",
+		--[30] = "WoTG Unknown #19",
+		--[31] = "WoTG Unknown #20",
 	},
 	eschanportals = {
 		[0] = "Zi'tah #1",
