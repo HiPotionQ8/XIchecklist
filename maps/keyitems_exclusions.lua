@@ -242,7 +242,7 @@ return {
 		2066, -- Kupofried's corundum
 		2067, -- Kupofried's corundum
 	},
-	hidden = {
+	hidden = S{
 		-- old events no longer playable
 		3136, -- sheet of Shadow Lord tunes
 		3181, -- tentacle touching ticket

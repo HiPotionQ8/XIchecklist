@@ -1,4 +1,4 @@
-return {
+return T{
 	-- data provided from Darkdoom@discord & Dale@discord
     [1] = {id=1,name="First Step Forward",description="Speak to one of the following Records of Eminence guides: Rolandienne in Southern San d'Oria (G-10), Isakoth in Bastok Markets (E-11), Fhelm Jobeizat in Windurst Woods (J-10), Eternal Flame in Western Adoulin (H-11).",objcount=1,sparks=100,exp=300,cp=0,accolades=0,plaudits=0},
     [2] = {id=2,name="Vanquish One Enemy",description="Defeat one monster outside of a city. Make sure to equip the proper weapons and armor, have some food, and have Signet cast upon you before you venture out.",objcount=1,sparks=100,exp=500,cp=0,accolades=0,plaudits=0},
@@ -1571,4 +1571,4 @@ return {
     [4083] = {id=4083,name="Buff Allies (D)",description="Daily Objective: Buff a party member or alliance member other than yourself the requisite number of times.",objcount=20,sparks=300,exp=1500,cp=0,accolades=300,plaudits=0},
     [4084] = {id=4084,name="Heal for 500+ HP (D)",description="Daily Objective: Heal a party or alliance member other than yourself for 500 or more HP the requisite number of times.",objcount=30,sparks=300,exp=1500,cp=0,accolades=300,plaudits=0},
     [4086] = {id=4086,name="Unlocking Scenarios X",description="",objcount=0,sparks=0,exp=0,cp=0,accolades=0,plaudits=0},
-}, {"id", "name", "description", "objcount", "sparks", "exp", "cp", "accolades", "plaudits"}
+}

@@ -1,7 +1,7 @@
 _addon.name     = 'xichecklist'
-_addon.author   = 'Anokata'
-_addon.version  = '0.17.1'
-_addon.commands = {'xichecklist', 'xic'}
+_addon.author   = 'HiPotion'
+_addon.version  = '0.17.2'
+_addon.commands = {'xichecklist', 'xic', 'checklist', 'clist'}
 
 require('sets')
 packets = require('packets')
@@ -18,7 +18,6 @@ trackermenusettings.pos.y = 80
 trackermenusettings.visibility = true
 trackermenusettings.showcompleted = false -- true = display completed items listed in green
 trackermenusettings.showexcluded = false -- true = display hidden RoEs and excluded Titles and Crafting shield KIs
-trackermenusettings.chat_logroe = false -- true = display chat log when new RoE is completed (to track when a hidden RoE is completed)
 
 trackermenusettings = config.load(trackermenusettings)
 
@@ -176,7 +175,6 @@ defaultplayertracker = {
 	['vorseals_completed'] = 0,
 	['vorseals_total'] = 0,
 	titles = {}, -- {TitleId = true}
-	roe = {}, -- {RoeId = true}
 	outposts_unlocks = {}, -- {Menu Parameter Byte = true}
 	protowaypoints_unlocks = {}, -- {Menu Parameter Byte = true}
 	fishes_caught = {}, -- {Fish_ItemId = true}
@@ -315,6 +313,11 @@ function update_maintab()
 	append_maintab('Mastery Rank: %d', playertracker['mastery_rank'])
 	append_maintab('RoE %d/%d', playertracker['RoE_completed'], playertracker['RoE_total'])
 	append_maintab('Zones visited %d/%d', playertracker['zones_completed'], playertracker['zones_total'])
+	--append_maintab('Titles %d/%d', playertracker['Titles_completed'], playertracker['Titles_total'])
+	--append_maintab('Missions %d/%d', (playertracker['sandoriamissions_completed']+playertracker['bastokmissions_completed']+playertracker['windurstmissions_completed']+playertracker['zilartmissions_completed']+playertracker['copmissions_completed']+playertracker['ahturhganmissions_completed']+playertracker['wotgmissions_completed']+playertracker['acpmissions_completed']+playertracker['mkdmissions_completed']+playertracker['asamissions_completed']+playertracker['soamissions_completed']+playertracker['rovmissions_completed']+playertracker['tvrmissions_completed']+playertracker['campaign_completed']), (playertracker['sandoriamissions_total']+playertracker['bastokmissions_total']+playertracker['windurstmissions_total']+playertracker['zilartmissions_total']+playertracker['copmissions_total']+playertracker['ahturhganmissions_total']+playertracker['wotgmissions_total']+playertracker['acpmissions_total']+playertracker['mkdmissions_total']+playertracker['asamissions_total']+playertracker['soamissions_total']+playertracker['rovmissions_total']+playertracker['tvrmissions_total']+playertracker['campaign_total']))
+	--append_maintab('Quests %d/%d', (playertracker['bastok_completed']+playertracker['sandoria_completed']+playertracker['windurst_completed']+playertracker['jeuno_completed']+playertracker['ahturhgan_completed']+playertracker['crystalwar_completed']+playertracker['outlands_completed']+playertracker['other_completed']+playertracker['abyssea_completed']+playertracker['adoulin_completed']+playertracker['coalition_completed']), (playertracker['bastok_total']+playertracker['sandoria_total']+playertracker['windurst_total']+playertracker['jeuno_total']+playertracker['ahturhgan_total']+playertracker['crystalwar_total']+playertracker['outlands_total']+playertracker['other_total']+playertracker['abyssea_total']+playertracker['adoulin_total']+playertracker['coalition_total']))
+	--append_maintab('Magic %d/%d', (playertracker['WhiteMagic_completed']+playertracker['BlackMagic_completed']+playertracker['SummonerPact_completed']+playertracker['Ninjutsu_completed']+playertracker['BardSong_completed']+playertracker['BlueMagic_completed']+playertracker['Geomancy_completed']+playertracker['Trust_completed']), (playertracker['WhiteMagic_total']+playertracker['BlackMagic_total']+playertracker['SummonerPact_total']+playertracker['Ninjutsu_total']+playertracker['BardSong_total']+playertracker['BlueMagic_total']+playertracker['Geomancy_total']+playertracker['Trust_total']))
+	--append_maintab('Warps %d/%d', (playertracker['homepoints_completed']+playertracker['survivalguides_completed']+playertracker['waypoints_completed']+playertracker['telepoints_completed']+playertracker['cavernousmaws_completed']+playertracker['eschanportals_completed']+playertracker['outposts_completed']+playertracker['protowaypoints_completed']), (playertracker['homepoints_total']+playertracker['survivalguides_total']+playertracker['waypoints_total']+playertracker['telepoints_total']+playertracker['cavernousmaws_total']+playertracker['eschanportals_total']+playertracker['outposts_total']+playertracker['protowaypoints_total']))
 	
 	table.insert(tabs[1].items, '======= Story =======')
 	append_maintab('San d\'Oria Missions %d/%d', playertracker['sandoriamissions_completed'], playertracker['sandoriamissions_total'])
@@ -543,7 +546,7 @@ windower.register_event('incoming chunk', function(id, data, modified, injected,
 		local parseddata = packets.parse('incoming', data)
 		roe_data = roe_data .. parseddata['RoE Quest Bitfield'] -- the packet will be repeated three times, gather the data first
 		if (parseddata.Order == 3) then
-			roe_util.handle_roe_data(data)
+			tab_logs.roe = roe_util.log_roe(roe_data)
 			roe_data = nil -- reset
 			xichecklist_updatetabs('roe')
 		end
@@ -769,12 +772,13 @@ function xichecklist_updatetabs(tab)
 	if (tab == 'roe') then
 		tabs[10].items = {}
 		append_header(10, 'RoE (%d/%d)', playertracker['RoE_completed'], playertracker['RoE_total'])
-		append_items(tabs[10].items, roe_util.log_roe())
+		append_items(tabs[10].items, tab_logs.roe)
 	end
 	
 	if (tab == 'battlecontent') then
 		tabs[11].items = {}
 		-- log MMM
+		append_header(11, 'MMM Maze count %d', playertracker['mmm_mazecount'])
 		append_header(11, 'MMM Vouchers Unlocks (%d/%d)', playertracker['mmmvouchers_completed'], playertracker['mmmvouchers_total'])
 		append_items(tabs[11].items, tab_logs.mmmvouchers)
 		append_header(11, 'MMM Runes Unlocks (%d/%d)', playertracker['mmmrunes_completed'], playertracker['mmmrunes_total'])
@@ -805,16 +809,16 @@ function xichecklist_updatetabs(tab)
 	end
 end
 
-function check_keyitems(keyitemtype)
+function check_keyitems(category)
 	local output_list = {}
 	local keyitem_exclusions = require('maps/keyitems_exclusions')
 	local excluded = keyitem_exclusions.excluded
 	local hidden = keyitem_exclusions.hidden
-	if not trackermenusettings.showexcluded then hidden = S{} end
+	if trackermenusettings.showexcluded then hidden = S{} end
 	local playerkeyitems = windower.ffxi.get_key_items()
 	local total, obtained = 0, 0
 	for id, keyitem in pairs(res.key_items) do
-		if (keyitem.category == keyitemtype and (not excluded:contains(id)) and (not hidden:contains(id))) then
+		if keyitem.category == category and (not excluded:contains(id)) and (not hidden:contains(id)) then
 			total = total + 1
 			local completion = false
 			if table.find(playerkeyitems, id) then
@@ -825,8 +829,8 @@ function check_keyitems(keyitemtype)
 			table.insert(output_list, util.list_item(nil, keyitem.en, completion))
 		end
 	end
-	playertracker[util.cleanspaces(keyitemtype)..'_completed'] = obtained
-	playertracker[util.cleanspaces(keyitemtype)..'_total'] = total
+	playertracker[util.cleanspaces(category)..'_completed'] = obtained
+	playertracker[util.cleanspaces(category)..'_total'] = total
 	return output_list
 end
 
