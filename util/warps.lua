@@ -39,11 +39,14 @@ function warps_util.log_visitedzones(data)
 	for index, zone in pairs(res.zones) do
 		total = total+1
 		local completion = false
-		if util.has_bit(subdata, zone.id) and not zones_exclusion:contains(zone.id) then -- eliminate jail even if visited before
+		if zones_exclusion:contains(zone.id) then total=total-1 end
+		if util.has_bit(subdata, zone.id) and not zones_exclusion:contains(zone.id) then
 			complete = complete+1
 			completion = true
 		end
-		table.insert(output_list, util.list_item(nil, zone.en, completion))
+		if not zones_exclusion:contains(zone.id) then
+			table.insert(output_list, util.list_item(nil, zone.en, completion))
+		end
 	end
 	playertracker.zones_completed = complete
 	playertracker.zones_total = total
