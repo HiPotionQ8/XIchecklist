@@ -105,4 +105,4 @@ the menu will only show missing items like quests,key items, spells, home points
 - 0.16.0 - Added Vorseals
 - 0.16.3 - UI Enhancement / UI Scaling
 - 0.16.4 - Added Lycopodium warps.
-- 0.17.0 - Added 'Zones Visited' under Warps tab (or //xic log zones)
+- 0.17.0 - Added 'Zones Visited' under Warps tab (or `//xic log zones`)
