@@ -1,6 +1,6 @@
 _addon.name     = 'xichecklist'
 _addon.author   = 'Anokata'
-_addon.version  = '0.16.4'
+_addon.version  = '0.17.0'
 _addon.commands = {'xichecklist', 'xic'}
 
 require('sets')
@@ -116,6 +116,8 @@ defaultplayertracker = {
 	['Masterlevels_total'] = 1100,
 	['Masterlevels_highest'] = 0,
 	-- Warps
+	['zones_completed'] = 0,
+	['zones_total'] = 0,
 	['homepoints_completed'] = 0,
 	['homepoints_total'] = 0,
 	['survivalguides_completed'] = 0,
@@ -257,6 +259,7 @@ defaulttab_logs = {
 		tvrmissions = {},
 	},
 	atmacite = {},
+	zones = {},
 	homepoints = {},
 	survivalguides = {},
 	waypoints = {},
@@ -307,12 +310,13 @@ function update_maintab()
 	
 	tabs[1].items = {}
 	
-	append_maintab('Mastery Rank: %d', playertracker['mastery_rank'])
 	append_maintab('Checklist Progress %d/%d', util.totalpoints())
-	table.insert(tabs[1].items, '======= RoE =======')
+	table.insert(tabs[1].items, '======= General =======')
+	append_maintab('Mastery Rank: %d', playertracker['mastery_rank'])
 	append_maintab('RoE %d/%d', playertracker['RoE_completed'], playertracker['RoE_total'])
+	append_maintab('Zones visited %d/%d', playertracker['zones_completed'], playertracker['zones_total'])
 	
-	table.insert(tabs[1].items, '======= Quests & Ops =======')
+	table.insert(tabs[1].items, '======= Story =======')
 	append_maintab('San d\'Oria Missions %d/%d', playertracker['sandoriamissions_completed'], playertracker['sandoriamissions_total'])
 	append_maintab('Bastok Missions %d/%d', playertracker['bastokmissions_completed'], playertracker['bastokmissions_total'])
 	append_maintab('Windurst Missions %d/%d', playertracker['windurstmissions_completed'], playertracker['windurstmissions_total'])
@@ -416,7 +420,12 @@ end
 
 windower.register_event('incoming chunk', function(id, data, modified, injected, blocked)
 	if injected then return end
-
+	
+	-- do visited zones
+	if (id == 0x008) then
+		tab_logs.zones = warps_util.log_visitedzones(data)
+	end
+	
 	if id == 0x01B then
 		local parseddata = packets.parse('incoming', data)
 		if (parseddata['Mastery Rank'] > playertracker['mastery_rank']) then
@@ -717,6 +726,8 @@ function xichecklist_updatetabs(tab)
 	append_header(7, 'Proto-Waypoints (%d/%d)', playertracker['protowaypoints_completed'], playertracker['protowaypoints_total'])
 	append_addonhelp(7, 'You must talk to any \\cs(255,255,255)Proto-Waypoint\\cr.', playertracker.talk_to_npc['protowaypoint'])
 	append_items(tabs[7].items, tab_logs.protowaypoints)
+	append_header(7, 'Zones visited (%d/%d)', playertracker['zones_completed'], playertracker['zones_total'])
+	append_items(tabs[7].items, tab_logs.zones)
 	
 	-- Log Job Points Spent
 	check_exp()
@@ -959,6 +970,9 @@ windower.register_event('addon command', function(...)
 			elseif arg[2] == 'meeble' then
 				windower.add_to_chat(160, '=== Meeble Burrows (%d/%d) ===':format(playertracker['meebleburrows_completed'], playertracker['meebleburrows_total']))
 				util.log_tablog(tab_logs.meebleburrows)
+			elseif arg[2] == 'zones' then
+				windower.add_to_chat(160, '=== Zones (%d/%d) ===':format(playertracker['zones_completed'], playertracker['zones_total']))
+				util.log_tablog(tab_logs.zones)
 			elseif arg[2] == 'warps' then
 				windower.add_to_chat(160, '=== Home Points (%d/%d) ===':format(playertracker['homepoints_completed'], playertracker['homepoints_total']))
 				util.log_tablog(tab_logs.homepoints)
@@ -1054,7 +1068,7 @@ windower.register_event('addon command', function(...)
 		else
 			windower.add_to_chat(160, 'Must specify category')
 			windower.add_to_chat(160, 'Example: //xic log '..string.color('titles', 221))
-			windower.add_to_chat(160, 'Available categories: main summary titles monstrosity mmm meeble warps fish odyssey missions quests')
+			windower.add_to_chat(160, 'Available categories: main summary titles monstrosity mmm meeble zones warps fish odyssey missions quests')
 			windower.add_to_chat(160, 'sandoria bastok windurst jeuno ahturhgan crystalwar outlands other abyssea adoulin coalition campaign')
 			windower.add_to_chat(160, 'sandoriamissions bastokmissions windurstmissions zilartmissions ahturhganmissions wotgmissions copmissions acpmissions mkdmissions asamissions soamissions rovmissions tvrmissions')
 		end

@@ -340,7 +340,7 @@ return {
 		[41] = 'Marjami Ravine',
 		[42] = 'Marjami Ravine',
 		[43] = 'Marjami Ravine',
-		[44] = 'Marjami Ravine',
+		[44] = 'Marjami Ravine #3', -- confirmed
 		[45] = 'Marjami Ravine',
 		[46] = 'Kamihr Drifts',
 		[47] = 'Kamihr Drifts',
