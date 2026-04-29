@@ -40,9 +40,9 @@ function quest_util.log_quests(quest_type)
 		quest_type = 'campaign'
 	end
 	if (quest_type == 'campaign') then
-		if not quests.completed['campaign1'] then return false end
-		if not quests.completed['campaign2'] then return false end
-		quests.completed[quest_type] = quests.completed['campaign1'] .. quests.completed['campaign2']
+		if not quests.completed.campaign1 then return false end
+		if not quests.completed.campaign2 then return false end
+		quests.completed[quest_type] = quests.completed.campaign1 .. quests.completed.campaign2
 	end
     local complete,total = 0, 0
 	local output_list = {}

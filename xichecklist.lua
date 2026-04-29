@@ -1,6 +1,6 @@
 _addon.name     = 'xichecklist'
 _addon.author   = 'HiPotion'
-_addon.version  = '0.17.5'
+_addon.version  = '0.17.6'
 _addon.commands = {'xichecklist', 'xic', 'checklist', 'clist'}
 
 require('sets')
@@ -23,166 +23,166 @@ trackermenusettings = config.load(trackermenusettings)
 
 defaultplayertracker = {
 	-- most initial values are zero, to be updated by addon
-	['mastery_rank'] = 0,
+	mastery_rank = 0,
 	-- Missions
-	['bastokmissions_completed'] = 0,
-	['bastokmissions_total'] = 0,
-	['sandoriamissions_completed'] = 0,
-	['sandoriamissions_total'] = 0,
-	['windurstmissions_completed'] = 0,
-	['windurstmissions_total'] = 0,
-	['zilartmissions_completed'] = 0,
-	['zilartmissions_total'] = 0,
-	['copmissions_completed'] = 0,
-	['copmissions_total'] = 0,
-	['ahturhganmissions_completed'] = 0,
-	['ahturhganmissions_total'] = 0,
-	['wotgmissions_completed'] = 0,
-	['wotgmissions_total'] = 0,
-	['acpmissions_completed'] = 0,
-	['acpmissions_total'] = 0,
-	['mkdmissions_completed'] = 0,
-	['mkdmissions_total'] = 0,
-	['asamissions_completed'] = 0,
-	['asamissions_total'] = 0,
-	['soamissions_completed'] = 0,
-	['soamissions_total'] = 0,
-	['rovmissions_completed'] = 0,
-	['rovmissions_total'] = 0,
-	['tvrmissions_completed'] = 0,
-	['tvrmissions_total'] = 0,
+	bastokmissions_completed = 0,
+	bastokmissions_total = 0,
+	sandoriamissions_completed = 0,
+	sandoriamissions_total = 0,
+	windurstmissions_completed = 0,
+	windurstmissions_total = 0,
+	zilartmissions_completed = 0,
+	zilartmissions_total = 0,
+	copmissions_completed = 0,
+	copmissions_total = 0,
+	ahturhganmissions_completed = 0,
+	ahturhganmissions_total = 0,
+	wotgmissions_completed = 0,
+	wotgmissions_total = 0,
+	acpmissions_completed = 0,
+	acpmissions_total = 0,
+	mkdmissions_completed = 0,
+	mkdmissions_total = 0,
+	asamissions_completed = 0,
+	asamissions_total = 0,
+	soamissions_completed = 0,
+	soamissions_total = 0,
+	rovmissions_completed = 0,
+	rovmissions_total = 0,
+	tvrmissions_completed = 0,
+	tvrmissions_total = 0,
 	-- Quests
-	['bastok_completed'] = 0,
-	['bastok_total'] = 0,
-	['sandoria_completed'] = 0,
-	['sandoria_total'] = 0,
-	['windurst_completed'] = 0,
-	['windurst_total'] = 0,
-	['jeuno_completed'] = 0,
-	['jeuno_total'] = 0,
-	['ahturhgan_completed'] = 0,
-	['ahturhgan_total'] = 0,
-	['crystalwar_completed'] = 0,
-	['crystalwar_total'] = 0,
-	['outlands_completed'] = 0,
-	['outlands_total'] = 0,
-	['other_completed'] = 0,
-	['other_total'] = 0,
-	['abyssea_completed'] = 0,
-	['abyssea_total'] = 0,
-	['adoulin_completed'] = 0,
-	['adoulin_total'] = 0,
-	['coalition_completed'] = 0,
-	['coalition_total'] = 0,
-	['campaign_completed'] = 0,
-	['campaign_total'] = 0,
+	bastok_completed = 0,
+	bastok_total = 0,
+	sandoria_completed = 0,
+	sandoria_total = 0,
+	windurst_completed = 0,
+	windurst_total = 0,
+	jeuno_completed = 0,
+	jeuno_total = 0,
+	ahturhgan_completed = 0,
+	ahturhgan_total = 0,
+	crystalwar_completed = 0,
+	crystalwar_total = 0,
+	outlands_completed = 0,
+	outlands_total = 0,
+	other_completed = 0,
+	other_total = 0,
+	abyssea_completed = 0,
+	abyssea_total = 0,
+	adoulin_completed = 0,
+	adoulin_total = 0,
+	coalition_completed = 0,
+	coalition_total = 0,
+	campaign_completed = 0,
+	campaign_total = 0,
 	-- Key items
-	['Permanent_Key_Items_completed'] = 0,
-	['Permanent_Key_Items_total'] = 0,
-	['Magical_Maps_completed'] = 0,
-	['Magical_Maps_total'] = 0,
-	['Mounts_completed'] = 0,
-	['Mounts_total'] = 0,
-	['Claim_Slips_completed'] = 0,
-	['Claim_Slips_total'] = 0,
-	['Active_Effects_completed'] = 0,
-	['Active_Effects_total'] = 0,
-	['Voidwatch_completed'] = 0,
-	['Voidwatch_total'] = 0,
+	Permanent_Key_Items_completed = 0,
+	Permanent_Key_Items_total = 0,
+	Magical_Maps_completed = 0,
+	Magical_Maps_total = 0,
+	Mounts_completed = 0,
+	Mounts_total = 0,
+	Claim_Slips_completed = 0,
+	Claim_Slips_total = 0,
+	Active_Effects_completed = 0,
+	Active_Effects_total = 0,
+	Voidwatch_completed = 0,
+	Voidwatch_total = 0,
 	-- Magic
-	['WhiteMagic_completed'] = 0,
-	['WhiteMagic_total'] = 0,
-	['BlackMagic_completed'] = 0,
-	['BlackMagic_total'] = 0,
-	['SummonerPact_completed'] = 0,
-	['SummonerPact_total'] = 0,
-	['Ninjutsu_completed'] = 0,
-	['Ninjutsu_total'] = 0,
-	['BardSong_completed'] = 0,
-	['BardSong_total'] = 0,
-	['BlueMagic_completed'] = 0,
-	['BlueMagic_total'] = 0,
-	['Geomancy_completed'] = 0,
-	['Geomancy_total'] = 0,
-	['Trust_completed'] = 0,
-	['Trust_total'] = 0,
+	WhiteMagic_completed = 0,
+	WhiteMagic_total = 0,
+	BlackMagic_completed = 0,
+	BlackMagic_total = 0,
+	SummonerPact_completed = 0,
+	SummonerPact_total = 0,
+	Ninjutsu_completed = 0,
+	Ninjutsu_total = 0,
+	BardSong_completed = 0,
+	BardSong_total = 0,
+	BlueMagic_completed = 0,
+	BlueMagic_total = 0,
+	Geomancy_completed = 0,
+	Geomancy_total = 0,
+	Trust_completed = 0,
+	Trust_total = 0,
 	-- Exp
-	['Meritpoints_completed'] = 0,
-	['Meritpoints_total'] = 919,
-	['Jobpoints_completed'] = 0,
-	['Jobpoints_total'] = 22,
-	['Masterlevels_completed'] = 0,
-	['Masterlevels_total'] = 1100,
-	['Masterlevels_highest'] = 0,
+	Meritpoints_completed = 0,
+	Meritpoints_total = 919,
+	Jobpoints_completed = 0,
+	Jobpoints_total = 22,
+	Masterlevels_completed = 0,
+	Masterlevels_total = 1100,
+	Masterlevels_highest = 0,
 	-- Warps
-	['zones_completed'] = 0,
-	['zones_total'] = 0,
-	['homepoints_completed'] = 0,
-	['homepoints_total'] = 0,
-	['survivalguides_completed'] = 0,
-	['survivalguides_total'] = 0,
-	['waypoints_completed'] = 0,
-	['waypoints_total'] = 0,
-	['telepoints_completed'] = 0,
-	['telepoints_total'] = 0,
-	['cavernousmaws_completed'] = 0,
-	['cavernousmaws_total'] = 9,
-	['lycopodium_completed'] = 0,
-	['lycopodium_total'] = 3,
-	['eschanportals_completed'] = 0,
-	['eschanportals_total'] = 0,
+	zones_completed = 0,
+	zones_total = 0,
+	homepoints_completed = 0,
+	homepoints_total = 0,
+	survivalguides_completed = 0,
+	survivalguides_total = 0,
+	waypoints_completed = 0,
+	waypoints_total = 0,
+	telepoints_completed = 0,
+	telepoints_total = 0,
+	cavernousmaws_completed = 0,
+	cavernousmaws_total = 9,
+	lycopodium_completed = 0,
+	lycopodium_total = 3,
+	eschanportals_completed = 0,
+	eschanportals_total = 0,
 	-- Monstrosity
-	['Racejobinstinct_completed'] = 0,
-	['Racejobinstinct_total'] = 0,
-	['MonsterLevels_completed'] = 0,
-	['MonsterLevels_total'] = 0,
-	['MonsterVariants_completed'] = 0,
-	['MonsterVariants_total'] = 0,
-	['MonsterInsincts_completed'] = 0,
-	['MonsterInsincts_total'] = 0,
+	Racejobinstinct_completed = 0,
+	Racejobinstinct_total = 0,
+	MonsterLevels_completed = 0,
+	MonsterLevels_total = 0,
+	MonsterVariants_completed = 0,
+	MonsterVariants_total = 0,
+	MonsterInsincts_completed = 0,
+	MonsterInsincts_total = 0,
 	-- RoE
-	['RoE_completed'] = 0,
-	['RoE_total'] = 0,
+	RoE_completed = 0,
+	RoE_total = 0,
 	-- MMM
-	['mmmvouchers_completed'] = 0,
-	['mmmvouchers_total'] = 0,
-	['mmmrunes_completed'] = 0,
-	['mmmrunes_total'] = 0,
+	mmmvouchers_completed = 0,
+	mmmvouchers_total = 0,
+	mmmrunes_completed = 0,
+	mmmrunes_total = 0,
 	-- NPC Menus
-	['mmm_mazecount'] = 0,
-	['wingskill_completed'] = 0,
-	['wingskill_total'] = 100,
-	['Titles_completed'] = 0,
-	['Titles_total'] = 0,
-	['outposts_completed'] = 0,
-	['outposts_total'] = 0,
-	['protowaypoints_completed'] = 0,
-	['protowaypoints_total'] = 0,
-	['fishes_completed'] = 0,
-	['fishes_total'] = 164,
-	['meebleburrows_completed'] = 0,
-	['meebleburrows_total'] = 0,
-	['craftingskills_completed'] = 0,
-	['craftingskills_total'] = 790,
-	['atmacite_completed'] = 0,
-	['atmacite_total'] = 600,
-	['sheola_completed'] = 0,
-	['sheola_total'] = 0,
-	['sheolb_completed'] = 0,
-	['sheolb_total'] = 0,
-	['sheolc_completed'] = 0,
-	['sheolc_total'] = 0,
-	['sheolgaoltiers_completed'] = 0,
-	['sheolgaoltiers_total'] = 425,
-	['vorseals_completed'] = 0,
-	['vorseals_total'] = 0,
+	mmm_mazecount = 0,
+	wingskill_completed = 0,
+	wingskill_total = 100,
+	Titles_completed = 0,
+	Titles_total = 0,
+	outposts_completed = 0,
+	outposts_total = 0,
+	protowaypoints_completed = 0,
+	protowaypoints_total = 0,
+	fishes_completed = 0,
+	fishes_total = 164,
+	meebleburrows_completed = 0,
+	meebleburrows_total = 0,
+	craftingskills_completed = 0,
+	craftingskills_total = 790,
+	atmacite_completed = 0,
+	atmacite_total = 600,
+	sheola_completed = 0,
+	sheola_total = 0,
+	sheolb_completed = 0,
+	sheolb_total = 0,
+	sheolc_completed = 0,
+	sheolc_total = 0,
+	sheolgaoltiers_completed = 0,
+	sheolgaoltiers_total = 425,
+	vorseals_completed = 0,
+	vorseals_total = 0,
 	titles = {}, -- {TitleId = true}
 	outposts_unlocks = {}, -- {Menu Parameter Byte = true}
 	protowaypoints_unlocks = {}, -- {Menu Parameter Byte = true}
 	fishes_caught = {}, -- {Fish_ItemId = true}
 	meeble_completed = {
-		['Sauromugue_Champaign'] = {},
-		['Batallia_Downs'] = {},
+		Sauromugue_Champaign = {},
+		Batallia_Downs = {},
 	},
 	atmacite_levels = {},
 	sheolabc = { --['Option Index'] = {[menu byte index] = value,},
@@ -313,115 +313,115 @@ function update_maintab()
 	
 	append_maintab('Checklist Progress %d/%d', util.totalpoints())
 	table.insert(tabs[1].items, '======= General =======')
-	append_maintab('Mastery Rank: %d', playertracker['mastery_rank'])
-	append_maintab('RoE %d/%d', playertracker['RoE_completed'], playertracker['RoE_total'])
-	append_maintab('Zones visited %d/%d', playertracker['zones_completed'], playertracker['zones_total'])
-	append_maintab('Titles %d/%d', playertracker['Titles_completed'], playertracker['Titles_total'])
-	append_maintab('Missions %d/%d', (playertracker['sandoriamissions_completed']+playertracker['bastokmissions_completed']+playertracker['windurstmissions_completed']+playertracker['zilartmissions_completed']+playertracker['copmissions_completed']+playertracker['ahturhganmissions_completed']+playertracker['wotgmissions_completed']+playertracker['acpmissions_completed']+playertracker['mkdmissions_completed']+playertracker['asamissions_completed']+playertracker['soamissions_completed']+playertracker['rovmissions_completed']+playertracker['tvrmissions_completed']+playertracker['campaign_completed']), (playertracker['sandoriamissions_total']+playertracker['bastokmissions_total']+playertracker['windurstmissions_total']+playertracker['zilartmissions_total']+playertracker['copmissions_total']+playertracker['ahturhganmissions_total']+playertracker['wotgmissions_total']+playertracker['acpmissions_total']+playertracker['mkdmissions_total']+playertracker['asamissions_total']+playertracker['soamissions_total']+playertracker['rovmissions_total']+playertracker['tvrmissions_total']+playertracker['campaign_total']))
-	append_maintab('Quests %d/%d', (playertracker['bastok_completed']+playertracker['sandoria_completed']+playertracker['windurst_completed']+playertracker['jeuno_completed']+playertracker['ahturhgan_completed']+playertracker['crystalwar_completed']+playertracker['outlands_completed']+playertracker['other_completed']+playertracker['abyssea_completed']+playertracker['adoulin_completed']+playertracker['coalition_completed']), (playertracker['bastok_total']+playertracker['sandoria_total']+playertracker['windurst_total']+playertracker['jeuno_total']+playertracker['ahturhgan_total']+playertracker['crystalwar_total']+playertracker['outlands_total']+playertracker['other_total']+playertracker['abyssea_total']+playertracker['adoulin_total']+playertracker['coalition_total']))
-	append_maintab('Magic %d/%d', (playertracker['WhiteMagic_completed']+playertracker['BlackMagic_completed']+playertracker['SummonerPact_completed']+playertracker['Ninjutsu_completed']+playertracker['BardSong_completed']+playertracker['BlueMagic_completed']+playertracker['Geomancy_completed']+playertracker['Trust_completed']), (playertracker['WhiteMagic_total']+playertracker['BlackMagic_total']+playertracker['SummonerPact_total']+playertracker['Ninjutsu_total']+playertracker['BardSong_total']+playertracker['BlueMagic_total']+playertracker['Geomancy_total']+playertracker['Trust_total']))
-	append_maintab('Warps %d/%d', (playertracker['homepoints_completed']+playertracker['survivalguides_completed']+playertracker['waypoints_completed']+playertracker['telepoints_completed']+playertracker['cavernousmaws_completed']+playertracker['lycopodium_completed']+playertracker['eschanportals_completed']+playertracker['outposts_completed']+playertracker['protowaypoints_completed']), (playertracker['homepoints_total']+playertracker['survivalguides_total']+playertracker['waypoints_total']+playertracker['telepoints_total']+playertracker['cavernousmaws_total']+playertracker['lycopodium_total']+playertracker['eschanportals_total']+playertracker['outposts_total']+playertracker['protowaypoints_total']))
+	append_maintab('Mastery Rank: %d', playertracker.mastery_rank)
+	append_maintab('RoE %d/%d', playertracker.RoE_completed, playertracker.RoE_total)
+	append_maintab('Zones visited %d/%d', playertracker.zones_completed, playertracker.zones_total)
+	append_maintab('Titles %d/%d', playertracker.Titles_completed, playertracker.Titles_total)
+	append_maintab('Missions %d/%d', (playertracker.sandoriamissions_completed+playertracker.bastokmissions_completed+playertracker.windurstmissions_completed+playertracker.zilartmissions_completed+playertracker.copmissions_completed+playertracker.ahturhganmissions_completed+playertracker.wotgmissions_completed+playertracker.acpmissions_completed+playertracker.mkdmissions_completed+playertracker.asamissions_completed+playertracker.soamissions_completed+playertracker.rovmissions_completed+playertracker.tvrmissions_completed+playertracker.campaign_completed), (playertracker.sandoriamissions_total+playertracker.bastokmissions_total+playertracker.windurstmissions_total+playertracker.zilartmissions_total+playertracker.copmissions_total+playertracker.ahturhganmissions_total+playertracker.wotgmissions_total+playertracker.acpmissions_total+playertracker.mkdmissions_total+playertracker.asamissions_total+playertracker.soamissions_total+playertracker.rovmissions_total+playertracker.tvrmissions_total+playertracker.campaign_total))
+	append_maintab('Quests %d/%d', (playertracker.bastok_completed+playertracker.sandoria_completed+playertracker.windurst_completed+playertracker.jeuno_completed+playertracker.ahturhgan_completed+playertracker.crystalwar_completed+playertracker.outlands_completed+playertracker.other_completed+playertracker.abyssea_completed+playertracker.adoulin_completed+playertracker.coalition_completed), (playertracker.bastok_total+playertracker.sandoria_total+playertracker.windurst_total+playertracker.jeuno_total+playertracker.ahturhgan_total+playertracker.crystalwar_total+playertracker.outlands_total+playertracker.other_total+playertracker.abyssea_total+playertracker.adoulin_total+playertracker.coalition_total))
+	append_maintab('Magic %d/%d', (playertracker.WhiteMagic_completed+playertracker.BlackMagic_completed+playertracker.SummonerPact_completed+playertracker.Ninjutsu_completed+playertracker.BardSong_completed+playertracker.BlueMagic_completed+playertracker.Geomancy_completed+playertracker.Trust_completed), (playertracker.WhiteMagic_total+playertracker.BlackMagic_total+playertracker.SummonerPact_total+playertracker.Ninjutsu_total+playertracker.BardSong_total+playertracker.BlueMagic_total+playertracker.Geomancy_total+playertracker.Trust_total))
+	append_maintab('Warps %d/%d', (playertracker.homepoints_completed+playertracker.survivalguides_completed+playertracker.waypoints_completed+playertracker.telepoints_completed+playertracker.cavernousmaws_completed+playertracker.lycopodium_completed+playertracker.eschanportals_completed+playertracker.outposts_completed+playertracker.protowaypoints_completed), (playertracker.homepoints_total+playertracker.survivalguides_total+playertracker.waypoints_total+playertracker.telepoints_total+playertracker.cavernousmaws_total+playertracker.lycopodium_total+playertracker.eschanportals_total+playertracker.outposts_total+playertracker.protowaypoints_total))
 	
 	table.insert(tabs[1].items, '======= Story =======')
-	append_maintab('San d\'Oria Missions %d/%d', playertracker['sandoriamissions_completed'], playertracker['sandoriamissions_total'])
-	append_maintab('Bastok Missions %d/%d', playertracker['bastokmissions_completed'], playertracker['bastokmissions_total'])
-	append_maintab('Windurst Missions %d/%d', playertracker['windurstmissions_completed'], playertracker['windurstmissions_total'])
-	append_maintab('Zilart Missions %d/%d', playertracker['zilartmissions_completed'], playertracker['zilartmissions_total'])
-	append_maintab('CoP Missions %d/%d', playertracker['copmissions_completed'], playertracker['copmissions_total'])
-	append_maintab('TOAU Missions %d/%d', playertracker['ahturhganmissions_completed'], playertracker['ahturhganmissions_total'])
-	append_maintab('WOTG Missions %d/%d', playertracker['wotgmissions_completed'], playertracker['wotgmissions_total'])
-	append_maintab('ACP Missions %d/%d', playertracker['acpmissions_completed'], playertracker['acpmissions_total'])
-	append_maintab('MKD Missions %d/%d', playertracker['mkdmissions_completed'], playertracker['mkdmissions_total'])
-	append_maintab('ASA Missions %d/%d', playertracker['asamissions_completed'], playertracker['asamissions_total'])
-	append_maintab('SoA Missions %d/%d', playertracker['soamissions_completed'], playertracker['soamissions_total'])
-	append_maintab('RoV Missions %d/%d', playertracker['rovmissions_completed'], playertracker['rovmissions_total'])
-	append_maintab('TVR Missions %d/%d', playertracker['tvrmissions_completed'], playertracker['tvrmissions_total'])
-	append_maintab('Campaign Ops %d/%d', playertracker['campaign_completed'], playertracker['campaign_total'])
-	append_maintab('Bastok Quests %d/%d', playertracker['bastok_completed'], playertracker['bastok_total'])
-	append_maintab('San d\'Oria Quests %d/%d', playertracker['sandoria_completed'], playertracker['sandoria_total'])
-	append_maintab('Windurst Quests %d/%d', playertracker['windurst_completed'], playertracker['windurst_total'])
-	append_maintab('Jeuno Quests %d/%d', playertracker['jeuno_completed'], playertracker['jeuno_total'])
-	append_maintab('Aht Urhgan Quests %d/%d', playertracker['ahturhgan_completed'], playertracker['ahturhgan_total'])
-	append_maintab('Crystal War Quests %d/%d', playertracker['crystalwar_completed'], playertracker['crystalwar_total'])
-	append_maintab('Outlands Quests %d/%d', playertracker['outlands_completed'], playertracker['outlands_total'])
-	append_maintab('Other Quests %d/%d', playertracker['other_completed'], playertracker['other_total'])
-	append_maintab('Abyssea Quests %d/%d', playertracker['abyssea_completed'], playertracker['abyssea_total'])
-	append_maintab('Adoulin Quests %d/%d', playertracker['adoulin_completed'], playertracker['adoulin_total'])
-	append_maintab('Coalition Assignments %d/%d', playertracker['coalition_completed'], playertracker['coalition_total'])
+	append_maintab('San d\'Oria Missions %d/%d', playertracker.sandoriamissions_completed, playertracker.sandoriamissions_total)
+	append_maintab('Bastok Missions %d/%d', playertracker.bastokmissions_completed, playertracker.bastokmissions_total)
+	append_maintab('Windurst Missions %d/%d', playertracker.windurstmissions_completed, playertracker.windurstmissions_total)
+	append_maintab('Zilart Missions %d/%d', playertracker.zilartmissions_completed, playertracker.zilartmissions_total)
+	append_maintab('CoP Missions %d/%d', playertracker.copmissions_completed, playertracker.copmissions_total)
+	append_maintab('TOAU Missions %d/%d', playertracker.ahturhganmissions_completed, playertracker.ahturhganmissions_total)
+	append_maintab('WOTG Missions %d/%d', playertracker.wotgmissions_completed, playertracker.wotgmissions_total)
+	append_maintab('ACP Missions %d/%d', playertracker.acpmissions_completed, playertracker.acpmissions_total)
+	append_maintab('MKD Missions %d/%d', playertracker.mkdmissions_completed, playertracker.mkdmissions_total)
+	append_maintab('ASA Missions %d/%d', playertracker.asamissions_completed, playertracker.asamissions_total)
+	append_maintab('SoA Missions %d/%d', playertracker.soamissions_completed, playertracker.soamissions_total)
+	append_maintab('RoV Missions %d/%d', playertracker.rovmissions_completed, playertracker.rovmissions_total)
+	append_maintab('TVR Missions %d/%d', playertracker.tvrmissions_completed, playertracker.tvrmissions_total)
+	append_maintab('Campaign Ops %d/%d', playertracker.campaign_completed, playertracker.campaign_total)
+	append_maintab('Bastok Quests %d/%d', playertracker.bastok_completed, playertracker.bastok_total)
+	append_maintab('San d\'Oria Quests %d/%d', playertracker.sandoria_completed, playertracker.sandoria_total)
+	append_maintab('Windurst Quests %d/%d', playertracker.windurst_completed, playertracker.windurst_total)
+	append_maintab('Jeuno Quests %d/%d', playertracker.jeuno_completed, playertracker.jeuno_total)
+	append_maintab('Aht Urhgan Quests %d/%d', playertracker.ahturhgan_completed, playertracker.ahturhgan_total)
+	append_maintab('Crystal War Quests %d/%d', playertracker.crystalwar_completed, playertracker.crystalwar_total)
+	append_maintab('Outlands Quests %d/%d', playertracker.outlands_completed, playertracker.outlands_total)
+	append_maintab('Other Quests %d/%d', playertracker.other_completed, playertracker.other_total)
+	append_maintab('Abyssea Quests %d/%d', playertracker.abyssea_completed, playertracker.abyssea_total)
+	append_maintab('Adoulin Quests %d/%d', playertracker.adoulin_completed, playertracker.adoulin_total)
+	append_maintab('Coalition Assignments %d/%d', playertracker.coalition_completed, playertracker.coalition_total)
 	
 	table.insert(tabs[1].items, '======= Key Items =======')
-	append_maintab('Permanent Key Items %d/%d', playertracker['Permanent_Key_Items_completed'], playertracker['Permanent_Key_Items_total'])
-	append_maintab('Magical Maps %d/%d', playertracker['Magical_Maps_completed'], playertracker['Magical_Maps_total'])
-	append_maintab('Mounts %d/%d', playertracker['Mounts_completed'], playertracker['Mounts_total'])
-	append_maintab('Claim Slips %d/%d', playertracker['Claim_Slips_completed'], playertracker['Claim_Slips_total'])
-	append_maintab('Active Effects %d/%d', playertracker['Active_Effects_completed'], playertracker['Active_Effects_total'])
-	append_maintab('Atmacite Levels %d/%d', playertracker['atmacite_completed'], playertracker['atmacite_total'])
-	append_addonhelp(1, 'You must talk to any \\cs(255,255,255)Atmacite Refiner\\cr \\cs(50,150,255)(Menu: Enrich Atmas)\\cr', playertracker.talk_to_npc['atmacite_refiner'])
+	append_maintab('Permanent Key Items %d/%d', playertracker.Permanent_Key_Items_completed, playertracker.Permanent_Key_Items_total)
+	append_maintab('Magical Maps %d/%d', playertracker.Magical_Maps_completed, playertracker.Magical_Maps_total)
+	append_maintab('Mounts %d/%d', playertracker.Mounts_completed, playertracker.Mounts_total)
+	append_maintab('Claim Slips %d/%d', playertracker.Claim_Slips_completed, playertracker.Claim_Slips_total)
+	append_maintab('Active Effects %d/%d', playertracker.Active_Effects_completed, playertracker.Active_Effects_total)
+	append_maintab('Atmacite Levels %d/%d', playertracker.atmacite_completed, playertracker.atmacite_total)
+	append_addonhelp(1, 'You must talk to any \\cs(255,255,255)Atmacite Refiner\\cr \\cs(50,150,255)(Menu: Enrich Atmas)\\cr', playertracker.talk_to_npc.atmacite_refiner)
 	
 	table.insert(tabs[1].items, '======= Magic =======')
-	append_maintab('White Magic %d/%d', playertracker['WhiteMagic_completed'], playertracker['WhiteMagic_total'])
-	append_maintab('Black Magic %d/%d', playertracker['BlackMagic_completed'], playertracker['BlackMagic_total'])
-	append_maintab('Summoner Pacts %d/%d', playertracker['SummonerPact_completed'], playertracker['SummonerPact_total'])
-	append_maintab('Ninjutsu %d/%d', playertracker['Ninjutsu_completed'], playertracker['Ninjutsu_total'])
-	append_maintab('Bard Songs %d/%d', playertracker['BardSong_completed'], playertracker['BardSong_total'])
-	append_maintab('Blue Magic %d/%d', playertracker['BlueMagic_completed'], playertracker['BlueMagic_total'])
-	append_maintab('Geomancy %d/%d', playertracker['Geomancy_completed'], playertracker['Geomancy_total'])
-	append_maintab('Trusts %d/%d', playertracker['Trust_completed'], playertracker['Trust_total'])
+	append_maintab('White Magic %d/%d', playertracker.WhiteMagic_completed, playertracker.WhiteMagic_total)
+	append_maintab('Black Magic %d/%d', playertracker.BlackMagic_completed, playertracker.BlackMagic_total)
+	append_maintab('Summoner Pacts %d/%d', playertracker.SummonerPact_completed, playertracker.SummonerPact_total)
+	append_maintab('Ninjutsu %d/%d', playertracker.Ninjutsu_completed, playertracker.Ninjutsu_total)
+	append_maintab('Bard Songs %d/%d', playertracker.BardSong_completed, playertracker.BardSong_total)
+	append_maintab('Blue Magic %d/%d', playertracker.BlueMagic_completed, playertracker.BlueMagic_total)
+	append_maintab('Geomancy %d/%d', playertracker.Geomancy_completed, playertracker.Geomancy_total)
+	append_maintab('Trusts %d/%d', playertracker.Trust_completed, playertracker.Trust_total)
 
 	table.insert(tabs[1].items, '======= Leveling =======')
-	append_maintab('Craft Skills %d/%d', playertracker['craftingskills_completed'], 790)
-	append_maintab('Wing Skill %d/%d', playertracker['wingskill_completed'], 100)
-	append_addonhelp(1, 'You must talk to any \\cs(255,255,255)Chocobo stats NPC\\cr @ \\cs(50,150,255)Nations Chocobo Stables\\cr', playertracker.talk_to_npc['chocobokid'])
-	append_maintab('Merit Points %d/%d', playertracker['Meritpoints_completed'], 919)
-	append_maintab('Job Points Maxed %d/%d', playertracker['Jobpoints_completed'], 22)
-	append_maintab('Master Levels %d/%d (Highest: %d)', playertracker['Masterlevels_completed'], 1100, playertracker['Masterlevels_highest'])
+	append_maintab('Craft Skills %d/%d', playertracker.craftingskills_completed, 790)
+	append_maintab('Wing Skill %d/%d', playertracker.wingskill_completed, 100)
+	append_addonhelp(1, 'You must talk to any \\cs(255,255,255)Chocobo stats NPC\\cr @ \\cs(50,150,255)Nations Chocobo Stables\\cr', playertracker.talk_to_npc.chocobokid)
+	append_maintab('Merit Points %d/%d', playertracker.Meritpoints_completed, 919)
+	append_maintab('Job Points Maxed %d/%d', playertracker.Jobpoints_completed, 22)
+	append_maintab('Master Levels %d/%d (Highest: %d)', playertracker.Masterlevels_completed, 1100, playertracker.Masterlevels_highest)
 	
 	table.insert(tabs[1].items, '======= Warps =======')
-	append_maintab('Home Points %d/%d', playertracker['homepoints_completed'], playertracker['homepoints_total'])
-	append_maintab('Survival Guides %d/%d', playertracker['survivalguides_completed'], playertracker['survivalguides_total'])
-	append_maintab('Waypoints %d/%d', playertracker['waypoints_completed'], playertracker['waypoints_total'])
-	append_maintab('Telepoints %d/%d', playertracker['telepoints_completed'], playertracker['telepoints_total'])
-	append_maintab('Cavernous Maws %d/%d', playertracker['cavernousmaws_completed'], playertracker['cavernousmaws_total'])
-	append_maintab('Lycopodium %d/%d', playertracker['lycopodium_completed'], playertracker['lycopodium_total'])
-	append_maintab('Eschan Portals %d/%d', playertracker['eschanportals_completed'], playertracker['eschanportals_total'])
-	append_maintab('Outposts %d/%d', playertracker['outposts_completed'], playertracker['outposts_total'])
-	append_addonhelp(1, 'You must talk to any \\cs(255,255,255)Outpost Teleporter NPC\\cr @ \\cs(50,150,255)three nations\\cr.', playertracker.talk_to_npc['outpostnpc'])
-	append_maintab('Proto-Waypoints %d/%d', playertracker['protowaypoints_completed'], playertracker['protowaypoints_total'])
-	append_addonhelp(1, 'You must talk to any \\cs(255,255,255)Proto-Waypoint\\cr.', playertracker.talk_to_npc['protowaypoint'])
+	append_maintab('Home Points %d/%d', playertracker.homepoints_completed, playertracker.homepoints_total)
+	append_maintab('Survival Guides %d/%d', playertracker.survivalguides_completed, playertracker.survivalguides_total)
+	append_maintab('Waypoints %d/%d', playertracker.waypoints_completed, playertracker.waypoints_total)
+	append_maintab('Telepoints %d/%d', playertracker.telepoints_completed, playertracker.telepoints_total)
+	append_maintab('Cavernous Maws %d/%d', playertracker.cavernousmaws_completed, playertracker.cavernousmaws_total)
+	append_maintab('Lycopodium %d/%d', playertracker.lycopodium_completed, playertracker.lycopodium_total)
+	append_maintab('Eschan Portals %d/%d', playertracker.eschanportals_completed, playertracker.eschanportals_total)
+	append_maintab('Outposts %d/%d', playertracker.outposts_completed, playertracker.outposts_total)
+	append_addonhelp(1, 'You must talk to any \\cs(255,255,255)Outpost Teleporter NPC\\cr @ \\cs(50,150,255)three nations\\cr.', playertracker.talk_to_npc.outpostnpc)
+	append_maintab('Proto-Waypoints %d/%d', playertracker.protowaypoints_completed, playertracker.protowaypoints_total)
+	append_addonhelp(1, 'You must talk to any \\cs(255,255,255)Proto-Waypoint\\cr.', playertracker.talk_to_npc.protowaypoint)
 	
 	table.insert(tabs[1].items, '======= Fishing =======')
-	append_maintab('Fishes Caught %d/%d', playertracker['fishes_completed'], 164)
-	append_addonhelp(1, 'You must talk to \\cs(255,255,255)Katsunaga\\cr @ \\cs(50,150,255)Mhuaura (H-9)\\cr \\cs(255,255,255)(Menu: Types of fishes caught)\\cr', playertracker.talk_to_npc['katsunaga'])
+	append_maintab('Fishes Caught %d/%d', playertracker.fishes_completed, 164)
+	append_addonhelp(1, 'You must talk to \\cs(255,255,255)Katsunaga\\cr @ \\cs(50,150,255)Mhuaura (H-9)\\cr \\cs(255,255,255)(Menu: Types of fishes caught)\\cr', playertracker.talk_to_npc.katsunaga)
 	
 	table.insert(tabs[1].items, '======= Monstrosity =======')
-	append_maintab('Monster Levels Maxed %d/%d', playertracker['MonsterLevels_completed'], playertracker['MonsterLevels_total'])
-	append_maintab('Race/Job Instincts %d/%d', playertracker['Racejobinstinct_completed'], playertracker['Racejobinstinct_total'])
-	append_maintab('Monster Variants %d/%d', playertracker['MonsterVariants_completed'], playertracker['MonsterVariants_total'])
-	append_maintab('Monster Instincts %d/%d', playertracker['MonsterInsincts_completed'], playertracker['MonsterInsincts_total'])
+	append_maintab('Monster Levels Maxed %d/%d', playertracker.MonsterLevels_completed, playertracker.MonsterLevels_total)
+	append_maintab('Race/Job Instincts %d/%d', playertracker.Racejobinstinct_completed, playertracker.Racejobinstinct_total)
+	append_maintab('Monster Variants %d/%d', playertracker.MonsterVariants_completed, playertracker.MonsterVariants_total)
+	append_maintab('Monster Instincts %d/%d', playertracker.MonsterInsincts_completed, playertracker.MonsterInsincts_total)
 	
 	table.insert(tabs[1].items, '======= Battle Content =======')
-	append_maintab('MMM Vouchers Unlocked %d/%d', playertracker['mmmvouchers_completed'], playertracker['mmmvouchers_total'])
-	append_maintab('MMM Runes Unlocked %d/%d', playertracker['mmmrunes_completed'], playertracker['mmmrunes_total'])
-	append_maintab('MMM Maze count %d', playertracker['mmm_mazecount'])
-	append_addonhelp(1, 'You must talk to any \\cs(255,255,255)Chatnachoq\\cr @ \\cs(50,150,255)Lower Jeuno (H-9) \\cr', playertracker.talk_to_npc['chatnachoq'])
-	append_maintab('Meeble Burrows Goal #3 %d/%d', playertracker['meebleburrows_completed'], playertracker['meebleburrows_total'])
-	append_addonhelp(1, 'You must talk to \\cs(255,255,255)Burrow Investigator\\cr @ \\cs(50,150,255)Upper Jeuno (I-8)\\cr', playertracker.talk_to_npc['meeble_sauromugue'])
-	append_addonhelp(1, 'Menu: Review expedition specifics -> \\cs(255,255,255)Sauromugue Champaign\\cr', playertracker.talk_to_npc['meeble_sauromugue'])
-	append_addonhelp(1, 'You must talk to \\cs(255,255,255)Burrow Investigator\\cr @ \\cs(50,150,255)Upper Jeuno (I-8)\\cr', playertracker.talk_to_npc['meeble_batallia'])
-	append_addonhelp(1, 'Menu: Review expedition specifics -> \\cs(255,255,255)Batallia Downs\\cr', playertracker.talk_to_npc['meeble_batallia'])
-	append_maintab('Sheol A (%d/%d)', playertracker['sheola_completed'], playertracker['sheola_total'])
-	append_addonhelp(1, 'You must talk to \\cs(255,255,255)???\\cr @ \\cs(50,150,255)Rabao (I-8)\\cr (Status Report: Moogle Mastery)', playertracker.talk_to_npc['sheola'])
-	append_maintab('Sheol B (%d/%d)', playertracker['sheolb_completed'], playertracker['sheolb_total'])
-	append_addonhelp(1, 'You must talk to \\cs(255,255,255)???\\cr @ \\cs(50,150,255)Rabao (I-8)\\cr (Status Report: Moogle Mastery)', playertracker.talk_to_npc['sheolb'])
-	append_maintab('Sheol C (%d/%d)', playertracker['sheolc_completed'], playertracker['sheolc_total'])
-	append_addonhelp(1, 'You must talk to \\cs(255,255,255)???\\cr @ \\cs(50,150,255)Rabao (I-8)\\cr (Status Report: Moogle Mastery)', playertracker.talk_to_npc['sheolc'])
-	append_maintab('Sheol Gaol Vengeance (%d/%d)', playertracker['sheolgaoltiers_completed'], playertracker['sheolgaoltiers_total'])
-	append_addonhelp(1, 'You must talk to \\cs(255,255,255)???\\cr @ \\cs(50,150,255)Rabao (I-8)\\cr (Status Report: Sheol Gaol)', playertracker.talk_to_npc['sheolgaol'])
-	append_maintab('Eschan Vorseals (%d/%d)', playertracker['vorseals_completed'], playertracker['vorseals_total'])
-	append_addonhelp(1, 'You must talk to \\cs(255,255,255)Shiftrix\\cr @ \\cs(50,150,255)Reisenjima (F-12)\\cr', playertracker.talk_to_npc['vorseals'])
+	append_maintab('MMM Vouchers Unlocked %d/%d', playertracker.mmmvouchers_completed, playertracker.mmmvouchers_total)
+	append_maintab('MMM Runes Unlocked %d/%d', playertracker.mmmrunes_completed, playertracker.mmmrunes_total)
+	append_maintab('MMM Maze count %d', playertracker.mmm_mazecount)
+	append_addonhelp(1, 'You must talk to any \\cs(255,255,255)Chatnachoq\\cr @ \\cs(50,150,255)Lower Jeuno (H-9) \\cr', playertracker.talk_to_npc.chatnachoq)
+	append_maintab('Meeble Burrows Goal #3 %d/%d', playertracker.meebleburrows_completed, playertracker.meebleburrows_total)
+	append_addonhelp(1, 'You must talk to \\cs(255,255,255)Burrow Investigator\\cr @ \\cs(50,150,255)Upper Jeuno (I-8)\\cr', playertracker.talk_to_npc.meeble_sauromugue)
+	append_addonhelp(1, 'Menu: Review expedition specifics -> \\cs(255,255,255)Sauromugue Champaign\\cr', playertracker.talk_to_npc.meeble_sauromugue)
+	append_addonhelp(1, 'You must talk to \\cs(255,255,255)Burrow Investigator\\cr @ \\cs(50,150,255)Upper Jeuno (I-8)\\cr', playertracker.talk_to_npc.meeble_batallia)
+	append_addonhelp(1, 'Menu: Review expedition specifics -> \\cs(255,255,255)Batallia Downs\\cr', playertracker.talk_to_npc.meeble_batallia)
+	append_maintab('Sheol A (%d/%d)', playertracker.sheola_completed, playertracker.sheola_total)
+	append_addonhelp(1, 'You must talk to \\cs(255,255,255)???\\cr @ \\cs(50,150,255)Rabao (I-8)\\cr (Status Report: Moogle Mastery)', playertracker.talk_to_npc.sheola)
+	append_maintab('Sheol B (%d/%d)', playertracker.sheolb_completed, playertracker.sheolb_total)
+	append_addonhelp(1, 'You must talk to \\cs(255,255,255)???\\cr @ \\cs(50,150,255)Rabao (I-8)\\cr (Status Report: Moogle Mastery)', playertracker.talk_to_npc.sheolb)
+	append_maintab('Sheol C (%d/%d)', playertracker.sheolc_completed, playertracker.sheolc_total)
+	append_addonhelp(1, 'You must talk to \\cs(255,255,255)???\\cr @ \\cs(50,150,255)Rabao (I-8)\\cr (Status Report: Moogle Mastery)', playertracker.talk_to_npc.sheolc)
+	append_maintab('Sheol Gaol Vengeance (%d/%d)', playertracker.sheolgaoltiers_completed, playertracker.sheolgaoltiers_total)
+	append_addonhelp(1, 'You must talk to \\cs(255,255,255)???\\cr @ \\cs(50,150,255)Rabao (I-8)\\cr (Status Report: Sheol Gaol)', playertracker.talk_to_npc.sheolgaol)
+	append_maintab('Eschan Vorseals (%d/%d)', playertracker.vorseals_completed, playertracker.vorseals_total)
+	append_addonhelp(1, 'You must talk to \\cs(255,255,255)Shiftrix\\cr @ \\cs(50,150,255)Reisenjima (F-12)\\cr', playertracker.talk_to_npc.vorseals)
 	
 	table.insert(tabs[1].items, '======= Titles =======')
-	append_maintab('Titles %d/%d', playertracker['Titles_completed'], playertracker['Titles_total'])
+	append_maintab('Titles %d/%d', playertracker.Titles_completed, playertracker.Titles_total)
 	append_items(tabs[1].items, tab_logs.titles_by_content)
 end
 
@@ -435,15 +435,15 @@ windower.register_event('incoming chunk', function(id, data, modified, injected,
 	
 	if id == 0x01B then
 		local parseddata = packets.parse('incoming', data)
-		if (parseddata['Mastery Rank'] > playertracker['mastery_rank']) then
-			if (playertracker['mastery_rank'] > 0) then
+		if (parseddata['Mastery Rank'] > playertracker.mastery_rank) then
+			if (playertracker.mastery_rank > 0) then
 				util.addon_log('Mastery Rank increase: '..parseddata['Mastery Rank'])
 			end
-			playertracker['mastery_rank'] = parseddata['Mastery Rank']
+			playertracker.mastery_rank = parseddata['Mastery Rank']
 			playertracker:save()
-		elseif (parseddata['Mastery Rank'] < playertracker['mastery_rank']) then
+		elseif (parseddata['Mastery Rank'] < playertracker.mastery_rank) then
 			util.addon_log('Mastery Rank decrease: '..parseddata['Mastery Rank'])
-			playertracker['mastery_rank'] = parseddata['Mastery Rank']
+			playertracker.mastery_rank = parseddata['Mastery Rank']
 			playertracker:save()
 		end
 	end
@@ -453,34 +453,35 @@ windower.register_event('incoming chunk', function(id, data, modified, injected,
 		local p = packets.parse('incoming', data)
 		local log = quest_logs[p.Type]
 		if log then
-			if (p.Type == 128) then -- if Aht Urhgan Current Quests
-				quests[log.type][log.area] = p["Current TOAU Quests"]
-			elseif (p.Type == 192) then -- if Aht Urhgan Completed Quests
-				quests[log.type][log.area] = p["Completed TOAU Quests"]
+			if (p.Type == 0x0080) then -- if Aht Urhgan Current Quests
+				quests[log.type][log.area] = p['Current TOAU Quests']
+			elseif (p.Type == 0x00C0) then -- if Aht Urhgan Completed Quests / Assaults
+				quests[log.type][log.area] = p['Completed TOAU Quests']
+				quests.completed.assaults = p['Completed Assaults']
 				tab_logs.quests[log.area] = quest_util.log_quests(log.area)
-			elseif (p.Type == 208) then -- if Nation, Zilart Completed Missions
-				quests.completed['sandoriamissions'] = p['Completed San d\'Oria Missions']
-				quests.completed['bastokmissions'] = p['Completed Bastok Missions']
-				quests.completed['windurstmissions'] = p['Completed Windurst Missions']
-				quests.completed['zilartmissions'] = p['Completed Zilart Missions']
-				tab_logs.quests['sandoriamissions'] = quest_util.log_quests('sandoriamissions')
-				tab_logs.quests['bastokmissions'] = quest_util.log_quests('bastokmissions')
-				tab_logs.quests['windurstmissions'] = quest_util.log_quests('windurstmissions')
-				tab_logs.quests['zilartmissions'] = quest_util.log_quests('zilartmissions')
-			elseif (p.Type == 216) then -- if TOAU, WOTG Completed Missions
-				quests.completed['ahturhganmissions'] = p['Completed TOAU Missions']
-				quests.completed['wotgmissions'] = p['Completed WOTG Missions']
-				tab_logs.quests['ahturhganmissions'] = quest_util.log_quests('ahturhganmissions')
-				tab_logs.quests['wotgmissions'] = quest_util.log_quests('wotgmissions')
-			elseif (p.Type == 65534) then -- if TVR Current Missions
-				tab_logs.quests['tvrmissions'] = quest_util.log_missions('tvrmissions', p['Current TVR Mission'])
-			elseif (p.Type == 65535) then -- if Other Current Missions
-				tab_logs.quests['copmissions'] = quest_util.log_missions('copmissions', p['Current COP Mission'])
-				tab_logs.quests['acpmissions'] = quest_util.log_missions('acpmissions', p['Current ACP Mission'])
-				tab_logs.quests['mkdmissions'] = quest_util.log_missions('mkdmissions', p['Current MKD Mission'])
-				tab_logs.quests['asamissions'] = quest_util.log_missions('asamissions', p['Current ASA Mission'])
-				tab_logs.quests['soamissions'] = quest_util.log_missions('soamissions', p['Current SOA Mission'])
-				tab_logs.quests['rovmissions'] = quest_util.log_missions('rovmissions', p['Current ROV Mission'])
+			elseif (p.Type == 0x00D0) then -- if Nation, Zilart Completed Missions
+				quests.completed.sandoriamissions = p['Completed San d\'Oria Missions']
+				quests.completed.bastokmissions = p['Completed Bastok Missions']
+				quests.completed.windurstmissions = p['Completed Windurst Missions']
+				quests.completed.zilartmissions = p['Completed Zilart Missions']
+				tab_logs.quests.sandoriamissions = quest_util.log_quests('sandoriamissions')
+				tab_logs.quests.bastokmissions = quest_util.log_quests('bastokmissions')
+				tab_logs.quests.windurstmissions = quest_util.log_quests('windurstmissions')
+				tab_logs.quests.zilartmissions = quest_util.log_quests('zilartmissions')
+			elseif (p.Type == 0x00D8) then -- if TOAU, WOTG Completed Missions
+				quests.completed.ahturhganmissions = p['Completed TOAU Missions']
+				quests.completed.wotgmissions = p['Completed WOTG Missions']
+				tab_logs.quests.ahturhganmissions = quest_util.log_quests('ahturhganmissions')
+				tab_logs.quests.wotgmissions = quest_util.log_quests('wotgmissions')
+			elseif (p.Type == 0xFFFE) then -- if TVR Current Missions
+				tab_logs.quests.tvrmissions = quest_util.log_missions('tvrmissions', p['Current TVR Mission'])
+			elseif (p.Type == 0xFFFF) then -- if Other Current Missions
+				tab_logs.quests.copmissions = quest_util.log_missions('copmissions', p['Current COP Mission'])
+				tab_logs.quests.acpmissions = quest_util.log_missions('acpmissions', p['Current ACP Mission'])
+				tab_logs.quests.mkdmissions = quest_util.log_missions('mkdmissions', p['Current MKD Mission'])
+				tab_logs.quests.asamissions = quest_util.log_missions('asamissions', p['Current ASA Mission'])
+				tab_logs.quests.soamissions = quest_util.log_missions('soamissions', p['Current SOA Mission'])
+				tab_logs.quests.rovmissions = quest_util.log_missions('rovmissions', p['Current ROV Mission'])
 			else
 				quests[log.type][log.area] = p['Quest Flags']
 				tab_logs.quests[log.area] = quest_util.log_quests(log.area)
@@ -492,7 +493,7 @@ windower.register_event('incoming chunk', function(id, data, modified, injected,
 	-- crafting skills
 	if id == 0x062 then
 		local p = packets.parse('incoming', data)
-		playertracker['craftingskills_completed'] = p['Fishing Level']+p['Woodworking Level']+p['Smithing Level']+p['Goldsmithing Level']+p['Clothcraft Level']
+		playertracker.craftingskills_completed = p['Fishing Level']+p['Woodworking Level']+p['Smithing Level']+p['Goldsmithing Level']+p['Clothcraft Level']
 		+p['Leathercraft Level']+p['Bonecraft Level']+p['Alchemy Level']+p['Cooking Level']+p['Synergy Level']
 	end
 	
@@ -536,7 +537,7 @@ windower.register_event('incoming chunk', function(id, data, modified, injected,
 	elseif id == 0x061 then
 		-- check player info (updated when openning menu)
 		local parseddata = packets.parse('incoming', data)
-		menus_util.add_title(parseddata['Title'])
+		menus_util.add_title(parseddata.Title)
 		xichecklist_updatemenulogs()
 	end
 	
@@ -622,121 +623,121 @@ function xichecklist_updatetabs(tab)
 		tabs[2].items = {} -- reset tab content
 		tabs[3].items = {} -- reset tab content
 		-- log quests
-		append_header(2, 'San d\'Oria Missions (%d/%d)', playertracker['sandoriamissions_completed'], playertracker['sandoriamissions_total'])
-		append_items(tabs[2].items, tab_logs.quests['sandoriamissions'])
-		append_header(2, 'Bastok Missions (%d/%d)', playertracker['bastokmissions_completed'], playertracker['bastokmissions_total'])
-		append_items(tabs[2].items, tab_logs.quests['bastokmissions'])
-		append_header(2, 'Windurst Missions (%d/%d)', playertracker['windurstmissions_completed'], playertracker['windurstmissions_total'])
-		append_items(tabs[2].items, tab_logs.quests['windurstmissions'])
-		append_header(2, 'Zilart Missions (%d/%d)', playertracker['zilartmissions_completed'], playertracker['zilartmissions_total'])
-		append_items(tabs[2].items, tab_logs.quests['zilartmissions'])
-		append_header(2, 'CoP Missions (%d/%d)', playertracker['copmissions_completed'], playertracker['copmissions_total'])
-		append_items(tabs[2].items, tab_logs.quests['copmissions'])
-		append_header(2, 'TOAU Missions (%d/%d)', playertracker['ahturhganmissions_completed'], playertracker['ahturhganmissions_total'])
-		append_items(tabs[2].items, tab_logs.quests['ahturhganmissions'])
-		append_header(2, 'WOTG Missions (%d/%d)', playertracker['wotgmissions_completed'], playertracker['wotgmissions_total'])
-		append_items(tabs[2].items, tab_logs.quests['wotgmissions'])
-		append_header(2, 'ACP Missions (%d/%d)', playertracker['acpmissions_completed'], playertracker['acpmissions_total'])
-		append_items(tabs[2].items, tab_logs.quests['acpmissions'])
-		append_header(2, 'MKD Missions (%d/%d)', playertracker['mkdmissions_completed'], playertracker['mkdmissions_total'])
-		append_items(tabs[2].items, tab_logs.quests['mkdmissions'])
-		append_header(2, 'ASA Missions (%d/%d)', playertracker['asamissions_completed'], playertracker['asamissions_total'])
-		append_items(tabs[2].items, tab_logs.quests['asamissions'])
-		append_header(2, 'SoA Missions (%d/%d)', playertracker['soamissions_completed'], playertracker['soamissions_total'])
-		append_items(tabs[2].items, tab_logs.quests['soamissions'])
-		append_header(2, 'RoV Missions (%d/%d)', playertracker['rovmissions_completed'], playertracker['rovmissions_total'])
-		append_items(tabs[2].items, tab_logs.quests['rovmissions'])
-		append_header(2, 'TVR Missions (%d/%d)', playertracker['tvrmissions_completed'], playertracker['tvrmissions_total'])
-		append_items(tabs[2].items, tab_logs.quests['tvrmissions'])
-		append_header(2, 'San d\'Oria Quests (%d/%d)', playertracker['sandoria_completed'], playertracker['sandoria_total'])
-		append_items(tabs[2].items, tab_logs.quests['sandoria'])
-		append_header(2, 'Bastok Quests (%d/%d)', playertracker['bastok_completed'], playertracker['bastok_total'])
-		append_items(tabs[2].items, tab_logs.quests['bastok'])
-		append_header(2, 'Windurst Quests (%d/%d)', playertracker['windurst_completed'], playertracker['windurst_total'])
-		append_items(tabs[2].items, tab_logs.quests['windurst'])
-		append_header(2, 'Jeuno Quests (%d/%d)', playertracker['jeuno_completed'], playertracker['jeuno_total'])
-		append_items(tabs[2].items, tab_logs.quests['jeuno'])
-		append_header(2, 'Aht Urhgan Quests (%d/%d)', playertracker['ahturhgan_completed'], playertracker['ahturhgan_total'])
-		append_items(tabs[2].items, tab_logs.quests['ahturhgan'])
-		append_header(2, 'Crystal War Quests (%d/%d)', playertracker['crystalwar_completed'], playertracker['crystalwar_total'])
-		append_items(tabs[2].items, tab_logs.quests['crystalwar'])
-		append_header(2, 'Outlands Quests (%d/%d)', playertracker['outlands_completed'], playertracker['outlands_total'])
-		append_items(tabs[2].items, tab_logs.quests['outlands'])
-		append_header(2, 'Other Quests (%d/%d)', playertracker['other_completed'], playertracker['other_total'])
-		append_items(tabs[2].items, tab_logs.quests['other'])
-		append_header(2, 'Abyssea Quests (%d/%d)', playertracker['abyssea_completed'], playertracker['abyssea_total'])
-		append_items(tabs[2].items, tab_logs.quests['abyssea'])
-		append_header(2, 'Adoulin Quests (%d/%d)', playertracker['adoulin_completed'], playertracker['adoulin_total'])
-		append_items(tabs[2].items, tab_logs.quests['adoulin'])
-		append_header(2, 'Coalition Assignments (%d/%d)', playertracker['coalition_completed'], playertracker['coalition_total'])
-		append_items(tabs[2].items, tab_logs.quests['coalition'])
+		append_header(2, 'San d\'Oria Missions (%d/%d)', playertracker.sandoriamissions_completed, playertracker.sandoriamissions_total)
+		append_items(tabs[2].items, tab_logs.quests.sandoriamissions)
+		append_header(2, 'Bastok Missions (%d/%d)', playertracker.bastokmissions_completed, playertracker.bastokmissions_total)
+		append_items(tabs[2].items, tab_logs.quests.bastokmissions)
+		append_header(2, 'Windurst Missions (%d/%d)', playertracker.windurstmissions_completed, playertracker.windurstmissions_total)
+		append_items(tabs[2].items, tab_logs.quests.windurstmissions)
+		append_header(2, 'Zilart Missions (%d/%d)', playertracker.zilartmissions_completed, playertracker.zilartmissions_total)
+		append_items(tabs[2].items, tab_logs.quests.zilartmissions)
+		append_header(2, 'CoP Missions (%d/%d)', playertracker.copmissions_completed, playertracker.copmissions_total)
+		append_items(tabs[2].items, tab_logs.quests.copmissions)
+		append_header(2, 'TOAU Missions (%d/%d)', playertracker.ahturhganmissions_completed, playertracker.ahturhganmissions_total)
+		append_items(tabs[2].items, tab_logs.quests.ahturhganmissions)
+		append_header(2, 'WOTG Missions (%d/%d)', playertracker.wotgmissions_completed, playertracker.wotgmissions_total)
+		append_items(tabs[2].items, tab_logs.quests.wotgmissions)
+		append_header(2, 'ACP Missions (%d/%d)', playertracker.acpmissions_completed, playertracker.acpmissions_total)
+		append_items(tabs[2].items, tab_logs.quests.acpmissions)
+		append_header(2, 'MKD Missions (%d/%d)', playertracker.mkdmissions_completed, playertracker.mkdmissions_total)
+		append_items(tabs[2].items, tab_logs.quests.mkdmissions)
+		append_header(2, 'ASA Missions (%d/%d)', playertracker.asamissions_completed, playertracker.asamissions_total)
+		append_items(tabs[2].items, tab_logs.quests.asamissions)
+		append_header(2, 'SoA Missions (%d/%d)', playertracker.soamissions_completed, playertracker.soamissions_total)
+		append_items(tabs[2].items, tab_logs.quests.soamissions)
+		append_header(2, 'RoV Missions (%d/%d)', playertracker.rovmissions_completed, playertracker.rovmissions_total)
+		append_items(tabs[2].items, tab_logs.quests.rovmissions)
+		append_header(2, 'TVR Missions (%d/%d)', playertracker.tvrmissions_completed, playertracker.tvrmissions_total)
+		append_items(tabs[2].items, tab_logs.quests.tvrmissions)
+		append_header(2, 'San d\'Oria Quests (%d/%d)', playertracker.sandoria_completed, playertracker.sandoria_total)
+		append_items(tabs[2].items, tab_logs.quests.sandoria)
+		append_header(2, 'Bastok Quests (%d/%d)', playertracker.bastok_completed, playertracker.bastok_total)
+		append_items(tabs[2].items, tab_logs.quests.bastok)
+		append_header(2, 'Windurst Quests (%d/%d)', playertracker.windurst_completed, playertracker.windurst_total)
+		append_items(tabs[2].items, tab_logs.quests.windurst)
+		append_header(2, 'Jeuno Quests (%d/%d)', playertracker.jeuno_completed, playertracker.jeuno_total)
+		append_items(tabs[2].items, tab_logs.quests.jeuno)
+		append_header(2, 'Aht Urhgan Quests (%d/%d)', playertracker.ahturhgan_completed, playertracker.ahturhgan_total)
+		append_items(tabs[2].items, tab_logs.quests.ahturhgan)
+		append_header(2, 'Crystal War Quests (%d/%d)', playertracker.crystalwar_completed, playertracker.crystalwar_total)
+		append_items(tabs[2].items, tab_logs.quests.crystalwar)
+		append_header(2, 'Outlands Quests (%d/%d)', playertracker.outlands_completed, playertracker.outlands_total)
+		append_items(tabs[2].items, tab_logs.quests.outlands)
+		append_header(2, 'Other Quests (%d/%d)', playertracker.other_completed, playertracker.other_total)
+		append_items(tabs[2].items, tab_logs.quests.other)
+		append_header(2, 'Abyssea Quests (%d/%d)', playertracker.abyssea_completed, playertracker.abyssea_total)
+		append_items(tabs[2].items, tab_logs.quests.abyssea)
+		append_header(2, 'Adoulin Quests (%d/%d)', playertracker.adoulin_completed, playertracker.adoulin_total)
+		append_items(tabs[2].items, tab_logs.quests.adoulin)
+		append_header(2, 'Coalition Assignments (%d/%d)', playertracker.coalition_completed, playertracker.coalition_total)
+		append_items(tabs[2].items, tab_logs.quests.coalition)
 		-- log campaign ops
-		append_header(3, 'Campaign Ops (%d/%d)', playertracker['campaign_completed'], playertracker['campaign_total'])
+		append_header(3, 'Campaign Ops (%d/%d)', playertracker.campaign_completed, playertracker.campaign_total)
 		append_items(tabs[3].items, tab_logs.quests['campaign2'])
 	end
 	
 	-- log fishes caught
-	append_header(4, 'Type of Fishes Caught (%d/%d)', playertracker['fishes_completed'], playertracker['fishes_total'])
-	append_addonhelp(4, 'You must talk to \\cs(255,255,255)Katsunaga\\cr @ \\cs(50,150,255)Mhuaura (H-9)\\cr \\cs(255,255,255)(Menu: Types of fishes caught)\\cr', playertracker.talk_to_npc['katsunaga'])
+	append_header(4, 'Type of Fishes Caught (%d/%d)', playertracker.fishes_completed, playertracker.fishes_total)
+	append_addonhelp(4, 'You must talk to \\cs(255,255,255)Katsunaga\\cr @ \\cs(50,150,255)Mhuaura (H-9)\\cr \\cs(255,255,255)(Menu: Types of fishes caught)\\cr', playertracker.talk_to_npc.katsunaga)
 	append_items(tabs[4].items, tab_logs.fishes)
 	
 	-- log keyitems
-	append_header(5, 'Permanent Key Items (%d/%d)', playertracker['Permanent_Key_Items_completed'], playertracker['Permanent_Key_Items_total'])
+	append_header(5, 'Permanent Key Items (%d/%d)', playertracker.Permanent_Key_Items_completed, playertracker.Permanent_Key_Items_total)
 	append_items(tabs[5].items, check_keyitems('Permanent Key Items'))
-	append_header(5, 'Magical Maps (%d/%d)', playertracker['Magical_Maps_completed'], playertracker['Magical_Maps_total'])
+	append_header(5, 'Magical Maps (%d/%d)', playertracker.Magical_Maps_completed, playertracker.Magical_Maps_total)
 	append_items(tabs[5].items, check_keyitems('Magical Maps'))
-	append_header(5, 'Mounts (%d/%d)', playertracker['Mounts_completed'], playertracker['Mounts_total'])
+	append_header(5, 'Mounts (%d/%d)', playertracker.Mounts_completed, playertracker.Mounts_total)
 	append_items(tabs[5].items, check_keyitems('Mounts'))
-	append_header(5, 'Active Effects (%d/%d)', playertracker['Active_Effects_completed'], playertracker['Active_Effects_total'])
+	append_header(5, 'Active Effects (%d/%d)', playertracker.Active_Effects_completed, playertracker.Active_Effects_total)
 	append_items(tabs[5].items, check_keyitems('Active Effects'))
-	append_header(5, 'Voidwatch Key Items (%d/%d)', playertracker['Voidwatch_completed'], playertracker['Voidwatch_total'])
+	append_header(5, 'Voidwatch Key Items (%d/%d)', playertracker.Voidwatch_completed, playertracker.Voidwatch_total)
 	append_items(tabs[5].items, check_keyitems('Voidwatch'))
-	append_header(5, 'Atmacite Levels (%d/%d)', playertracker['atmacite_completed'], playertracker['atmacite_total'])
-	append_addonhelp(5, 'You must talk to any \\cs(255,255,255)Atmacite Refiner\\cr \\cs(50,150,255)(Menu: Enrich Atmas)\\cr', playertracker.talk_to_npc['atmacite_refiner'])
+	append_header(5, 'Atmacite Levels (%d/%d)', playertracker.atmacite_completed, playertracker.atmacite_total)
+	append_addonhelp(5, 'You must talk to any \\cs(255,255,255)Atmacite Refiner\\cr \\cs(50,150,255)(Menu: Enrich Atmas)\\cr', playertracker.talk_to_npc.atmacite_refiner)
 	append_items(tabs[5].items, tab_logs.atmacite)
-	append_header(5, 'Claim Slips (%d/%d)', playertracker['Claim_Slips_completed'], playertracker['Claim_Slips_total'])
+	append_header(5, 'Claim Slips (%d/%d)', playertracker.Claim_Slips_completed, playertracker.Claim_Slips_total)
 	append_items(tabs[5].items, check_keyitems('Claim Slips'))
 	
 	-- log spells and trusts
-	append_header(6, 'White Magic (%d/%d)', playertracker['WhiteMagic_completed'], playertracker['WhiteMagic_total'])
+	append_header(6, 'White Magic (%d/%d)', playertracker.WhiteMagic_completed, playertracker.WhiteMagic_total)
 	append_items(tabs[6].items, log_spells('WhiteMagic'))
-	append_header(6, 'Black Magic (%d/%d)', playertracker['BlackMagic_completed'], playertracker['BlackMagic_total'])
+	append_header(6, 'Black Magic (%d/%d)', playertracker.BlackMagic_completed, playertracker.BlackMagic_total)
 	append_items(tabs[6].items, log_spells('BlackMagic'))
-	append_header(6, 'Summoner Pacts (%d/%d)', playertracker['SummonerPact_completed'], playertracker['SummonerPact_total'])
+	append_header(6, 'Summoner Pacts (%d/%d)', playertracker.SummonerPact_completed, playertracker.SummonerPact_total)
 	append_items(tabs[6].items, log_spells('SummonerPact'))
-	append_header(6, 'Ninjutsu (%d/%d)', playertracker['Ninjutsu_completed'], playertracker['Ninjutsu_total'])
+	append_header(6, 'Ninjutsu (%d/%d)', playertracker.Ninjutsu_completed, playertracker.Ninjutsu_total)
 	append_items(tabs[6].items, log_spells('Ninjutsu'))
-	append_header(6, 'Bard Songs (%d/%d)', playertracker['BardSong_completed'], playertracker['BardSong_total'])
+	append_header(6, 'Bard Songs (%d/%d)', playertracker.BardSong_completed, playertracker.BardSong_total)
 	append_items(tabs[6].items, log_spells('BardSong'))
-	append_header(6, 'Blue Magic (%d/%d)', playertracker['BlueMagic_completed'], playertracker['BlueMagic_total'])
+	append_header(6, 'Blue Magic (%d/%d)', playertracker.BlueMagic_completed, playertracker.BlueMagic_total)
 	append_items(tabs[6].items, log_spells('BlueMagic'))
-	append_header(6, 'Geomancy (%d/%d)', playertracker['Geomancy_completed'], playertracker['Geomancy_total'])
+	append_header(6, 'Geomancy (%d/%d)', playertracker.Geomancy_completed, playertracker.Geomancy_total)
 	append_items(tabs[6].items, log_spells('Geomancy'))
-	append_header(6, 'Trust Magic (%d/%d)', playertracker['Trust_completed'], playertracker['Trust_total'])
+	append_header(6, 'Trust Magic (%d/%d)', playertracker.Trust_completed, playertracker.Trust_total)
 	append_items(tabs[6].items, log_spells('Trust'))
 	
 	-- log warps
-	append_header(7, 'Home Points (%d/%d)', playertracker['homepoints_completed'], playertracker['homepoints_total'])
+	append_header(7, 'Home Points (%d/%d)', playertracker.homepoints_completed, playertracker.homepoints_total)
 	append_items(tabs[7].items, tab_logs.homepoints)
-	append_header(7, 'Survival Guides (%d/%d)', playertracker['survivalguides_completed'], playertracker['survivalguides_total'])
+	append_header(7, 'Survival Guides (%d/%d)', playertracker.survivalguides_completed, playertracker.survivalguides_total)
 	append_items(tabs[7].items, tab_logs.survivalguides)
-	append_header(7, 'Adoulin Waypoints (%d/%d)', playertracker['waypoints_completed'], playertracker['waypoints_total'])
+	append_header(7, 'Adoulin Waypoints (%d/%d)', playertracker.waypoints_completed, playertracker.waypoints_total)
 	append_items(tabs[7].items, tab_logs.waypoints)
-	append_header(7, 'Telepoints (%d/%d)', playertracker['telepoints_completed'], playertracker['telepoints_total'])
+	append_header(7, 'Telepoints (%d/%d)', playertracker.telepoints_completed, playertracker.telepoints_total)
 	append_items(tabs[7].items, tab_logs.telepoints)
-	append_header(7, 'Cavernous Maws (%d/%d)', playertracker['cavernousmaws_completed'], playertracker['cavernousmaws_total'])
+	append_header(7, 'Cavernous Maws (%d/%d)', playertracker.cavernousmaws_completed, playertracker.cavernousmaws_total)
 	append_items(tabs[7].items, tab_logs.cavernousmaws)
-	append_header(7, 'Lycopodium (%d/%d)', playertracker['lycopodium_completed'], playertracker['lycopodium_total'])
+	append_header(7, 'Lycopodium (%d/%d)', playertracker.lycopodium_completed, playertracker.lycopodium_total)
 	append_items(tabs[7].items, tab_logs.lycopodium)
-	append_header(7, 'Eschan Portals (%d/%d)', playertracker['eschanportals_completed'], playertracker['eschanportals_total'])
+	append_header(7, 'Eschan Portals (%d/%d)', playertracker.eschanportals_completed, playertracker.eschanportals_total)
 	append_items(tabs[7].items, tab_logs.eschanportals)
-	append_header(7, 'Outpost Warps (%d/%d)', playertracker['outposts_completed'], playertracker['outposts_total'])
-	append_addonhelp(7, 'You must talk to any \\cs(255,255,255)Outpost Teleporter NPC\\cr @ \\cs(50,150,255)three nations\\cr.', playertracker.talk_to_npc['outpostnpc'])
+	append_header(7, 'Outpost Warps (%d/%d)', playertracker.outposts_completed, playertracker.outposts_total)
+	append_addonhelp(7, 'You must talk to any \\cs(255,255,255)Outpost Teleporter NPC\\cr @ \\cs(50,150,255)three nations\\cr.', playertracker.talk_to_npc.outpostnpc)
 	append_items(tabs[7].items, tab_logs.outposts)
-	append_header(7, 'Proto-Waypoints (%d/%d)', playertracker['protowaypoints_completed'], playertracker['protowaypoints_total'])
-	append_addonhelp(7, 'You must talk to any \\cs(255,255,255)Proto-Waypoint\\cr.', playertracker.talk_to_npc['protowaypoint'])
+	append_header(7, 'Proto-Waypoints (%d/%d)', playertracker.protowaypoints_completed, playertracker.protowaypoints_total)
+	append_addonhelp(7, 'You must talk to any \\cs(255,255,255)Proto-Waypoint\\cr.', playertracker.talk_to_npc.protowaypoint)
 	append_items(tabs[7].items, tab_logs.protowaypoints)
-	append_header(7, 'Zones visited (%d/%d)', playertracker['zones_completed'], playertracker['zones_total'])
+	append_header(7, 'Zones visited (%d/%d)', playertracker.zones_completed, playertracker.zones_total)
 	append_items(tabs[7].items, tab_logs.zones)
 	
 	-- Log Job Points Spent
@@ -745,18 +746,18 @@ function xichecklist_updatetabs(tab)
 	-- log Monstrosity levels & Race/Job Instincts
 	if (tab == 'monstrosity') then
 		tabs[8].items = {}
-		append_header(8, 'Species Levels (%d/%d)', playertracker['MonsterLevels_completed'], playertracker['MonsterLevels_total'])
+		append_header(8, 'Species Levels (%d/%d)', playertracker.MonsterLevels_completed, playertracker.MonsterLevels_total)
 		append_items(tabs[8].items, tab_logs.monsterlevels)
-		append_header(8, 'Monster Variants (%d/%d)', playertracker['MonsterVariants_completed'], playertracker['MonsterVariants_total'])
+		append_header(8, 'Monster Variants (%d/%d)', playertracker.MonsterVariants_completed, playertracker.MonsterVariants_total)
 		append_items(tabs[8].items, tab_logs.monstervariants)
-		append_header(8, 'Race / Job Instincts (%d/%d)', playertracker['Racejobinstinct_completed'], playertracker['Racejobinstinct_total'])
+		append_header(8, 'Race / Job Instincts (%d/%d)', playertracker.Racejobinstinct_completed, playertracker.Racejobinstinct_total)
 		append_items(tabs[8].items, tab_logs.racejobinstincts)
-		append_header(8, 'Monster Instincts (%d/%d)', playertracker['MonsterInsincts_completed'], playertracker['MonsterInsincts_total'])
+		append_header(8, 'Monster Instincts (%d/%d)', playertracker.MonsterInsincts_completed, playertracker.MonsterInsincts_total)
 		append_items(tabs[8].items, tab_logs.monster_instincts)
 	end
 	
 	-- log Titles
-	append_header(9, 'Titles (%d/%d)', playertracker['Titles_completed'], playertracker['Titles_total'])
+	append_header(9, 'Titles (%d/%d)', playertracker.Titles_completed, playertracker.Titles_total)
 	append_addonhelp(9, 'You must talk to \\cs(255,255,255)Aligi-Kufongi\\cr @ \\cs(50,150,255)Tavnazian Safehold (H-9)\\cr', playertracker.talk_to_npc['Aligi-Kufongi'])
 	append_addonhelp(9, 'You must talk to \\cs(255,255,255)Koyol-Futenol\\cr @ \\cs(50,150,255)Aht Urhgan Whitegate (E-9)\\cr', playertracker.talk_to_npc['Koyol-Futenol'])
 	append_addonhelp(9, 'You must talk to \\cs(255,255,255)Tamba-Namba\\cr @ \\cs(50,150,255)Southern San d\'Oria (S) (L-8)\\cr', playertracker.talk_to_npc['Tamba-Namba'])
@@ -778,40 +779,40 @@ function xichecklist_updatetabs(tab)
 	-- log RoE
 	if (tab == 'roe') then
 		tabs[10].items = {}
-		append_header(10, 'RoE (%d/%d)', playertracker['RoE_completed'], playertracker['RoE_total'])
+		append_header(10, 'RoE (%d/%d)', playertracker.RoE_completed, playertracker.RoE_total)
 		append_items(tabs[10].items, tab_logs.roe)
 	end
 	
 	if (tab == 'battlecontent') then
 		tabs[11].items = {}
 		-- log MMM
-		append_header(11, 'MMM Maze count %d', playertracker['mmm_mazecount'])
-		append_header(11, 'MMM Vouchers Unlocks (%d/%d)', playertracker['mmmvouchers_completed'], playertracker['mmmvouchers_total'])
+		append_header(11, 'MMM Maze count %d/%d', playertracker.mmm_mazecount, 1000)
+		append_header(11, 'MMM Vouchers Unlocks (%d/%d)', playertracker.mmmvouchers_completed, playertracker.mmmvouchers_total)
 		append_items(tabs[11].items, tab_logs.mmmvouchers)
-		append_header(11, 'MMM Runes Unlocks (%d/%d)', playertracker['mmmrunes_completed'], playertracker['mmmrunes_total'])
+		append_header(11, 'MMM Runes Unlocks (%d/%d)', playertracker.mmmrunes_completed, playertracker.mmmrunes_total)
 		append_items(tabs[11].items, tab_logs.mmmrunes)
 		-- log Meeble Burrows
-		append_header(11, 'Meeble Burrows (%d/%d)', playertracker['meebleburrows_completed'], playertracker['meebleburrows_total'])
-		append_addonhelp(11, 'You must talk to \\cs(255,255,255)Burrow Investigator\\cr @ \\cs(50,150,255)Upper Jeuno (I-8)\\cr', playertracker.talk_to_npc['meeble_sauromugue'])
-		append_addonhelp(11, 'Menu: Review expedition specifics -> \\cs(255,255,255)Sauromugue Champaign\\cr', playertracker.talk_to_npc['meeble_sauromugue'])
-		append_addonhelp(11, 'You must talk to \\cs(255,255,255)Burrow Investigator\\cr @ \\cs(50,150,255)Upper Jeuno (I-8)\\cr', playertracker.talk_to_npc['meeble_batallia'])
-		append_addonhelp(11, 'Menu: Review expedition specifics -> \\cs(255,255,255)Batallia Downs\\cr', playertracker.talk_to_npc['meeble_batallia'])
+		append_header(11, 'Meeble Burrows (%d/%d)', playertracker.meebleburrows_completed, playertracker.meebleburrows_total)
+		append_addonhelp(11, 'You must talk to \\cs(255,255,255)Burrow Investigator\\cr @ \\cs(50,150,255)Upper Jeuno (I-8)\\cr', playertracker.talk_to_npc.meeble_sauromugue)
+		append_addonhelp(11, 'Menu: Review expedition specifics -> \\cs(255,255,255)Sauromugue Champaign\\cr', playertracker.talk_to_npc.meeble_sauromugue)
+		append_addonhelp(11, 'You must talk to \\cs(255,255,255)Burrow Investigator\\cr @ \\cs(50,150,255)Upper Jeuno (I-8)\\cr', playertracker.talk_to_npc.meeble_batallia)
+		append_addonhelp(11, 'Menu: Review expedition specifics -> \\cs(255,255,255)Batallia Downs\\cr', playertracker.talk_to_npc.meeble_batallia)
 		append_items(tabs[11].items, tab_logs.meebleburrows)
 		-- Log Sheol ABC goals & Gaol Vengeance Tiers
-		append_header(11, 'Sheol A goals (%d/%d)', playertracker['sheola_completed'], playertracker['sheola_total'])
-		append_addonhelp(11, 'You must talk to \\cs(255,255,255)???\\cr @ \\cs(50,150,255)Rabao (I-8)\\cr (Status Report: Moogle Mastery)', playertracker.talk_to_npc['sheola'])
+		append_header(11, 'Sheol A goals (%d/%d)', playertracker.sheola_completed, playertracker.sheola_total)
+		append_addonhelp(11, 'You must talk to \\cs(255,255,255)???\\cr @ \\cs(50,150,255)Rabao (I-8)\\cr (Status Report: Moogle Mastery)', playertracker.talk_to_npc.sheola)
 		append_items(tabs[11].items, tab_logs.sheola)
-		append_header(11, 'Sheol B goals (%d/%d)', playertracker['sheolb_completed'], playertracker['sheolb_total'])
-		append_addonhelp(11, 'You must talk to \\cs(255,255,255)???\\cr @ \\cs(50,150,255)Rabao (I-8)\\cr (Status Report: Moogle Mastery)', playertracker.talk_to_npc['sheolb'])
+		append_header(11, 'Sheol B goals (%d/%d)', playertracker.sheolb_completed, playertracker.sheolb_total)
+		append_addonhelp(11, 'You must talk to \\cs(255,255,255)???\\cr @ \\cs(50,150,255)Rabao (I-8)\\cr (Status Report: Moogle Mastery)', playertracker.talk_to_npc.sheolb)
 		append_items(tabs[11].items, tab_logs.sheolb)
-		append_header(11, 'Sheol C goals (%d/%d)', playertracker['sheolc_completed'], playertracker['sheolc_total'])
-		append_addonhelp(11, 'You must talk to \\cs(255,255,255)???\\cr @ \\cs(50,150,255)Rabao (I-8)\\cr (Status Report: Moogle Mastery)', playertracker.talk_to_npc['sheolc'])
+		append_header(11, 'Sheol C goals (%d/%d)', playertracker.sheolc_completed, playertracker.sheolc_total)
+		append_addonhelp(11, 'You must talk to \\cs(255,255,255)???\\cr @ \\cs(50,150,255)Rabao (I-8)\\cr (Status Report: Moogle Mastery)', playertracker.talk_to_npc.sheolc)
 		append_items(tabs[11].items, tab_logs.sheolc)
-		append_header(11, 'Sheol Gaol Vengeance (%d/%d)', playertracker['sheolgaoltiers_completed'], playertracker['sheolgaoltiers_total'])
-		append_addonhelp(11, 'You must talk to \\cs(255,255,255)???\\cr @ \\cs(50,150,255)Rabao (I-8)\\cr (Status Report: Sheol Gaol)', playertracker.talk_to_npc['sheolgaol'])
+		append_header(11, 'Sheol Gaol Vengeance (%d/%d)', playertracker.sheolgaoltiers_completed, playertracker.sheolgaoltiers_total)
+		append_addonhelp(11, 'You must talk to \\cs(255,255,255)???\\cr @ \\cs(50,150,255)Rabao (I-8)\\cr (Status Report: Sheol Gaol)', playertracker.talk_to_npc.sheolgaol)
 		append_items(tabs[11].items, tab_logs.sheolgaol)
-		append_header(11, 'Eschan Vorseals (%d/%d)', playertracker['vorseals_completed'], playertracker['vorseals_total'])
-		append_addonhelp(11, 'You must talk to \\cs(255,255,255)Shiftrix\\cr @ \\cs(50,150,255)Reisenjima (F-12)\\cr', playertracker.talk_to_npc['vorseals'])
+		append_header(11, 'Eschan Vorseals (%d/%d)', playertracker.vorseals_completed, playertracker.vorseals_total)
+		append_addonhelp(11, 'You must talk to \\cs(255,255,255)Shiftrix\\cr @ \\cs(50,150,255)Reisenjima (F-12)\\cr', playertracker.talk_to_npc.vorseals)
 		append_items(tabs[11].items, tab_logs.vorseals)
 	end
 end
@@ -877,15 +878,15 @@ function check_exp()
 			total_merit_upgrades = total_merit_upgrades + value
 		end
 	end
-	playertracker['Meritpoints_completed'] = total_merit_upgrades
+	playertracker.Meritpoints_completed = total_merit_upgrades
 	-- job points
 	if (type(playerinfo.job_points) == 'table') then 
 		for job, value in pairs(playerinfo.job_points) do
 			total_jp_spent = total_jp_spent + playerinfo.job_points[job].jp_spent
 		end
 	end
-	playertracker['Jobpoints_completed'] = math.floor(total_jp_spent/2100)
-	playertracker['Jobpoints_total'] = 22
+	playertracker.Jobpoints_completed = math.floor(total_jp_spent/2100)
+	playertracker.Jobpoints_total = 22
 	-- master levels
 	if (type(playerinfo.master_levels) == 'table') then 
 		for job, value in pairs(playerinfo.master_levels) do
@@ -893,8 +894,8 @@ function check_exp()
 			if (playerinfo.master_levels[job] > highest_master_level) then highest_master_level = playerinfo.master_levels[job] end
 		end
 	end
-	playertracker['Masterlevels_completed'] = total_master_levels
-	playertracker['Masterlevels_highest'] = highest_master_level
+	playertracker.Masterlevels_completed = total_master_levels
+	playertracker.Masterlevels_highest = highest_master_level
 end
 
 draw()
@@ -1069,13 +1070,13 @@ windower.register_event('addon command', function(...)
 					windower.add_to_chat(160, text)
 				end
 			elseif (arg[2] == 'sheol') or (arg[2] == 'odyssey') then
-				windower.add_to_chat(160, '=== Sheol A (%d/%d) ===':format(playertracker['sheola_completed'], playertracker['sheola_total']))
+				windower.add_to_chat(160, '=== Sheol A (%d/%d) ===':format(playertracker.sheola_completed, playertracker.sheola_total))
 				util.log_tablog(tab_logs.sheola)
-				windower.add_to_chat(160, '=== Sheol B (%d/%d) ===':format(playertracker['sheolb_completed'], playertracker['sheolb_total']))
+				windower.add_to_chat(160, '=== Sheol B (%d/%d) ===':format(playertracker.sheolb_completed, playertracker.sheolb_total))
 				util.log_tablog(tab_logs.sheolb)
-				windower.add_to_chat(160, '=== Sheol C (%d/%d) ===':format(playertracker['sheolc_completed'], playertracker['sheolc_total']))
+				windower.add_to_chat(160, '=== Sheol C (%d/%d) ===':format(playertracker.sheolc_completed, playertracker.sheolc_total))
 				util.log_tablog(tab_logs.sheolc)
-				windower.add_to_chat(160, '=== Sheol Gaol (%d/%d) ===':format(playertracker['sheolgaoltiers_completed'], playertracker['sheolgaoltiers_total']))
+				windower.add_to_chat(160, '=== Sheol Gaol (%d/%d) ===':format(playertracker.sheolgaoltiers_completed, playertracker.sheolgaoltiers_total))
 				util.log_tablog(tab_logs.sheolgaol)
 			end
 		else

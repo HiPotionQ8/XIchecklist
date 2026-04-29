@@ -21,8 +21,8 @@ function mmm_util.log_vouchers()
 		end
 		table.insert(output_list, util.list_item(nil, name, completion))
 	end
-	playertracker['mmmvouchers_completed'] = obtained
-	playertracker['mmmvouchers_total'] = total
+	playertracker.mmmvouchers_completed = obtained
+	playertracker.mmmvouchers_total = total
 	return output_list
 end
 
@@ -39,8 +39,8 @@ function mmm_util.log_runes()
 		end
 		table.insert(output_list, util.list_item(nil, name, completion))
 	end
-	playertracker['mmmrunes_completed'] = obtained
-	playertracker['mmmrunes_total'] = total
+	playertracker.mmmrunes_completed = obtained
+	playertracker.mmmrunes_total = total
 	return output_list
 end
 

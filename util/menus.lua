@@ -91,15 +91,15 @@ function menus_util.log_outposts()
 		end
 		table.insert(output_list, util.list_item('outpost', name, completion))
 	end
-	playertracker['outposts_completed'] = complete
-	playertracker['outposts_total'] = total
+	playertracker.outposts_completed = complete
+	playertracker.outposts_total = total
 	return output_list
 end
 
 function menus_util.handle_chatnachoq(parseddata)
 	local menu = parseddata['Menu Parameters']
 	local mazes = menu:unpack('I', 13)
-	playertracker['mmm_mazecount'] = mazes
+	playertracker.mmm_mazecount = mazes
 	playertracker.talk_to_npc.chatnachoq = true
 	playertracker:save()
 	util.addon_log('Maze count: ' .. mazes)
@@ -136,21 +136,21 @@ function menus_util.log_protowaypoints()
 		end
 		table.insert(output_list, util.list_item('proto-waypoint', name, completion))
 	end
-	playertracker['protowaypoints_completed'] = complete
-	playertracker['protowaypoints_total'] = total
+	playertracker.protowaypoints_completed = complete
+	playertracker.protowaypoints_total = total
 	return output_list
 end
 
 function menus_util.handle_burrowsnpc(parseddata)
 	local map_name = nil
-	if ((menu_current['zoneid'] == 244 and menu_current['_unknown1'] == 1) -- Upper Jeuno / Sauromugue Menu
+	if ((menu_current.zoneid == 244 and menu_current['_unknown1'] == 1) -- Upper Jeuno / Sauromugue Menu
 		or (menu_current['zoneid'] == 120 and menu_current['Option Index'] == 14)) then
 		map_name = 'Sauromugue_Champaign'
 		menus_util.handle_sauromugueburrowsmenu(map_name, parseddata['Menu Parameters'])
 		playertracker.talk_to_npc.meeble_sauromugue = true
 		playertracker:save()
-	elseif ((menu_current['zoneid'] == 244 and menu_current['_unknown1'] == 2) -- Upper Jeuno / Batallia Menu
-			or (menu_current['zoneid'] == 105 and menu_current['Option Index'] == 14)) then
+	elseif ((menu_current.zoneid == 244 and menu_current['_unknown1'] == 2) -- Upper Jeuno / Batallia Menu
+			or (menu_current.zoneid == 105 and menu_current['Option Index'] == 14)) then
 		map_name = 'Batallia_Downs'
 		menus_util.handle_batalliaburrowsmenu(map_name, parseddata['Menu Parameters'])
 		playertracker.talk_to_npc.meeble_batallia = true
@@ -199,8 +199,8 @@ function menus_util.log_meeble_burrows()
 			table.insert(output_list, util.list_item(zone, name, completion))
 		end
 	end
-	playertracker['meebleburrows_completed'] = complete
-	playertracker['meebleburrows_total'] = total
+	playertracker.meebleburrows_completed = complete
+	playertracker.meebleburrows_total = total
 	return output_list
 end
 
@@ -240,7 +240,7 @@ function menus_util.log_fishes()
 			table.insert(output_list, util.list_item('fish', res.items[id].en, completion))
 		end
 	end
-	playertracker['fishes_completed'] = complete
+	playertracker.fishes_completed = complete
 	return output_list
 end
 
@@ -276,7 +276,7 @@ function menus_util.log_atmacitelevels()
 		complete = complete+level
 		table.insert(output_list, util.list_item('atmacite', 'Lv. ('..level..'/15) ' .. atmacite.en, completion))
 	end
-	playertracker['atmacite_completed'] = complete
+	playertracker.atmacite_completed = complete
 	return output_list
 end
 
@@ -284,7 +284,7 @@ function menus_util.handle_chocobostablenpc(parseddata)
 	if (parseddata['Menu Parameters'] ~= nil) then
 		local winglevel = string.byte(parseddata['Menu Parameters'], 5)
 		if (winglevel > playertracker['wingskill_completed']) then
-			playertracker['wingskill_completed'] = winglevel
+			playertracker.wingskill_completed = winglevel
 			playertracker.talk_to_npc.chocobokid = true
 			playertracker:save()
 			util.addon_log('Wing Skill updated: '..winglevel)
@@ -322,28 +322,28 @@ function menus_util.log_titles()
 	local exclusions = titlesexclusions
 	if (trackermenusettings.showexcluded) then exclusions = S{} end
 	local titles = T(res.titles)
-	local keys = L(titles:keyset()):sort()
-	for key in keys:it() do
+	local ids = L(titles:keyset()):sort()
+	for id in ids:it() do
 		total = total+1
 		local completion = false
 		local obtainmethod = ''
-		if (titles_howtoobtain[res.titles[key].en]) then
-			obtainmethod = titles_howtoobtain[res.titles[key].en]
+		if (titles_howtoobtain[titles[id].en]) then
+			obtainmethod = titles_howtoobtain[titles[id].en]
 		end
-		if (playertracker.titles[tostring(key)] == true) then
+		if (playertracker.titles[tostring(id)] == true) then
 			complete = complete+1
 			completion = true
 		else
-			if (exclusions:contains(key)) then
+			if (exclusions:contains(id)) then
 				total = total - 1
 			end
 		end
-		if (not exclusions:contains(key)) then  
-			table.insert(output_list, util.list_item('Titles', res.titles[key].en, completion, obtainmethod))
+		if (not exclusions:contains(id)) then  
+			table.insert(output_list, util.list_item('Titles', titles[id].en, completion, obtainmethod))
 		end
 	end
-	playertracker['Titles_completed'] = complete
-	playertracker['Titles_total'] = total
+	playertracker.Titles_completed = complete
+	playertracker.Titles_total = total
 	return output_list
 end
 
@@ -411,7 +411,7 @@ function menus_util.log_sheolgaol()
 			complete = complete+venglevel
 		end
 	end
-	playertracker['sheolgaoltiers_completed'] = complete
+	playertracker.sheolgaoltiers_completed = complete
 	return output_list
 end
 
@@ -473,8 +473,8 @@ function menus_util.log_vorseals()
 		end
 		table.insert(output_list, util.list_item(nil, (playertracker.vorseals[tostring(nibble)] or 0)..'/'..vorseal.goal..' '..vorseal.name, completion))
 	end
-	playertracker['vorseals_completed'] = complete
-	playertracker['vorseals_total'] = total
+	playertracker.vorseals_completed = complete
+	playertracker.vorseals_total = total
 	return output_list
 end
 
