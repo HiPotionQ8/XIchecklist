@@ -321,12 +321,14 @@ function menus_util.log_titles()
 	local total, complete = 0,0
 	local exclusions = titlesexclusions
 	if (trackermenusettings.showexcluded) then exclusions = S{} end
-	for key, title in pairs(res.titles) do
+	local titles = T(res.titles)
+	local keys = L(titles:keyset()):sort()
+	for key in keys:it() do
 		total = total+1
 		local completion = false
 		local obtainmethod = ''
-		if (titles_howtoobtain[title.en]) then
-			obtainmethod = titles_howtoobtain[title.en]
+		if (titles_howtoobtain[res.titles[key].en]) then
+			obtainmethod = titles_howtoobtain[res.titles[key].en]
 		end
 		if (playertracker.titles[tostring(key)] == true) then
 			complete = complete+1

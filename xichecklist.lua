@@ -1,6 +1,6 @@
 _addon.name     = 'xichecklist'
 _addon.author   = 'HiPotion'
-_addon.version  = '0.17.4'
+_addon.version  = '0.17.5'
 _addon.commands = {'xichecklist', 'xic', 'checklist', 'clist'}
 
 require('sets')
@@ -846,16 +846,18 @@ function log_spells(spelltype)
 	local spells_exclusions = require('maps/spells_exclusions')
 	local playerspells = windower.ffxi.get_spells()
 	local total, obtained = 0, 0
-	for id, spell in pairs(res.spells) do
+	local spells = T(res.spells)
+	local ids = L(spells:keyset()):sort()
+	for id in ids:it() do
 		local completion = false
-		if ((spell.type == spelltype) and (not spell.unlearnable) and (not spells_exclusions[id])) then
+		if ((spells[id].type == spelltype) and (not spells[id].unlearnable) and (not spells_exclusions[id])) then
 			total = total + 1
 			if (playerspells[id] == true) then
 				-- spell learned
 				obtained = obtained + 1
 				completion = true
 			end
-			table.insert(output_list, util.list_item(nil, spell.en, completion))
+			table.insert(output_list, util.list_item(nil, spells[id].en, completion))
 		end
 	end
 	playertracker[spelltype..'_completed'] = obtained

@@ -1,6 +1,6 @@
 -- Missions / Quests / Campaigns / Coalitions
 return {
-	sandoria = {
+	sandoria = T{
 		[0] = "A Sentry's Peril",
 		[1] = "Waters of the Cheval",
 		[2] = "Rosel the Armorer",
@@ -114,7 +114,7 @@ return {
 		[119] = "Trust: San d'Oria",
 		--[120] = "SDクエスト120",
 	},
-	bastok = {
+	bastok = T{
 		[0] = "The Siren's Tear",
 		[1] = "Beauty and the Galka",
 		[2] = "Welcome to Bastok",
@@ -215,7 +215,7 @@ return {
 		--[97] = "BSクエスト97",
 		--[99] = "BSクエスト99",
 	},
-	windurst = {
+	windurst = T{
 		[0] = "Hat in Hand",
 		[1] = "A Feather in One's Cap",
 		[2] = "A Crisis in the Making",
@@ -315,7 +315,7 @@ return {
 		[96] = "Trust: Windurst",
 		--[99] = "Windurst Quest #99",
 	},
-	jeuno = {
+	jeuno = T{
 		[0] = "Crest of Davoi",
 		[1] = "Save My Sister",
 		[2] = "A Clock Most Delicate",
@@ -478,7 +478,7 @@ return {
 		
 		[186] = "The Flying Machine of Eld",
 	},
-	other = {
+	other = T{
 		[0] = "Rycharde the Chef",
 		[1] = "Way of the Cook",
 		[2] = "Unending Chase",
@@ -612,7 +612,7 @@ return {
 		--[1048] = "Trinket for the Tyrant",
 		--[1049] = "Hypnotic Hospitality",
 	},
-	outlands = {
+	outlands = T{
 		--[0] = "FR Quest 0",
 		[1] = "+The Firebloom Tree",
 		[2] = "+Greetings to the Guardian",
@@ -833,7 +833,7 @@ return {
 		--[219] = "FRクエスト219",
 		--[220] = "FRクエスト220",
 	},
-	ahturhgan = {
+	ahturhgan = T{
 		[0] = 'Keeping Notes',
 		[1] = 'Arts And Crafts',
 		[2] = 'Olduum',
@@ -913,7 +913,7 @@ return {
 		[102] = 'Royal Painter Escort',
 		[103] = 'Targeting The Captain'
 	},
-	crystalwar = {
+	crystalwar = T{
 		[0] = 'Lost In Translocation',
 		[1] = 'Message On The Winds',
 		[2] = 'The Weekly Adventurer',
@@ -1010,7 +1010,7 @@ return {
 		[97] = 'Endings And Beginnings',
 		--[98] = 'Ad Infinitum' -- non completable
 	},
-	campaign = {
+	campaign = T{
 		--[0] = '',
 		[1] = 'Smokescreen I (S)',
 		[2] = 'Smokescreen II (S)',
@@ -1524,7 +1524,7 @@ return {
 		--[510] = 'カンパニエミッション',
 		--[511] = 'カンパニエミッション',
 	},
-	abyssea = {
+	abyssea = T{
 		[0] = 'Catering Capers',
 		[1] = 'Gift of Light',
 		[2] = 'Fear of the Dark III',
@@ -1718,7 +1718,7 @@ return {
 		[190] = 'Dominion Op #13 (Grauberg)',
 		[191] = 'Dominion Op #14 (Grauberg)',
 	},
-	adoulin = {
+	adoulin = T{
 		[0] = "Twitherym Dust",
 		[1] = "To Catch a Predator",
 		[2] = "Empty Nest",
@@ -1832,7 +1832,7 @@ return {
 		[144] = "The Silent Forest",
 		[145] = "+Winds of Eternity",
 	},
-	coalition = {
+	coalition = T{
 		[0] = 'Procure: Ceizak Battlegrounds',
 		[1] = 'Procure: Foret de Hennetiel',
 		[2] = 'Procure: Morimar Basalt Fields',
@@ -1930,7 +1930,7 @@ return {
 		[94] = 'Boost: Marjami Ravine',
 		[95] = 'Boost: Kamihr Drifts',
 	},
-	sandoriamissions = {
+	sandoriamissions = T{
 		[0] = "Smash the Orcish Scouts",
 		[1] = "Bat Hunt",
 		[2] = "Save the Children",
@@ -1956,7 +1956,7 @@ return {
 		[22] = "Breaking Barriers",
 		[23] = "The Heir to the Light",
 	},
-	bastokmissions = {
+	bastokmissions = T{
 		[0] = "The Zeruhn Report",
 		[1] = "A Geological Survey",
 		[2] = "Fetichism",
@@ -2022,7 +2022,7 @@ return {
 		--[62] = "BSミッション62",
 		--[63] = "BSミッション63",
 	},
-	windurstmissions = {
+	windurstmissions = T{
 		[0] = "The Horutoto Ruins Experiment",
 		[1] = "The Heart of the Matter",
 		[2] = "The Price of Peace",
@@ -2088,7 +2088,7 @@ return {
 		--[62] = "WSミッション62",
 		--[63] = "WSミッション63",
 	},
-	zilartmissions = {
+	zilartmissions = T{
 		[0] = "The New Frontier",
 		--[1] = "ZLシナリオ1",
 		--[2] = "The Outlands", -- unimplemented
@@ -2154,7 +2154,7 @@ return {
 		--[62] = "ZLシナリオ62",
 		--[1000] = "To Commence RotZ",
 	},
-	ahturhganmissions = {
+	ahturhganmissions = T{
 		[0] = "Land of Sacred Serpents",
 		[1] = "Immortal Sentries",
 		[2] = "President Salaheem",
@@ -2220,7 +2220,7 @@ return {
 		--[62] = "ATシナリオ62",
 		--[63] = "ATシナリオ63",
 	},
-	wotgmissions = {
+	wotgmissions = T{
 		[0] = "Cavernous Maws",
 		[1] = "Back to the Beginning",
 		[2] = "Cait Sith",
@@ -2277,7 +2277,7 @@ return {
 		--[53] = "Lest We Forget",
 	},
 		-- These misions are listed differently in packets, only current mission id is mentioned.
-	copmissions = {
+	copmissions = T{
 		[1] = {id=101, name="Ancient Flames Beckon"},
 		[2] = {id=110, name="__The Rites of Life"},
 		[3] = {id=118, name="__Below the Arks"},
@@ -2344,7 +2344,7 @@ return {
 		--[64] = {id=850, name="__The Last Verse"},
 		--[65] = {id=1000, name="To Begin CoP..."},
 	},
-	acpmissions = {
+	acpmissions = T{
 		[1] = {id=0, name="A Crystalline Prophecy"},
 		[2] = {id=1, name="The Echo Awakens"},
 		[3] = {id=2, name="Gatherer of Light (I)"},
@@ -2359,7 +2359,7 @@ return {
 		--[12] = {id=11, name="A Crystalline Prophecy (Fin.)"},
 		--[13] = {id=1000, name="To commence ACP"},
 	},
-	mkdmissions = {
+	mkdmissions = T{
 		[1] = {id=0, name="A Moogle Kupo d'Etat"},
 		[2] = {id=1, name="Drenched! It Began with a Raindrop"},
 		[3] = {id=2, name="Hasten! In a Jam in Jeuno?"},
@@ -2376,7 +2376,7 @@ return {
 		[14] = {id=13, name="Smash! A Malevolent Menace"},
 		--[15] = {id=14, name="A Moogle Kupo d'Etat (Fin.)"},
 	},
-	asamissions = {
+	asamissions = T{
 		[1] = {id=0, name="A Shantotto Ascension"},
 		[2] = {id=1, name="Burgeoning Dread"},
 		[3] = {id=2, name="That Which Curdles Blood"},
@@ -2394,7 +2394,7 @@ return {
 		--[15] = {id=14, name="A Shantotto Ascension (Fin)"},
 		--[16] = {id=1000, name="To Begin ASA..."},
 	},
-	soamissions = {
+	soamissions = T{
 		[1] = {id=110, name="The Sacred City of Adoulin"},
 		[2] = {id=110, name="__Rumors from the West"},
 		[3] = {id=112, name="__The Geomagnetron"},
@@ -2508,7 +2508,7 @@ return {
 		--[111] = {id=999, name="__fin"},
 		--[112] = {id=1000, name="To begin SoA..."},
 	},
-	rovmissions = {
+	rovmissions = T{
 		[1] = {id=0, name="Rhapsodies of Vana'diel"},
 		[2] = {id=110, name="'Chapter One: Creation and Rebirth'"},
 		[3] = {id=110, name="__Resonance"},
@@ -2608,7 +2608,7 @@ return {
 		[97] = {id=334, name="__A Rhapsody for the Ages"},
 		--[98] = {id=1000, name="To Start RoV..."},
 	},
-	tvrmissions = {
+	tvrmissions = T{
 		[1] = {id=0, name="The Voracious Resurgence"},
 		[2] = {id=110, name="__The Gloom Phantom's Approach"},
 		[3] = {id=118, name="__The Brygid Cup"},

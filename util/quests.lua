@@ -46,16 +46,17 @@ function quest_util.log_quests(quest_type)
 	end
     local complete,total = 0, 0
 	local output_list = {}
-	for key, name in pairs(maps[quest_type]) do
+	local ids = L(maps[quest_type]:keyset()):sort()
+	for id in ids:it() do
 		local mutualcompleted = false
 		local completion = false
-		if maps[quest_type][key] then
+		if maps[quest_type][id] then
 			total = total + 1
-            if util.has_bit(quests.completed[quest_type], key) then
+            if util.has_bit(quests.completed[quest_type], id) then
                 complete = complete + 1
 				completion = true
 			else
-				if (quests.mutual_exclusive[quest_type] and quests.mutual_exclusive[quest_type][key]) then -- check if mutual quests involved
+				if (quests.mutual_exclusive[quest_type] and quests.mutual_exclusive[quest_type][id]) then -- check if mutual quests involved
 					--total = total - quests.mutual_exclusive[quest_type]:length() + 1 -- avoid multiple counts
 					for alternative in pairs(quests.mutual_exclusive[quest_type]) do
 						if util.has_bit(quests.completed[quest_type], alternative) then
@@ -66,7 +67,7 @@ function quest_util.log_quests(quest_type)
 				end
             end
 			if (not mutualcompleted) then
-				table.insert(output_list, util.list_item(quest_type, maps[quest_type][key], completion))
+				table.insert(output_list, util.list_item(quest_type, maps[quest_type][id], completion))
 			end
         end
 	end
@@ -81,14 +82,15 @@ function quest_util.log_missions(mission_type, current_mission_id)
 	if current_mission_id < 0 then current_mission_id = current_mission_id + 2147483648 end
 	local complete,total = 0, 0
 	local output_list = {}
-	for i, mission in ipairs(maps[mission_type]) do
+	local keys = L(maps[mission_type]:keyset()):sort()
+	for key in keys:it() do
 		total = total+1
 		local completion = false
-		if (current_mission_id > mission.id) then
+		if (current_mission_id > maps[mission_type][key].id) then
 			completion = true
 			complete = complete+1
 		end
-		table.insert(output_list, util.list_item(nil, mission.name, completion))
+		table.insert(output_list, util.list_item(nil, maps[mission_type][key].name, completion))
 	end
 	playertracker[mission_type..'_completed'] = complete
 	playertracker[mission_type..'_total'] = total
