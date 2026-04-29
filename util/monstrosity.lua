@@ -40,13 +40,13 @@ function mons_util.log_monsterlevels()
 	local output_list = {}
 	local total, complete = 0, 0
 	for id, monster in pairs(maps.species) do
-		total = total+99
+		total = total+1
 		local completion = false
 		complete = complete + mons_util.monster_levels[id]
 		if (mons_util.monster_levels[id] == 99) then completion = true end
 		table.insert(output_list, util.list_item(nil, 'Lv. ' .. mons_util.monster_levels[id] .. ' ' .. monster, completion)) -- add monster
 	end
-	playertracker['MonsterLevels_completed'] = complete
+	playertracker['MonsterLevels_completed'] = math.floor(complete/99)
 	playertracker['MonsterLevels_total'] = total	
 	return output_list
 end

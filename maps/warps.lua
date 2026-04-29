@@ -383,32 +383,32 @@ return {
 	},
 	cavernousmaws = {
 		-- still need confirming, work in progress
-		[0] = "Cavernous Maw #1", -- Should be WoTG
-		[1] = "Cavernous Maw #2", -- Should be WoTG
-		[2] = "Cavernous Maw #3", -- Should be WoTG
-		[3] = "Cavernous Maw #4", -- Should be WoTG
-		[4] = "Cavernous Maw #5", -- Should be WoTG
-		[5] = "Cavernous Maw #6", -- Should be WoTG
-		[6] = "Cavernous Maw #7", -- Should be WoTG
-		[7] = "Cavernous Maw #8", -- Should be WoTG
+		[0] = "Cavernous Maw #1",
+		[1] = "Cavernous Maw #2",
+		[2] = "Cavernous Maw #3",
+		[3] = "Cavernous Maw #4",
+		[4] = "Cavernous Maw #5",
+		[5] = "Cavernous Maw #6",
+		[6] = "Cavernous Maw #7",
+		[7] = "Cavernous Maw #8",
 		
-		[8]  = "Cavernous Maw #9", -- Should be WoTG
+		[8]  = "Cavernous Maw #9",
 		--[9]  = "WoTG Unknown #1",
 		--[10] = "WoTG Unknown #2",
 		--[11] = "WoTG Unknown #3",
 		--[12] = "WoTG Unknown #4",
-		[13] = "Lycopodium Batallia Downs [S]", -- confirmed
-		[14] = "Lycopodium North Gustaberg [S]", -- assumed
-		[15] = "Lycopodium Garlaige Citadel [S]", -- confirmed
+		--[13] = "Lycopodium Batallia Downs [S]",
+		--[14] = "Lycopodium North Gustaberg [S]",
+		--[15] = "Lycopodium Garlaige Citadel [S]",
 		
-		--[16] = "WoTG Unknown #5", -- ??
-		--[17] = "WoTG Unknown #6", -- ??
-		--[18] = "WoTG Unknown #7", -- ??
-		--[19] = "WoTG Unknown #8", -- ??
-		--[20] = "WoTG Unknown #9", -- ??
-		--[21] = "WoTG Unknown #10", -- ??
-		--[22] = "WoTG Unknown #11",
-		--[23] = "WoTG Unknown #12", -- ??
+		--[16] = "WoTG Unknown #5", -- kb ??
+		--[17] = "WoTG Unknown #6", -- kb ??
+		--[18] = "WoTG Unknown #7", -- kb ??
+		--[19] = "WoTG Unknown #8", -- kb ??
+		--[20] = "WoTG Unknown #9", -- kb ??
+		--[21] = "WoTG Unknown #10", -- k ??
+		--[22] = "WoTG Unknown #11", -- b ??
+		--[23] = "WoTG Unknown #12", -- k ??
 		--
 		--[24] = "WoTG Unknown #13",
 		--[25] = "WoTG Unknown #14",
@@ -418,6 +418,11 @@ return {
 		--[29] = "WoTG Unknown #18",
 		--[30] = "WoTG Unknown #19",
 		--[31] = "WoTG Unknown #20",
+	},
+	lycopodium = {
+		[13] = "Lycopodium Batallia Downs [S]",
+		[14] = "Lycopodium North Gustaberg [S]",
+		[15] = "Lycopodium Garlaige Citadel [S]", 
 	},
 	eschanportals = {
 		[0] = "Zi'tah #1",
@@ -429,22 +434,22 @@ return {
 		[6] = "Zi'tah #7",
 		[7] = "Zi'tah #8",
 
-		[8] = "Ru'an #1",
-		[9] = "Ru'an #2",
-		[10] = "Ru'an #3",
-		[11] = "Ru'an #4",
-		[12] = "Ru'an #5",
-		[13] = "Ru'an #6",
-		[14] = "Ru'an #7",
-		[15] = "Ru'an #8",
+		[8] = "Ru'Aun #1",
+		[9] = "Ru'Aun #2",
+		[10] = "Ru'Aun #3",
+		[11] = "Ru'Aun #4",
+		[12] = "Ru'Aun #5",
+		[13] = "Ru'Aun #6",
+		[14] = "Ru'Aun #7",
+		[15] = "Ru'Aun #8",
 
-		[16] = "Ru'an #9",
-		[17] = "Ru'an #10",
-		[18] = "Ru'an #11",
-		[19] = "Ru'an #12",
-		[20] = "Ru'an #13",
-		[21] = "Ru'an #14",
-		[22] = "Ru'an #15",
+		[16] = "Ru'Aun #9",
+		[17] = "Ru'Aun #10",
+		[18] = "Ru'Aun #11",
+		[19] = "Ru'Aun #12",
+		[20] = "Ru'Aun #13",
+		[21] = "Ru'Aun #14",
+		[22] = "Ru'Aun #15",
 		[23] = "Reisenjima #1",
 
 		[24] = "Reisenjima #2",

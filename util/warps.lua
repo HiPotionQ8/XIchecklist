@@ -7,7 +7,8 @@ local warps_bytes = {
 	survivalguides = {0x18+1, 0x27+1},
 	waypoints = {0x28+1 , 0x37+1},
 	telepoints = {0x38+1, 0x3B+1},
-	cavernousmaws = {0x3C+1, 0x3F+1}, -- and Lycopodium (+others?)
+	cavernousmaws = {0x3C+1, 0x3F+1},
+	lycopodium = {0x3C+1, 0x3F+1},
 	eschanportals = {0x40+1, 0x44+1},
 }
 

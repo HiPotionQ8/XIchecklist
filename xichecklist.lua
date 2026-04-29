@@ -1,6 +1,6 @@
 _addon.name     = 'xichecklist'
 _addon.author   = 'HiPotion'
-_addon.version  = '0.17.2'
+_addon.version  = '0.17.4'
 _addon.commands = {'xichecklist', 'xic', 'checklist', 'clist'}
 
 require('sets')
@@ -127,6 +127,8 @@ defaultplayertracker = {
 	['telepoints_total'] = 0,
 	['cavernousmaws_completed'] = 0,
 	['cavernousmaws_total'] = 9,
+	['lycopodium_completed'] = 0,
+	['lycopodium_total'] = 3,
 	['eschanportals_completed'] = 0,
 	['eschanportals_total'] = 0,
 	-- Monstrosity
@@ -263,6 +265,7 @@ defaulttab_logs = {
 	waypoints = {},
 	telepoints = {},
 	cavernousmaws = {},
+	lycopodium = {},
 	eschanportals = {},
 	outposts = {},
 	protowaypoints = {},
@@ -313,11 +316,11 @@ function update_maintab()
 	append_maintab('Mastery Rank: %d', playertracker['mastery_rank'])
 	append_maintab('RoE %d/%d', playertracker['RoE_completed'], playertracker['RoE_total'])
 	append_maintab('Zones visited %d/%d', playertracker['zones_completed'], playertracker['zones_total'])
-	--append_maintab('Titles %d/%d', playertracker['Titles_completed'], playertracker['Titles_total'])
-	--append_maintab('Missions %d/%d', (playertracker['sandoriamissions_completed']+playertracker['bastokmissions_completed']+playertracker['windurstmissions_completed']+playertracker['zilartmissions_completed']+playertracker['copmissions_completed']+playertracker['ahturhganmissions_completed']+playertracker['wotgmissions_completed']+playertracker['acpmissions_completed']+playertracker['mkdmissions_completed']+playertracker['asamissions_completed']+playertracker['soamissions_completed']+playertracker['rovmissions_completed']+playertracker['tvrmissions_completed']+playertracker['campaign_completed']), (playertracker['sandoriamissions_total']+playertracker['bastokmissions_total']+playertracker['windurstmissions_total']+playertracker['zilartmissions_total']+playertracker['copmissions_total']+playertracker['ahturhganmissions_total']+playertracker['wotgmissions_total']+playertracker['acpmissions_total']+playertracker['mkdmissions_total']+playertracker['asamissions_total']+playertracker['soamissions_total']+playertracker['rovmissions_total']+playertracker['tvrmissions_total']+playertracker['campaign_total']))
-	--append_maintab('Quests %d/%d', (playertracker['bastok_completed']+playertracker['sandoria_completed']+playertracker['windurst_completed']+playertracker['jeuno_completed']+playertracker['ahturhgan_completed']+playertracker['crystalwar_completed']+playertracker['outlands_completed']+playertracker['other_completed']+playertracker['abyssea_completed']+playertracker['adoulin_completed']+playertracker['coalition_completed']), (playertracker['bastok_total']+playertracker['sandoria_total']+playertracker['windurst_total']+playertracker['jeuno_total']+playertracker['ahturhgan_total']+playertracker['crystalwar_total']+playertracker['outlands_total']+playertracker['other_total']+playertracker['abyssea_total']+playertracker['adoulin_total']+playertracker['coalition_total']))
-	--append_maintab('Magic %d/%d', (playertracker['WhiteMagic_completed']+playertracker['BlackMagic_completed']+playertracker['SummonerPact_completed']+playertracker['Ninjutsu_completed']+playertracker['BardSong_completed']+playertracker['BlueMagic_completed']+playertracker['Geomancy_completed']+playertracker['Trust_completed']), (playertracker['WhiteMagic_total']+playertracker['BlackMagic_total']+playertracker['SummonerPact_total']+playertracker['Ninjutsu_total']+playertracker['BardSong_total']+playertracker['BlueMagic_total']+playertracker['Geomancy_total']+playertracker['Trust_total']))
-	--append_maintab('Warps %d/%d', (playertracker['homepoints_completed']+playertracker['survivalguides_completed']+playertracker['waypoints_completed']+playertracker['telepoints_completed']+playertracker['cavernousmaws_completed']+playertracker['eschanportals_completed']+playertracker['outposts_completed']+playertracker['protowaypoints_completed']), (playertracker['homepoints_total']+playertracker['survivalguides_total']+playertracker['waypoints_total']+playertracker['telepoints_total']+playertracker['cavernousmaws_total']+playertracker['eschanportals_total']+playertracker['outposts_total']+playertracker['protowaypoints_total']))
+	append_maintab('Titles %d/%d', playertracker['Titles_completed'], playertracker['Titles_total'])
+	append_maintab('Missions %d/%d', (playertracker['sandoriamissions_completed']+playertracker['bastokmissions_completed']+playertracker['windurstmissions_completed']+playertracker['zilartmissions_completed']+playertracker['copmissions_completed']+playertracker['ahturhganmissions_completed']+playertracker['wotgmissions_completed']+playertracker['acpmissions_completed']+playertracker['mkdmissions_completed']+playertracker['asamissions_completed']+playertracker['soamissions_completed']+playertracker['rovmissions_completed']+playertracker['tvrmissions_completed']+playertracker['campaign_completed']), (playertracker['sandoriamissions_total']+playertracker['bastokmissions_total']+playertracker['windurstmissions_total']+playertracker['zilartmissions_total']+playertracker['copmissions_total']+playertracker['ahturhganmissions_total']+playertracker['wotgmissions_total']+playertracker['acpmissions_total']+playertracker['mkdmissions_total']+playertracker['asamissions_total']+playertracker['soamissions_total']+playertracker['rovmissions_total']+playertracker['tvrmissions_total']+playertracker['campaign_total']))
+	append_maintab('Quests %d/%d', (playertracker['bastok_completed']+playertracker['sandoria_completed']+playertracker['windurst_completed']+playertracker['jeuno_completed']+playertracker['ahturhgan_completed']+playertracker['crystalwar_completed']+playertracker['outlands_completed']+playertracker['other_completed']+playertracker['abyssea_completed']+playertracker['adoulin_completed']+playertracker['coalition_completed']), (playertracker['bastok_total']+playertracker['sandoria_total']+playertracker['windurst_total']+playertracker['jeuno_total']+playertracker['ahturhgan_total']+playertracker['crystalwar_total']+playertracker['outlands_total']+playertracker['other_total']+playertracker['abyssea_total']+playertracker['adoulin_total']+playertracker['coalition_total']))
+	append_maintab('Magic %d/%d', (playertracker['WhiteMagic_completed']+playertracker['BlackMagic_completed']+playertracker['SummonerPact_completed']+playertracker['Ninjutsu_completed']+playertracker['BardSong_completed']+playertracker['BlueMagic_completed']+playertracker['Geomancy_completed']+playertracker['Trust_completed']), (playertracker['WhiteMagic_total']+playertracker['BlackMagic_total']+playertracker['SummonerPact_total']+playertracker['Ninjutsu_total']+playertracker['BardSong_total']+playertracker['BlueMagic_total']+playertracker['Geomancy_total']+playertracker['Trust_total']))
+	append_maintab('Warps %d/%d', (playertracker['homepoints_completed']+playertracker['survivalguides_completed']+playertracker['waypoints_completed']+playertracker['telepoints_completed']+playertracker['cavernousmaws_completed']+playertracker['lycopodium_completed']+playertracker['eschanportals_completed']+playertracker['outposts_completed']+playertracker['protowaypoints_completed']), (playertracker['homepoints_total']+playertracker['survivalguides_total']+playertracker['waypoints_total']+playertracker['telepoints_total']+playertracker['cavernousmaws_total']+playertracker['lycopodium_total']+playertracker['eschanportals_total']+playertracker['outposts_total']+playertracker['protowaypoints_total']))
 	
 	table.insert(tabs[1].items, '======= Story =======')
 	append_maintab('San d\'Oria Missions %d/%d', playertracker['sandoriamissions_completed'], playertracker['sandoriamissions_total'])
@@ -378,7 +381,8 @@ function update_maintab()
 	append_maintab('Survival Guides %d/%d', playertracker['survivalguides_completed'], playertracker['survivalguides_total'])
 	append_maintab('Waypoints %d/%d', playertracker['waypoints_completed'], playertracker['waypoints_total'])
 	append_maintab('Telepoints %d/%d', playertracker['telepoints_completed'], playertracker['telepoints_total'])
-	append_maintab('WoTG Unlocks %d/%d', playertracker['cavernousmaws_completed'], playertracker['cavernousmaws_total'])
+	append_maintab('Cavernous Maws %d/%d', playertracker['cavernousmaws_completed'], playertracker['cavernousmaws_total'])
+	append_maintab('Lycopodium %d/%d', playertracker['lycopodium_completed'], playertracker['lycopodium_total'])
 	append_maintab('Eschan Portals %d/%d', playertracker['eschanportals_completed'], playertracker['eschanportals_total'])
 	append_maintab('Outposts %d/%d', playertracker['outposts_completed'], playertracker['outposts_total'])
 	append_addonhelp(1, 'You must talk to any \\cs(255,255,255)Outpost Teleporter NPC\\cr @ \\cs(50,150,255)three nations\\cr.', playertracker.talk_to_npc['outpostnpc'])
@@ -390,7 +394,7 @@ function update_maintab()
 	append_addonhelp(1, 'You must talk to \\cs(255,255,255)Katsunaga\\cr @ \\cs(50,150,255)Mhuaura (H-9)\\cr \\cs(255,255,255)(Menu: Types of fishes caught)\\cr', playertracker.talk_to_npc['katsunaga'])
 	
 	table.insert(tabs[1].items, '======= Monstrosity =======')
-	append_maintab('Monster Levels %d/%d', playertracker['MonsterLevels_completed'], playertracker['MonsterLevels_total'])
+	append_maintab('Monster Levels Maxed %d/%d', playertracker['MonsterLevels_completed'], playertracker['MonsterLevels_total'])
 	append_maintab('Race/Job Instincts %d/%d', playertracker['Racejobinstinct_completed'], playertracker['Racejobinstinct_total'])
 	append_maintab('Monster Variants %d/%d', playertracker['MonsterVariants_completed'], playertracker['MonsterVariants_total'])
 	append_maintab('Monster Instincts %d/%d', playertracker['MonsterInsincts_completed'], playertracker['MonsterInsincts_total'])
@@ -502,6 +506,7 @@ windower.register_event('incoming chunk', function(id, data, modified, injected,
 			tab_logs.waypoints = warps_util.log_warps('waypoints')
 			tab_logs.telepoints = warps_util.log_warps('telepoints')
 			tab_logs.cavernousmaws = warps_util.log_warps('cavernousmaws')
+			tab_logs.lycopodium = warps_util.log_warps('lycopodium')
 			tab_logs.eschanportals = warps_util.log_warps('eschanportals')
 			xichecklist_updatetabs('warps')
 		end
@@ -719,8 +724,10 @@ function xichecklist_updatetabs(tab)
 	append_items(tabs[7].items, tab_logs.waypoints)
 	append_header(7, 'Telepoints (%d/%d)', playertracker['telepoints_completed'], playertracker['telepoints_total'])
 	append_items(tabs[7].items, tab_logs.telepoints)
-	append_header(7, 'WoTG Unlocks (%d/%d)', playertracker['cavernousmaws_completed'], playertracker['cavernousmaws_total'])
+	append_header(7, 'Cavernous Maws (%d/%d)', playertracker['cavernousmaws_completed'], playertracker['cavernousmaws_total'])
 	append_items(tabs[7].items, tab_logs.cavernousmaws)
+	append_header(7, 'Lycopodium (%d/%d)', playertracker['lycopodium_completed'], playertracker['lycopodium_total'])
+	append_items(tabs[7].items, tab_logs.lycopodium)
 	append_header(7, 'Eschan Portals (%d/%d)', playertracker['eschanportals_completed'], playertracker['eschanportals_total'])
 	append_items(tabs[7].items, tab_logs.eschanportals)
 	append_header(7, 'Outpost Warps (%d/%d)', playertracker['outposts_completed'], playertracker['outposts_total'])
