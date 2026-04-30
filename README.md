@@ -9,7 +9,7 @@
 | `//xic showcompleted` | toggle show-completed-items on/off `Default:false` |
 | `//xic showexcluded` | toggle show hidden Titles and RoE and Crafting Shield KI on/off `Default:false` |
 | `//xic copy` | copy current tab to clipboard |
-| `//xic log <category>` | print <category> in chat log.<br>Example: `//xic log summary`<br>Available categories `main` `summary` `titles` `titles_by_content` `roe` `monstrosity` (`monsterlevels` `monstervariants` `racejobinstincts` `monsterinstincts`) `mmm` (`mmmvouchers` `mmmrunes`) `meeble` `zones` `warps` (`homepoints` `survivalguides` `waypoints` `telepoints` `cavernousmaws` `lycopodium` `eschanportals` `outposts` `protowaypoints`) `atmacite` `vorseals` `fish` `odyssey` (`sheola` `sheolb` `sheolc` `sheolgaol`) `missions` `quests` (`sandoria` `bastok` `windurst` `jeuno` `ahturhgan` `crystalwar` `outlands` `other` `abyssea` `adoulin` `coalition` `campaign` `sandoriamissions` `bastokmissions` `windurstmissions` `zilartmissions` `ahturhganmissions` `wotgmissions` `copmissions` `acpmissions` `mkdmissions` `asamissions` `soamissions` `rovmissions` `tvrmissions`)   |
+| `//xic log <category>` | print <category> in chat log.<br>Example: `//xic log summary`<br>Available categories `main` `summary` `titles` `titles_by_content` `roe` `monstrosity` (`monsterlevels` `monstervariants` `racejobinstincts` `monsterinstincts`) `mmm` (`mmmvouchers` `mmmrunes`) `meeble` `zones` `warps` (`homepoints` `survivalguides` `waypoints` `telepoints` `cavernousmaws` `lycopodium` `eschanportals` `outposts` `protowaypoints`) `atmacite` `vorseals` `fish` `odyssey` (`sheola` `sheolb` `sheolc` `sheolgaol`) `missions` `quests` (`sandoria` `bastok` `windurst` `jeuno` `ahturhgan` `assaults` `crystalwar` `outlands` `other` `abyssea` `adoulin` `coalition` `campaign` `sandoriamissions` `bastokmissions` `windurstmissions` `zilartmissions` `ahturhganmissions` `wotgmissions` `copmissions` `acpmissions` `mkdmissions` `asamissions` `soamissions` `rovmissions` `tvrmissions`)   |
 
 The following are updated by talking to NPCs (some require opening certain menus)  
 will be saved in config so only need to do it once (or when need to update)
@@ -75,35 +75,36 @@ the menu will only show missing items like quests,key items, spells, home points
 
 ### **Changes**:
 
-- 0.1.0 - release
-- 0.1.1 - added Monstrosity levels and race/job instincts
-- 0.1.2 - add Monstrosity variants
+- 0.1.0 - release.
+- 0.1.1 - added Monstrosity levels and race/job instincts.
+- 0.1.2 - add Monstrosity variants.
 - 0.2.0 - added titles (thanks to kaytecat)
 - 0.2.1 - added list of Titles by content
 - 0.3.0 - added RoE Tracking (thanks to Daleterrence / Darkdoom for resources)
-- 0.3.1 - added title exclusions & removed unlearnable spells
-- 0.4.0 - A lot fixes
-- 0.4.1 - removed non-implemented monstrosity
-- 0.5.0 - added title obtain method, for quick reference in missing titles
-- 0.5.2 - fixed unlearnable spells & waypoint mapping
-- 0.6.0 - added Outpost warps / Monster Instincts + fixes/cleanup
-- 0.7.0 - added Moblin Maze Mongers (Vouchers / Runes / Maze count) & Active Effects (Dynamis/Sortie Job KIs)
-- 0.8.0 - added Proto-Waypoints
-- 0.9.0 - added Fishes Caught / Meeble Burrows / Merits , moved Coalitions under Quests
-- 0.9.2 - added Total Points / Mastery Rank / command to copy to clipboard
+- 0.3.1 - added title exclusions & removed unlearnable spells.
+- 0.4.0 - A lot fixes.
+- 0.4.1 - removed non-implemented monstrosity.
+- 0.5.0 - added title obtain method, for quick reference in missing titles.
+- 0.5.2 - fixed unlearnable spells & waypoint mapping.
+- 0.6.0 - added Outpost warps / Monster Instincts + fixes/cleanup.
+- 0.7.0 - added Moblin Maze Mongers (Vouchers / Runes / Maze count) & Active Effects (Dynamis/Sortie Job KIs).
+- 0.8.0 - added Proto-Waypoints.
+- 0.9.0 - added Fishes Caught / Meeble Burrows / Merits , moved Coalitions under Quests.
+- 0.9.2 - added Total Points / Mastery Rank / command to copy to clipboard.
 - 0.9.3 - added fishing / crafting skills.
 - 0.9.4 - added Atmacite, Atmacite levels & Wing Skill.
-- 0.10.0 - Added "Talk to NPC" addon help in tabs that require npc interaction to register
+- 0.10.0 - Added "Talk to NPC" addon help in tabs that require npc interaction to register.
 - 0.11.0 - Added `//xic log` command, now registers which NPC talked to for updating the checklist.
 - 0.12.0 - Added Sheol Gaol, removed titles.xml and roe.xml, fixes (delete your settings and reload)
-- 0.13.0 - Added Nations, Zilart, TOAU, WOTG Missions
+- 0.13.0 - Added Nations, Zilart, TOAU, WOTG Missions.
 - 0.14.0 - Added CoP, ACP, MKD, ASA, SoA & RoV Missions.
 - 0.14.1 - Added TVR Missions.
 - 0.14.2 - Added `//xic showcompleted` command to toggle hide/show completed items.
 - 0.14.3 - Added `//xic showexcluded` command to toggle hide/show hidden RoEs (not shown in game) and excluded Titles (which are impossible to obtain).
 - 0.15.0 - Added Sheol ABC, Eschan Portal, Telepoints, Excluded crafting shield KIs by default.
-- 0.16.0 - Added Vorseals
+- 0.16.0 - Added Vorseals.
 - 0.16.3 - UI Enhancement / UI Scaling
 - 0.16.4 - Added Lycopodium warps.
 - 0.17.0 - Added 'Zones Visited' under Warps tab (or `//xic log zones`)
-- 0.17.7 - Added multiple `//xic log` options
+- 0.17.7 - Added multiple `//xic log` options.
+- 0.17.8 - Added Assaults.
