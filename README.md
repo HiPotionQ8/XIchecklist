@@ -44,7 +44,7 @@ will be saved in config so only need to do it once (or when need to update)
 - Records of Eminence (RoE) 
 - Warps `(Home Points / Survival Guides / Waypoints / Outposts / Proto-Waypoints / Telepoints / Cavernous Maws / Lycopodium / Eschan Portals)`
 - Campaign Ops
-- Missions `(San d'Oria / Bastok / Windurst / Zilart / CoP / TOAU / WOTG / ACP / MKD / ASA / SoA / RoV / TVR)`
+- Missions `(San d'Oria / Bastok / Windurst / Zilart / CoP / TOAU / Assaults / WOTG / ACP / MKD / ASA / SoA / RoV / TVR)`
 - Quests `(San d'Oria / Bastok / Windurst / Jeuno / Aht Urhgan / Crystal War / Outlands / Other / Abyssea / Adoulin / Coalition)`
 - Key items `(Permenant / Maps / Mounts / Claim Slips / Job KIs / Active Effects / Atmacite levels)`
 - Magic Spells `(White Magic / Black Magic / Summoner Pacts / Ninjutsu / Bard Songs / Blue Magic / Trusts)`
