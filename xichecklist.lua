@@ -1,6 +1,6 @@
 _addon.name     = 'xichecklist'
 _addon.author   = 'HiPotion'
-_addon.version  = '0.17.7'
+_addon.version  = '0.17.8'
 _addon.commands = {'xichecklist', 'xic', 'checklist', 'clist'}
 
 require('sets')
@@ -62,6 +62,8 @@ defaultplayertracker = {
 	jeuno_total = 0,
 	ahturhgan_completed = 0,
 	ahturhgan_total = 0,
+	assaults_completed = 0,
+	assaults_total = 0,
 	crystalwar_completed = 0,
 	crystalwar_total = 0,
 	outlands_completed = 0,
@@ -317,7 +319,7 @@ function update_maintab()
 	append_maintab('RoE %d/%d', playertracker.roe_completed, playertracker.roe_total)
 	append_maintab('Zones visited %d/%d', playertracker.zones_completed, playertracker.zones_total)
 	append_maintab('Titles %d/%d', playertracker.Titles_completed, playertracker.Titles_total)
-	append_maintab('Missions %d/%d', (playertracker.sandoriamissions_completed+playertracker.bastokmissions_completed+playertracker.windurstmissions_completed+playertracker.zilartmissions_completed+playertracker.copmissions_completed+playertracker.ahturhganmissions_completed+playertracker.wotgmissions_completed+playertracker.acpmissions_completed+playertracker.mkdmissions_completed+playertracker.asamissions_completed+playertracker.soamissions_completed+playertracker.rovmissions_completed+playertracker.tvrmissions_completed+playertracker.campaign_completed), (playertracker.sandoriamissions_total+playertracker.bastokmissions_total+playertracker.windurstmissions_total+playertracker.zilartmissions_total+playertracker.copmissions_total+playertracker.ahturhganmissions_total+playertracker.wotgmissions_total+playertracker.acpmissions_total+playertracker.mkdmissions_total+playertracker.asamissions_total+playertracker.soamissions_total+playertracker.rovmissions_total+playertracker.tvrmissions_total+playertracker.campaign_total))
+	append_maintab('Missions %d/%d', (playertracker.sandoriamissions_completed+playertracker.bastokmissions_completed+playertracker.windurstmissions_completed+playertracker.zilartmissions_completed+playertracker.copmissions_completed+playertracker.ahturhganmissions_completed+playertracker.assaults_completed+playertracker.wotgmissions_completed+playertracker.acpmissions_completed+playertracker.mkdmissions_completed+playertracker.asamissions_completed+playertracker.soamissions_completed+playertracker.rovmissions_completed+playertracker.tvrmissions_completed+playertracker.campaign_completed), (playertracker.sandoriamissions_total+playertracker.bastokmissions_total+playertracker.windurstmissions_total+playertracker.zilartmissions_total+playertracker.copmissions_total+playertracker.ahturhganmissions_total+playertracker.assaults_total+playertracker.wotgmissions_total+playertracker.acpmissions_total+playertracker.mkdmissions_total+playertracker.asamissions_total+playertracker.soamissions_total+playertracker.rovmissions_total+playertracker.tvrmissions_total+playertracker.campaign_total))
 	append_maintab('Quests %d/%d', (playertracker.bastok_completed+playertracker.sandoria_completed+playertracker.windurst_completed+playertracker.jeuno_completed+playertracker.ahturhgan_completed+playertracker.crystalwar_completed+playertracker.outlands_completed+playertracker.other_completed+playertracker.abyssea_completed+playertracker.adoulin_completed+playertracker.coalition_completed), (playertracker.bastok_total+playertracker.sandoria_total+playertracker.windurst_total+playertracker.jeuno_total+playertracker.ahturhgan_total+playertracker.crystalwar_total+playertracker.outlands_total+playertracker.other_total+playertracker.abyssea_total+playertracker.adoulin_total+playertracker.coalition_total))
 	append_maintab('Magic %d/%d', (playertracker.WhiteMagic_completed+playertracker.BlackMagic_completed+playertracker.SummonerPact_completed+playertracker.Ninjutsu_completed+playertracker.BardSong_completed+playertracker.BlueMagic_completed+playertracker.Geomancy_completed+playertracker.Trust_completed), (playertracker.WhiteMagic_total+playertracker.BlackMagic_total+playertracker.SummonerPact_total+playertracker.Ninjutsu_total+playertracker.BardSong_total+playertracker.BlueMagic_total+playertracker.Geomancy_total+playertracker.Trust_total))
 	append_maintab('Warps %d/%d', (playertracker.homepoints_completed+playertracker.survivalguides_completed+playertracker.waypoints_completed+playertracker.telepoints_completed+playertracker.cavernousmaws_completed+playertracker.lycopodium_completed+playertracker.eschanportals_completed+playertracker.outposts_completed+playertracker.protowaypoints_completed), (playertracker.homepoints_total+playertracker.survivalguides_total+playertracker.waypoints_total+playertracker.telepoints_total+playertracker.cavernousmaws_total+playertracker.lycopodium_total+playertracker.eschanportals_total+playertracker.outposts_total+playertracker.protowaypoints_total))
@@ -329,6 +331,7 @@ function update_maintab()
 	append_maintab('Zilart Missions %d/%d', playertracker.zilartmissions_completed, playertracker.zilartmissions_total)
 	append_maintab('CoP Missions %d/%d', playertracker.copmissions_completed, playertracker.copmissions_total)
 	append_maintab('TOAU Missions %d/%d', playertracker.ahturhganmissions_completed, playertracker.ahturhganmissions_total)
+	append_maintab('Assaults %d/%d', playertracker.assaults_completed, playertracker.assaults_total)
 	append_maintab('WOTG Missions %d/%d', playertracker.wotgmissions_completed, playertracker.wotgmissions_total)
 	append_maintab('ACP Missions %d/%d', playertracker.acpmissions_completed, playertracker.acpmissions_total)
 	append_maintab('MKD Missions %d/%d', playertracker.mkdmissions_completed, playertracker.mkdmissions_total)
@@ -459,6 +462,7 @@ windower.register_event('incoming chunk', function(id, data, modified, injected,
 				quests[log.type][log.area] = p['Completed TOAU Quests']
 				quests.completed.assaults = p['Completed Assaults']
 				tab_logs.quests[log.area] = quest_util.log_quests(log.area)
+				tab_logs.quests.assaults = quest_util.log_quests('assaults')
 			elseif (p.Type == 0x00D0) then -- if Nation, Zilart Completed Missions
 				quests.completed.sandoriamissions = p['Completed San d\'Oria Missions']
 				quests.completed.bastokmissions = p['Completed Bastok Missions']
@@ -635,6 +639,8 @@ function xichecklist_updatetabs(tab)
 		append_items(tabs[2].items, tab_logs.quests.copmissions)
 		append_header(2, 'TOAU Missions (%d/%d)', playertracker.ahturhganmissions_completed, playertracker.ahturhganmissions_total)
 		append_items(tabs[2].items, tab_logs.quests.ahturhganmissions)
+		append_header(2, 'Assaults (%d/%d)', playertracker.assaults_completed, playertracker.assaults_total)
+		append_items(tabs[2].items, tab_logs.quests.assaults)
 		append_header(2, 'WOTG Missions (%d/%d)', playertracker.wotgmissions_completed, playertracker.wotgmissions_total)
 		append_items(tabs[2].items, tab_logs.quests.wotgmissions)
 		append_header(2, 'ACP Missions (%d/%d)', playertracker.acpmissions_completed, playertracker.acpmissions_total)
@@ -673,7 +679,7 @@ function xichecklist_updatetabs(tab)
 		append_items(tabs[2].items, tab_logs.quests.coalition)
 		-- log campaign ops
 		append_header(3, 'Campaign Ops (%d/%d)', playertracker.campaign_completed, playertracker.campaign_total)
-		append_items(tabs[3].items, tab_logs.quests['campaign2'])
+		append_items(tabs[3].items, tab_logs.quests.campaign2)
 	end
 	
 	-- log fishes caught
@@ -901,7 +907,7 @@ end
 draw()
 
 windower.register_event('addon command', function(...)
-	local quests_location = S{'sandoria', 'bastok', 'windurst', 'jeuno', 'ahturhgan', 'crystalwar', 'outlands', 'other', 'abyssea', 'adoulin', 'coalition', 'sandoriamissions', 'bastokmissions', 'windurstmissions', 'zilartmissions', 'ahturhganmissions', 'wotgmissions', 'copmissions', 'acpmissions', 'mkdmissions', 'asamissions', 'soamissions', 'rovmissions', 'tvrmissions'}
+	local quests_location = S{'sandoria', 'bastok', 'windurst', 'jeuno', 'ahturhgan', 'assaults', 'crystalwar', 'outlands', 'other', 'abyssea', 'adoulin', 'coalition', 'sandoriamissions', 'bastokmissions', 'windurstmissions', 'zilartmissions', 'ahturhganmissions', 'wotgmissions', 'copmissions', 'acpmissions', 'mkdmissions', 'asamissions', 'soamissions', 'rovmissions', 'tvrmissions'}
 	if arg[1] == 'eval' then
 		assert(loadstring(table.concat(arg, ' ',2)))()
 	elseif cmds.help:contains(arg[1]) then
@@ -1020,6 +1026,8 @@ windower.register_event('addon command', function(...)
 				util.log_tablog(tab_logs.quests.copmissions)
 				windower.add_to_chat(160, 'TOAU Missions (%d/%d) ===':format(playertracker.ahturhganmissions_completed, playertracker.ahturhganmissions_total))
 				util.log_tablog(tab_logs.quests.ahturhganmissions)
+				windower.add_to_chat(160, 'Assaults (%d/%d) ===':format(playertracker.assaults_completed, playertracker.assaults_total))
+				util.log_tablog(tab_logs.quests.assaults)
 				windower.add_to_chat(160, 'WOTG Missions (%d/%d) ===':format(playertracker.wotgmissions_completed, playertracker.wotgmissions_total))
 				util.log_tablog(tab_logs.quests.wotgmissions)
 				windower.add_to_chat(160, 'ACP Missions (%d/%d) ===':format(playertracker.acpmissions_completed, playertracker.acpmissions_total))
