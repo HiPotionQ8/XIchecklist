@@ -314,6 +314,7 @@ function menus_util.add_title(id)
 		playertracker.titles[tostring(id)] = true
 		util.addon_log('Title added: ' .. res.titles[id].en)
 	end
+	playertracker:save()
 end
 
 function menus_util.log_titles()
@@ -321,14 +322,13 @@ function menus_util.log_titles()
 	local total, complete = 0,0
 	local exclusions = titlesexclusions
 	if (trackermenusettings.showexcluded) then exclusions = S{} end
-	local titles = T(res.titles)
-	local ids = L(titles:keyset()):sort()
+	local ids = L(res.titles:keyset()):sort()
 	for id in ids:it() do
 		total = total+1
 		local completion = false
 		local obtainmethod = ''
-		if (titles_howtoobtain[titles[id].en]) then
-			obtainmethod = titles_howtoobtain[titles[id].en]
+		if (titles_howtoobtain[res.titles[id].en]) then
+			obtainmethod = titles_howtoobtain[res.titles[id].en]
 		end
 		if (playertracker.titles[tostring(id)] == true) then
 			complete = complete+1
@@ -339,7 +339,7 @@ function menus_util.log_titles()
 			end
 		end
 		if (not exclusions:contains(id)) then  
-			table.insert(output_list, util.list_item('Titles', titles[id].en, completion, obtainmethod))
+			table.insert(output_list, util.list_item('Titles', res.titles[id].en, completion, obtainmethod))
 		end
 	end
 	playertracker.Titles_completed = complete

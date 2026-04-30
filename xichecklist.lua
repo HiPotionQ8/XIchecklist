@@ -1,6 +1,6 @@
 _addon.name     = 'xichecklist'
 _addon.author   = 'HiPotion'
-_addon.version  = '0.17.6'
+_addon.version  = '0.17.7'
 _addon.commands = {'xichecklist', 'xic', 'checklist', 'clist'}
 
 require('sets')
@@ -107,13 +107,13 @@ defaultplayertracker = {
 	Trust_completed = 0,
 	Trust_total = 0,
 	-- Exp
-	Meritpoints_completed = 0,
-	Meritpoints_total = 919,
-	Jobpoints_completed = 0,
-	Jobpoints_total = 22,
-	Masterlevels_completed = 0,
-	Masterlevels_total = 1100,
-	Masterlevels_highest = 0,
+	meritpoints_completed = 0,
+	meritpoints_total = 919,
+	jobpoints_completed = 0,
+	jobpoints_total = 22,
+	masterlevels_completed = 0,
+	masterlevels_total = 1100,
+	masterlevels_highest = 0,
 	-- Warps
 	zones_completed = 0,
 	zones_total = 0,
@@ -132,17 +132,17 @@ defaultplayertracker = {
 	eschanportals_completed = 0,
 	eschanportals_total = 0,
 	-- Monstrosity
-	Racejobinstinct_completed = 0,
-	Racejobinstinct_total = 0,
-	MonsterLevels_completed = 0,
-	MonsterLevels_total = 0,
-	MonsterVariants_completed = 0,
-	MonsterVariants_total = 0,
-	MonsterInsincts_completed = 0,
-	MonsterInsincts_total = 0,
+	racejobinstinct_completed = 0,
+	racejobinstinct_total = 0,
+	monsterlevels_completed = 0,
+	monsterlevels_total = 0,
+	monstervariants_completed = 0,
+	monstervariants_total = 0,
+	monsterinsincts_completed = 0,
+	monsterinsincts_total = 0,
 	-- RoE
-	RoE_completed = 0,
-	RoE_total = 0,
+	roe_completed = 0,
+	roe_total = 0,
 	-- MMM
 	mmmvouchers_completed = 0,
 	mmmvouchers_total = 0,
@@ -275,7 +275,7 @@ defaulttab_logs = {
 	monsterlevels = {},
 	monstervariants = {},
 	racejobinstincts = {},
-	monster_instincts = {},
+	monsterinstincts = {},
 	roe = {},
 	mmmvouchers = {},
 	mmmrunes = {},
@@ -314,7 +314,7 @@ function update_maintab()
 	append_maintab('Checklist Progress %d/%d', util.totalpoints())
 	table.insert(tabs[1].items, '======= General =======')
 	append_maintab('Mastery Rank: %d', playertracker.mastery_rank)
-	append_maintab('RoE %d/%d', playertracker.RoE_completed, playertracker.RoE_total)
+	append_maintab('RoE %d/%d', playertracker.roe_completed, playertracker.roe_total)
 	append_maintab('Zones visited %d/%d', playertracker.zones_completed, playertracker.zones_total)
 	append_maintab('Titles %d/%d', playertracker.Titles_completed, playertracker.Titles_total)
 	append_maintab('Missions %d/%d', (playertracker.sandoriamissions_completed+playertracker.bastokmissions_completed+playertracker.windurstmissions_completed+playertracker.zilartmissions_completed+playertracker.copmissions_completed+playertracker.ahturhganmissions_completed+playertracker.wotgmissions_completed+playertracker.acpmissions_completed+playertracker.mkdmissions_completed+playertracker.asamissions_completed+playertracker.soamissions_completed+playertracker.rovmissions_completed+playertracker.tvrmissions_completed+playertracker.campaign_completed), (playertracker.sandoriamissions_total+playertracker.bastokmissions_total+playertracker.windurstmissions_total+playertracker.zilartmissions_total+playertracker.copmissions_total+playertracker.ahturhganmissions_total+playertracker.wotgmissions_total+playertracker.acpmissions_total+playertracker.mkdmissions_total+playertracker.asamissions_total+playertracker.soamissions_total+playertracker.rovmissions_total+playertracker.tvrmissions_total+playertracker.campaign_total))
@@ -372,9 +372,9 @@ function update_maintab()
 	append_maintab('Craft Skills %d/%d', playertracker.craftingskills_completed, 790)
 	append_maintab('Wing Skill %d/%d', playertracker.wingskill_completed, 100)
 	append_addonhelp(1, 'You must talk to any \\cs(255,255,255)Chocobo stats NPC\\cr @ \\cs(50,150,255)Nations Chocobo Stables\\cr', playertracker.talk_to_npc.chocobokid)
-	append_maintab('Merit Points %d/%d', playertracker.Meritpoints_completed, 919)
-	append_maintab('Job Points Maxed %d/%d', playertracker.Jobpoints_completed, 22)
-	append_maintab('Master Levels %d/%d (Highest: %d)', playertracker.Masterlevels_completed, 1100, playertracker.Masterlevels_highest)
+	append_maintab('Merit Points %d/%d', playertracker.meritpoints_completed, 919)
+	append_maintab('Job Points Maxed %d/%d', playertracker.jobpoints_completed, 22)
+	append_maintab('Master Levels %d/%d (Highest: %d)', playertracker.masterlevels_completed, 1100, playertracker.masterlevels_highest)
 	
 	table.insert(tabs[1].items, '======= Warps =======')
 	append_maintab('Home Points %d/%d', playertracker.homepoints_completed, playertracker.homepoints_total)
@@ -394,10 +394,10 @@ function update_maintab()
 	append_addonhelp(1, 'You must talk to \\cs(255,255,255)Katsunaga\\cr @ \\cs(50,150,255)Mhuaura (H-9)\\cr \\cs(255,255,255)(Menu: Types of fishes caught)\\cr', playertracker.talk_to_npc.katsunaga)
 	
 	table.insert(tabs[1].items, '======= Monstrosity =======')
-	append_maintab('Monster Levels Maxed %d/%d', playertracker.MonsterLevels_completed, playertracker.MonsterLevels_total)
-	append_maintab('Race/Job Instincts %d/%d', playertracker.Racejobinstinct_completed, playertracker.Racejobinstinct_total)
-	append_maintab('Monster Variants %d/%d', playertracker.MonsterVariants_completed, playertracker.MonsterVariants_total)
-	append_maintab('Monster Instincts %d/%d', playertracker.MonsterInsincts_completed, playertracker.MonsterInsincts_total)
+	append_maintab('Monster Levels Maxed %d/%d', playertracker.monsterlevels_completed, playertracker.monsterlevels_total)
+	append_maintab('Race/Job Instincts %d/%d', playertracker.racejobinstinct_completed, playertracker.racejobinstinct_total)
+	append_maintab('Monster Variants %d/%d', playertracker.monstervariants_completed, playertracker.monstervariants_total)
+	append_maintab('Monster Instincts %d/%d', playertracker.monsterinsincts_completed, playertracker.monsterinsincts_total)
 	
 	table.insert(tabs[1].items, '======= Battle Content =======')
 	append_maintab('MMM Vouchers Unlocked %d/%d', playertracker.mmmvouchers_completed, playertracker.mmmvouchers_total)
@@ -514,9 +514,9 @@ windower.register_event('incoming chunk', function(id, data, modified, injected,
 		-- do monstrosity
 		if (parseddata.Order == 3) then
 			mons_util.monster_levelspacket[1] = parseddata['Monster Level Char field']
-			mons_util.monster_instincts = util.twobits_to_table(parseddata['Instinct Bitfield 1'])
+			mons_util.monsterinstincts = util.twobits_to_table(parseddata['Instinct Bitfield 1'])
 			tab_logs.monsterlevels = mons_util.log_monsterlevels()
-			tab_logs.monster_instincts = mons_util.log_monsterinstincts()
+			tab_logs.monsterinstincts = mons_util.log_monsterinstincts()
 			xichecklist_updatetabs('monstrosity')
 		end
 		if (parseddata.Order == 4) then
@@ -746,14 +746,14 @@ function xichecklist_updatetabs(tab)
 	-- log Monstrosity levels & Race/Job Instincts
 	if (tab == 'monstrosity') then
 		tabs[8].items = {}
-		append_header(8, 'Species Levels (%d/%d)', playertracker.MonsterLevels_completed, playertracker.MonsterLevels_total)
+		append_header(8, 'Species Levels (%d/%d)', playertracker.monsterlevels_completed, playertracker.monsterlevels_total)
 		append_items(tabs[8].items, tab_logs.monsterlevels)
-		append_header(8, 'Monster Variants (%d/%d)', playertracker.MonsterVariants_completed, playertracker.MonsterVariants_total)
+		append_header(8, 'Monster Variants (%d/%d)', playertracker.monstervariants_completed, playertracker.monstervariants_total)
 		append_items(tabs[8].items, tab_logs.monstervariants)
-		append_header(8, 'Race / Job Instincts (%d/%d)', playertracker.Racejobinstinct_completed, playertracker.Racejobinstinct_total)
+		append_header(8, 'Race / Job Instincts (%d/%d)', playertracker.racejobinstinct_completed, playertracker.racejobinstinct_total)
 		append_items(tabs[8].items, tab_logs.racejobinstincts)
-		append_header(8, 'Monster Instincts (%d/%d)', playertracker.MonsterInsincts_completed, playertracker.MonsterInsincts_total)
-		append_items(tabs[8].items, tab_logs.monster_instincts)
+		append_header(8, 'Monster Instincts (%d/%d)', playertracker.monsterinsincts_completed, playertracker.monsterinsincts_total)
+		append_items(tabs[8].items, tab_logs.monsterinstincts)
 	end
 	
 	-- log Titles
@@ -779,7 +779,7 @@ function xichecklist_updatetabs(tab)
 	-- log RoE
 	if (tab == 'roe') then
 		tabs[10].items = {}
-		append_header(10, 'RoE (%d/%d)', playertracker.RoE_completed, playertracker.RoE_total)
+		append_header(10, 'RoE (%d/%d)', playertracker.roe_completed, playertracker.roe_total)
 		append_items(tabs[10].items, tab_logs.roe)
 	end
 	
@@ -847,18 +847,18 @@ function log_spells(spelltype)
 	local spells_exclusions = require('maps/spells_exclusions')
 	local playerspells = windower.ffxi.get_spells()
 	local total, obtained = 0, 0
-	local spells = T(res.spells)
-	local ids = L(spells:keyset()):sort()
+	--local res.spells = res.spells
+	local ids = L(res.spells:keyset()):sort()
 	for id in ids:it() do
 		local completion = false
-		if ((spells[id].type == spelltype) and (not spells[id].unlearnable) and (not spells_exclusions[id])) then
+		if ((res.spells[id].type == spelltype) and (not res.spells[id].unlearnable) and (not spells_exclusions[id])) then
 			total = total + 1
 			if (playerspells[id] == true) then
 				-- spell learned
 				obtained = obtained + 1
 				completion = true
 			end
-			table.insert(output_list, util.list_item(nil, spells[id].en, completion))
+			table.insert(output_list, util.list_item(nil, res.spells[id].en, completion))
 		end
 	end
 	playertracker[spelltype..'_completed'] = obtained
@@ -878,15 +878,15 @@ function check_exp()
 			total_merit_upgrades = total_merit_upgrades + value
 		end
 	end
-	playertracker.Meritpoints_completed = total_merit_upgrades
+	playertracker.meritpoints_completed = total_merit_upgrades
 	-- job points
 	if (type(playerinfo.job_points) == 'table') then 
 		for job, value in pairs(playerinfo.job_points) do
 			total_jp_spent = total_jp_spent + playerinfo.job_points[job].jp_spent
 		end
 	end
-	playertracker.Jobpoints_completed = math.floor(total_jp_spent/2100)
-	playertracker.Jobpoints_total = 22
+	playertracker.jobpoints_completed = math.floor(total_jp_spent/2100)
+	playertracker.jobpoints_total = 22
 	-- master levels
 	if (type(playerinfo.master_levels) == 'table') then 
 		for job, value in pairs(playerinfo.master_levels) do
@@ -894,8 +894,8 @@ function check_exp()
 			if (playerinfo.master_levels[job] > highest_master_level) then highest_master_level = playerinfo.master_levels[job] end
 		end
 	end
-	playertracker.Masterlevels_completed = total_master_levels
-	playertracker.Masterlevels_highest = highest_master_level
+	playertracker.masterlevels_completed = total_master_levels
+	playertracker.masterlevels_highest = highest_master_level
 end
 
 draw()
@@ -966,100 +966,102 @@ windower.register_event('addon command', function(...)
 			arg[2] = arg[2]:lower()
 			if arg[2] == 'titles' then
 				util.log_tablog(tab_logs.titles)
-				windower.add_to_chat(160, '=== Titles (%d/%d) ===':format(playertracker['Titles_completed'], playertracker['Titles_total']))
+				windower.add_to_chat(160, '=== Titles (%d/%d) ===':format(playertracker.Titles_completed, playertracker.Titles_total))
 			elseif arg[2] == 'monstrosity' then
-				windower.add_to_chat(160, '=== Species Levels (%d/%d) ===':format(playertracker['MonsterLevels_completed'], playertracker['MonsterLevels_total']))
+				windower.add_to_chat(160, '=== Species Levels (%d/%d) ===':format(playertracker.monsterlevels_completed, playertracker.monsterlevels_total))
 				util.log_tablog(tab_logs.monsterlevels)
-				windower.add_to_chat(160, '=== Monster Variants (%d/%d) ===':format(playertracker['MonsterVariants_completed'], playertracker['MonsterVariants_total']))
+				windower.add_to_chat(160, '=== Monster Variants (%d/%d) ===':format(playertracker.monstervariants_completed, playertracker.monstervariants_total))
 				util.log_tablog(tab_logs.monstervariants)
-				windower.add_to_chat(160, '=== Race / Job Instincts (%d/%d) ===':format(playertracker['Racejobinstinct_completed'], playertracker['Racejobinstinct_total']))
+				windower.add_to_chat(160, '=== Race / Job Instincts (%d/%d) ===':format(playertracker.racejobinstinct_completed, playertracker.racejobinstinct_total))
 				util.log_tablog(tab_logs.racejobinstincts)
-				windower.add_to_chat(160, '=== Monster Instincts (%d/%d) ===':format(playertracker['MonsterInsincts_completed'], playertracker['MonsterInsincts_total']))
-				util.log_tablog(tab_logs.monster_instincts)
+				windower.add_to_chat(160, '=== Monster Instincts (%d/%d) ===':format(playertracker.monsterinsincts_completed, playertracker.monsterinsincts_total))
+				util.log_tablog(tab_logs.monsterinstincts)
 			elseif arg[2] == 'mmm' then
-				windower.add_to_chat(160, '=== MMM Vouchers Unlocks (%d/%d) ===':format(playertracker['mmmvouchers_completed'], playertracker['mmmvouchers_total']))
+				windower.add_to_chat(160, '=== MMM Vouchers Unlocks (%d/%d) ===':format(playertracker.mmmvouchers_completed, playertracker.mmmvouchers_total))
 				util.log_tablog(tab_logs.mmmvouchers)
-				windower.add_to_chat(160, '=== MMM Runes Unlocks (%d/%d) ===':format(playertracker['mmmrunes_completed'], playertracker['mmmrunes_total']))
+				windower.add_to_chat(160, '=== MMM Runes Unlocks (%d/%d) ===':format(playertracker.mmmrunes_completed, playertracker.mmmrunes_total))
 				util.log_tablog(tab_logs.mmmrunes)
 			elseif arg[2] == 'meeble' then
-				windower.add_to_chat(160, '=== Meeble Burrows (%d/%d) ===':format(playertracker['meebleburrows_completed'], playertracker['meebleburrows_total']))
+				windower.add_to_chat(160, '=== Meeble Burrows (%d/%d) ===':format(playertracker.meebleburrows_completed, playertracker.meebleburrows_total))
 				util.log_tablog(tab_logs.meebleburrows)
 			elseif arg[2] == 'zones' then
-				windower.add_to_chat(160, '=== Zones (%d/%d) ===':format(playertracker['zones_completed'], playertracker['zones_total']))
+				windower.add_to_chat(160, '=== Zones (%d/%d) ===':format(playertracker.zones_completed, playertracker.zones_total))
 				util.log_tablog(tab_logs.zones)
 			elseif arg[2] == 'warps' then
-				windower.add_to_chat(160, '=== Home Points (%d/%d) ===':format(playertracker['homepoints_completed'], playertracker['homepoints_total']))
+				windower.add_to_chat(160, '=== Home Points (%d/%d) ===':format(playertracker.homepoints_completed, playertracker.homepoints_total))
 				util.log_tablog(tab_logs.homepoints)
-				windower.add_to_chat(160, '=== Survival Guides (%d/%d) ===':format(playertracker['survivalguides_completed'], playertracker['survivalguides_total']))
+				windower.add_to_chat(160, '=== Survival Guides (%d/%d) ===':format(playertracker.survivalguides_completed, playertracker.survivalguides_total))
 				util.log_tablog(tab_logs.survivalguides)
-				windower.add_to_chat(160, '=== Adoulin Waypoints (%d/%d) ===':format(playertracker['waypoints_completed'], playertracker['waypoints_total']))
+				windower.add_to_chat(160, '=== Adoulin Waypoints (%d/%d) ===':format(playertracker.waypoints_completed, playertracker.waypoints_total))
 				util.log_tablog(tab_logs.waypoints)
-				windower.add_to_chat(160, '=== Outpost Warps (%d/%d) ===':format(playertracker['outposts_completed'], playertracker['outposts_total']))
+				windower.add_to_chat(160, '=== Outpost Warps (%d/%d) ===':format(playertracker.outposts_completed, playertracker.outposts_total))
 				util.log_tablog(tab_logs.outposts)
-				windower.add_to_chat(160, '=== Proto-Waypoints (%d/%d) ===':format(playertracker['protowaypoints_completed'], playertracker['protowaypoints_total']))
+				windower.add_to_chat(160, '=== Proto-Waypoints (%d/%d) ===':format(playertracker.protowaypoints_completed, playertracker.protowaypoints_total))
 				util.log_tablog(tab_logs.protowaypoints)
-				windower.add_to_chat(160, '=== WoTG Unlocks (%d/%d) ===':format(playertracker['cavernousmaws_completed'], playertracker['cavernousmaws_total']))
+				windower.add_to_chat(160, '=== Cavernous Maws (%d/%d) ===':format(playertracker.cavernousmaws_completed, playertracker.cavernousmaws_total))
 				util.log_tablog(tab_logs.cavernousmaws)
-				windower.add_to_chat(160, '=== Eschan Portals (%d/%d) ===':format(playertracker['eschanportals_completed'], playertracker['eschanportals_total']))
+				windower.add_to_chat(160, '=== Lycopodium (%d/%d) ===':format(playertracker.lycopodium_completed, playertracker.lycopodium_total))
+				util.log_tablog(tab_logs.lycopodium)
+				windower.add_to_chat(160, '=== Eschan Portals (%d/%d) ===':format(playertracker.eschanportals_completed, playertracker.eschanportals_total))
 				util.log_tablog(tab_logs.eschanportals)
 			elseif arg[2] == 'fish' then
-				windower.add_to_chat(160, '=== Type of Fish (%d/%d) ===':format(playertracker['fishes_completed'], playertracker['fishes_total']))
+				windower.add_to_chat(160, '=== Type of Fish (%d/%d) ===':format(playertracker.fishes_completed, playertracker.fishes_total))
 				util.log_tablog(tab_logs.fishes)
 			elseif arg[2] == 'missions' then
-				windower.add_to_chat(160, '=== San d\'Oria Missions (%d/%d) ===':format(playertracker['sandoriamissions_completed'], playertracker['sandoriamissions_total']))
-				util.log_tablog(tab_logs.quests['sandoriamissions'])
-				windower.add_to_chat(160, 'Bastok Missions (%d/%d) ===':format(playertracker['bastokmissions_completed'], playertracker['bastokmissions_total']))
-				util.log_tablog(tab_logs.quests['bastokmissions'])
-				windower.add_to_chat(160, 'Windurst Missions (%d/%d) ===':format(playertracker['windurstmissions_completed'], playertracker['windurstmissions_total']))
-				util.log_tablog(tab_logs.quests['windurstmissions'])
-				windower.add_to_chat(160, 'Zilart Missions (%d/%d) ===':format(playertracker['zilartmissions_completed'], playertracker['zilartmissions_total']))
-				util.log_tablog(tab_logs.quests['zilartmissions'])
-				windower.add_to_chat(160, 'CoP Missions (%d/%d) ===':format(playertracker['copmissions_completed'], playertracker['copmissions_total']))
-				util.log_tablog(tab_logs.quests['copmissions'])
-				windower.add_to_chat(160, 'TOAU Missions (%d/%d) ===':format(playertracker['ahturhganmissions_completed'], playertracker['ahturhganmissions_total']))
-				util.log_tablog(tab_logs.quests['ahturhganmissions'])
-				windower.add_to_chat(160, 'WOTG Missions (%d/%d) ===':format(playertracker['wotgmissions_completed'], playertracker['wotgmissions_total']))
-				util.log_tablog(tab_logs.quests['wotgmissions'])
-				windower.add_to_chat(160, 'ACP Missions (%d/%d) ===':format(playertracker['acpmissions_completed'], playertracker['acpmissions_total']))
-				util.log_tablog(tab_logs.quests['acpmissions'])
-				windower.add_to_chat(160, 'MKD Missions (%d/%d) ===':format(playertracker['mkdmissions_completed'], playertracker['mkdmissions_total']))
-				util.log_tablog(tab_logs.quests['mkdmissions'])
-				windower.add_to_chat(160, 'ASA Missions (%d/%d) ===':format(playertracker['asamissions_completed'], playertracker['asamissions_total']))
-				util.log_tablog(tab_logs.quests['asamissions'])
-				windower.add_to_chat(160, 'SoA Missions (%d/%d) ===':format(playertracker['soamissions_completed'], playertracker['soamissions_total']))
-				util.log_tablog(tab_logs.quests['soamissions'])
-				windower.add_to_chat(160, 'RoV Missions (%d/%d) ===':format(playertracker['rovmissions_completed'], playertracker['rovmissions_total']))
-				util.log_tablog(tab_logs.quests['rovmissions'])
-				windower.add_to_chat(160, 'TVR Missions (%d/%d) ===':format(playertracker['tvrmissions_completed'], playertracker['tvrmissions_total']))
-				util.log_tablog(tab_logs.quests['tvrmissions'])
+				windower.add_to_chat(160, '=== San d\'Oria Missions (%d/%d) ===':format(playertracker.sandoriamissions_completed, playertracker.sandoriamissions_total))
+				util.log_tablog(tab_logs.quests.sandoriamissions)
+				windower.add_to_chat(160, 'Bastok Missions (%d/%d) ===':format(playertracker.bastokmissions_completed, playertracker.bastokmissions_total))
+				util.log_tablog(tab_logs.quests.bastokmissions)
+				windower.add_to_chat(160, 'Windurst Missions (%d/%d) ===':format(playertracker.windurstmissions_completed, playertracker.windurstmissions_total))
+				util.log_tablog(tab_logs.quests.windurstmissions)
+				windower.add_to_chat(160, 'Zilart Missions (%d/%d) ===':format(playertracker.zilartmissions_completed, playertracker.zilartmissions_total))
+				util.log_tablog(tab_logs.quests.zilartmissions)
+				windower.add_to_chat(160, 'CoP Missions (%d/%d) ===':format(playertracker.copmissions_completed, playertracker.copmissions_total))
+				util.log_tablog(tab_logs.quests.copmissions)
+				windower.add_to_chat(160, 'TOAU Missions (%d/%d) ===':format(playertracker.ahturhganmissions_completed, playertracker.ahturhganmissions_total))
+				util.log_tablog(tab_logs.quests.ahturhganmissions)
+				windower.add_to_chat(160, 'WOTG Missions (%d/%d) ===':format(playertracker.wotgmissions_completed, playertracker.wotgmissions_total))
+				util.log_tablog(tab_logs.quests.wotgmissions)
+				windower.add_to_chat(160, 'ACP Missions (%d/%d) ===':format(playertracker.acpmissions_completed, playertracker.acpmissions_total))
+				util.log_tablog(tab_logs.quests.acpmissions)
+				windower.add_to_chat(160, 'MKD Missions (%d/%d) ===':format(playertracker.mkdmissions_completed, playertracker.mkdmissions_total))
+				util.log_tablog(tab_logs.quests.mkdmissions)
+				windower.add_to_chat(160, 'ASA Missions (%d/%d) ===':format(playertracker.asamissions_completed, playertracker.asamissions_total))
+				util.log_tablog(tab_logs.quests.asamissions)
+				windower.add_to_chat(160, 'SoA Missions (%d/%d) ===':format(playertracker.soamissions_completed, playertracker.soamissions_total))
+				util.log_tablog(tab_logs.quests.soamissions)
+				windower.add_to_chat(160, 'RoV Missions (%d/%d) ===':format(playertracker.rovmissions_completed, playertracker.rovmissions_total))
+				util.log_tablog(tab_logs.quests.rovmissions)
+				windower.add_to_chat(160, 'TVR Missions (%d/%d) ===':format(playertracker.tvrmissions_completed, playertracker.tvrmissions_total))
+				util.log_tablog(tab_logs.quests.tvrmissions)
 			elseif arg[2] == 'quests' then
-				windower.add_to_chat(160, '=== San d\'Oria Quests (%d/%d) ===':format(playertracker['sandoria_completed'], playertracker['sandoria_total']))
-				util.log_tablog(tab_logs.quests['sandoria'])
-				windower.add_to_chat(160, '=== Bastok Quests (%d/%d) ===':format(playertracker['bastok_completed'], playertracker['bastok_total']))
-				util.log_tablog(tab_logs.quests['bastok'])
-				windower.add_to_chat(160, '=== Windurst Quests (%d/%d) ===':format(playertracker['windurst_completed'], playertracker['windurst_total']))
-				util.log_tablog(tab_logs.quests['windurst'])
-				windower.add_to_chat(160, '=== Jeuno Quests (%d/%d) ===':format(playertracker['jeuno_completed'], playertracker['jeuno_total']))
-				util.log_tablog(tab_logs.quests['jeuno'])
-				windower.add_to_chat(160, '=== Aht Urhgan Quests (%d/%d) ===':format(playertracker['ahturhgan_completed'], playertracker['ahturhgan_total']))
-				util.log_tablog(tab_logs.quests['ahturhgan'])
-				windower.add_to_chat(160, '=== Crystal War Quests (%d/%d) ===':format(playertracker['crystalwar_completed'], playertracker['crystalwar_total']))
-				util.log_tablog(tab_logs.quests['crystalwar'])
-				windower.add_to_chat(160, '=== Outlands Quests (%d/%d) ===':format(playertracker['outlands_completed'], playertracker['outlands_total']))
-				util.log_tablog(tab_logs.quests['outlands'])
-				windower.add_to_chat(160, '=== Other Quests (%d/%d) ===':format(playertracker['other_completed'], playertracker['other_total']))
-				util.log_tablog(tab_logs.quests['other'])
-				windower.add_to_chat(160, '=== Abyssea Quests (%d/%d) ===':format(playertracker['abyssea_completed'], playertracker['abyssea_total']))
-				util.log_tablog(tab_logs.quests['abyssea'])
-				windower.add_to_chat(160, '=== Adoulin Quests (%d/%d) ===':format(playertracker['adoulin_completed'], playertracker['adoulin_total']))
-				util.log_tablog(tab_logs.quests['adoulin'])
-				windower.add_to_chat(160, '=== Coalition Assignments (%d/%d) ===':format(playertracker['coalition_completed'], playertracker['coalition_total']))
-				util.log_tablog(tab_logs.quests['coalition'])
-				windower.add_to_chat(160, '=== Campaign Ops (%d/%d) ===':format(playertracker['campaign_completed'], playertracker['campaign_total']))
-				util.log_tablog(tab_logs.quests['campaign2'])
+				windower.add_to_chat(160, '=== San d\'Oria Quests (%d/%d) ===':format(playertracker.sandoria_completed, playertracker.sandoria_total))
+				util.log_tablog(tab_logs.quests.sandoria)
+				windower.add_to_chat(160, '=== Bastok Quests (%d/%d) ===':format(playertracker.bastok_completed, playertracker.bastok_total))
+				util.log_tablog(tab_logs.quests.bastok)
+				windower.add_to_chat(160, '=== Windurst Quests (%d/%d) ===':format(playertracker.windurst_completed, playertracker.windurst_total))
+				util.log_tablog(tab_logs.quests.windurst)
+				windower.add_to_chat(160, '=== Jeuno Quests (%d/%d) ===':format(playertracker.jeuno_completed, playertracker.jeuno_total))
+				util.log_tablog(tab_logs.quests.jeuno)
+				windower.add_to_chat(160, '=== Aht Urhgan Quests (%d/%d) ===':format(playertracker.ahturhgan_completed, playertracker.ahturhgan_total))
+				util.log_tablog(tab_logs.quests.ahturhgan)
+				windower.add_to_chat(160, '=== Crystal War Quests (%d/%d) ===':format(playertracker.crystalwar_completed, playertracker.crystalwar_total))
+				util.log_tablog(tab_logs.quests.crystalwar)
+				windower.add_to_chat(160, '=== Outlands Quests (%d/%d) ===':format(playertracker.outlands_completed, playertracker.outlands_total))
+				util.log_tablog(tab_logs.quests.outlands)
+				windower.add_to_chat(160, '=== Other Quests (%d/%d) ===':format(playertracker.other_completed, playertracker.other_total))
+				util.log_tablog(tab_logs.quests.other)
+				windower.add_to_chat(160, '=== Abyssea Quests (%d/%d) ===':format(playertracker.abyssea_completed, playertracker.abyssea_total))
+				util.log_tablog(tab_logs.quests.abyssea)
+				windower.add_to_chat(160, '=== Adoulin Quests (%d/%d) ===':format(playertracker.adoulin_completed, playertracker.adoulin_total))
+				util.log_tablog(tab_logs.quests.adoulin)
+				windower.add_to_chat(160, '=== Coalition Assignments (%d/%d) ===':format(playertracker.coalition_completed, playertracker.coalition_total))
+				util.log_tablog(tab_logs.quests.coalition)
+				windower.add_to_chat(160, '=== Campaign Ops (%d/%d) ===':format(playertracker.campaign_completed, playertracker.campaign_total))
+				util.log_tablog(tab_logs.quests.campaign2)
 			elseif arg[2] == 'campaign' then
-				windower.add_to_chat(160, '=== Campaign Ops (%d/%d) ===':format(playertracker['campaign_completed'], playertracker['campaign_total']))
-				util.log_tablog(tab_logs.quests['campaign2'])
+				windower.add_to_chat(160, '=== Campaign Ops (%d/%d) ===':format(playertracker.campaign_completed, playertracker.campaign_total))
+				util.log_tablog(tab_logs.quests.campaign2)
 			elseif quests_location:contains(arg[2]) then
 				windower.add_to_chat(160, '=== '.. arg[2] ..' (%d/%d) ===':format(playertracker[arg[2]..'_completed'], playertracker[arg[2]..'_total']))
 				util.log_tablog(tab_logs.quests[arg[2]])
@@ -1078,11 +1080,18 @@ windower.register_event('addon command', function(...)
 				util.log_tablog(tab_logs.sheolc)
 				windower.add_to_chat(160, '=== Sheol Gaol (%d/%d) ===':format(playertracker.sheolgaoltiers_completed, playertracker.sheolgaoltiers_total))
 				util.log_tablog(tab_logs.sheolgaol)
+			elseif tab_logs[arg[2]] then
+				if not arg[2] == 'title_by_content' then
+					windower.add_to_chat(160, '=== '.. arg[2] .. ' (%d/%d) ===':format(playertracker[arg[2]..'_completed'], playertracker[arg[2]..'_total']))
+				end
+				util.log_tablog(tab_logs[arg[2]])
 			end
 		else
 			windower.add_to_chat(160, 'Must specify category')
 			windower.add_to_chat(160, 'Example: //xic log '..string.color('titles', 221))
-			windower.add_to_chat(160, 'Available categories: main summary titles monstrosity mmm meeble zones warps fish odyssey missions quests')
+			windower.add_to_chat(160, 'Available categories: main summary titles titles_by_content roe monstrosity mmm meeble zones warps fish odyssey missions quests')
+			windower.add_to_chat(160, 'homepoints survivalguides waypoints telepoints cavernousmaws lycopodium eschanportals outposts protowaypoints atmacite vorseals')
+			windower.add_to_chat(160, 'monsterlevels monstervariants racejobinstincts monsterinstincts mmmvouchers mmmrunes sheola sheolb sheolc sheolgaol')
 			windower.add_to_chat(160, 'sandoria bastok windurst jeuno ahturhgan crystalwar outlands other abyssea adoulin coalition campaign')
 			windower.add_to_chat(160, 'sandoriamissions bastokmissions windurstmissions zilartmissions ahturhganmissions wotgmissions copmissions acpmissions mkdmissions asamissions soamissions rovmissions tvrmissions')
 		end

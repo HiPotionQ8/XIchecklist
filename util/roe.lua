@@ -23,8 +23,8 @@ function roe_util.log_roe(roe_data)
 			table.insert(output_list, util.list_item(nil, roemap[key].name, completion))
 		end
 	end
-	playertracker.RoE_completed = complete - hiddencomplete
-	playertracker.RoE_total = total - hiddentotal
+	playertracker.roe_completed = complete - hiddencomplete
+	playertracker.roe_total = total - hiddentotal
 	return output_list
 end
 
