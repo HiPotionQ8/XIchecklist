@@ -1,6 +1,6 @@
 _addon.name     = 'xichecklist'
 _addon.author   = 'HiPotion'
-_addon.version  = '0.19.14'
+_addon.version  = '0.19.15'
 _addon.commands = {'xichecklist', 'xic', 'checklist', 'clist'}
 
 require('sets')
