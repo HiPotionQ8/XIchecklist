@@ -1,6 +1,6 @@
 _addon.name     = 'xichecklist'
 _addon.author   = 'HiPotion'
-_addon.version  = '0.19.15'
+_addon.version  = '0.19.16'
 _addon.commands = {'xichecklist', 'xic', 'checklist', 'clist'}
 
 require('sets')
@@ -1152,7 +1152,8 @@ windower.register_event('addon command', function(...)
 				windower.add_to_chat(160, '=== '.. arg[2] ..' (%d/%d) ===':format(playertracker[arg[2]..'_completed'], playertracker[arg[2]..'_total']))
 				util.log_tablog(tab_logs[arg[2]])
 			elseif (arg[2] == 'main') or (arg[2] == 'summary') then
-				for key, text in pairs(tabs[1].items) do
+				for key, item in ipairs(tabs[1].items) do
+					local text = item.text
 					text = text:gsub('\\cs%(%d+,%d+,%d+%)', '')
 					text = text:gsub('\\cr', '')
 					windower.add_to_chat(160, text)
