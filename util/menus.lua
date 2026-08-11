@@ -634,6 +634,43 @@ menus_util.log_emporox = function()
 	}
 end
 
+menus_util.handle_abyssea_conflux = function(parseddata)
+	local zoneid = windower.ffxi.get_info().zone
+	for bit_index, conflux in pairs(menumaps.abysseaconflux_unlocks[zoneid]) do
+		if util.has_bit(parseddata['Menu Parameters'], bit_index) and not playertracker.abysseaconflux_unlocks[tostring(zoneid)][tostring(bit_index)] then
+			playertracker.abysseaconflux_unlocks[zoneid][bit_index] = true
+			util.addon_log(conflux..' Unlocked')
+		end
+	end
+	playertracker.talk_to_npc['veridicalconflux_'..zoneid] = true
+	playertracker:save()
+end
+
+menus_util.log_abyssea_conflux = function()
+	local output_list = {}
+	local total, complete = 0,0
+	for zoneid, tbl in pairs(menumaps.abysseaconflux_unlocks) do
+		table.insert(output_list, util.list_item(nil, '==== ' .. res.zones[zoneid].en ..' ====', false))
+		for bit_index, conflux in pairs(tbl) do
+			total = total+1
+			local completion = false
+			if (playertracker.abysseaconflux_unlocks[zoneid][tostring(bit_index)] == true) then
+				complete = complete+1
+				completion = true
+			end
+			table.insert(output_list, util.list_item(nil, conflux, completion))
+		end
+	end
+	playertracker.abysseaconflux_completed = complete
+	--playertracker.abysseaconflux_total = total
+	tab_logs.abysseaconflux = {
+		name = tab_logs.abysseaconflux.name,
+		completed = complete,
+		total = 75,
+		items = output_list
+	}
+end
+
 menus_util.menu_npcs = {
 	-- Outpost Warp NPCs
 	['Conrad'] = {zoneid=S{234}, menuid=S{584,581}, menu_function=menus_util.handle_op_warps},
@@ -692,6 +729,10 @@ menus_util.menu_npcs = {
 	-- Emporox
 	["Emporox"] = {zoneid=S{291}, menuid=S{9751}, menu_function=menus_util.handle_emporox},
 	
+	-- Abyssea Veridical Conflux
+	["Veridical Conflux #01"] = {
+	zoneid=S{15, 45, 132, 215, 216, 217, 218, 253, 254},
+	menuid=S{2132}, menu_function=menus_util.handle_abyssea_conflux},
 }
 
 return menus_util

@@ -1,6 +1,6 @@
 _addon.name     = 'xichecklist'
 _addon.author   = 'HiPotion'
-_addon.version  = '0.19.16'
+_addon.version  = '0.19.17'
 _addon.commands = {'xichecklist', 'xic', 'checklist', 'clist'}
 
 require('sets')
@@ -220,6 +220,20 @@ defaultplayertracker = {
 	vorseals = {}, -- {Menu Parameter nibble = value}
 	ergonlocus = {},
 	emporox_unlocks = {}, -- {Menu Parameter Byte = true}
+	abysseaconflux_completed = 0,
+	abysseaconflux_total = 75,
+	abysseaconflux_unlocks = { -- [zone id] = {menu bit index}
+		[15] = {}, -- Abyssea - Konschtat
+		[45] = {}, -- Abyssea - Tahrongi
+		[132] = {}, -- Abyssea - La Theine
+		[215] = {}, -- Abyssea - Attohwa
+		[216] = {}, -- Abyssea - Misareaux
+		[217] = {}, -- Abyssea - Vunkerl
+		[218] = {}, -- Abyssea - Altepa
+		[253] = {}, -- Abyssea - Uleguerand
+		[254] = {}, -- Abyssea - Grauberg
+	},
+	--
 	corsairrolls = {},
 	pupattachments = {
 		['Available_Heads'] = {},
@@ -265,6 +279,15 @@ defaultplayertracker = {
 		vorseals = false,
 		ergonlocus = false,
 		emporox = false,
+		['veridicalconflux_15'] = false,
+		['veridicalconflux_45'] = false,
+		['veridicalconflux_132'] = false,
+		['veridicalconflux_215'] = false,
+		['veridicalconflux_216'] = false,
+		['veridicalconflux_217'] = false,
+		['veridicalconflux_218'] = false,
+		['veridicalconflux_253'] = false,
+		['veridicalconflux_254'] = false,
 	},
 }
 
@@ -347,6 +370,7 @@ defaulttab_logs = {
 	Claim_Slips = {name = 'Claim Slips', completed = 0, total = 0, items = {}},
 	jobpoints = {name = 'Job Points', completed = 0, total = 46200, items = {}},
 	masterlevels = {name = 'Master Levels', completed = 0, total = 1100, items = {}},
+	abysseaconflux = {name = 'Abyssea Conflux', completed = 0, total = 75, items = {}},
 	--combatskills = {name = 'Combat Skills', completed = 0, total = 0, items = {}},
 }
 
@@ -407,6 +431,17 @@ addonhelptext = {
 	},
 	emporox = {
 		{'You must talk to \\cs(255,255,255)Emporox\\cr @ \\cs(50,150,255)Reisenjima #8\\cr', 'emporox'},
+	},
+	abysseaconflux = {
+		{'You must talk to \\cs(255,255,255)Veridical Conflux #01\\cr @ \\cs(50,150,255)Abyssea - Konschtat\\cr', 'veridicalconflux_15'},
+		{'You must talk to \\cs(255,255,255)Veridical Conflux #01\\cr @ \\cs(50,150,255)Abyssea - Tahrongi\\cr', 'veridicalconflux_45'},
+		{'You must talk to \\cs(255,255,255)Veridical Conflux #01\\cr @ \\cs(50,150,255)Abyssea - La Theine\\cr', 'veridicalconflux_132'},
+		{'You must talk to \\cs(255,255,255)Veridical Conflux #01\\cr @ \\cs(50,150,255)Abyssea - Attohwa\\cr', 'veridicalconflux_215'},
+		{'You must talk to \\cs(255,255,255)Veridical Conflux #01\\cr @ \\cs(50,150,255)Abyssea - Misareaux\\cr', 'veridicalconflux_216'},
+		{'You must talk to \\cs(255,255,255)Veridical Conflux #01\\cr @ \\cs(50,150,255)Abyssea - Vunkerl\\cr', 'veridicalconflux_217'},
+		{'You must talk to \\cs(255,255,255)Veridical Conflux #01\\cr @ \\cs(50,150,255)Abyssea - Altepa\\cr', 'veridicalconflux_218'},
+		{'You must talk to \\cs(255,255,255)Veridical Conflux #01\\cr @ \\cs(50,150,255)Abyssea - Uleguerand\\cr', 'veridicalconflux_253'},
+		{'You must talk to \\cs(255,255,255)Veridical Conflux #01\\cr @ \\cs(50,150,255)Abyssea - Grauberg\\cr', 'veridicalconflux_254'},
 	},
 }
 
@@ -537,6 +572,7 @@ update_maintab = function()
 	append_addonhelp(1, 'You must talk to any \\cs(255,255,255)Outpost Teleporter NPC\\cr @ \\cs(50,150,255)three nations\\cr.', playertracker.talk_to_npc.outpostnpc)
 	append_maintab('Proto-Waypoints %d/%d', playertracker.protowaypoints_completed, playertracker.protowaypoints_total)
 	append_addonhelp(1, 'You must talk to any \\cs(255,255,255)Proto-Waypoint\\cr.', playertracker.talk_to_npc.protowaypoint)
+	append_maintab('Abyssea Conflux %d/%d', playertracker.abysseaconflux_completed, playertracker.abysseaconflux_total)
 	
 	tabs[1].items:append(util.list_item(nil, '======= Other Content ======='))
 	append_maintab('Fishes Caught %d/%d', playertracker.fishes_completed, 164)
@@ -765,6 +801,7 @@ xichecklist_updatemenulogs = function()
 	menus_util.log_vorseals()
 	menus_util.log_ergonlocus()
 	menus_util.log_emporox()
+	menus_util.log_abyssea_conflux()
 end
 
 xichecklist_updatetabs = function()
