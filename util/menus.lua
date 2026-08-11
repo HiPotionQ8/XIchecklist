@@ -638,7 +638,7 @@ menus_util.handle_abyssea_conflux = function(parseddata)
 	local zoneid = windower.ffxi.get_info().zone
 	for bit_index, conflux in pairs(menumaps.abysseaconflux_unlocks[zoneid]) do
 		if util.has_bit(parseddata['Menu Parameters'], bit_index) and not playertracker.abysseaconflux_unlocks[tostring(zoneid)][tostring(bit_index)] then
-			playertracker.abysseaconflux_unlocks[zoneid][bit_index] = true
+			playertracker.abysseaconflux_unlocks[tostring(zoneid)][tostring(bit_index)] = true
 			util.addon_log(conflux..' Unlocked')
 		end
 	end
@@ -654,7 +654,7 @@ menus_util.log_abyssea_conflux = function()
 		for bit_index, conflux in pairs(tbl) do
 			total = total+1
 			local completion = false
-			if (playertracker.abysseaconflux_unlocks[zoneid][tostring(bit_index)] == true) then
+			if (playertracker.abysseaconflux_unlocks[tostring(zoneid)][tostring(bit_index)] == true) then
 				complete = complete+1
 				completion = true
 			end
