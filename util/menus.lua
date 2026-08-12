@@ -635,6 +635,7 @@ menus_util.log_emporox = function()
 end
 
 menus_util.handle_abyssea_conflux = function(parseddata)
+	if parseddata._id ~= 52 then return end
 	local zoneid = windower.ffxi.get_info().zone
 	for bit_index, conflux in pairs(menumaps.abysseaconflux_unlocks[zoneid]) do
 		if util.has_bit(parseddata['Menu Parameters'], bit_index) and not playertracker.abysseaconflux_unlocks[tostring(zoneid)][tostring(bit_index)] then
