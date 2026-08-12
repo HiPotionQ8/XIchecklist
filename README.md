@@ -28,12 +28,12 @@ will be saved in config so only need to do it once (or when need to update)
 | Escha Vorseals | Speak to [Shiftrix in Reisenjima](https://www.bg-wiki.com/ffxi/Shiftrix) |
 | Ergon Locus | Speak to [Rienne in Western Adoulin](https://www.bg-wiki.com/ffxi/Rienne) |
 | Emporox Goodness | Speak to [Emporox in Reisenjima #8](https://www.bg-wiki.com/ffxi/Emporox) |
+| Abyssea Teleports | Speak to [Veridical Conflux #01 in each Abyssea zone](https://www.bg-wiki.com/ffxi/Category:Abyssea) |
 
 <br>
 
 **Note**:
-1. By default anything completed is hidden from the UI, to show completed objectives (in green) use the command `//xic showcompleted` to toggle
-2. First load may freeze a few seconds due to first-time registering of RoEs.
+- By default anything completed is hidden from the UI, to show completed objectives (in green) use the command `//xic showcompleted` to toggle
 
 ## **Tracking**:
 
