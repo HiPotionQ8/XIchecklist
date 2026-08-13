@@ -1,6 +1,6 @@
 _addon.name     = 'xichecklist'
 _addon.author   = 'HiPotion'
-_addon.version  = '0.19.19'
+_addon.version  = '0.20.0'
 _addon.commands = {'xichecklist', 'xic', 'checklist', 'clist'}
 
 require('sets')
@@ -24,6 +24,7 @@ trackermenusettings = config.load(trackermenusettings)
 defaultplayertracker = {
 	-- most initial values are zero, to be updated by addon
 	mastery_rank = 0,
+	playtime = 0,
 	-- Missions
 	bastokmissions_completed = 0,
 	bastokmissions_total = 0,
@@ -489,6 +490,7 @@ update_maintab = function()
 	tabs[1].items = L{}
 	
 	append_maintab('Mastery Rank: %d', playertracker.mastery_rank)
+	append_maintab('Playtime: %d Days', playertracker.playtime)
 	append_maintab('Checklist Progress %d/%d', util.totalpoints())
 	tabs[1].items:append(util.list_item(nil, '======= General ======='))
 	append_maintab('RoE %d/%d', playertracker.roe_completed, playertracker.roe_total)
@@ -620,6 +622,9 @@ windower.register_event('incoming chunk', function(id, data, modified, injected,
 	if (id == 0x008) then
 		-- do visited zones
 		warps_util.log_visitedzones(data)
+	elseif id == 0x00A then
+		local parseddata = packets.parse('incoming', data)
+		playertracker.playtime = math.floor(parseddata['Abyssea Timestamp']/86400)
 	elseif id == 0x01B then
 		-- check current mastery rank
 		local parseddata = packets.parse('incoming', data)
