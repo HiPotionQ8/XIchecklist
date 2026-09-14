@@ -1,6 +1,6 @@
 _addon.name     = 'xichecklist'
 _addon.author   = 'HiPotion'
-_addon.version  = '0.20.0'
+_addon.version  = '0.20.1'
 _addon.commands = {'xichecklist', 'xic', 'checklist', 'clist'}
 
 require('sets')
@@ -949,10 +949,10 @@ log_corsairrolls = function(playerjobabilities)
 	for id in corsairrollsids:it() do
 		local completion = false
 		total = total + 1
-		if (playerjobabilities[id] == true) or (playertracker.corsairrolls[id] == true) then
+		if (playerjobabilities[id] == true) or (playertracker.corsairrolls[tostring(id)] == true) then
 			-- roll learned
 			obtained = obtained + 1
-			playertracker.corsairrolls[id] = true
+			playertracker.corsairrolls[tostring(id)] = true
 			completion = true
 		end
 		table.insert(output_list, util.list_item(nil, res.job_abilities[id].en, completion))
@@ -990,7 +990,7 @@ update_pupattachments = function(data)
 			total = total + 1
 			if util.has_bit(bitfield, id) then
 				obtained = obtained + 1
-				playertracker.pupattachments[pupattachments_category][id] = true
+				playertracker.pupattachments[pupattachments_category][tostring(id)] = true
 			end
 		end
 	end
@@ -1009,7 +1009,7 @@ log_pupattachments = function()
 		for id, name in pairs(attachments) do
 			local completion = false
 			total = total + 1
-			if playertracker.pupattachments[pupattachments_category][id] == true then
+			if playertracker.pupattachments[pupattachments_category][tostring(id)] == true then
 				obtained = obtained + 1
 				completion = true
 			end
