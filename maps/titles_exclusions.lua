@@ -54,9 +54,9 @@ return S{
 	410, --Balli☆☆☆☆star Royale
 
 	--Effectively unavailable besieged BCNMs
-	480, --Subduer of the Mamool Ja
-	481, --Subduer of the Trolls
-	482, --Subduer of the Undead Swarm
+	--480, --Subduer of the Mamool Ja
+	--481, --Subduer of the Trolls
+	--482, --Subduer of the Undead Swarm
 
 	--Currently bugged and do not save properly
 	435, --Disturber of Slumber
@@ -64,12 +64,12 @@ return S{
 	826, --Fulmination Disruptor
 
 	--Effectively exclusive with one another
-	1120, --Legendary Woodworker
-	1121, --Legendary Blacksmith
-	1122, --Legendary Goldsmith
-	1123, --Legendary Weaver
-	1124, --Legendary Tanner
-	1125, --Legendary Boneworker
-	1126, --Legendary Alchemist
-	1127, --Legendary Culinarian
+	--1120, --Legendary Woodworker
+	--1121, --Legendary Blacksmith
+	--1122, --Legendary Goldsmith
+	--1123, --Legendary Weaver
+	--1124, --Legendary Tanner
+	--1125, --Legendary Boneworker
+	--1126, --Legendary Alchemist
+	--1127, --Legendary Culinarian
 }

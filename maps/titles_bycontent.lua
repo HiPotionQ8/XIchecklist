@@ -810,49 +810,51 @@ return {
 		311, -- Lumber Lather
 		312, -- Accomplished Carpenter
 		576, -- Furniture Store Owner
-		1120, -- Legendary Woodworker
 		-- Smithing
 		313, -- Anvil Advocate
 		314, -- Forge Fanatic
 		315, -- Accomplished Blacksmith
 		577, -- Armory Owner
-		1121, -- Legendary Blacksmith
 		-- Goldsmithing
 		316, -- Trinket Turner
 		317, -- Silver Smelter
 		318, -- Accomplished Goldsmith
 		578, -- Jewelry Store Owner
-		1122, -- Legendary Goldsmith
 		-- Clothcraft
 		319, -- Knitting Know-It-All
 		320, -- Loom Lunatic
 		321, -- Accomplished Weaver
 		579, -- Boutique Owner
-		1123, -- Legendary Weaver
 		-- Alchemy
 		322, -- Formula Fiddler
 		323, -- Potion Potentate
 		324, -- Accomplished Alchemist
 		580, -- Apothecary Owner
-		1126, -- Legendary Alchemist
 		-- Bonecraft
 		325, -- Bone Beautifier
 		326, -- Shell Scrimshander
 		327, -- Accomplished Boneworker
 		581, -- Curiosity Shop Owner
-		1125, -- Legendary Boneworker
 		-- Leathercraft
 		328, -- Hide Handler
 		329, -- Leather Lauder
 		330, -- Accomplished Tanner
 		582, -- Shoeshop Owner
-		1124, -- Legendary Tanner
 		-- Cooking
 		334, -- Gourmand Gratifier
 		336, -- Accomplished Chef
 		335, -- Banquet Bestower
 		584, -- Restaurant Owner
-		1127, -- Legendary Culinarian
+	},
+	['Crafting - Escutcheons'] = {
+		1120, --Legendary Woodworker
+		1121, --Legendary Blacksmith
+		1122, --Legendary Goldsmith
+		1123, --Legendary Weaver
+		1124, --Legendary Tanner
+		1125, --Legendary Boneworker
+		1126, --Legendary Alchemist
+		1127, --Legendary Culinarian
 	},
 	['Moblin Maze Mongers'] = {
 		604, -- Maze Wanderer

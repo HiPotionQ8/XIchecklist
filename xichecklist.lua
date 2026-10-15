@@ -1,6 +1,6 @@
 _addon.name     = 'xichecklist'
 _addon.author   = 'HiPotion'
-_addon.version  = '0.20.1'
+_addon.version  = '0.21.0'
 _addon.commands = {'xichecklist', 'xic', 'checklist', 'clist'}
 
 require('sets')
@@ -128,6 +128,84 @@ defaultplayertracker = {
 	-- Skills
 	craftingskills_completed = 0,
 	craftingskills_total = 790,
+	combatskills_completed = 0,
+	combatskills_total = 0,
+	combatskills_detialcompleted = 0,
+	combatskills_detailstotal = 0,
+	combat_skills = {
+		["Hand-to-Hand_completed"] = 0,
+		["Hand-to-Hand_total"] = 424 + 18 + 50, -- [A+] MNK PUP
+		["Dagger_completed"] = 0,
+		["Dagger_total"] = 424 + 18 + 50, -- [A+] THF
+		["Sword_completed"] = 0,
+		["Sword_total"] = 424 + 18 + 50, -- [A+] PLD BLU
+		["Great_Sword_completed"] = 0,
+		["Great_Sword_total"] = 424 + 18 + 50, -- [A+] RUN
+		["Axe_completed"] = 0,
+		["Axe_total"] = 424 + 18 + 50, -- [A+] BST
+		["Great_Axe_completed"] = 0,
+		["Great_Axe_total"] = 424 + 18 + 50, -- [A+] WAR
+		["Scythe_completed"] = 0,
+		["Scythe_total"] = 424 + 18 + 50, -- [A+] DRK
+		["Polearm_completed"] = 0,
+		["Polearm_total"] = 424 + 18 + 50, -- [A+] DRG
+		["Katana_completed"] = 0,
+		["Katana_total"] = 424 + 18 + 50, -- [A+] NIN
+		["Great_Katana_completed"] = 0,
+		["Great_Katana_total"] = 424 + 18 + 50, -- [A+] SAM
+		["Club_completed"] = 0,
+		["Club_total"] = 404 + 18 + 50, -- [B+] GEO WHM
+		["Staff_completed"] = 0,
+		["Staff_total"] = 417 + 18 + 50, -- [A] PLD
+		["Automaton_Melee_completed"] = 0,
+		["Automaton_Melee_total"] = 417 + 18 + 50, -- [A] PUP
+		["Automaton_Archery_completed"] = 0,
+		["Automaton_Archery_total"] = 417 + 18 + 50, -- [A] PUP
+		["Automaton_Magic_completed"] = 0,
+		["Automaton_Magic_total"] = 424 + 18 + 50, -- [A+] PUP
+		["Archery_completed"] = 0,
+		["Archery_total"] = 424 + 18 + 50, -- [A+] RNG
+		["Marksmanship_completed"] = 0,
+		["Marksmanship_total"] = 424 + 18 + 50, -- [A+] RNG
+		["Throwing_completed"] = 0,
+		["Throwing_total"] = 424 + 18 + 50, -- [A+] NIN
+		["Guard_completed"] = 0,
+		["Guard_total"] = 417 + 18 + 50, -- [A] MNK
+		["Evasion_completed"] = 0,
+		["Evasion_total"] = 424 + 18 + 50, -- [A+] THF
+		["Shield_completed"] = 0,
+		["Shield_total"] = 424 + 18 + 50, -- [A+] PLD
+		["Parrying_completed"] = 0,
+		["Parrying_total"] = 424 + 18 + 50, -- [A+] RUN
+		["Divine_Magic_completed"] = 0,
+		["Divine_Magic_total"] = 417 + 18 + 50, -- [A] WHM
+		["Healing_Magic_completed"] = 0,
+		["Healing_Magic_total"] = 424 + 18 + 50, -- [A+] WHM
+		["Enhancing_Magic_completed"] = 0,
+		["Enhancing_Magic_total"] = 404 + 18 + 50, -- [B+] RDM
+		["Enfeebling_Magic_completed"] = 0,
+		["Enfeebling_Magic_total"] = 424 + 18 + 50, -- [A+] RDM
+		["Elemental_Magic_completed"] = 0,
+		["Elemental_Magic_total"] = 424 + 18 + 50, -- [A+] BLM
+		["Dark_Magic_completed"] = 0,
+		["Dark_Magic_total"] = 417 + 18 + 50, -- [A] BLM DRK
+		["Summoning_Magic_completed"] = 0,
+		["Summoning_Magic_total"] = 417 + 18 + 50, -- [A] SMN
+		["Ninjutsu_completed"] = 0,
+		["Ninjutsu_total"] = 417 + 18 + 50, -- [A] NIN
+		["Singing_completed"] = 0,
+		["Singing_total"] = 373 + 18 + 50, -- [C] BRD
+		["Stringed_Instrument_completed"] = 0,
+		["Stringed_Instrument_total"] = 373 + 18 + 50, -- [C] BRD
+		["Wind_Instrument_completed"] = 0,
+		["Wind_Instrument_total"] = 373 + 18 + 50, -- [C] BRD
+		["Blue_Magic_completed"] = 0,
+		["Blue_Magic_total"] = 424 + 18 + 50, -- [A+] BLU
+		["Geomancy_completed"] = 0,
+		["Geomancy_total"] = 373 + 18 + 50, -- [C] GEO
+		["Handbell_completed"] = 0,
+		["Handbell_total"] = 373 + 18 + 50, -- [C] GEO
+	},
 	-- Alter Ego
 	alteregopoint_completed = 0,
 	alteregopoint_total = 550,
@@ -372,7 +450,7 @@ defaulttab_logs = {
 	jobpoints = {name = 'Job Points', completed = 0, total = 46200, items = {}},
 	masterlevels = {name = 'Master Levels', completed = 0, total = 1100, items = {}},
 	abysseaconflux = {name = 'Abyssea Conflux', completed = 0, total = 75, items = {}},
-	--combatskills = {name = 'Combat Skills', completed = 0, total = 0, items = {}},
+	combatskills = {name = 'Combat Skills', completed = 0, total = 0, items = {}},
 }
 
 addonhelptext = {
@@ -422,7 +500,7 @@ addonhelptext = {
 		{'You must talk to any \\cs(255,255,255)Proto-Waypoint\\cr.', 'protowaypoint'},
 	},
 	fishes = {
-		{'You must talk to \\cs(255,255,255)Katsunaga\\cr @ \\cs(50,150,255)Mhuaura (H-9)\\cr \\cs(255,255,255)(Menu: Types of fishes caught)\\cr', 'katsunaga'},
+		{'You must talk to \\cs(255,255,255)Katsunaga\\cr @ \\cs(50,150,255)Mhaura (H-9)\\cr \\cs(255,255,255)(Menu: Types of fishes caught)\\cr', 'katsunaga'},
 	},
 	atmacite = {
 		{'You must talk to any \\cs(255,255,255)Atmacite Refiner\\cr \\cs(50,150,255)(Menu: Enrich Atmas)\\cr', 'atmacite_refiner'},
@@ -481,6 +559,9 @@ addon_setup = function()
 	spellids = L(res.spells:filter(function(spell)
 		return (not spell.unlearnable) and (not spells_exclusions[spell.id])
 	end):keyset()):sort()
+	res_combatskills = res.skills:filter(function(skill)
+		return (skill.category == 'Combat') or (skill.category == 'Puppet') or (skill.category == 'Magic')
+	end)
 end
 
 addon_setup()
@@ -561,6 +642,8 @@ update_maintab = function()
 	append_maintab('Job Points Maxed %d/%d', playertracker.jobpoints_completed, 22)
 	append_maintab('Master Levels %d/%d (Highest: %d)', playertracker.masterlevels_completed, 1100, playertracker.masterlevels_highest)
 	append_maintab('Alter Ego Points %d/%d', playertracker.alteregopoint_completed, playertracker.alteregopoint_total)
+	append_maintab('Combat Skills Maxed %d/%d', playertracker.combatskills_completed, playertracker.combatskills_total)
+	append_maintab('Combat Skills %d/%d', playertracker.combatskills_detialcompleted, playertracker.combatskills_detailstotal)
 	
 	tabs[1].items:append(util.list_item(nil, '======= Warps ======='))
 	append_maintab('Home Points %d/%d', playertracker.homepoints_completed, playertracker.homepoints_total)
@@ -578,7 +661,7 @@ update_maintab = function()
 	
 	tabs[1].items:append(util.list_item(nil, '======= Other Content ======='))
 	append_maintab('Fishes Caught %d/%d', playertracker.fishes_completed, 164)
-	append_addonhelp(1, 'You must talk to \\cs(255,255,255)Katsunaga\\cr @ \\cs(50,150,255)Mhuaura (H-9)\\cr \\cs(255,255,255)(Menu: Types of fishes caught)\\cr', playertracker.talk_to_npc.katsunaga)
+	append_addonhelp(1, 'You must talk to \\cs(255,255,255)Katsunaga\\cr @ \\cs(50,150,255)Mhaura (H-9)\\cr \\cs(255,255,255)(Menu: Types of fishes caught)\\cr', playertracker.talk_to_npc.katsunaga)
 	append_maintab('Ergon Locus %d/%d', playertracker.ergonlocus_completed, playertracker.ergonlocus_total)
 	append_addonhelp(1, 'You must talk to \\cs(255,255,255)Rienne\\cr @ \\cs(50,150,255)Western Adoulin (J-9)\\cr', playertracker.talk_to_npc.ergonlocus)
 	
@@ -690,6 +773,14 @@ windower.register_event('incoming chunk', function(id, data, modified, injected,
 		local p = packets.parse('incoming', data)
 		playertracker.craftingskills_completed = p['Fishing Level']+p['Woodworking Level']+p['Smithing Level']+p['Goldsmithing Level']+p['Clothcraft Level']
 		+p['Leathercraft Level']+p['Bonecraft Level']+p['Alchemy Level']+p['Cooking Level']+p['Synergy Level']
+		-- combat skills
+		if is_naked() and (windower.ffxi.get_player().main_job ~= 'MON') then
+			for _, skill in pairs(res_combatskills) do
+				local packet_name = skill.en .. ' Level'
+				local xml_name = util.cleanspaces(skill.en) .. '_completed'
+				playertracker.combat_skills[xml_name] = p[packet_name] > playertracker.combat_skills[xml_name] and p[packet_name] or playertracker.combat_skills[xml_name]
+			end
+		end
 	elseif id == 0x063 then
 		local parseddata = packets.parse('incoming', data)
 		-- do warps
@@ -837,6 +928,7 @@ xichecklist_updatetabs = function()
 	log_corsairrolls(playerjobabilities)
 	log_pupattachments()
 	log_exp()
+	log_combat_skills()
 	
 	tab_logs.mmm_mazecount.completed = playertracker.mmm_mazecount
 end
@@ -1022,6 +1114,52 @@ log_pupattachments = function()
 		total = total,
 		items = output_list
 	}
+end
+
+log_combat_skills = function()
+	local output_list = {}
+	local total, complete = 0,0
+	local detailtotal, detailcomplete = 0,0
+	for _, skill in pairs(res_combatskills) do
+		local xml_name_completed = util.cleanspaces(skill.en) .. '_completed'
+		local xml_name_total = util.cleanspaces(skill.en) .. '_total'
+		
+		detailcomplete = detailcomplete + playertracker.combat_skills[xml_name_completed]
+		detailtotal = detailtotal + playertracker.combat_skills[xml_name_total]
+		total = total+1
+		local completion = false
+		if playertracker.combat_skills[xml_name_completed] == playertracker.combat_skills[xml_name_total] then
+			complete = complete+1
+			completion = true
+		end
+		
+		table.insert(output_list, util.list_item(nil, '[%d/%d] ':format(playertracker.combat_skills[xml_name_completed], playertracker.combat_skills[xml_name_total]) .. skill.en, completion))
+	end
+	
+	playertracker.combatskills_detialcompleted = detailcomplete
+	playertracker.combatskills_detailstotal = detailtotal
+	
+	playertracker.combatskills_completed = complete
+	playertracker.combatskills_total = total
+	tab_logs.combatskills = {
+		name = tab_logs.combatskills.name,
+		completed = complete,
+		total = total,
+		items = output_list
+	}
+end
+
+function is_naked()
+	windower.add_to_chat(100, 'naked check')
+	local equipment = windower.ffxi.get_items().equipment
+	for slot, item_id in pairs(equipment) do
+		if item_id and item_id ~= 0 and item_id ~= 10 then
+			windower.add_to_chat(100, 'not naked slot:'..slot..' itemid:'..item_id)
+			return false
+		end
+	end
+	windower.add_to_chat(100, 'is naked')
+	return true
 end
 
 draw()
