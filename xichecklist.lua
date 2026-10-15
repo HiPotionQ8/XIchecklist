@@ -1,6 +1,6 @@
 _addon.name     = 'xichecklist'
 _addon.author   = 'HiPotion'
-_addon.version  = '0.21.2'
+_addon.version  = '0.21.3'
 _addon.commands = {'xichecklist', 'xic', 'checklist', 'clist'}
 
 require('sets')
@@ -1150,15 +1150,12 @@ log_combat_skills = function()
 end
 
 function is_naked()
-	windower.add_to_chat(100, 'naked check')
 	local equipment = windower.ffxi.get_items().equipment
 	for slot, item_id in pairs(equipment) do
 		if item_id and item_id ~= 0 and item_id ~= 10 then
-			windower.add_to_chat(100, 'not naked slot:'..slot..' itemid:'..item_id)
 			return false
 		end
 	end
-	windower.add_to_chat(100, 'is naked')
 	return true
 end
 
