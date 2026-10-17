@@ -29,6 +29,7 @@ will be saved in config so only need to do it once (or when need to update)
 | Ergon Locus | Speak to [Rienne in Western Adoulin](https://www.bg-wiki.com/ffxi/Rienne) |
 | Emporox Goodness | Speak to [Emporox in Reisenjima #8](https://www.bg-wiki.com/ffxi/Emporox) |
 | Abyssea Teleports | Speak to [Veridical Conflux #01 in each Abyssea zone](https://www.bg-wiki.com/ffxi/Category:Abyssea) |
+| Combat Skills | Unequip all your gear to register combat skills |
 
 <br>
 
