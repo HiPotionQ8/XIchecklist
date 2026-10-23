@@ -970,7 +970,7 @@ return {
 	},
 	crystalwar = T{
 		[0] = {name = 'Lost In Translocation'},
-		[1] = {name = 'Message On The Winds'},
+		[1] = {name = 'Message On The Winds', extra = "Title: Windtalker"},
 		[2] = {name = 'The Weekly Adventurer'},
 		[3] = {name = 'Healing Herbs'},
 		[4] = {name = 'Redeeming Rocks'},
