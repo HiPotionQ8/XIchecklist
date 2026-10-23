@@ -1,7 +1,7 @@
 _addon.name     = 'xichecklist'
 _addon.author   = 'HiPotion'
-_addon.version  = '0.21.4'
-_addon.commands = {'xichecklist', 'xic', 'checklist', 'clist'}
+_addon.version  = '0.21.5'
+_addon.commands = {'xichecklist', 'xic', 'checklist'}
 
 require('sets')
 packets = require('packets')
@@ -157,12 +157,12 @@ defaultplayertracker = {
 		["Club_total"] = 417 + 16 + 50, -- [A] PLD
 		["Staff_completed"] = 0,
 		["Staff_total"] = 417 + 16 + 50, -- [A] PLD
-		["Automaton_Melee_completed"] = 0,
-		["Automaton_Melee_total"] = 417 + 16 + 50, -- [A] PUP
-		["Automaton_Archery_completed"] = 0,
-		["Automaton_Archery_total"] = 417 + 16 + 50, -- [A] PUP
-		["Automaton_Magic_completed"] = 0,
-		["Automaton_Magic_total"] = 424 + 16 + 50, -- [A+] PUP
+		--["Automaton_Melee_completed"] = 0,
+		--["Automaton_Melee_total"] = 417 + 16 + 50, -- [A] PUP
+		--["Automaton_Archery_completed"] = 0,
+		--["Automaton_Archery_total"] = 417 + 16 + 50, -- [A] PUP
+		--["Automaton_Magic_completed"] = 0,
+		--["Automaton_Magic_total"] = 424 + 16 + 50, -- [A+] PUP
 		["Archery_completed"] = 0,
 		["Archery_total"] = 424 + 16 + 50, -- [A+] RNG
 		["Marksmanship_completed"] = 0,
@@ -560,7 +560,7 @@ addon_setup = function()
 		return (not spell.unlearnable) and (not spells_exclusions[spell.id])
 	end):keyset()):sort()
 	res_combatskills = res.skills:filter(function(skill)
-		return (skill.category == 'Combat') or (skill.category == 'Puppet') or (skill.category == 'Magic')
+		return (skill.category == 'Combat') or (skill.category == 'Magic') --or (skill.category == 'Puppet')
 	end)
 end
 
@@ -778,7 +778,10 @@ windower.register_event('incoming chunk', function(id, data, modified, injected,
 			for _, skill in pairs(res_combatskills) do
 				local packet_name = skill.en .. ' Level'
 				local xml_name = util.cleanspaces(skill.en) .. '_completed'
-				playertracker.combat_skills[xml_name] = p[packet_name] > playertracker.combat_skills[xml_name] and p[packet_name] or playertracker.combat_skills[xml_name]
+				if p[packet_name] > playertracker.combat_skills[xml_name] then
+					util.addon_log(packet_name..' Updated')
+					playertracker.combat_skills[xml_name] = p[packet_name]
+				end
 			end
 		end
 	elseif id == 0x063 then
@@ -1151,10 +1154,11 @@ end
 
 function is_naked()
 	local equipment = windower.ffxi.get_items().equipment
-	--local itemsids = {10, 8}
+	local invisible_itemsids = S{0, 8, 10, 11, 12, 13}
 	for slot, item_id in pairs(equipment) do
-		if item_id and item_id ~= 0 and item_id ~= 10 and item_id ~= 8 then
-			--windower.add_to_chat("slot: %d - item_id: %d":format(slot,item_id))
+		if item_id and not invisible_itemsids:contains(item_id) then
+			--windower.add_to_chat(100, "slot: "..slot)
+			--windower.add_to_chat(100, "item_id: "..item_id)
 			return false
 		end
 	end
