@@ -1,6 +1,6 @@
 _addon.name     = 'xichecklist'
 _addon.author   = 'HiPotion'
-_addon.version  = '0.21.6'
+_addon.version  = '0.21.7'
 _addon.commands = {'xichecklist', 'xic', 'checklist'}
 
 require('sets')
@@ -1164,7 +1164,7 @@ function is_naked()
 	local equipment = windower.ffxi.get_items().equipment
 	local invisible_itemsids = S{0, 8, 10, 11, 12, 13}
 	for slot, item_id in pairs(equipment) do
-		if item_id and not invisible_itemsids:contains(item_id) then
+		if item_id and item_id >=102400 then -- equipment and weapons item ids starts with 102400
 			--windower.add_to_chat(100, "slot: "..slot)
 			--windower.add_to_chat(100, "item_id: "..item_id)
 			return false
