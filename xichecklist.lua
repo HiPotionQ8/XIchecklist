@@ -1,6 +1,6 @@
 _addon.name     = 'xichecklist'
 _addon.author   = 'HiPotion'
-_addon.version  = '0.21.5'
+_addon.version  = '0.21.6'
 _addon.commands = {'xichecklist', 'xic', 'checklist'}
 
 require('sets')
@@ -25,6 +25,8 @@ defaultplayertracker = {
 	-- most initial values are zero, to be updated by addon
 	mastery_rank = 0,
 	playtime = 0,
+	mentor_rank_completed = 0,
+	mentor_rank_total = 3,
 	-- Missions
 	bastokmissions_completed = 0,
 	bastokmissions_total = 0,
@@ -96,6 +98,8 @@ defaultplayertracker = {
 	Voidwatch_total = 0,
 	Mog_Garden_completed = 0,
 	Mog_Garden_total = 0,
+	MedalOfAltana_completed = 0,
+	MedalOfAltana_total = 1,
 	-- Magic / Corsair Roll / PUP attachments
 	WhiteMagic_completed = 0,
 	WhiteMagic_total = 0,
@@ -574,6 +578,7 @@ update_maintab = function()
 	append_maintab('Playtime: %d Days', playertracker.playtime)
 	append_maintab('Checklist Progress %d/%d', util.totalpoints())
 	tabs[1].items:append(util.list_item(nil, '======= General ======='))
+	append_maintab('Mentor Rank: %d/%d', playertracker.mentor_rank_completed, playertracker.mentor_rank_total)
 	append_maintab('RoE %d/%d', playertracker.roe_completed, playertracker.roe_total)
 	append_maintab('Zones visited %d/%d', playertracker.zones_completed, playertracker.zones_total)
 	append_maintab('Titles %d/%d', playertracker.Titles_completed, playertracker.Titles_total)
@@ -611,6 +616,7 @@ update_maintab = function()
 	append_maintab('Coalition Assignments %d/%d', playertracker.coalition_completed, playertracker.coalition_total)
 	
 	tabs[1].items:append(util.list_item(nil, '======= Key Items ======='))
+	append_maintab('Medal of Altana %d/%d', playertracker.MedalOfAltana_completed, playertracker.MedalOfAltana_total)
 	append_maintab('Permanent Key Items %d/%d', playertracker.Permanent_Key_Items_completed, playertracker.Permanent_Key_Items_total)
 	append_maintab('Magical Maps %d/%d', playertracker.Magical_Maps_completed, playertracker.Magical_Maps_total)
 	append_maintab('Mounts %d/%d', playertracker.Mounts_completed, playertracker.Mounts_total)
@@ -722,6 +728,7 @@ windower.register_event('incoming chunk', function(id, data, modified, injected,
 			playertracker.mastery_rank = parseddata['Mastery Rank']
 			playertracker:save()
 		end
+		playertracker.mentor_rank_completed = parseddata['Mentor Icon']
 	elseif id == 0x044 then
 		-- PUP attachments
 		local parseddata = packets.parse('incoming', data)
@@ -934,6 +941,7 @@ xichecklist_updatetabs = function()
 	log_combat_skills()
 	
 	tab_logs.mmm_mazecount.completed = playertracker.mmm_mazecount
+	playertracker.MedalOfAltana_completed = playerkeyitems:contains(943) and 1 or 0 -- Medal of Altana
 end
 
 log_keyitems = function(category, playerkeyitems)
