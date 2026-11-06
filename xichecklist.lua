@@ -1162,14 +1162,18 @@ end
 
 function is_naked()
 	local equipment = windower.ffxi.get_items().equipment
-	local invisible_itemsids = S{0, 8, 10, 11, 12, 13}
-	for slot, item_id in pairs(equipment) do
-		if item_id and item_id >=102400 then -- equipment and weapons item ids starts with 102400
-			--windower.add_to_chat(100, "slot: "..slot)
-			--windower.add_to_chat(100, "item_id: "..item_id)
-			return false
+	-- get_items().equipment returns a table with keys such as:
+	-- main, main_bag, sub, sub_bag, etc.
+	-- if a slot is empty, the value will be 0. If it has an item, the value will be the index of the item in the bag.
+	for slot, val in pairs(equipment) do
+		if not slot:contains('_bag') then -- _bag keys are the bag IDs, so we want to ignore these fields.
+			if(val > 0) then -- if a slot has an item equipped, then the player is not naked
+				--windower.add_to_chat(100, "slot: "..slot..", index: "..val)
+				return false
+			end
 		end
 	end
+	-- windower.add_to_chat(100, 'no equipment slots with gear found.')
 	return true
 end
 
