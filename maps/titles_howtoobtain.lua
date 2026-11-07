@@ -1095,7 +1095,7 @@ return {
 	['Giant Killer'] = 'Unobtainable',
 	['Manifest Mauler'] = 'Unobtainable',
 	['High Roller'] = 'Unobtaintable',
-	['Matchmaker'] = 'Unobtaintable (1)',
+	['Matchmaker'] = 'Unobtaintable',
 	['Venerated Adventurer'] = 'Vana\'Bout: Top 10 players.',
 	['Master Centurion'] = 'Warrior: ★Master!',
 	['Master Healer'] = 'White Mage: ★Master!',

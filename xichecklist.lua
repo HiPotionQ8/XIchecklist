@@ -1,6 +1,6 @@
 _addon.name     = 'xichecklist'
 _addon.author   = 'HiPotion'
-_addon.version  = '0.21.7'
+_addon.version  = '0.21.8'
 _addon.commands = {'xichecklist', 'xic', 'checklist'}
 
 require('sets')
@@ -809,6 +809,7 @@ windower.register_event('incoming chunk', function(id, data, modified, injected,
 		if (parseddata.Order == 3) then
 			mons_util.monster_levelspacket[1] = parseddata['Monster Level Char field']
 			mons_util.monsterinstincts = util.twobits_to_table(parseddata['Instinct Bitfield 1'])
+			--mons_util.prestige = parseddata['_unknown4']
 			mons_util.log_monsterlevels()
 			mons_util.log_monsterinstincts()
 		end
@@ -1134,7 +1135,6 @@ log_combat_skills = function()
 	for _, skill in pairs(res_combatskills) do
 		local xml_name_completed = util.cleanspaces(skill.en) .. '_completed'
 		local xml_name_total = util.cleanspaces(skill.en) .. '_total'
-		
 		detailcomplete = detailcomplete + playertracker.combat_skills[xml_name_completed]
 		detailtotal = detailtotal + playertracker.combat_skills[xml_name_total]
 		total = total+1
@@ -1143,13 +1143,10 @@ log_combat_skills = function()
 			complete = complete+1
 			completion = true
 		end
-		
 		table.insert(output_list, util.list_item(nil, '[%d/%d] ':format(playertracker.combat_skills[xml_name_completed], playertracker.combat_skills[xml_name_total]) .. skill.en, completion))
 	end
-	
 	playertracker.combatskills_detialcompleted = detailcomplete
 	playertracker.combatskills_detailstotal = detailtotal
-	
 	playertracker.combatskills_completed = complete
 	playertracker.combatskills_total = total
 	tab_logs.combatskills = {
@@ -1162,11 +1159,12 @@ end
 
 function is_naked()
 	local equipment = windower.ffxi.get_items().equipment
-	local invisible_itemsids = S{0, 8, 10, 11, 12, 13}
-	for slot, item_id in pairs(equipment) do
-		if item_id and item_id >=102400 then -- equipment and weapons item ids starts with 102400
-			--windower.add_to_chat(100, "slot: "..slot)
-			--windower.add_to_chat(100, "item_id: "..item_id)
+	local slots = {'main','sub','range','ammo','head','neck','left_ear','right_ear','body','hands','left_ring','right_ring','back','waist','legs','feet'}
+	for _, slot in ipairs(slots) do
+		local bag_id = equipment[slot..'_bag'] -- get the bag id from main_bag etc
+		local bag_index = equipment[slot] -- get the item's index in the bag id
+		local item = windower.ffxi.get_items(bag_id, bag_index)
+		if item.id and (item.id ~= 65535 or item.id >=102400) then -- when empty the equipped item is 65535 (Gil), equipment and weapons item ids starts with 102400
 			return false
 		end
 	end
