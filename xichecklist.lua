@@ -1,6 +1,6 @@
 _addon.name     = 'xichecklist'
 _addon.author   = 'HiPotion'
-_addon.version  = '0.22.0'
+_addon.version  = '0.22.1'
 _addon.commands = {'xichecklist', 'xic', 'checklist'}
 
 require('sets')
@@ -555,7 +555,13 @@ addon_setup = function()
 	-- setup value instead of recalling/filtering them everytime
 	local keyitem_exclusions = require('maps/keyitems_exclusions')
 	local spells_exclusions = require('maps/spells_exclusions')
+	local titlesexclusions = require('../maps/titles_exclusions')
 	
+	titleids = L(res.titles:filter(function(title)
+		local exclusions = titlesexclusions
+		if (trackermenusettings.showexcluded) then exclusions = S{} end
+		return not exclusions:contains(title.id)
+	end):keyset()):sort()
 	res_keyitems = res.key_items:filter(function(keyitem)
 		local hidden = trackermenusettings.showexcluded and keyitem_exclusions.hidden or S{}
 		return not keyitem_exclusions.excluded:contains(keyitem.id) and not hidden:contains(keyitem.id)
@@ -1258,6 +1264,7 @@ windower.register_event('addon command', function(...)
 		draw()
 	elseif cmds.showexcluded:contains(arg[1]) then
 		trackermenusettings.showexcluded = not trackermenusettings.showexcluded
+		addon_setup()
 		util.addon_log('showexcluded: '..tostring(trackermenusettings.showexcluded))
 		trackermenusettings:save()
 		xichecklist_updatemenulogs()

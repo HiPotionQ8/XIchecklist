@@ -1,9 +1,9 @@
 local menus_util = {}
 local menumaps = require('../maps/maps_menus')
-local titlescontnt = require('../maps/titles_bycontent')
+local titlescontent = require('../maps/titles_bycontent')
 local titlesexclusions = require('../maps/titles_exclusions')
 local titles_howtoobtain = require('../maps/titles_howtoobtain')
-local titleids = L(res.titles:keyset()):sort()
+
 menu_current = {
 	npcindex = nil,
 	zoneid = nil,
@@ -346,8 +346,6 @@ end
 menus_util.log_titles = function()
 	local output_list = {}
 	local total, complete = 0,0
-	local exclusions = titlesexclusions
-	if (trackermenusettings.showexcluded) then exclusions = S{} end
 	for id in titleids:it() do
 		total = total+1
 		local completion = false
@@ -358,14 +356,8 @@ menus_util.log_titles = function()
 		if (playertracker.titles[tostring(id)] == true) then
 			complete = complete+1
 			completion = true
-		else
-			if (exclusions:contains(id)) then
-				total = total - 1
-			end
-		end
-		if (not exclusions:contains(id)) then  
-			table.insert(output_list, util.list_item('Titles', res.titles[id].en, completion, obtainmethod))
-		end
+		end 
+		table.insert(output_list, util.list_item('Titles', res.titles[id].en, completion, obtainmethod))
 	end
 	playertracker.Titles_completed = complete
 	playertracker.Titles_total = total
@@ -379,7 +371,7 @@ end
 
 menus_util.list_titles_bycontent = function()
 	local output_list = {}
-	for content, titles in pairs(titlescontnt) do
+	for content, titles in pairs(titlescontent) do
 		local total, complete = 0,0
 		local completion = false
 		for key, titleid in pairs(titles) do
@@ -403,7 +395,7 @@ end
 
 menus_util.list_titles_bycontent_detailed = function()
 	local output_list = {}
-	for content, titles in pairs(titlescontnt) do
+	for content, titles in pairs(titlescontent) do
 		table.insert(output_list, util.list_item(nil, '==== ' .. content ..' ====', false))
 		for key, titleid in pairs(titles) do
 			local completion = false
