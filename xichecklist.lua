@@ -1,6 +1,6 @@
 _addon.name     = 'xichecklist'
 _addon.author   = 'HiPotion'
-_addon.version  = '0.21.8'
+_addon.version  = '0.22.0'
 _addon.commands = {'xichecklist', 'xic', 'checklist'}
 
 require('sets')
@@ -212,7 +212,9 @@ defaultplayertracker = {
 	},
 	-- Alter Ego
 	alteregopoint_completed = 0,
-	alteregopoint_total = 550,
+	alteregopoint_total = 660,
+	celestite_completed = 0,
+	celestite_total = 0,
 	-- Warps
 	zones_completed = 0,
 	zones_total = 0,
@@ -455,6 +457,7 @@ defaulttab_logs = {
 	masterlevels = {name = 'Master Levels', completed = 0, total = 1100, items = {}},
 	abysseaconflux = {name = 'Abyssea Conflux', completed = 0, total = 75, items = {}},
 	combatskills = {name = 'Combat Skills', completed = 0, total = 0, items = {}},
+	celestite = {name = 'Celestite', completed = 0, total = 0, items = {}},
 }
 
 addonhelptext = {
@@ -566,6 +569,15 @@ addon_setup = function()
 	res_combatskills = res.skills:filter(function(skill)
 		return (skill.category == 'Combat') or (skill.category == 'Magic') --or (skill.category == 'Puppet')
 	end)
+	mmmvouchersids = L(res.items:filter(function(item)
+		return item.type == 24
+	end):keyset()):sort()
+	mmmrunesids = L(res.items:filter(function(item)
+		return item.type == 25
+	end):keyset()):sort()
+	celestiteids = L(res.items:filter(function(item)
+		return item.type == 32
+	end):keyset()):sort()
 end
 
 addon_setup()
@@ -648,6 +660,7 @@ update_maintab = function()
 	append_maintab('Job Points Maxed %d/%d', playertracker.jobpoints_completed, 22)
 	append_maintab('Master Levels %d/%d (Highest: %d)', playertracker.masterlevels_completed, 1100, playertracker.masterlevels_highest)
 	append_maintab('Alter Ego Points %d/%d', playertracker.alteregopoint_completed, playertracker.alteregopoint_total)
+	append_maintab('Alter Ego Celestites %d/%d', playertracker.celestite_completed, playertracker.celestite_total)
 	append_maintab('Combat Skills Maxed %d/%d', playertracker.combatskills_completed, playertracker.combatskills_total)
 	append_maintab('Combat Skills %d/%d', playertracker.combatskills_detialcompleted, playertracker.combatskills_detailstotal)
 	
@@ -848,10 +861,8 @@ windower.register_event('incoming chunk', function(id, data, modified, injected,
 		end
 	elseif id == 0x0AD then
 		-- do MMM
-		local parseddata = packets.parse('incoming', data)
-		mmm_util.handle_mmm_data(data)
-		mmm_util.log_vouchers()
-		mmm_util.log_runes()
+		mmm_util.log_vouchers(data:sub(0x04+1, 0x0B+1))
+		mmm_util.log_runes(data:sub(0x0C+1, 0x4B+1))
 	elseif id == 0x052 then
 		-- clear npc menu
 		menus_util.reset_current_menu()
@@ -861,10 +872,16 @@ windower.register_event('incoming chunk', function(id, data, modified, injected,
 		--local alteregopoint_total = 0
 		for i = 17, 27 do -- Bytes 17 to 27 for HP MP etc etc -> Magic Skill (update when they add more)
 			alteregopoint_completed = alteregopoint_completed + string.byte(data, i)
-			--alteregopoint_total = alteregopoint_total + 50
+			--alteregopoint_total = alteregopoint_total + 60
 		end
 		playertracker.alteregopoint_completed = alteregopoint_completed
 		--playertracker.alteregopoint_total = alteregopoint_total
+	elseif id == 0x08F then
+		-- do Trust Celestite
+		--local parseddata = packets.parse('incoming', data)
+		--log_celestite(parseddata['Owned']) -- commented until Rubenator PR
+		local owned = data:sub(5, 8)
+		log_celestite(owned)
 	else
 		return
 	end
@@ -1151,6 +1168,28 @@ log_combat_skills = function()
 	playertracker.combatskills_total = total
 	tab_logs.combatskills = {
 		name = tab_logs.combatskills.name,
+		completed = complete,
+		total = total,
+		items = output_list
+	}
+end
+
+log_celestite = function(bitfield)
+	local output_list = {}
+	local total, complete = 0,0
+	for id in celestiteids:it() do
+		total = total+1
+		local completion = false
+		if util.has_bit(bitfield, id-29424)  then
+			complete = complete+1
+			completion = true
+		end
+		table.insert(output_list, util.list_item(nil, res.items[id].en, completion))
+	end
+	playertracker.celestite_completed = complete
+	playertracker.celestite_total = total
+	tab_logs.celestite = {
+		name = tab_logs.celestite.name,
 		completed = complete,
 		total = total,
 		items = output_list

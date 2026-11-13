@@ -966,7 +966,7 @@ return {
 	['Cardian Tutor'] = 'Quest: The All-New C-2000',
 	['Great Grappler Scorpio!?'] = 'Quest: The Amazin\' Scorpio',
 	['Trader of Antiquities'] = 'Quest: The Antique Collector',
-	['Servant to the Servant'] = 'Quest: The Arciela Directive',
+	['Servant to the Servant'] = 'RoE: The Arciela Directive',
 	['Five-star Purveyor'] = 'Quest: The Basics',
 	['Master of Ambition'] = 'Quest: The Beast Within',
 	['Paragon of Bard Excellence'] = 'Quest: The Circle of Time',
