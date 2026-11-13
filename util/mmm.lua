@@ -1,11 +1,4 @@
 local mmm_util = {}
---[[local vouchers_unlocks = nil
-local runes_unlocks = nil
-
-mmm_util.handle_mmm_data = function(data)
-	mmm_util.vouchers_unlocks = data:sub(0x04+1, 0x0B+1)
-	mmm_util.runes_unlocks = data:sub(0x0C+1, 0x4B+1)
-end--]]
 
 mmm_util.log_vouchers = function(bitfield)
 	if bitfield==nil then return end
