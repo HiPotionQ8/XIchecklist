@@ -1,6 +1,6 @@
 _addon.name     = 'xichecklist'
 _addon.author   = 'HiPotion'
-_addon.version  = '0.23.0'
+_addon.version  = '0.23.1'
 _addon.commands = {'xichecklist', 'xic', 'checklist'}
 
 require('sets')
@@ -828,18 +828,16 @@ windower.register_event('incoming chunk', function(id, data, modified, injected,
 		-- do monstrosity
 		if (parseddata.Order == 3) then
 			mons_util.monster_levelspacket[1] = parseddata['Monster Level Char field']
-			mons_util.monsterinstincts = util.twobits_to_table(parseddata['Instinct Bitfield 1'])
+			local monsterinstincts = util.twobits_to_table(parseddata['Instinct Bitfield 1'])
 			--mons_util.prestige = parseddata['_unknown4']
 			mons_util.log_monsterlevels()
-			mons_util.log_monsterinstincts()
+			mons_util.log_monsterinstincts(monsterinstincts)
 		end
 		if (parseddata.Order == 4) then
 			mons_util.monster_levelspacket[2] = data:sub(0x08+1, 0x87+1)
-			mons_util.racejobinstincts = parseddata['Instinct Bitfield 3']
-			mons_util.variants_bitfield = parseddata['Variants Bitfield']
 			mons_util.log_monsterlevels()
-			mons_util.log_variants()
-			mons_util.log_racejobinstincts()
+			mons_util.log_variants(parseddata['Variants Bitfield'])
+			mons_util.log_racejobinstincts(parseddata['Instinct Bitfield 3'])
 		end
 	elseif (id == 0x033) or (id == 0x034) then
 		-- handle npc menu
@@ -1478,6 +1476,14 @@ addon_clear = function()
 	playertracker = table.copy(defaultplayertracker)
 	tab_logs = table.copy(defaulttab_logs)
 	player = nil
+	ROE_DATA = nil
+	quests.completed, quests.current = {}, {}
+	warps_util.warps_data = nil
+	mons_util.monster_levelspacket = {
+		[1] = nil,
+		[2] = nil,
+	}
+	menus_util.reset_current_menu()
 	ui.menu:hide()
 end
 
