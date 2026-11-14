@@ -10,6 +10,7 @@
 | `//xic showexcluded` | toggle show hidden Titles and RoE and Crafting Shield KI on/off `Default:false` |
 | `//xic copy` | copy current tab to clipboard |
 | `//xic log <category>` | print <category> in chat log.<br>Example: `//xic log summary`<br>Available categories `main` `summary` `titles` `titles_by_content` `roe` `monstrosity` (`monsterlevels` `monstervariants` `racejobinstincts` `monsterinstincts`) `mmm` (`mmmvouchers` `mmmrunes`) `meeble` `zones` `warps` (`homepoints` `survivalguides` `waypoints` `telepoints` `cavernousmaws` `lycopodium` `eschanportals` `outposts` `protowaypoints`) `atmacite` `vorseals` `ergonlocus` `emporox` `fish` `odyssey` (`sheola` `sheolb` `sheolc` `sheolgaol`) `missions` `quests` (`sandoria` `bastok` `windurst` `jeuno` `ahturhgan` `assaults` `crystalwar` `outlands` `other` `abyssea` `adoulin` `coalition` `campaign` `sandoriamissions` `bastokmissions` `windurstmissions` `zilartmissions` `ahturhganmissions` `wotgmissions` `copmissions` `acpmissions` `mkdmissions` `asamissions` `soamissions` `rovmissions` `tvrmissions`)   |
+| `//xic find <text>` | search every category, e.g. `//xic find cait sith` (alias: `search`) |
 
 The following are updated by talking to NPCs (some require opening certain menus)  
 will be saved in config so only need to do it once (or when need to update)
