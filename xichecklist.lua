@@ -1,6 +1,6 @@
 _addon.name     = 'xichecklist'
 _addon.author   = 'HiPotion'
-_addon.version  = '0.22.2'
+_addon.version  = '0.23.0'
 _addon.commands = {'xichecklist', 'xic', 'checklist'}
 
 require('sets')
@@ -549,6 +549,7 @@ local cmds = {
 	showcompleted = S{'showcompleted'},
 	showexcluded = S{'showexcluded'},
 	scale = S{'scale'},
+	find = S{'find', 'search'},
 }
 
 addon_setup = function()
@@ -1219,6 +1220,38 @@ end
 
 draw()
 
+-- //xic find
+local SKIP_FIND = S{'titles_by_content', 'titles_by_content_detailed'} -- duplicates of 'titles'
+local FIND_MAX_RESULTS = 30
+
+local strip_colors = function(text)
+	return (text:gsub('\\cs%(%d+,%d+,%d+%)', ''):gsub('\\cr', ''))
+end
+
+local find_items = function(query)
+	local results = {}
+	for key, log in pairs(tab_logs) do
+		if not SKIP_FIND:contains(key) and type(log.items) == 'table' then
+			for _, item in ipairs(log.items) do
+				local text = item.text and strip_colors(item.text)
+				if text and not text:find('^==') and text:lower():find(query, 1, true) then
+					results[#results + 1] = {
+						category = log.name,
+						text = text,
+						completed = item.completed,
+						how = item.obtainmethod,
+					}
+				end
+			end
+		end
+	end
+	table.sort(results, function(a, b)
+		if a.category ~= b.category then return a.category < b.category end
+		return a.text < b.text
+	end)
+	return results
+end
+
 windower.register_event('addon command', function(...)
 	local quests_location = S{'sandoria', 'bastok', 'windurst', 'jeuno', 'ahturhgan', 'assaults', 'crystalwar', 'outlands', 'other', 'abyssea', 'adoulin', 'coalition', 'sandoriamissions', 'bastokmissions', 'windurstmissions', 'zilartmissions', 'ahturhganmissions', 'wotgmissions', 'copmissions', 'acpmissions', 'mkdmissions', 'asamissions', 'soamissions', 'rovmissions', 'tvrmissions'}
 	if cmds.help:contains(arg[1]) then
@@ -1228,6 +1261,7 @@ windower.register_event('addon command', function(...)
 		windower.add_to_chat(161,'//xic showcompleted to toggle show completed items on-off')
 		windower.add_to_chat(161,'//xic showexcluded to toggle show hidden RoE/Titles items on-off')
 		windower.add_to_chat(161,'//xic log <category> to log in chat')
+		windower.add_to_chat(161,'//xic find <text> to search all categories')
 		windower.add_to_chat(161,'==== ==== ==== ====')
 		windower.add_to_chat(161,'Require zoning to update Quests / Warps / Monstrosity / MMM')
 		windower.add_to_chat(161,'==== ==== ==== ====')
@@ -1415,6 +1449,26 @@ windower.register_event('addon command', function(...)
 			windower.add_to_chat(160, 'monsterlevels monstervariants racejobinstincts monsterinstincts mmmvouchers mmmrunes sheola sheolb sheolc sheolgaol')
 			windower.add_to_chat(160, 'sandoria bastok windurst jeuno ahturhgan crystalwar outlands other abyssea adoulin coalition campaign')
 			windower.add_to_chat(160, 'sandoriamissions bastokmissions windurstmissions zilartmissions ahturhganmissions wotgmissions copmissions acpmissions mkdmissions asamissions soamissions rovmissions tvrmissions')
+		end
+	elseif cmds.find:contains(arg[1]) then
+		local query = table.concat(arg, ' ', 2):lower()
+		if query == '' then
+			windower.add_to_chat(160, 'Usage: //xic find <text>   e.g. //xic find cait sith')
+			return
+		end
+		local results = find_items(query)
+		windower.add_to_chat(160, ('=== Find "%s": %d result(s) ==='):format(query, #results))
+		for i = 1, math.min(#results, FIND_MAX_RESULTS) do
+			local r = results[i]
+			local mark = r.completed and '[x]' or '[ ]'
+			local how = (r.how and r.how ~= '') and (' - '..r.how) or ''
+			local color = r.completed and 158 or 155 -- green or yellow
+			windower.add_to_chat(color, ('%s %s: %s%s'):format(mark, r.category, r.text, how))
+		end
+		if #results > FIND_MAX_RESULTS then
+			windower.add_to_chat(160, ('...and %d more, try a longer search'):format(#results - FIND_MAX_RESULTS))
+		elseif #results == 0 then
+			windower.add_to_chat(160, 'Nothing found. (Quests/Warps/Monstrosity need a zone change to load)')
 		end
 	end
 end)
