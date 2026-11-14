@@ -46,6 +46,7 @@ warps_util.log_visitedzones = function(data)
 	for index, zone in pairs(res.zones) do
 		total = total+1
 		local completion = false
+		local name = zone.en
 		if zones_exclusion:contains(zone.id) then total=total-1 end
 		if util.has_bit(subdata, zone.id) and not zones_exclusion:contains(zone.id) then
 			complete = complete+1
@@ -53,9 +54,9 @@ warps_util.log_visitedzones = function(data)
 		end
 		if not zones_exclusion:contains(zone.id) then
 			if zone.id == 227 or zone.id == 228 then
-				zone.en = zone.en .. ' (Pirates)'
+				name = zone.en .. ' (Pirates)'
 			end
-			table.insert(output_list, util.list_item(nil, zone.en, completion))
+			table.insert(output_list, util.list_item(nil, name, completion))
 		end
 	end
 	playertracker.zones_completed = complete

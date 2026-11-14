@@ -399,6 +399,7 @@ menus_util.list_titles_bycontent_detailed = function()
 		table.insert(output_list, util.list_item(nil, '==== ' .. content ..' ====', false))
 		for key, titleid in pairs(titles) do
 			local completion = false
+			local obtainmethod = nil
 			if (playertracker.titles[tostring(titleid)] == true) then
 				completion = true
 			end

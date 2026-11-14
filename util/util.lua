@@ -48,7 +48,7 @@ util.fourbits_to_table = function(data)
 end
 
 util.cleanspaces = function(str)
-    return str:gsub(" ", "_")
+    return (str:gsub(" ", "_"))
 end
 
 util.list_item = function(category, text, completed, obtainmethod)

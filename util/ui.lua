@@ -338,8 +338,8 @@ append_maintab = function(text, ...)
 end
 
 append_header = function(tab, text, ...)
-	args = {...}
-	local menulinecolor = (args[1]==args[2]) and '(0,255,0)' or '(255,255,255)'
+	local args = {...}
+	local menulinecolor = (args[1]>=(args[2] or 0)) and '(0,255,0)' or '(255,255,255)'
 	text = '==== '..text..' ===='
 	tabs[tab].items:append(util.list_item(nil, '\\cs'..menulinecolor..text:format(...)..'\\cr'))
 	if args[2] == 0 then

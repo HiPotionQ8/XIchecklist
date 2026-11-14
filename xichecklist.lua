@@ -1,6 +1,6 @@
 _addon.name     = 'xichecklist'
 _addon.author   = 'HiPotion'
-_addon.version  = '0.22.1'
+_addon.version  = '0.22.2'
 _addon.commands = {'xichecklist', 'xic', 'checklist'}
 
 require('sets')
@@ -900,11 +900,12 @@ throttled_update = function()
 	THROTTLED = true
 	coroutine.sleep(0.1)
 	-- Drop errors on the ground so we're never locked in THROTTLED = true
-	pcall(function ()
+	local ok, err = pcall(function ()
 		update_maintab()
 		xichecklist_updatetabs()
 		if trackermenusettings.visibility then draw() end
 	end)
+	--if not ok then util.addon_log('Update error: '..tostring(err)) end
 	THROTTLED = false
 end
 
@@ -1220,9 +1221,7 @@ draw()
 
 windower.register_event('addon command', function(...)
 	local quests_location = S{'sandoria', 'bastok', 'windurst', 'jeuno', 'ahturhgan', 'assaults', 'crystalwar', 'outlands', 'other', 'abyssea', 'adoulin', 'coalition', 'sandoriamissions', 'bastokmissions', 'windurstmissions', 'zilartmissions', 'ahturhganmissions', 'wotgmissions', 'copmissions', 'acpmissions', 'mkdmissions', 'asamissions', 'soamissions', 'rovmissions', 'tvrmissions'}
-	if arg[1] == 'eval' then
-		assert(loadstring(table.concat(arg, ' ',2)))()
-	elseif cmds.help:contains(arg[1]) then
+	if cmds.help:contains(arg[1]) then
 		windower.add_to_chat(161,'==== xichecklist / xic ====')
 		windower.add_to_chat(161,'//xic [show|hide] to show / hide UI')
 		windower.add_to_chat(161,'//xic copy to copy current tab to clipboard')
@@ -1284,8 +1283,8 @@ windower.register_event('addon command', function(...)
 		if (arg[2]) then
 			arg[2] = arg[2]:lower()
 			if arg[2] == 'titles' then
-				util.log_tablog(tab_logs.titles.items)
 				windower.add_to_chat(160, '=== Titles (%d/%d) ===':format(playertracker.Titles_completed, playertracker.Titles_total))
+				util.log_tablog(tab_logs.titles.items)
 			elseif arg[2] == 'monstrosity' then
 				windower.add_to_chat(160, '=== Species Levels (%d/%d) ===':format(playertracker.monsterlevels_completed, playertracker.monsterlevels_total))
 				util.log_tablog(tab_logs.monsterlevels.items)
@@ -1329,31 +1328,31 @@ windower.register_event('addon command', function(...)
 			elseif arg[2] == 'missions' then
 				windower.add_to_chat(160, '=== San d\'Oria Missions (%d/%d) ===':format(playertracker.sandoriamissions_completed, playertracker.sandoriamissions_total))
 				util.log_tablog(tab_logs.sandoriamissions.items)
-				windower.add_to_chat(160, 'Bastok Missions (%d/%d) ===':format(playertracker.bastokmissions_completed, playertracker.bastokmissions_total))
+				windower.add_to_chat(160, '=== Bastok Missions (%d/%d) ===':format(playertracker.bastokmissions_completed, playertracker.bastokmissions_total))
 				util.log_tablog(tab_logs.bastokmissions.items)
-				windower.add_to_chat(160, 'Windurst Missions (%d/%d) ===':format(playertracker.windurstmissions_completed, playertracker.windurstmissions_total))
+				windower.add_to_chat(160, '=== Windurst Missions (%d/%d) ===':format(playertracker.windurstmissions_completed, playertracker.windurstmissions_total))
 				util.log_tablog(tab_logs.windurstmissions.items)
-				windower.add_to_chat(160, 'Zilart Missions (%d/%d) ===':format(playertracker.zilartmissions_completed, playertracker.zilartmissions_total))
+				windower.add_to_chat(160, '=== Zilart Missions (%d/%d) ===':format(playertracker.zilartmissions_completed, playertracker.zilartmissions_total))
 				util.log_tablog(tab_logs.zilartmissions.items)
-				windower.add_to_chat(160, 'CoP Missions (%d/%d) ===':format(playertracker.copmissions_completed, playertracker.copmissions_total))
+				windower.add_to_chat(160, '=== CoP Missions (%d/%d) ===':format(playertracker.copmissions_completed, playertracker.copmissions_total))
 				util.log_tablog(tab_logs.copmissions.items)
-				windower.add_to_chat(160, 'TOAU Missions (%d/%d) ===':format(playertracker.ahturhganmissions_completed, playertracker.ahturhganmissions_total))
+				windower.add_to_chat(160, '=== TOAU Missions (%d/%d) ===':format(playertracker.ahturhganmissions_completed, playertracker.ahturhganmissions_total))
 				util.log_tablog(tab_logs.ahturhganmissions.items)
-				windower.add_to_chat(160, 'Assaults (%d/%d) ===':format(playertracker.assaults_completed, playertracker.assaults_total))
+				windower.add_to_chat(160, '=== Assaults (%d/%d) ===':format(playertracker.assaults_completed, playertracker.assaults_total))
 				util.log_tablog(tab_logs.assaults.items)
-				windower.add_to_chat(160, 'WOTG Missions (%d/%d) ===':format(playertracker.wotgmissions_completed, playertracker.wotgmissions_total))
+				windower.add_to_chat(160, '=== WOTG Missions (%d/%d) ===':format(playertracker.wotgmissions_completed, playertracker.wotgmissions_total))
 				util.log_tablog(tab_logs.wotgmissions.items)
-				windower.add_to_chat(160, 'ACP Missions (%d/%d) ===':format(playertracker.acpmissions_completed, playertracker.acpmissions_total))
+				windower.add_to_chat(160, '=== ACP Missions (%d/%d) ===':format(playertracker.acpmissions_completed, playertracker.acpmissions_total))
 				util.log_tablog(tab_logs.acpmissions.items)
-				windower.add_to_chat(160, 'MKD Missions (%d/%d) ===':format(playertracker.mkdmissions_completed, playertracker.mkdmissions_total))
+				windower.add_to_chat(160, '=== MKD Missions (%d/%d) ===':format(playertracker.mkdmissions_completed, playertracker.mkdmissions_total))
 				util.log_tablog(tab_logs.mkdmissions.items)
-				windower.add_to_chat(160, 'ASA Missions (%d/%d) ===':format(playertracker.asamissions_completed, playertracker.asamissions_total))
+				windower.add_to_chat(160, '=== ASA Missions (%d/%d) ===':format(playertracker.asamissions_completed, playertracker.asamissions_total))
 				util.log_tablog(tab_logs.asamissions.items)
-				windower.add_to_chat(160, 'SoA Missions (%d/%d) ===':format(playertracker.soamissions_completed, playertracker.soamissions_total))
+				windower.add_to_chat(160, '=== SoA Missions (%d/%d) ===':format(playertracker.soamissions_completed, playertracker.soamissions_total))
 				util.log_tablog(tab_logs.soamissions.items)
-				windower.add_to_chat(160, 'RoV Missions (%d/%d) ===':format(playertracker.rovmissions_completed, playertracker.rovmissions_total))
+				windower.add_to_chat(160, '=== RoV Missions (%d/%d) ===':format(playertracker.rovmissions_completed, playertracker.rovmissions_total))
 				util.log_tablog(tab_logs.rovmissions.items)
-				windower.add_to_chat(160, 'TVR Missions (%d/%d) ===':format(playertracker.tvrmissions_completed, playertracker.tvrmissions_total))
+				windower.add_to_chat(160, '=== TVR Missions (%d/%d) ===':format(playertracker.tvrmissions_completed, playertracker.tvrmissions_total))
 				util.log_tablog(tab_logs.tvrmissions.items)
 			elseif arg[2] == 'quests' then
 				windower.add_to_chat(160, '=== San d\'Oria Quests (%d/%d) ===':format(playertracker.sandoria_completed, playertracker.sandoria_total))
@@ -1385,7 +1384,7 @@ windower.register_event('addon command', function(...)
 				util.log_tablog(tab_logs.campaign.items)
 			elseif quests_location:contains(arg[2]) then
 				windower.add_to_chat(160, '=== '.. arg[2] ..' (%d/%d) ===':format(playertracker[arg[2]..'_completed'], playertracker[arg[2]..'_total']))
-				util.log_tablog(tab_logs[arg[2]])
+				util.log_tablog(tab_logs[arg[2]].items)
 			elseif (arg[2] == 'main') or (arg[2] == 'summary') then
 				for key, item in ipairs(tabs[1].items) do
 					local text = item.text
@@ -1422,8 +1421,8 @@ end)
 
 -- Init & Cleanup
 addon_clear = function()
-	playertracker = defaultplayertracker
-	tab_logs = defaulttab_logs
+	playertracker = table.copy(defaultplayertracker)
+	tab_logs = table.copy(defaulttab_logs)
 	player = nil
 	ui.menu:hide()
 end
@@ -1439,7 +1438,7 @@ addon_init = function()
 	end
 end
 
-windower.register_event('load', 'login', 'logout', addon_init)
+windower.register_event('load', 'login', addon_init)
 windower.register_event('logout', addon_clear)
 windower.register_event('unload', function()
 	ui.menu:destroy()

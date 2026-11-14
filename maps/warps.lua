@@ -242,7 +242,7 @@ return {
 		[84] = "Aht Urhgan Whitegate",
 		[85] = "Nashmau",
 		[86] = "Southern San d'Oria [S]",
-		--[87] = "Unknown Survival Guide",
+		--[87] = "Bastok Markets [S]",
 		
 		[88] = "Windurst Waters [S]",
 		[89] = "Caedarva Mire",
